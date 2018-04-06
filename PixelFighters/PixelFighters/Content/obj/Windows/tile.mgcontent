@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Toro/Desktop/Stuff/Studier/2017/Visual Studio/PixelFighters/PixelFightersV0.1.4/PixelFightersV0.1.4/PixelFightersV0.1.4/PixelFighters/Content/tile.png</SourceFile>
-  <SourceTime>2017-10-03T14:54:24+02:00</SourceTime>
-  <DestFile>C:/Users/Toro/Desktop/Stuff/Studier/2017/Visual Studio/PixelFighters/PixelFightersV0.1.4/PixelFightersV0.1.4/PixelFightersV0.1.4/PixelFighters/Content/bin/Windows/tile.xnb</DestFile>
-  <DestTime>2018-04-03T16:50:24.6186825+02:00</DestTime>
+  <SourceFile>C:/Users/Hemocroid/Desktop/PixelFightersV0.1.5/PixelFighters/Content/tile.png</SourceFile>
+  <SourceTime>2018-04-03T16:48:27.7816451+02:00</SourceTime>
+  <DestFile>C:/Users/Hemocroid/Desktop/PixelFightersV0.1.5/PixelFighters/Content/bin/Windows/tile.xnb</DestFile>
+  <DestTime>2018-04-05T14:58:56.2020474+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

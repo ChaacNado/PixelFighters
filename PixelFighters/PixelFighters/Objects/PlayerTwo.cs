@@ -75,25 +75,26 @@ namespace PixelFighters
                 {
                     if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && isOnGround)
                     {
-                        speed.Y = -6;
+                        speed.Y = -10;
                         isOnGround = false;
                     }
                 }
             }
             #endregion
             
-            if (keyState.IsKeyDown(Keys.D) && pos.X < 1360)
+            if (keyState.IsKeyDown(Keys.Right) && pos.X < 1360)
             {
                 speed.X = 5f;
             }
-            else if (keyState.IsKeyDown(Keys.A) && pos.X > bX)
+            else if (keyState.IsKeyDown(Keys.Left) && pos.X > bX)
             {
                 speed.X = -5f;
             }
 
-            if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) && isOnGround)
+            if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && isOnGround)
             {
-                speed.Y = -6;
+                //Hoppar högre än platformen
+                speed.Y = -10;
                 isOnGround = false;
             }
 
@@ -128,7 +129,7 @@ namespace PixelFighters
         {
             if (!isOnGround)
             {
-                // speed.Y = 0;
+                speed.Y = +2;
             }
             pos.X -= speed.X * 1.05f;
 

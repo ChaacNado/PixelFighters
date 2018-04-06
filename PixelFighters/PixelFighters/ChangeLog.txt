@@ -1,4 +1,17 @@
-﻿**********2018-03-31 Version 0.1.4, auth: Jonas Ekblad**********
+﻿**********2018-04-05 Version 0.1.6, auth: Erik Persson*********
+{
+Fixade en bugg som gjorde att keyboard och kontroller inte hoppaade lika högt.
+Ändrade så HandleBottomCollision fungerade(kan inte hoppa igenom en platform underifrån).
+
+}
+
+**********2018-04-04 Version 0.1.5, auth: Mikael Zhu*********
+{
+
+Ändrade vilka knappar som rör player ett och två.
+Ändrade value på "jump" så att players kan hoppa upp på platformarna där de spawnar.
+}
+**********2018-03-31 Version 0.1.4, auth: Jonas Ekblad**********
 {
 Implimentera rörelse till PlayerOne med GamePad.
 Skapade metoder, rörelse och kollision för player 2 samt skapade ett objekt av player 2.

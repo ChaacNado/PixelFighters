@@ -6,7 +6,7 @@ namespace PixelFighters
 {
     public enum GameState
     {
-
+        ///Ifall vi vill använda GameStates
     }
     public class Game1 : Game
     {

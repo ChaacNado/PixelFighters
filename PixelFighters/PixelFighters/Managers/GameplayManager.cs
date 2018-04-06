@@ -19,11 +19,10 @@ namespace PixelFighters
 
         MouseState mouseState, previousMouseState;
 
+        public Color color;
         List<Platform> platforms;
         PlayerOne playerOne;
         PlayerTwo playerTwo;
-
-        Texture2D rectTex;
 
         private static GameplayManager instance;
         #endregion
@@ -50,16 +49,16 @@ namespace PixelFighters
             game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
-            rectTex = Content.Load<Texture2D>("tile");
-
             platforms = new List<Platform>();
-            platforms.Add(new Platform(rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
-            platforms.Add(new Platform(rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
-            platforms.Add(new Platform(rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
-            platforms.Add(new Platform(rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
-            playerOne = new PlayerOne(rectTex, new Vector2(140, 300), new Rectangle(50, 50, 50, 50));
+            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
+            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
+            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
+            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
+            playerOne = new PlayerOne(TextureManager.Instance.rectTex, new Vector2(140, 300), new Rectangle(50, 50, 50, 50));
             //v0.1.4 - Player 2 duh
-            playerTwo = new PlayerTwo(rectTex, new Vector2(1050, 300), new Rectangle(50, 50, 50, 50));
+            playerTwo = new PlayerTwo(TextureManager.Instance.rectTex, new Vector2(1050, 300), new Rectangle(50, 50, 50, 50));
+
+            color = new Color(0, 0, 0, 1f);
         }
 
         public void Update(GameTime gameTime)
@@ -106,6 +105,15 @@ namespace PixelFighters
 
             playerOne.Update(gameTime);
             playerTwo.Update(gameTime);
+
+            if (color.A > 0)
+            {
+                color.A--;
+            }
+            if (color.A <= 0.0f)
+            {
+                color.A = 0;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -118,6 +126,8 @@ namespace PixelFighters
             playerOne.Draw(spriteBatch);
 
             playerTwo.Draw(spriteBatch);
+
+            spriteBatch.Draw(TextureManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion
     }

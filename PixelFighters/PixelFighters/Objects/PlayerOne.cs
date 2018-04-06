@@ -84,11 +84,11 @@ namespace PixelFighters
 
             //v0.1.3 - Liten justering som fixat att man kan röra sig åt höger
             //bX är det minsta X-värdet på skärmen, dvs 0. Därför gick det inte ha bX här, för det stoppade rörelsen åt höger ;)
-            if (keyState.IsKeyDown(Keys.D) && pos.X < 1360)
+            if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
             {
                 speed.X = 5f;
             }
-            else if (keyState.IsKeyDown(Keys.A) && pos.X > bX)
+            else if (keyState.IsKeyDown(Keys.A)/* && pos.X > bX*/)
             {
                 speed.X = -5f;
             }
@@ -100,8 +100,6 @@ namespace PixelFighters
                 speed.Y = -10;
                 isOnGround = false;
             }
-
-            System.Diagnostics.Debug.WriteLine(isOnGround);
 
             //v0.1.3 - Fixat så att karaktären dyker upp på startposition igen efter att den fallit ut
             if (pos.Y >= 900)

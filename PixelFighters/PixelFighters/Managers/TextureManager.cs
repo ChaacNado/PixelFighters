@@ -17,7 +17,8 @@ namespace PixelFighters
 
         ContentManager content;
 
-        public Texture2D rectTex;
+        public SpriteFont spriteFont;
+        public Texture2D rectTex, fadeTex;
 
         private static TextureManager instance;
 
@@ -42,7 +43,9 @@ namespace PixelFighters
         public void LoadContent(ContentManager Content)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
+            spriteFont = Content.Load<SpriteFont>("font1");
             rectTex = Content.Load<Texture2D>("tile");
+            fadeTex = Content.Load<Texture2D>("fade");
         }
         #endregion
     }

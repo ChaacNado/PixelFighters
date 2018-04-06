@@ -82,11 +82,11 @@ namespace PixelFighters
             }
             #endregion
             
-            if (keyState.IsKeyDown(Keys.Right) && pos.X < 1360)
+            if (keyState.IsKeyDown(Keys.Right)/* && pos.X < 1360*/)
             {
                 speed.X = 5f;
             }
-            else if (keyState.IsKeyDown(Keys.Left) && pos.X > bX)
+            else if (keyState.IsKeyDown(Keys.Left)/* && pos.X > bX*/)
             {
                 speed.X = -5f;
             }
@@ -97,8 +97,6 @@ namespace PixelFighters
                 speed.Y = -10;
                 isOnGround = false;
             }
-
-            System.Diagnostics.Debug.WriteLine(isOnGround);
             
             if (pos.Y >= 900)
             {

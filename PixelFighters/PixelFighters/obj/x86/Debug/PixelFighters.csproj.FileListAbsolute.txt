@@ -204,3 +204,5 @@ C:\Users\Hemocroid\Desktop\PixelFightersV0.1.5\PixelFighters\obj\x86\Debug\Pixel
 C:\Users\Hemocroid\Desktop\PixelFightersV0.1.5\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
 C:\Users\Hemocroid\Desktop\PixelFightersV0.1.5\PixelFighters\obj\x86\Debug\PixelFighters.exe
 C:\Users\Hemocroid\Desktop\PixelFightersV0.1.5\PixelFighters\obj\x86\Debug\PixelFighters.pdb
+C:\Users\TurtleDuck\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
+C:\Users\TurtleDuck\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb

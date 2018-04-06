@@ -1,4 +1,6 @@
-﻿**********2018-04-05 Version 0.1.6, auth: Erik Persson*********
+﻿**********Testing, testing. Is this thing on?(Jonas)**********
+
+**********2018-04-05 Version 0.1.6, auth: Erik Persson*********
 {
 Fixade en bugg som gjorde att keyboard och kontroller inte hoppaade lika högt.
 Ändrade så HandleBottomCollision fungerade(kan inte hoppa igenom en platform underifrån).

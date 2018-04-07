@@ -18,6 +18,7 @@ namespace PixelFighters
         float rotation = 0;
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
+        private int jumpsAvailable;
         #endregion
 
         #region Player Object
@@ -30,6 +31,7 @@ namespace PixelFighters
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
             color = Color.Blue;
+            jumpsAvailable = 2;
         }
         #endregion
 
@@ -40,6 +42,8 @@ namespace PixelFighters
 
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
+
+            System.Diagnostics.Debug.WriteLine(jumpsAvailable);
 
             if (!isOnGround)
             {
@@ -73,11 +77,20 @@ namespace PixelFighters
                 // You can also check the controllers "type"
                 if (capabilities.GamePadType == GamePadType.GamePad)
                 {
-                    if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && isOnGround)
+                    if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && jumpsAvailable >= 1)
                     {
                         speed.Y = -10;
                         isOnGround = false;
+                        jumpsAvailable = -1;
                     }
+                    if (gamePadState.IsButtonDown(Buttons.DPadDown))
+                    {
+                        speed.Y = 10;
+                    }
+                }
+                if (isOnGround)
+                {
+                    jumpsAvailable = 2;
                 }
             }
             #endregion
@@ -91,11 +104,21 @@ namespace PixelFighters
                 speed.X = -5f;
             }
 
-            if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && isOnGround)
+            if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && jumpsAvailable >= 1)
             {
                 //Hoppar högre än platformen
-                speed.Y = -10;
+                speed.Y = -8;
                 isOnGround = false;
+                jumpsAvailable -= 1;
+            }
+            else if (keyState.IsKeyDown(Keys.Down))
+            {
+                speed.Y = 10;
+            }
+
+            if (isOnGround)
+            {
+                jumpsAvailable = 2;
             }
             
             if (pos.Y >= 900)

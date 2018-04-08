@@ -19,10 +19,7 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
-
         public bool facingRight;
-        public bool testAttack;
-
         #endregion
         
         #region Player Object
@@ -34,12 +31,8 @@ namespace PixelFighters
             bX = (int)ScreenManager.Instance.Dimensions.X;
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
-            hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             color = Color.Red;
-
             facingRight = true;
-            testAttack = false;
-
             jumpsAvailable = 2;
         }
         #endregion
@@ -49,12 +42,25 @@ namespace PixelFighters
         {
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
-            
+
+            if (facingRight == true)
+            {
+                playerFx = SpriteEffects.None;
+            }
+
+            if (facingRight == false)
+            {
+                playerFx = SpriteEffects.FlipHorizontally;
+            }
+
             if (!isOnGround)
             {
                 speed.Y += 0.2f;
             }
-            
+
+            speed.X = 0;
+
+            #region v0.1.4 GamePad kod
             //v0.1.4 - Hämtar de inbyggda gamepad funktionerna.
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
 
@@ -70,15 +76,13 @@ namespace PixelFighters
                 {
                     if (gamePadState.DPad.Right == ButtonState.Pressed)
                     {
+                        facingRight = true;
                         speed.X = 5f;
                     }
                     if (gamePadState.DPad.Left == ButtonState.Pressed)
                     {
+                        facingRight = false;
                         speed.X = -5f;
-                    }
-                    else
-                    {
-                        speed.X = 0;
                     }
                 }
                     
@@ -101,20 +105,19 @@ namespace PixelFighters
                     jumpsAvailable = 2;
                 }
             }
+            #endregion
 
             //v0.1.3 - Liten justering som fixat att man kan röra sig åt höger
             //bX är det minsta X-värdet på skärmen, dvs 0. Därför gick det inte ha bX här, för det stoppade rörelsen åt höger ;)
             if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
             {
+                facingRight = true;
                 speed.X = 5f;
             }
             else if (keyState.IsKeyDown(Keys.A)/* && pos.X > bX*/)
             {
+                facingRight = false;
                 speed.X = -5f;
-            }
-            else
-            {
-                speed.X = 0;
             }
 
             if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) && jumpsAvailable >= 1)
@@ -137,26 +140,6 @@ namespace PixelFighters
                 jumpsAvailable = 2;
             }
 
-            if (keyState.IsKeyDown(Keys.X) && previousKeyState.IsKeyUp(Keys.X))
-            {
-                testAttack = true;
-
-                if (facingRight == true)
-                {
-                    hurtBox.X = (int)pos.X + 25;
-                }
-                else if (facingRight == false)
-                {
-                    hurtBox.X = (int)pos.X - 50;
-                }
-            }
-            else
-            {
-                testAttack = false;
-
-                hurtBox.X = (int)pos.X - 25;
-            }
-
             //v0.1.3 - Fixat så att karaktären dyker upp på startposition igen efter att den fallit ut
             if (pos.Y >= 900)
             {
@@ -167,12 +150,13 @@ namespace PixelFighters
             pos += speed;
             hitBox.X = (int)pos.X - 25;
             hitBox.Y = (int)pos.Y - 25;
-            hurtBox.Y = (int)pos.Y - 25;
         }
         
         public override void Draw(SpriteBatch spriteBatch)
         {
+
             spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, playerFx, 1);
+            
         }
         #endregion
         
@@ -195,6 +179,13 @@ namespace PixelFighters
 
             base.HandleBottomCollision(p);
         }
+        #endregion
+
+
+        #region Attack Methods
+
+
+
         #endregion
     }
 }

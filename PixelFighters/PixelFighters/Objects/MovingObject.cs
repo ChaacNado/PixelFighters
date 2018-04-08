@@ -10,7 +10,7 @@ namespace PixelFighters
 {
     public class MovingObject : GameObject
     {
-        public Rectangle hitBox, groundHitBox, hurtBox;
+        public Rectangle hitBox, groundHitBox;
         protected Rectangle srcRec;
         protected bool isOnGround;
 
@@ -48,37 +48,6 @@ namespace PixelFighters
         {
             hitBox.Y = p.bottomHitBox.Y + hitBox.Height / 2;
             hitBox.X = p.bottomHitBox.X - hitBox.Width / 2;
-        }
-
-        public virtual void HandlePlayerCollision(PlayerOne p1, PlayerTwo p2)
-        {
-            if (p1.hurtBox.Intersects(p2.hitBox))
-            {
-                if (p1.facingRight == true)
-                {
-                    p2.speed.X += 15f;
-                    p2.speed.Y -= 5;
-                }
-                else if (p1.facingRight == false)
-                {
-                    p2.speed.X -= 15f;
-                    p2.speed.Y -= 5;
-                }
-            }
-
-            if (p2.hurtBox.Intersects(p1.hitBox))
-            {
-                if (p2.facingRight == true)
-                {
-                    p1.speed.X += 15f;
-                    p1.speed.Y -= 5;
-                }
-                else if (p2.facingRight == false)
-                {
-                    p1.speed.X -= 15f;
-                    p1.speed.Y -= 5;
-                }
-            }
         }
         #endregion
 

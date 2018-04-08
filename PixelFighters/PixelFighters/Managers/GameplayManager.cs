@@ -54,9 +54,9 @@ namespace PixelFighters
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
-            playerOne = new PlayerOne(TextureManager.Instance.rectTex, new Vector2(140, 300), new Rectangle(50, 50, 50, 50));
+            playerOne = new PlayerOne(TextureManager.Instance.boxManTex, new Vector2(140, 300), new Rectangle(0, 0, 50, 50));
             //v0.1.4 - Player 2 duh
-            playerTwo = new PlayerTwo(TextureManager.Instance.rectTex, new Vector2(1050, 300), new Rectangle(50, 50, 50, 50));
+            playerTwo = new PlayerTwo(TextureManager.Instance.boxManTex, new Vector2(1050, 300), new Rectangle(0, 0, 50, 50));
 
             color = new Color(0, 0, 0, 1f);
         }
@@ -101,15 +101,6 @@ namespace PixelFighters
                 {
                     playerTwo.IsOnGround = false;
                 }
-            }
-
-            if (playerOne.hurtBox.Intersects(playerTwo.hitBox) && playerOne.testAttack == true)
-            {
-                playerTwo.HandlePlayerCollision(playerOne, playerTwo);
-            }
-            if (playerTwo.hurtBox.Intersects(playerOne.hitBox) && playerTwo.testAttack == true)
-            {
-                playerTwo.HandlePlayerCollision(playerOne, playerTwo);
             }
 
             playerOne.Update(gameTime);

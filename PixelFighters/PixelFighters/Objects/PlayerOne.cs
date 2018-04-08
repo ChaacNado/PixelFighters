@@ -19,11 +19,10 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
-<<<<<<< HEAD
+
         public bool facingRight;
         public bool testAttack;
-=======
->>>>>>> 886075467224a54e947e3696db7e417ec2bc250f
+
         #endregion
         
         #region Player Object
@@ -37,11 +36,10 @@ namespace PixelFighters
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
             hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             color = Color.Red;
-<<<<<<< HEAD
+
             facingRight = true;
             testAttack = false;
-=======
->>>>>>> 886075467224a54e947e3696db7e417ec2bc250f
+
             jumpsAvailable = 2;
         }
         #endregion

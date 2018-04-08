@@ -19,7 +19,6 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
-        public bool facingRight;
         #endregion
         
         #region Player Object
@@ -32,7 +31,6 @@ namespace PixelFighters
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
             color = Color.Red;
-            facingRight = true;
             jumpsAvailable = 2;
         }
         #endregion
@@ -42,17 +40,7 @@ namespace PixelFighters
         {
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
-
-            if (facingRight == true)
-            {
-                playerFx = SpriteEffects.None;
-            }
-
-            if (facingRight == false)
-            {
-                playerFx = SpriteEffects.FlipHorizontally;
-            }
-
+            
             if (!isOnGround)
             {
                 speed.Y += 0.2f;
@@ -76,12 +64,10 @@ namespace PixelFighters
                 {
                     if (gamePadState.DPad.Right == ButtonState.Pressed)
                     {
-                        facingRight = true;
                         speed.X = 5f;
                     }
                     if (gamePadState.DPad.Left == ButtonState.Pressed)
                     {
-                        facingRight = false;
                         speed.X = -5f;
                     }
                 }
@@ -111,12 +97,10 @@ namespace PixelFighters
             //bX är det minsta X-värdet på skärmen, dvs 0. Därför gick det inte ha bX här, för det stoppade rörelsen åt höger ;)
             if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
             {
-                facingRight = true;
                 speed.X = 5f;
             }
             else if (keyState.IsKeyDown(Keys.A)/* && pos.X > bX*/)
             {
-                facingRight = false;
                 speed.X = -5f;
             }
 
@@ -154,9 +138,7 @@ namespace PixelFighters
         
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, playerFx, 1);
-            
         }
         #endregion
         
@@ -179,13 +161,6 @@ namespace PixelFighters
 
             base.HandleBottomCollision(p);
         }
-        #endregion
-
-
-        #region Attack Methods
-
-
-
         #endregion
     }
 }

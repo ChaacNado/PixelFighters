@@ -14,7 +14,6 @@ namespace PixelFighters
         Pause,
         Results,
     }
-
     public class Game1 : Game
     {
         public GameState currentGameState;

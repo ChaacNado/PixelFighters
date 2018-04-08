@@ -19,7 +19,6 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
-        public bool facingRight;
         #endregion
 
         #region Player Object
@@ -32,7 +31,6 @@ namespace PixelFighters
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
             color = Color.Blue;
-            facingRight = false;
             jumpsAvailable = 2;
         }
         #endregion
@@ -46,16 +44,6 @@ namespace PixelFighters
             keyState = Keyboard.GetState();
 
             System.Diagnostics.Debug.WriteLine(jumpsAvailable);
-
-            if (facingRight == true)
-            {
-                playerFx = SpriteEffects.None;
-            }
-
-            if (facingRight == false)
-            {
-                playerFx = SpriteEffects.FlipHorizontally;
-            }
 
             if (!isOnGround)
             {
@@ -78,12 +66,10 @@ namespace PixelFighters
                 {
                     if (gamePadState.DPad.Right == ButtonState.Pressed)
                     {
-                        facingRight = true;
                         speed.X = 5f;
                     }
                     if (gamePadState.DPad.Left == ButtonState.Pressed)
                     {
-                        facingRight = false;
                         speed.X = -5f;
                     }
                 }
@@ -111,12 +97,10 @@ namespace PixelFighters
             
             if (keyState.IsKeyDown(Keys.Right)/* && pos.X < 1360*/)
             {
-                facingRight = true;
                 speed.X = 5f;
             }
             else if (keyState.IsKeyDown(Keys.Left)/* && pos.X > bX*/)
             {
-                facingRight = false;
                 speed.X = -5f;
             }
 

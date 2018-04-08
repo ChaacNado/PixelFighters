@@ -1,9 +1,4 @@
-﻿**********2018-04-07 Version 0.1.8, auth: Kristan Toro & Mikael Zhu********
-{
-Fått in fastfall och dubblejump.
-Både för player 1 och 2 i keyboard och kontroller.
-}
-**********2018-04-06 Version 0.1.7, auth: Kristian Toro**********
+﻿**********2018-04-06 Version 0.1.7, auth: Kristian Toro**********
 {
 Fått igång GameStates-logiken (enum), som ska användas för bland annat olika menyer.
 Alla menyer har för nuvarande spelet igång i bakgrunden.

@@ -20,8 +20,10 @@ namespace PixelFighters
         public int bX, bY;
         private int jumpsAvailable;
         public bool facingRight;
+
+        public bool testAttack;
         #endregion
-        
+
         #region Player Object
         public PlayerOne(Texture2D tex, Vector2 pos, Rectangle srcRec) : base(tex, pos, srcRec)
         {
@@ -31,9 +33,12 @@ namespace PixelFighters
             bX = (int)ScreenManager.Instance.Dimensions.X;
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
+            hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             color = Color.Red;
             facingRight = true;
+            testAttack = false;
             jumpsAvailable = 2;
+
         }
         #endregion
         
@@ -60,11 +65,8 @@ namespace PixelFighters
 
             speed.X = 0;
 
-            #region v0.1.4 GamePad kod
-            //v0.1.4 - Hämtar de inbyggda gamepad funktionerna.
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
 
-            //v0.1.4 - GamePad inputs.
             if (capabilities.IsConnected)
             {
                 // Get the current state of Controller1
@@ -105,10 +107,8 @@ namespace PixelFighters
                     jumpsAvailable = 2;
                 }
             }
-            #endregion
 
-            //v0.1.3 - Liten justering som fixat att man kan röra sig åt höger
-            //bX är det minsta X-värdet på skärmen, dvs 0. Därför gick det inte ha bX här, för det stoppade rörelsen åt höger ;)
+            
             if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
             {
                 facingRight = true;
@@ -140,7 +140,46 @@ namespace PixelFighters
                 jumpsAvailable = 2;
             }
 
-            //v0.1.3 - Fixat så att karaktären dyker upp på startposition igen efter att den fallit ut
+            if (keyState.IsKeyDown(Keys.X) && previousKeyState.IsKeyUp(Keys.X))
+            {
+                testAttack = true;
+
+                if (facingRight == true)
+                {
+                    hurtBox.X = (int)pos.X + 25;
+                }
+                else if (facingRight == false)
+                {
+                    hurtBox.X = (int)pos.X - 50;
+                }
+            }
+            else
+            {
+                testAttack = false;
+
+                hurtBox.X = (int)pos.X - 25;
+            }
+
+            if (keyState.IsKeyDown(Keys.X) && previousKeyState.IsKeyUp(Keys.X))
+            {
+                testAttack = true;
+
+                if (facingRight == true)
+                {
+                    hurtBox.X = (int)pos.X + 25;
+                }
+                else if (facingRight == false)
+                {
+                    hurtBox.X = (int)pos.X - 50;
+                }
+            }
+            else
+            {
+                testAttack = false;
+
+                hurtBox.X = (int)pos.X - 25;
+            }
+
             if (pos.Y >= 900)
             {
                 pos.X = 140;
@@ -150,6 +189,7 @@ namespace PixelFighters
             pos += speed;
             hitBox.X = (int)pos.X - 25;
             hitBox.Y = (int)pos.Y - 25;
+            hurtBox.Y = (int)pos.Y - 25;
         }
         
         public override void Draw(SpriteBatch spriteBatch)

@@ -20,6 +20,7 @@ namespace PixelFighters
         public int bX, bY;
         private int jumpsAvailable;
         public bool facingRight;
+        public bool testAttack;
         #endregion
 
         #region Player Object
@@ -31,8 +32,10 @@ namespace PixelFighters
             bY = (int)ScreenManager.Instance.Dimensions.Y;
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
+            hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             color = Color.Blue;
             facingRight = false;
+            testAttack = false;
             jumpsAvailable = 2;
         }
         #endregion
@@ -136,7 +139,27 @@ namespace PixelFighters
             {
                 jumpsAvailable = 2;
             }
-            
+
+            if (keyState.IsKeyDown(Keys.NumPad0) && previousKeyState.IsKeyUp(Keys.NumPad0))
+            {
+                testAttack = true;
+
+                if (facingRight == true)
+                {
+                    hurtBox.X = (int)pos.X + 25;
+                }
+                else if (facingRight == false)
+                {
+                    hurtBox.X = (int)pos.X - 50;
+                }
+            }
+            else
+            {
+                testAttack = false;
+
+                hurtBox.X = (int)pos.X - 25;
+            }
+
             if (pos.Y >= 900)
             {
                 pos.X = 1050;
@@ -146,6 +169,7 @@ namespace PixelFighters
             pos += speed;
             hitBox.X = (int)pos.X - 25;
             hitBox.Y = (int)pos.Y - 25;
+            hurtBox.Y = (int)pos.Y - 25;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

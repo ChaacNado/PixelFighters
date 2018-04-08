@@ -371,3 +371,37 @@ C:\Users\Toro\Desktop\Stuff\Studier\2017\Visual Studio\PixelFighters\PixelFighte
 C:\Users\Toro\Desktop\Stuff\Studier\2017\Visual Studio\PixelFighters\PixelFightersV0.1.9\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CopyComplete
 C:\Users\Toro\Desktop\Stuff\Studier\2017\Visual Studio\PixelFighters\PixelFightersV0.1.9\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
 C:\Users\Toro\Desktop\Stuff\Studier\2017\Visual Studio\PixelFighters\PixelFightersV0.1.9\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\fade.png
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\tile.png
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\boxMan.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\animFont.spritefont
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\font1.spritefont
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\animFont.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\fade.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\font1.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\tile.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\PixelFighters.exe
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\PixelFighters.pdb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csprojResolveAssemblyReference.cache
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CopyComplete
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb

@@ -1,4 +1,14 @@
-﻿**********2018-04-07 Version 0.1.8, auth: Kristan Toro & Mikael Zhu********
+﻿**********2018-04-08 Version 0.1.10, auth: Jonas Ekblad**********
+{
+Implimentera enkla test attacker med kollision till player one och two. Samt en första version av knockback (it's bad).
+}
+**********2018-04-08 Version 0.1.9, auth: Erik Persson*********
+{
+La in en ny textur(boxMan) som visar vilket håll karaktären tittar på.
+Gjorde en facingdirection(facingRight) i PlayerOne och PlayerTwo som flippar när man byter håll man går på.
+Ändrade på source rektanglarna till playerobjekten pga de var fel.
+}
+**********2018-04-07 Version 0.1.8, auth: Kristan Toro & Mikael Zhu********
 {
 Fått in fastfall och dubblejump.
 Både för player 1 och 2 i keyboard och kontroller.

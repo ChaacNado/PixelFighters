@@ -103,6 +103,15 @@ namespace PixelFighters
                 }
             }
 
+            if (playerOne.hurtBox.Intersects(playerTwo.hitBox) && playerOne.testAttack == true)
+            {
+                playerTwo.HandlePlayerCollision(playerOne, playerTwo);
+            }
+            if (playerTwo.hurtBox.Intersects(playerOne.hitBox) && playerTwo.testAttack == true)
+            {
+                playerTwo.HandlePlayerCollision(playerOne, playerTwo);
+            }
+
             playerOne.Update(gameTime);
             playerTwo.Update(gameTime);
 

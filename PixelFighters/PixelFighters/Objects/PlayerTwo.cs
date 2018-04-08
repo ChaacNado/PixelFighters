@@ -19,6 +19,11 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
+<<<<<<< HEAD
+        public bool facingRight;
+        public bool testAttack;
+=======
+>>>>>>> 886075467224a54e947e3696db7e417ec2bc250f
         #endregion
 
         #region Player Object
@@ -30,7 +35,13 @@ namespace PixelFighters
             bY = (int)ScreenManager.Instance.Dimensions.Y;
             hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
+            hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             color = Color.Blue;
+<<<<<<< HEAD
+            facingRight = false;
+            testAttack = false;
+=======
+>>>>>>> 886075467224a54e947e3696db7e417ec2bc250f
             jumpsAvailable = 2;
         }
         #endregion
@@ -49,10 +60,7 @@ namespace PixelFighters
             {
                 speed.Y += 0.2f;
             }
-
-            speed.X = 0;
-
-            #region GamePad kod
+            
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.Two);
             
             if (capabilities.IsConnected)
@@ -72,8 +80,12 @@ namespace PixelFighters
                     {
                         speed.X = -5f;
                     }
+                    else
+                    {
+                        speed.X = 0;
+                    }
                 }
-
+                
                 // You can also check the controllers "type"
                 if (capabilities.GamePadType == GamePadType.GamePad)
                 {
@@ -93,7 +105,6 @@ namespace PixelFighters
                     jumpsAvailable = 2;
                 }
             }
-            #endregion
             
             if (keyState.IsKeyDown(Keys.Right)/* && pos.X < 1360*/)
             {
@@ -102,6 +113,10 @@ namespace PixelFighters
             else if (keyState.IsKeyDown(Keys.Left)/* && pos.X > bX*/)
             {
                 speed.X = -5f;
+            }
+            else
+            {
+                speed.X = 0;
             }
 
             if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && jumpsAvailable >= 1)
@@ -120,7 +135,27 @@ namespace PixelFighters
             {
                 jumpsAvailable = 2;
             }
-            
+
+            if (keyState.IsKeyDown(Keys.NumPad0) && previousKeyState.IsKeyUp(Keys.NumPad0))
+            {
+                testAttack = true;
+
+                if (facingRight == true)
+                {
+                    hurtBox.X = (int)pos.X + 25;
+                }
+                else if (facingRight == false)
+                {
+                    hurtBox.X = (int)pos.X - 50;
+                }
+            }
+            else
+            {
+                testAttack = false;
+
+                hurtBox.X = (int)pos.X - 25;
+            }
+
             if (pos.Y >= 900)
             {
                 pos.X = 1050;
@@ -130,6 +165,7 @@ namespace PixelFighters
             pos += speed;
             hitBox.X = (int)pos.X - 25;
             hitBox.Y = (int)pos.Y - 25;
+            hurtBox.Y = (int)pos.Y - 25;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

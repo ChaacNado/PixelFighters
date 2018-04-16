@@ -14,13 +14,11 @@ namespace PixelFighters
         #region Variables
         KeyboardState keyState, previousKeyState;
         GamePadState gamePadState, previousGamePadState;
-        public Vector2 speed;
         float rotation = 0;
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
         public bool facingRight;
-        public bool testAttack;
         public int stocksRemaining;
         public int HP;
         #endregion
@@ -32,12 +30,12 @@ namespace PixelFighters
             speed = new Vector2(0, 0);
             bX = (int)ScreenManager.Instance.Dimensions.X;
             bY = (int)ScreenManager.Instance.Dimensions.Y;
-            hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
+            damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
-            hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
+            attackhitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             color = Color.Blue;
             facingRight = false;
-            testAttack = false;
+            isHit = false;
             jumpsAvailable = 2;
             stocksRemaining = 3;
             HP = 10;
@@ -52,14 +50,12 @@ namespace PixelFighters
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
-            System.Diagnostics.Debug.WriteLine(jumpsAvailable);
-
-            if (facingRight == true)
+            if (facingRight)
             {
                 playerFx = SpriteEffects.None;
             }
 
-            if (facingRight == false)
+            if (!facingRight)
             {
                 playerFx = SpriteEffects.FlipHorizontally;
             }
@@ -67,9 +63,13 @@ namespace PixelFighters
             if (!isOnGround)
             {
                 speed.Y += 0.2f;
+                if(speed.Y >= 20)
+                {
+                    speed.Y = 20;
+                }
             }
 
-            speed.X = 0;
+            speed.X *= 0.9f;
 
             #region GamePad kod
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.Two);
@@ -106,7 +106,7 @@ namespace PixelFighters
                     }
                     if (gamePadState.IsButtonDown(Buttons.DPadDown))
                     {
-                        speed.Y = 10;
+                        speed.Y += 5;
                     }
                 }
                 if (isOnGround)
@@ -136,7 +136,7 @@ namespace PixelFighters
             }
             else if (keyState.IsKeyDown(Keys.Down))
             {
-                speed.Y = 10;
+                speed.Y += 5;
             }
 
             if (isOnGround)
@@ -146,22 +146,20 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.NumPad0) && previousKeyState.IsKeyUp(Keys.NumPad0))
             {
-                testAttack = true;
-
-                if (facingRight == true)
+                isAttacking = true;
+                if (facingRight)
                 {
-                    hurtBox.X = (int)pos.X + 25;
+                    attackhitBox.X = (int)pos.X + 25;
                 }
-                else if (facingRight == false)
+                else if (!facingRight)
                 {
-                    hurtBox.X = (int)pos.X - 50;
+                    attackhitBox.X = (int)pos.X - 50;
                 }
             }
             else
             {
-                testAttack = false;
-
-                hurtBox.X = (int)pos.X - 25;
+                isAttacking = false;
+                attackhitBox.X = (int)pos.X - 25;
             }
 
             if (pos.Y >= 900 || HP == 0)
@@ -174,14 +172,14 @@ namespace PixelFighters
             }
 
             pos += speed;
-            hitBox.X = (int)pos.X - 25;
-            hitBox.Y = (int)pos.Y - 25;
-            hurtBox.Y = (int)pos.Y - 25;
+            damageableHitBox.X = (int)pos.X - 25;
+            damageableHitBox.Y = (int)pos.Y - 25;
+            attackhitBox.Y = (int)pos.Y - 25;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, playerFx, 1);
+            spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
         }
         #endregion
 

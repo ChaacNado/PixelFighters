@@ -20,7 +20,7 @@ namespace PixelFighters
         MouseState mouseState, previousMouseState;
 
         public Color color;
-        List<Platform> platforms;
+        List<Platform> platforms = new List<Platform>();
         PlayerOne playerOne;
         PlayerTwo playerTwo;
 
@@ -51,7 +51,6 @@ namespace PixelFighters
             game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
-            platforms = new List<Platform>();
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
@@ -104,13 +103,15 @@ namespace PixelFighters
                 }
             }
 
-            if (playerOne.hurtBox.Intersects(playerTwo.hitBox) && playerOne.testAttack == true)
+            if (playerOne.attackhitBox.Intersects(playerTwo.damageableHitBox) && playerOne.isAttacking == true)
             {
+                playerTwo.isHit = true;
                 playerTwo.HP--;
                 playerTwo.HandlePlayerCollision(playerOne, playerTwo);
             }
-            if (playerTwo.hurtBox.Intersects(playerOne.hitBox) && playerTwo.testAttack == true)
+            if (playerTwo.attackhitBox.Intersects(playerOne.damageableHitBox) && playerTwo.isAttacking == true)
             {
+                playerOne.isHit = true;
                 playerOne.HP--;
                 playerTwo.HandlePlayerCollision(playerOne, playerTwo);
             }

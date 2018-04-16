@@ -14,13 +14,11 @@ namespace PixelFighters
         #region Variables
         KeyboardState keyState, previousKeyState;
         GamePadState gamePadState, previousGamePadState;
-        public Vector2 speed;
         float rotation = 0;
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY;
         private int jumpsAvailable;
         public bool facingRight;
-        public bool testAttack;
         public int stocksRemaining;
         public int HP;
         #endregion
@@ -32,31 +30,31 @@ namespace PixelFighters
             speed = new Vector2(0, 0);
             bY = (int)ScreenManager.Instance.Dimensions.Y;
             bX = (int)ScreenManager.Instance.Dimensions.X;
-            hitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
+            damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
-            hurtBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
+            attackhitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             color = Color.Red;
             facingRight = true;
-            testAttack = false;
+            isHit = false;
             jumpsAvailable = 2;
             stocksRemaining = 3;
             HP = 10;
 
         }
         #endregion
-        
+
         #region Main Methods
         public override void Update(GameTime gameTime)
         {
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
-            if (facingRight == true)
+            if (facingRight)
             {
                 playerFx = SpriteEffects.None;
             }
 
-            if (facingRight == false)
+            if (!facingRight)
             {
                 playerFx = SpriteEffects.FlipHorizontally;
             }
@@ -64,9 +62,13 @@ namespace PixelFighters
             if (!isOnGround)
             {
                 speed.Y += 0.2f;
+                if (speed.Y >= 20)
+                {
+                    speed.Y = 20;
+                }
             }
 
-            speed.X = 0;
+            speed.X *= 0.9f;
 
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
 
@@ -90,7 +92,7 @@ namespace PixelFighters
                         speed.X = -5f;
                     }
                 }
-                    
+
                 // You can also check the controllers "type"
                 if (capabilities.GamePadType == GamePadType.GamePad)
                 {
@@ -102,7 +104,7 @@ namespace PixelFighters
                     }
                     if (gamePadState.IsButtonDown(Buttons.DPadDown))
                     {
-                        speed.Y = 10;
+                        speed.Y += 5;
                     }
                 }
                 if (isOnGround)
@@ -111,7 +113,6 @@ namespace PixelFighters
                 }
             }
 
-            
             if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
             {
                 facingRight = true;
@@ -135,7 +136,7 @@ namespace PixelFighters
             //OM man klickar på ner knappen, går snabbare ner.
             else if (keyState.IsKeyDown(Keys.S))
             {
-                speed.Y = 10;
+                speed.Y += 5;
 
             }
             if (isOnGround)
@@ -145,42 +146,22 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.X) && previousKeyState.IsKeyUp(Keys.X))
             {
-                testAttack = true;
+                isAttacking = true;
 
-                if (facingRight == true)
+                if (facingRight)
                 {
-                    hurtBox.X = (int)pos.X + 25;
+                    attackhitBox.X = (int)pos.X + 25;
                 }
-                else if (facingRight == false)
+                else if (!facingRight)
                 {
-                    hurtBox.X = (int)pos.X - 50;
-                }
-            }
-            else
-            {
-                testAttack = false;
-
-                hurtBox.X = (int)pos.X - 25;
-            }
-
-            if (keyState.IsKeyDown(Keys.X) && previousKeyState.IsKeyUp(Keys.X))
-            {
-                testAttack = true;
-
-                if (facingRight == true)
-                {
-                    hurtBox.X = (int)pos.X + 25;
-                }
-                else if (facingRight == false)
-                {
-                    hurtBox.X = (int)pos.X - 50;
+                    attackhitBox.X = (int)pos.X - 50;
                 }
             }
             else
             {
-                testAttack = false;
+                isAttacking = false;
 
-                hurtBox.X = (int)pos.X - 25;
+                attackhitBox.X = (int)pos.X - 25;
             }
 
             if (pos.Y >= 900 || HP == 0)
@@ -191,22 +172,22 @@ namespace PixelFighters
                 pos.Y = 300;
                 speed = Vector2.Zero;
             }
-               
+
 
             pos += speed;
-            hitBox.X = (int)pos.X - 25;
-            hitBox.Y = (int)pos.Y - 25;
-            hurtBox.Y = (int)pos.Y - 25;
+            damageableHitBox.X = (int)pos.X - 25;
+            damageableHitBox.Y = (int)pos.Y - 25;
+            attackhitBox.Y = (int)pos.Y - 25;
         }
-        
+
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(hitBox.Width / 2, hitBox.Height / 2), 1, playerFx, 1);
-            
+            spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+
         }
         #endregion
-        
+
         #region Collision Methods
         //v.0.1.3 skapat kollisionsmetoder
         public override void HandleTopCollision(Platform p)

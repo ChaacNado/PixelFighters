@@ -59,8 +59,6 @@ namespace PixelFighters
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
-            System.Diagnostics.Debug.WriteLine(currentGameState);
-
             switch (currentGameState)
             {
                 case GameState.TitleScreen:

@@ -10,9 +10,11 @@ namespace PixelFighters
 {
     public class MovingObject : GameObject
     {
-        public Rectangle hitBox, groundHitBox, hurtBox;
+        public Rectangle damageableHitBox, groundHitBox, attackhitBox;
         protected Rectangle srcRec;
+        public Vector2 speed;
         protected bool isOnGround;
+        public bool isHit, isAttacking;
 
         #region Properties
         //v0.1.3 - Skapat tre properties
@@ -20,12 +22,12 @@ namespace PixelFighters
 
         public virtual bool IsTopColliding(Platform p)
         {
-            return new Rectangle(hitBox.X, hitBox.Y + 1, hitBox.Width, hitBox.Height).Intersects(p.topHitBox);
+            return new Rectangle(damageableHitBox.X, damageableHitBox.Y + 1, damageableHitBox.Width, damageableHitBox.Height).Intersects(p.topHitBox);
         }
-        
+
         public virtual bool IsBottomColliding(Platform p)
         {
-            return new Rectangle(hitBox.X, hitBox.Y, hitBox.Width, hitBox.Height).Intersects(p.bottomHitBox);
+            return new Rectangle(damageableHitBox.X, damageableHitBox.Y, damageableHitBox.Width, damageableHitBox.Height).Intersects(p.bottomHitBox);
         }
         #endregion
 
@@ -34,57 +36,72 @@ namespace PixelFighters
             this.tex = tex;
             this.pos = pos;
             this.srcRec = srcRec;
-            hitBox = new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
+            damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
         }
 
         #region Collision Methods
         public virtual void HandleTopCollision(Platform p)
         {
-            hitBox.Y = p.topHitBox.Y - hitBox.Height / 2;
-            pos.Y = hitBox.Y;
+            damageableHitBox.Y = p.topHitBox.Y - damageableHitBox.Height / 2;
+            pos.Y = damageableHitBox.Y;
         }
-        
+
         public virtual void HandleBottomCollision(Platform p)
         {
-            hitBox.Y = p.bottomHitBox.Y + hitBox.Height / 2;
-            hitBox.X = p.bottomHitBox.X - hitBox.Width / 2;
+            damageableHitBox.Y = p.bottomHitBox.Y + damageableHitBox.Height / 2;
+            damageableHitBox.X = p.bottomHitBox.X - damageableHitBox.Width / 2;
         }
 
         public virtual void HandlePlayerCollision(PlayerOne p1, PlayerTwo p2)
         {
-            if (p1.hurtBox.Intersects(p2.hitBox))
+            if (p1.attackhitBox.Intersects(p2.damageableHitBox) && p1.isAttacking)
             {
-                if (p1.facingRight == true)
+                if (p1.facingRight)
                 {
-                    p2.speed.X += 15f;
+                    p2.speed.X += 15;
                     p2.speed.Y -= 5;
                 }
-                else if (p1.facingRight == false)
+                else if (!p1.facingRight)
                 {
-                    p2.speed.X -= 15f;
+                    p2.speed.X -= 15;
                     p2.speed.Y -= 5;
                 }
             }
-
-            if (p2.hurtBox.Intersects(p1.hitBox))
+            else
             {
-                if (p2.facingRight == true)
+                p2.isHit = false;
+                p2.speed.X = 0;
+            }
+
+            if (p2.attackhitBox.Intersects(p1.damageableHitBox) && p2.isAttacking)
+            {
+
+                if (p2.facingRight)
                 {
-                    p1.speed.X += 15f;
+                    p1.speed.X += 15;
                     p1.speed.Y -= 5;
                 }
-                else if (p2.facingRight == false)
+                else if (!p2.facingRight)
                 {
-                    p1.speed.X -= 15f;
+                    p1.speed.X -= 15;
                     p1.speed.Y -= 5;
                 }
+
+            }
+            else
+            {
+                p1.isHit = false;
+                p1.speed.X *= 0;
             }
         }
         #endregion
 
         public override void Update(GameTime gameTime)
         {
-            
+            if (!isHit)
+            {
+                speed.X = 0;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

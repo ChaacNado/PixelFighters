@@ -24,6 +24,8 @@ namespace PixelFighters
         PlayerOne playerOne;
         PlayerTwo playerTwo;
 
+        public bool playerOneWon, playerTwoWon;
+
         private static GameplayManager instance;
         #endregion
 
@@ -104,11 +106,23 @@ namespace PixelFighters
 
             if (playerOne.hurtBox.Intersects(playerTwo.hitBox) && playerOne.testAttack == true)
             {
+                playerTwo.HP--;
                 playerTwo.HandlePlayerCollision(playerOne, playerTwo);
             }
             if (playerTwo.hurtBox.Intersects(playerOne.hitBox) && playerTwo.testAttack == true)
             {
+                playerOne.HP--;
                 playerTwo.HandlePlayerCollision(playerOne, playerTwo);
+            }
+
+            if (playerOne.stocksRemaining == -1)
+            {
+                playerTwoWon = true;
+            }
+
+            if (playerTwo.stocksRemaining == -1)
+            {
+                playerOneWon = true;
             }
 
             playerOne.Update(gameTime);
@@ -134,6 +148,11 @@ namespace PixelFighters
             playerOne.Draw(spriteBatch);
 
             playerTwo.Draw(spriteBatch);
+
+            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerOne HP: " + playerOne.HP, new Vector2(0, 800),Color.Red);
+            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerOne stocks: " + playerOne.stocksRemaining, new Vector2(0, 825), Color.Red);
+            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerTwo HP: " + playerTwo.HP, new Vector2(1200, 800), Color.Blue);
+            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerTwo stocks: " + playerTwo.stocksRemaining, new Vector2(1200, 825), Color.Blue);
 
             spriteBatch.Draw(TextureManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }

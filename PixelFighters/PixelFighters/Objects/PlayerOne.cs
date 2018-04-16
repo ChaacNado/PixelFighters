@@ -20,8 +20,9 @@ namespace PixelFighters
         public int bX, bY;
         private int jumpsAvailable;
         public bool facingRight;
-
         public bool testAttack;
+        public int stocksRemaining;
+        public int HP;
         #endregion
 
         #region Player Object
@@ -38,6 +39,8 @@ namespace PixelFighters
             facingRight = true;
             testAttack = false;
             jumpsAvailable = 2;
+            stocksRemaining = 3;
+            HP = 10;
 
         }
         #endregion
@@ -180,11 +183,15 @@ namespace PixelFighters
                 hurtBox.X = (int)pos.X - 25;
             }
 
-            if (pos.Y >= 900)
+            if (pos.Y >= 900 || HP == 0)
             {
+                HP = 10;
+                stocksRemaining--;
                 pos.X = 140;
                 pos.Y = 300;
+                speed = Vector2.Zero;
             }
+               
 
             pos += speed;
             hitBox.X = (int)pos.X - 25;

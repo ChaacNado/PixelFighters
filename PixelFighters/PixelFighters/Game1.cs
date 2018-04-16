@@ -61,8 +61,6 @@ namespace PixelFighters
 
             System.Diagnostics.Debug.WriteLine(currentGameState);
 
-            //GameplayManager.Instance.Update(gameTime);
-
             switch (currentGameState)
             {
                 case GameState.TitleScreen:
@@ -72,7 +70,6 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.MainMenu:
-                    GameplayManager.Instance.Update(gameTime);
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
                         currentGameState = GameState.CharacterSelect;
@@ -87,6 +84,11 @@ namespace PixelFighters
                     break;
                 case GameState.Playtime:
                     GameplayManager.Instance.Update(gameTime);
+                    if (GameplayManager.Instance.playerOneWon==true || GameplayManager.Instance.playerTwoWon == true)
+                    {
+                        currentGameState = GameState.Results;
+                    }
+
                     if (keyState.IsKeyDown(Keys.P) && previousKeyState.IsKeyUp(Keys.P))
                     {
                         currentGameState = GameState.Pause;
@@ -106,6 +108,8 @@ namespace PixelFighters
                 case GameState.Results:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
+                        GameplayManager.Instance.playerOneWon = false;
+                        GameplayManager.Instance.playerTwoWon = false;
                         LoadContent();
                         currentGameState = GameState.MainMenu;
                     }
@@ -120,8 +124,6 @@ namespace PixelFighters
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-
-            GameplayManager.Instance.Draw(spriteBatch);
 
             switch (currentGameState)
             {
@@ -150,7 +152,17 @@ namespace PixelFighters
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
                     break;
                 case GameState.Results:
-                   
+                    GraphicsDevice.Clear(Color.Brown);
+                    if (GameplayManager.Instance.playerOneWon == true)
+                    {
+                        spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PLAYER ONE WON!", new Vector2(600, 450), Color.White);
+                    }
+                    if (GameplayManager.Instance.playerTwoWon == true)
+                    {
+                        spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PLAYER TWO WON!", new Vector2(600, 450), Color.White);
+                    }
+                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
+
                     break;
             }
 

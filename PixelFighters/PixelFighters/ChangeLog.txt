@@ -1,4 +1,9 @@
-﻿**********2018-04-05 Version 0.1.9, auth: Erik Persson*********
+﻿**********2018-04-05 Version 0.2, auth: Erik Persson*********
+Varje spelare har nu en HP och stocksRemaining. När HP når noll eller man trillar av banan förlorar man ett stock.
+GamePlayManager har nu bools för om någon av spelarna vinner, när en av dessa boolsen blir true ändras currentGameState till Results.
+Nollställde även karaktärernas speed vid respawn.
+
+**********2018-04-05 Version 0.1.9, auth: Erik Persson*********
 {
 La in en ny textur(boxMan) som visar vilket håll karaktären tittar på.
 Gjorde en facingdirection(facingRight) i PlayerOne och PlayerTwo som flippar när man byter håll man går på.

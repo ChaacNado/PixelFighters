@@ -16,6 +16,7 @@ namespace PixelFighters
         #region Variables
         public Game1 game;
         ContentManager content;
+        SpriteFont Time;
 
         MouseState mouseState, previousMouseState;
 
@@ -23,6 +24,11 @@ namespace PixelFighters
         List<Platform> platforms = new List<Platform>();
         PlayerOne playerOne;
         PlayerTwo playerTwo;
+
+        public bool TimerStart = false;
+        public float Timer = 10;
+        public float TimerTic = 0;
+        public GameState currentGameState;
 
         public bool playerOneWon, playerTwoWon;
 
@@ -59,12 +65,29 @@ namespace PixelFighters
             playerTwo = new PlayerTwo(TextureManager.Instance.boxManTex, new Vector2(1050, 300), new Rectangle(0, 0, 50, 50));
 
             color = new Color(0, 0, 0, 1f);
+            Time = Content.Load<SpriteFont>("Time");
         }
 
         public void Update(GameTime gameTime)
         {
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
+
+            TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if(TimerStart == true)
+            {
+                TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (Timer >= 0)
+                {
+                    Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                }
+
+            }
+         
+         
 
             foreach (Platform p in platforms)
             {
@@ -146,6 +169,8 @@ namespace PixelFighters
                 p.Draw(spriteBatch);
             }
 
+      
+
             playerOne.Draw(spriteBatch);
 
             playerTwo.Draw(spriteBatch);
@@ -154,9 +179,10 @@ namespace PixelFighters
             spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerOne stocks: " + playerOne.stocksRemaining, new Vector2(0, 825), Color.Red);
             spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerTwo HP: " + playerTwo.HP, new Vector2(1200, 800), Color.Blue);
             spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerTwo stocks: " + playerTwo.stocksRemaining, new Vector2(1200, 825), Color.Blue);
-
+            spriteBatch.DrawString(Time, Timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(TextureManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion
     }
+    
 }

@@ -23,6 +23,8 @@ namespace PixelFighters
         public GraphicsDeviceManager graphics;
         public KeyboardState keyState, previousKeyState;
 
+        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,6 +47,7 @@ namespace PixelFighters
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+           
 
             ///Detta används när man hämtar data från GameplayManager etc
             TextureManager.Instance.LoadContent(Content);
@@ -58,6 +61,8 @@ namespace PixelFighters
 
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
+
+
 
             switch (currentGameState)
             {
@@ -82,6 +87,7 @@ namespace PixelFighters
                     break;
                 case GameState.Playtime:
                     GameplayManager.Instance.Update(gameTime);
+                    GameplayManager.Instance.TimerStart = true;
                     if (GameplayManager.Instance.playerOneWon==true || GameplayManager.Instance.playerTwoWon == true)
                     {
                         currentGameState = GameState.Results;
@@ -96,6 +102,7 @@ namespace PixelFighters
                     if (keyState.IsKeyDown(Keys.P) && previousKeyState.IsKeyUp(Keys.P))
                     {
                         currentGameState = GameState.Playtime;
+
                     }
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
@@ -104,10 +111,13 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Results:
+                    GameplayManager.Instance.Timer = 10;
+                    GameplayManager.Instance.TimerStart = false;
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
                         GameplayManager.Instance.playerOneWon = false;
                         GameplayManager.Instance.playerTwoWon = false;
+                        
                         LoadContent();
                         currentGameState = GameState.MainMenu;
                     }
@@ -140,12 +150,12 @@ namespace PixelFighters
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.Black);
                     break;
                 case GameState.Playtime:
-                    GraphicsDevice.Clear(Color.MidnightBlue);
+                    GraphicsDevice.Clear(Color.LightSlateGray);
                     GameplayManager.Instance.Draw(spriteBatch);
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press P to pause the game", new Vector2(240, 90), Color.White);
                     break;
                 case GameState.Pause:
-                    GraphicsDevice.Clear(Color.GreenYellow);
+                    GraphicsDevice.Clear(Color.GreenYellow * 0.5f);
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PAUSE", new Vector2(630, 360), Color.HotPink);
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
                     break;
@@ -162,7 +172,9 @@ namespace PixelFighters
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
 
                     break;
+                 
             }
+           
 
 
             spriteBatch.End();

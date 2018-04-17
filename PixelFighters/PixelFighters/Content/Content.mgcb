@@ -63,3 +63,10 @@
 /processorParam:TextureFormat=Color
 /build:boxMan.png
 
+#begin Time.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Time.spritefont
+

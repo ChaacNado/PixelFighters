@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    ///Kan göras om till en tillfällig virtual klass ifall det känns mer passande nu
     public abstract class GameObject
     {
         public Vector2 pos;

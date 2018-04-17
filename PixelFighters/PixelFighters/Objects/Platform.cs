@@ -17,7 +17,6 @@ namespace PixelFighters
             this.tex = tex;
             color = Color.White;
 
-            ///Att ha flera hitboxar underlättar i flera scenarion, här är ett förslag
             bottomHitBox = new Rectangle(hitBox.X, hitBox.Y + 1, hitBox.Width, hitBox.Height);
             topHitBox = new Rectangle(hitBox.X, hitBox.Y, hitBox.Width, 1);
         }

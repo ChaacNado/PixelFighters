@@ -45,8 +45,6 @@ namespace PixelFighters
         #region Main Methods
         public override void Update(GameTime gameTime)
         {
-            ///Till att börja med kan PlayerTwo kodas till att agera som en punching-bag NPC möjligtvis
-
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
@@ -67,20 +65,23 @@ namespace PixelFighters
                 {
                     speed.Y = 20;
                 }
+                if (jumpsAvailable == 2)
+                {
+                    jumpsAvailable = 1;
+                }
             }
 
             speed.X *= 0.9f;
 
-            #region GamePad kod
+            ///Kod för kontroller-inputs
+            #region GamePad
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.Two);
             
             if (capabilities.IsConnected)
             {
-                // Get the current state of Controller1
                 previousGamePadState = gamePadState;
                 gamePadState = GamePad.GetState(PlayerIndex.Two);
 
-                // You can check explicitly if a gamepad has support for a certain feature
                 if (capabilities.HasDPadRightButton && capabilities.HasDPadLeftButton)
                 {
                     if (gamePadState.DPad.Right == ButtonState.Pressed)
@@ -95,7 +96,6 @@ namespace PixelFighters
                     }
                 }
 
-                // You can also check the controllers "type"
                 if (capabilities.GamePadType == GamePadType.GamePad)
                 {
                     if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && jumpsAvailable >= 1)
@@ -129,7 +129,6 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && jumpsAvailable >= 1)
             {
-                //Hoppar högre än platformen
                 speed.Y = -8;
                 isOnGround = false;
                 jumpsAvailable -= 1;
@@ -183,6 +182,7 @@ namespace PixelFighters
         }
         #endregion
 
+        ///Skriver över kollisionsmetoderna i MovingObject
         #region Collision Methods
         public override void HandleTopCollision(Platform p)
         {

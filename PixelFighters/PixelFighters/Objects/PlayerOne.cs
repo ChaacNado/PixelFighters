@@ -39,7 +39,6 @@ namespace PixelFighters
             jumpsAvailable = 2;
             stocksRemaining = 3;
             HP = 10;
-
         }
         #endregion
 
@@ -66,19 +65,23 @@ namespace PixelFighters
                 {
                     speed.Y = 20;
                 }
+                if (jumpsAvailable == 2)
+                {
+                    jumpsAvailable = 1;
+                }
             }
 
             speed.X *= 0.9f;
 
+            ///Kod för kontroller-inputs
+            #region GamePad
             GamePadCapabilities capabilities = GamePad.GetCapabilities(PlayerIndex.One);
 
             if (capabilities.IsConnected)
             {
-                // Get the current state of Controller1
                 previousGamePadState = gamePadState;
                 gamePadState = GamePad.GetState(PlayerIndex.One);
 
-                // You can check explicitly if a gamepad has support for a certain feature
                 if (capabilities.HasDPadRightButton && capabilities.HasDPadLeftButton)
                 {
                     if (gamePadState.DPad.Right == ButtonState.Pressed)
@@ -93,7 +96,6 @@ namespace PixelFighters
                     }
                 }
 
-                // You can also check the controllers "type"
                 if (capabilities.GamePadType == GamePadType.GamePad)
                 {
                     if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && jumpsAvailable >= 1)
@@ -112,6 +114,7 @@ namespace PixelFighters
                     jumpsAvailable = 2;
                 }
             }
+            #endregion
 
             if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
             {
@@ -126,19 +129,15 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) && jumpsAvailable >= 1)
             {
-
-                //Hoppar högre än platformen
                 speed.Y = -8;
                 isOnGround = false;
                 jumpsAvailable -= 1;
-
             }
-            //OM man klickar på ner knappen, går snabbare ner.
             else if (keyState.IsKeyDown(Keys.S))
             {
                 speed.Y += 5;
-
             }
+
             if (isOnGround)
             {
                 jumpsAvailable = 2;
@@ -173,7 +172,6 @@ namespace PixelFighters
                 speed = Vector2.Zero;
             }
 
-
             pos += speed;
             damageableHitBox.X = (int)pos.X - 25;
             damageableHitBox.Y = (int)pos.Y - 25;
@@ -182,14 +180,12 @@ namespace PixelFighters
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-
             spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
-
         }
         #endregion
 
+        ///Skriver över kollisionsmetoderna i MovingObject
         #region Collision Methods
-        //v.0.1.3 skapat kollisionsmetoder
         public override void HandleTopCollision(Platform p)
         {
             speed.Y = 0;

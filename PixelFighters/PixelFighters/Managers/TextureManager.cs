@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    ///Kan användas för att korta ner GameplayManager
-    ///Exempel: Texturer kan laddas in med följande rad i förslagsvis GameplayManager
-    ///spriteBatch.Draw(TextureManager.Instance.sampleTex, new Vector2(120, 540), Color.White);
     public class TextureManager
     {
         #region Variables
@@ -25,7 +22,7 @@ namespace PixelFighters
         #endregion
 
         #region Properties
-        ///Skapar bara en instance av klassen
+        ///Skapar bara en instans av klassen
         public static TextureManager Instance
         {
             get

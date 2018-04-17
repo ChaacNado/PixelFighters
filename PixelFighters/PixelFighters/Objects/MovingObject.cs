@@ -17,7 +17,6 @@ namespace PixelFighters
         public bool isHit, isAttacking;
 
         #region Properties
-        //v0.1.3 - Skapat tre properties
         public virtual bool IsOnGround { set { isOnGround = false; } }
 
         public virtual bool IsTopColliding(Platform p)
@@ -40,18 +39,21 @@ namespace PixelFighters
         }
 
         #region Collision Methods
+        ///Metod för kollisioner mellan spelare och ovansidan av platformarna
         public virtual void HandleTopCollision(Platform p)
         {
             damageableHitBox.Y = p.topHitBox.Y - damageableHitBox.Height / 2;
             pos.Y = damageableHitBox.Y;
         }
 
+        ///Metod för kollisioner mellan spelare och undersidan av platformarna
         public virtual void HandleBottomCollision(Platform p)
         {
             damageableHitBox.Y = p.bottomHitBox.Y + damageableHitBox.Height / 2;
             damageableHitBox.X = p.bottomHitBox.X - damageableHitBox.Width / 2;
         }
 
+        ///Metod för stridskollisioner
         public virtual void HandlePlayerCollision(PlayerOne p1, PlayerTwo p2)
         {
             if (p1.attackhitBox.Intersects(p2.damageableHitBox) && p1.isAttacking)
@@ -75,7 +77,6 @@ namespace PixelFighters
 
             if (p2.attackhitBox.Intersects(p1.damageableHitBox) && p2.isAttacking)
             {
-
                 if (p2.facingRight)
                 {
                     p1.speed.X += 15;
@@ -98,10 +99,7 @@ namespace PixelFighters
 
         public override void Update(GameTime gameTime)
         {
-            if (!isHit)
-            {
-                speed.X = 0;
-            }
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)

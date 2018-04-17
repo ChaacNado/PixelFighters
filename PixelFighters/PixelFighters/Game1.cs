@@ -23,8 +23,6 @@ namespace PixelFighters
         public GraphicsDeviceManager graphics;
         public KeyboardState keyState, previousKeyState;
 
-        
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,7 +46,6 @@ namespace PixelFighters
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
            
-
             ///Detta används när man hämtar data från GameplayManager etc
             TextureManager.Instance.LoadContent(Content);
             GameplayManager.Instance.LoadContent(Content, this);
@@ -62,8 +59,7 @@ namespace PixelFighters
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
-
-
+            ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
             {
                 case GameState.TitleScreen:
@@ -171,12 +167,9 @@ namespace PixelFighters
                     }
                     spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
 
-                    break;
-                 
+                    break;                 
             }
            
-
-
             spriteBatch.End();
 
             base.Draw(gameTime);

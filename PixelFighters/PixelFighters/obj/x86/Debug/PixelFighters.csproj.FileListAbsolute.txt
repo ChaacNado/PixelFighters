@@ -473,3 +473,4 @@ C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters v0.2.1\PixelFight
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters v0.2.1\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters v0.2.1\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters v0.2.1\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\Time.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\Time.xnb

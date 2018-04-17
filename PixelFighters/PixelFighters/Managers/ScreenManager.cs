@@ -15,7 +15,7 @@ namespace PixelFighters
         #endregion
 
         #region Properties
-        ///Skapar bara en instance av klassen
+        ///Skapar bara en instans av klassen
         public static ScreenManager Instance
         {
             get

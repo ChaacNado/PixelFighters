@@ -36,7 +36,7 @@ namespace PixelFighters
         #endregion
 
         #region Properties
-        ///Skapar bara en instance av klassen
+        ///Skapar bara en instans av klassen
         public static GameplayManager Instance
         {
             get
@@ -61,6 +61,7 @@ namespace PixelFighters
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
             platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
+
             playerOne = new PlayerOne(TextureManager.Instance.boxManTex, new Vector2(140, 300), new Rectangle(0, 0, 50, 50));
             playerTwo = new PlayerTwo(TextureManager.Instance.boxManTex, new Vector2(1050, 300), new Rectangle(0, 0, 50, 50));
 
@@ -73,8 +74,8 @@ namespace PixelFighters
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
+            ///Match-timer
             TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             if(TimerStart == true)
             {
                 TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -82,13 +83,10 @@ namespace PixelFighters
                 if (Timer >= 0)
                 {
                     Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                 }
-
             }
          
-         
-
+            ///Platformskollisioner
             foreach (Platform p in platforms)
             {
                 if (playerOne.IsTopColliding(p))
@@ -101,7 +99,6 @@ namespace PixelFighters
                     playerOne.HandleBottomCollision(p);
                     break;
                 }
-                //v0.1.3 - Gjort så att karaktären faller när den inte vidrör en platform
                 else
                 {
                     playerOne.IsOnGround = false;
@@ -109,7 +106,6 @@ namespace PixelFighters
             }
             foreach (Platform p in platforms)
             { 
-                //v0.1.4 - Player Two collisions
                 if (playerTwo.IsTopColliding(p))
                 {
                     playerTwo.HandleTopCollision(p);
@@ -126,6 +122,7 @@ namespace PixelFighters
                 }
             }
 
+            ///Stridskollisioner
             if (playerOne.attackhitBox.Intersects(playerTwo.damageableHitBox) && playerOne.isAttacking == true)
             {
                 playerTwo.isHit = true;
@@ -139,11 +136,11 @@ namespace PixelFighters
                 playerTwo.HandlePlayerCollision(playerOne, playerTwo);
             }
 
+            ///Konditioner för vinst
             if (playerOne.stocksRemaining == -1)
             {
                 playerTwoWon = true;
             }
-
             if (playerTwo.stocksRemaining == -1)
             {
                 playerOneWon = true;
@@ -152,6 +149,7 @@ namespace PixelFighters
             playerOne.Update(gameTime);
             playerTwo.Update(gameTime);
 
+            ///Styr faden mellan skärmövergångar
             if (color.A > 0)
             {
                 color.A--;
@@ -168,11 +166,8 @@ namespace PixelFighters
             {
                 p.Draw(spriteBatch);
             }
-
-      
-
+     
             playerOne.Draw(spriteBatch);
-
             playerTwo.Draw(spriteBatch);
 
             spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerOne HP: " + playerOne.HP, new Vector2(0, 800),Color.Red);

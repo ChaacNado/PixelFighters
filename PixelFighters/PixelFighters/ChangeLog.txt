@@ -1,14 +1,14 @@
-﻿**********2018-04-16 Version 0.2.3, auth: Kristian Toro**********
+﻿**********2018-04-18 Version 0.2.3, auth: Kristian Toro**********
 {
 Städade upp lite onödiga mellanrum, lade till tydligare kommentarer.
 }
 
-**********2018-04-16 Version 0.2.2, auth: Mikael Zhu***********
+**********2018-04-17 Version 0.2.2, auth: Mikael Zhu***********
 {
 La in en timer som räknar bara ner atm.
 }
 
-**********2018-04-16 Version 0.2.1, auth: Kristian Toro**********
+**********2018-04-17 Version 0.2.1, auth: Kristian Toro**********
 {
 Fixade till några buggar med knockback-funktionerna. Horizontell knockback fungerar nu.
 Lade till friktion, vilket förbättrar effekten från knockbacken och får spelet att se mer levande ut.

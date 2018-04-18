@@ -1,4 +1,4 @@
-﻿**********2018-04-18 Version 0.2.3, auth: Kristian Toro**********
+﻿**********2018-04-18 Version 0.2.5, auth: Kristian Toro**********
 {
 Slog ihop klasserna PlayerOne och PlayerTwo till en, Player.
 Ändrade lite på olika variabler för att det inte skulle uppstå eventuella konflikter.

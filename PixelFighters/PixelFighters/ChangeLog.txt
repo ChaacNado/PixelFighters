@@ -1,4 +1,10 @@
-﻿**********2018-04-18 Version 0.2.3, auth: Kristian Toro**********
+﻿**********2018-04-18 Version 0.2.4, auth: Jonas Ekblad**********
+{
+Gjorde så att hitboxarna till attacker visas samt la till grunden för frame animeringen med frametimer. Användes till att slöa ner attackerna
+så att de visas bättre. (Ignorera att VS klagar på att integern frame inte används.)
+}
+
+**********2018-04-18 Version 0.2.3, auth: Kristian Toro**********
 {
 Städade upp lite onödiga mellanrum, lade till tydligare kommentarer.
 }

@@ -21,6 +21,8 @@ namespace PixelFighters
         public bool facingRight;
         public int stocksRemaining;
         public int HP;
+        int frame;
+        double frameTimer, frameInterval;
         #endregion
 
         #region Player Object
@@ -39,6 +41,8 @@ namespace PixelFighters
             jumpsAvailable = 2;
             stocksRemaining = 3;
             HP = 10;
+            frameTimer = 150;
+            frameInterval = 150;
         }
         #endregion
 
@@ -47,6 +51,8 @@ namespace PixelFighters
         {
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
+
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (facingRight)
             {
@@ -143,22 +149,24 @@ namespace PixelFighters
                 jumpsAvailable = 2;
             }
 
-            if (keyState.IsKeyDown(Keys.NumPad0) && previousKeyState.IsKeyUp(Keys.NumPad0))
+            if (keyState.IsKeyDown(Keys.NumPad0) && previousKeyState.IsKeyUp(Keys.NumPad0) && frameTimer < 0)
             {
                 isAttacking = true;
                 if (facingRight)
                 {
                     attackhitBox.X = (int)pos.X + 25;
+                    frameTimer = frameInterval;
                 }
                 else if (!facingRight)
                 {
-                    attackhitBox.X = (int)pos.X - 50;
+                    attackhitBox.X = (int)pos.X - 75;
+                    frameTimer = frameInterval;
                 }
             }
             else
             {
                 isAttacking = false;
-                attackhitBox.X = (int)pos.X - 25;
+                //attackhitBox.X = (int)pos.X - 25; Denna förhindrar attackerna från att vara lite saktare. Vad är den till egentligen? /Jonas
             }
 
             if (pos.Y >= 900 || HP == 0)
@@ -178,6 +186,10 @@ namespace PixelFighters
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (frameTimer > 0)
+            {
+                spriteBatch.Draw(tex, attackhitBox, srcRec, Color.Black);
+            }
             spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
         }
         #endregion

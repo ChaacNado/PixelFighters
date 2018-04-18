@@ -47,7 +47,7 @@ namespace PixelFighters
             spriteBatch = new SpriteBatch(GraphicsDevice);
            
             ///Detta används när man hämtar data från GameplayManager etc
-            TextureManager.Instance.LoadContent(Content);
+            AssetManager.Instance.LoadContent(Content);
             GameplayManager.Instance.LoadContent(Content, this);
         }
 
@@ -132,40 +132,40 @@ namespace PixelFighters
             switch (currentGameState)
             {
                 case GameState.TitleScreen:
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PIXELFIGHTERS", new Vector2(240, 90), Color.Orange);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER", new Vector2(240, 150), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PIXELFIGHTERS", new Vector2(240, 90), Color.Orange);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER", new Vector2(240, 150), Color.White);
                     break;
                 case GameState.MainMenu:
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Main Menu", new Vector2(240, 90), Color.White);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Main Menu", new Vector2(240, 90), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.White);
                     break;
                 case GameState.CharacterSelect:
                     GraphicsDevice.Clear(Color.LightGray);
                     GameplayManager.Instance.Draw(spriteBatch);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Character Select", new Vector2(240, 90), Color.Black);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character Select", new Vector2(240, 90), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.Black);
                     break;
                 case GameState.Playtime:
                     GraphicsDevice.Clear(Color.LightSlateGray);
                     GameplayManager.Instance.Draw(spriteBatch);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press P to pause the game", new Vector2(240, 90), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press P to pause the game", new Vector2(240, 90), Color.White);
                     break;
                 case GameState.Pause:
                     GraphicsDevice.Clear(Color.GreenYellow * 0.5f);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PAUSE", new Vector2(630, 360), Color.HotPink);
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PAUSE", new Vector2(630, 360), Color.HotPink);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
                     break;
                 case GameState.Results:
                     GraphicsDevice.Clear(Color.Brown);
                     if (GameplayManager.Instance.playerOneWon == true)
                     {
-                        spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PLAYER ONE WON!", new Vector2(600, 450), Color.White);
+                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER ONE WON!", new Vector2(600, 450), Color.White);
                     }
                     if (GameplayManager.Instance.playerTwoWon == true)
                     {
-                        spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PLAYER TWO WON!", new Vector2(600, 450), Color.White);
+                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER TWO WON!", new Vector2(600, 450), Color.White);
                     }
-                    spriteBatch.DrawString(TextureManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
 
                     break;                 
             }

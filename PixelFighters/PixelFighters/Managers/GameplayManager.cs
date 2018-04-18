@@ -22,8 +22,7 @@ namespace PixelFighters
 
         public Color color;
         List<Platform> platforms = new List<Platform>();
-        PlayerOne playerOne;
-        PlayerTwo playerTwo;
+        Player playerOne, playerTwo;
 
         public bool TimerStart = false;
         public float Timer = 10;
@@ -57,13 +56,13 @@ namespace PixelFighters
             game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
-            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
-            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
-            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
-            platforms.Add(new Platform(TextureManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
+            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
+            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
+            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
+            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
 
-            playerOne = new PlayerOne(TextureManager.Instance.boxManTex, new Vector2(140, 300), new Rectangle(0, 0, 50, 50));
-            playerTwo = new PlayerTwo(TextureManager.Instance.boxManTex, new Vector2(1050, 300), new Rectangle(0, 0, 50, 50));
+            playerOne = new Player(AssetManager.Instance.boxManTex, new Vector2(140, 300), new Rectangle(0, 0, 50, 50), 1);
+            playerTwo = new Player(AssetManager.Instance.boxManTex, new Vector2(1050, 300), new Rectangle(0, 0, 50, 50), 2);
 
             color = new Color(0, 0, 0, 1f);
             Time = Content.Load<SpriteFont>("Time");
@@ -170,12 +169,12 @@ namespace PixelFighters
             playerOne.Draw(spriteBatch);
             playerTwo.Draw(spriteBatch);
 
-            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerOne HP: " + playerOne.HP, new Vector2(0, 800),Color.Red);
-            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerOne stocks: " + playerOne.stocksRemaining, new Vector2(0, 825), Color.Red);
-            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerTwo HP: " + playerTwo.HP, new Vector2(1200, 800), Color.Blue);
-            spriteBatch.DrawString(TextureManager.Instance.spriteFont, "PlayerTwo stocks: " + playerTwo.stocksRemaining, new Vector2(1200, 825), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + playerOne.HP, new Vector2(0, 800),Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + playerOne.stocksRemaining, new Vector2(0, 825), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + playerTwo.HP, new Vector2(1200, 800), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + playerTwo.stocksRemaining, new Vector2(1200, 825), Color.Blue);
             spriteBatch.DrawString(Time, Timer.ToString("0"), new Vector2(680, 100), Color.White);
-            spriteBatch.Draw(TextureManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
+            spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion
     }

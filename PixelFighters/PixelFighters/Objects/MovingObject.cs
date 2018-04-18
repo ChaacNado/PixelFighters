@@ -15,6 +15,7 @@ namespace PixelFighters
         public Vector2 speed;
         protected bool isOnGround;
         public bool isHit, isAttacking;
+        public int playerIndex;
 
         #region Properties
         public virtual bool IsOnGround { set { isOnGround = false; } }
@@ -54,7 +55,7 @@ namespace PixelFighters
         }
 
         ///Metod för stridskollisioner
-        public virtual void HandlePlayerCollision(PlayerOne p1, PlayerTwo p2)
+        public virtual void HandlePlayerCollision(Player p1, Player p2)
         {
             if (p1.attackhitBox.Intersects(p2.damageableHitBox) && p1.isAttacking)
             {
@@ -87,7 +88,6 @@ namespace PixelFighters
                     p1.speed.X -= 15;
                     p1.speed.Y -= 5;
                 }
-
             }
             else
             {

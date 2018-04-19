@@ -4,17 +4,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PixelFighters
 {
-    public enum GameState
-    {
-        TitleScreen,
-        MainMenu,
-        CharacterSelect,
-        Options,
-        Playtime,
-        Pause,
-        Results,
-    }
-
     public class Game1 : Game
     {
         public GameState currentGameState;
@@ -98,7 +87,6 @@ namespace PixelFighters
                     if (keyState.IsKeyDown(Keys.P) && previousKeyState.IsKeyUp(Keys.P))
                     {
                         currentGameState = GameState.Playtime;
-
                     }
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
@@ -152,6 +140,7 @@ namespace PixelFighters
                     break;
                 case GameState.Pause:
                     GraphicsDevice.Clear(Color.GreenYellow * 0.5f);
+                    GameplayManager.Instance.Draw(spriteBatch);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PAUSE", new Vector2(630, 360), Color.HotPink);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
                     break;

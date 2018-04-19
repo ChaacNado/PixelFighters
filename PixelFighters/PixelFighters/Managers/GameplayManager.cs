@@ -20,9 +20,10 @@ namespace PixelFighters
 
         MouseState mouseState, previousMouseState;
 
+        public Vector2 startPosOne, startPosTwo;
         public Color color;
         List<Platform> platforms = new List<Platform>();
-        Player playerOne, playerTwo;
+        Player p1, p2;
 
         public bool TimerStart = false;
         public float Timer = 10;
@@ -56,13 +57,16 @@ namespace PixelFighters
             game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
+            startPosOne = new Vector2(165, 300);
+            startPosTwo = new Vector2(1175, 300);
+
             platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
             platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
             platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
             platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
 
-            playerOne = new Player(AssetManager.Instance.boxManTex, new Vector2(140, 300), new Rectangle(0, 0, 50, 50), 1);
-            playerTwo = new Player(AssetManager.Instance.boxManTex, new Vector2(1050, 300), new Rectangle(0, 0, 50, 50), 2);
+            p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
+            p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
 
             color = new Color(0, 0, 0, 1f);
             Time = Content.Load<SpriteFont>("Time");
@@ -75,7 +79,7 @@ namespace PixelFighters
 
             ///Match-timer
             TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(TimerStart == true)
+            if (TimerStart == true)
             {
                 TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -84,69 +88,69 @@ namespace PixelFighters
                     Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
             }
-         
+
             ///Platformskollisioner
             foreach (Platform p in platforms)
             {
-                if (playerOne.IsTopColliding(p))
+                if (p1.IsTopColliding(p))
                 {
-                    playerOne.HandleTopCollision(p);
+                    p1.HandleTopCollision(p);
                     break;
                 }
-                if (playerOne.IsBottomColliding(p))
+                if (p1.IsBottomColliding(p))
                 {
-                    playerOne.HandleBottomCollision(p);
+                    p1.HandleBottomCollision(p);
                     break;
                 }
                 else
                 {
-                    playerOne.IsOnGround = false;
+                    p1.IsOnGround = false;
                 }
             }
             foreach (Platform p in platforms)
-            { 
-                if (playerTwo.IsTopColliding(p))
+            {
+                if (p2.IsTopColliding(p))
                 {
-                    playerTwo.HandleTopCollision(p);
+                    p2.HandleTopCollision(p);
                     break;
                 }
-                if (playerTwo.IsBottomColliding(p))
+                if (p2.IsBottomColliding(p))
                 {
-                    playerTwo.HandleBottomCollision(p);
+                    p2.HandleBottomCollision(p);
                     break;
                 }
                 else
                 {
-                    playerTwo.IsOnGround = false;
+                    p2.IsOnGround = false;
                 }
             }
 
             ///Stridskollisioner
-            if (playerOne.attackhitBox.Intersects(playerTwo.damageableHitBox) && playerOne.isAttacking == true)
+            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking == true)
             {
-                playerTwo.isHit = true;
-                playerTwo.HP--;
-                playerTwo.HandlePlayerCollision(playerOne, playerTwo);
+                p2.isHit = true;
+                p2.HP--;
+                p2.HandlePlayerCollision(p1, p2);
             }
-            if (playerTwo.attackhitBox.Intersects(playerOne.damageableHitBox) && playerTwo.isAttacking == true)
+            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking == true)
             {
-                playerOne.isHit = true;
-                playerOne.HP--;
-                playerTwo.HandlePlayerCollision(playerOne, playerTwo);
+                p1.isHit = true;
+                p1.HP--;
+                p2.HandlePlayerCollision(p1, p2);
             }
 
             ///Konditioner för vinst
-            if (playerOne.stocksRemaining == -1)
+            if (p1.stocksRemaining == -1)
             {
                 playerTwoWon = true;
             }
-            if (playerTwo.stocksRemaining == -1)
+            if (p2.stocksRemaining == -1)
             {
                 playerOneWon = true;
             }
 
-            playerOne.Update(gameTime);
-            playerTwo.Update(gameTime);
+            p1.Update(gameTime);
+            p2.Update(gameTime);
 
             ///Styr faden mellan skärmövergångar
             if (color.A > 0)
@@ -165,18 +169,18 @@ namespace PixelFighters
             {
                 p.Draw(spriteBatch);
             }
-     
-            playerOne.Draw(spriteBatch);
-            playerTwo.Draw(spriteBatch);
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + playerOne.HP, new Vector2(0, 800),Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + playerOne.stocksRemaining, new Vector2(0, 825), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + playerTwo.HP, new Vector2(1200, 800), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + playerTwo.stocksRemaining, new Vector2(1200, 825), Color.Blue);
+            p1.Draw(spriteBatch);
+            p2.Draw(spriteBatch);
+
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.HP, new Vector2(0, 800), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2(0, 825), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.HP, new Vector2(1200, 800), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2(1200, 825), Color.Blue);
             spriteBatch.DrawString(Time, Timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion
     }
-    
+
 }

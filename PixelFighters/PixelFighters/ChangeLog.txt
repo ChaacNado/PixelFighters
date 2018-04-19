@@ -1,4 +1,17 @@
-﻿**********2018-04-18 Version 0.2.5, auth: Kristian Toro**********
+﻿**********2018-04-19 Version 0.2.6, auth: Kristian Toro**********
+{
+Döpt om TextureManager till AssetManager. Tagit bort klasserna PlayrTwo och StationaryObject.
+Lagt till en ny attackvariation till båda spelarna, samt en blockfunktion.
+Ändrat om en hel del smågrejer kring combat-mekaniken, i klasserna Player, MovingObject och GamePlayManager.
+Ändringar har genomförts om hur knockback, inputs, hälsa, attackers aktiva frames, och respawn fungerar.
+Attacker har nu en knockBackModifier, som i kombination med spelarens hälsa samt beroende på vilken attack som utförs, styr knockbacken.
+Inputs för attacker har byts ut, då exempelvis 0 på NumPad ej läses in ifall man klickar på ner- och vänsterpilarna samtidigt.
+Mycket kod från Player-klassens Update har nu flyttats till en egen metod som innehåller främst Input-logik.
+Hälsan är nu högre, då de längre aktiva hitboxarna nu kan skada motståndaren flera gånger per attack.
+Spelarnas starposition har nu tilldelats variabler, som går att läsa av när spelarna ska respawnas.
+}
+
+**********2018-04-18 Version 0.2.5, auth: Kristian Toro**********
 {
 Slog ihop klasserna PlayerOne och PlayerTwo till en, Player.
 Ändrade lite på olika variabler för att det inte skulle uppstå eventuella konflikter.

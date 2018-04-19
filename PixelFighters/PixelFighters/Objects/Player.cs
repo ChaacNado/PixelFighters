@@ -17,10 +17,10 @@ namespace PixelFighters
         GamePadCapabilities capabilities;
         private float rotation = 0;
         SpriteEffects playerFx = SpriteEffects.None;
-        public int bX, bY, stocksRemaining, HP;
+        public int bX, bY, stocksRemaining;
         private int jumpsAvailable, frame;
         public bool facingRight;
-        private double frameTimer, frameInterval;
+        private double frameTimer, frameInterval = 400;
         #endregion
 
         #region Player Object
@@ -33,14 +33,11 @@ namespace PixelFighters
             bX = (int)ScreenManager.Instance.Dimensions.X;
             damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
-            attackhitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
+            attackHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
             facingRight = true;
-            isHit = false;
             jumpsAvailable = 2;
             stocksRemaining = 3;
-            HP = 10;
-            frameTimer = 150;
-            frameInterval = 150;
+            maxHP = 50;
         }
         #endregion
 
@@ -62,6 +59,10 @@ namespace PixelFighters
                 playerFx = SpriteEffects.FlipHorizontally;
             }
 
+            if (isOnGround)
+            {
+                jumpsAvailable = 2;
+            }
             if (!isOnGround)
             {
                 speed.Y += 0.2f;
@@ -77,7 +78,101 @@ namespace PixelFighters
 
             speed.X *= 0.9f;
 
-            ///Kod för controller- och keyboard-inputs
+            HandleInputs();
+
+            if (isOnGround)
+            {
+                jumpsAvailable = 2;
+            }
+
+            if (frameTimer <= 0)
+            {
+                isAttacking = false;
+                isInvincible = false;
+            }
+
+            if (pos.Y >= 900 || HP == 0)
+            {
+                HP = maxHP;
+                stocksRemaining--;
+                speed = Vector2.Zero;
+                if (playerIndex == 1)
+                {
+                    pos = GameplayManager.Instance.startPosOne;
+                }
+                if (playerIndex == 2)
+                {
+                    pos = GameplayManager.Instance.startPosTwo;
+                }
+            }
+
+            pos += speed;
+            damageableHitBox.X = (int)pos.X - 25;
+            damageableHitBox.Y = (int)pos.Y - 25;
+
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (frameTimer > 0 && isAttacking)
+            {
+                spriteBatch.Draw(tex, attackHitBox, srcRec, Color.Black);
+            }
+
+            if (playerIndex == 1)
+            {
+                if (!isInvincible)
+                {
+                    color = Color.Red;
+                    spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                }
+                if (isInvincible)
+                {
+                    color = Color.Pink;
+                    spriteBatch.Draw(tex, pos, srcRec, color * 0.5f, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                }
+            }
+            if (playerIndex == 2)
+            {
+                if (!isInvincible)
+                {
+                    color = Color.Blue;
+                    spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                }
+                if (isInvincible)
+                {
+                    color = Color.Cyan;
+                    spriteBatch.Draw(tex, pos, srcRec, color * 0.5f, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                }
+            }
+        }
+        #endregion
+
+        ///Skriver över kollisionsmetoderna i MovingObject
+        #region Collision Methods
+        public override void HandleTopCollision(Platform p)
+        {
+            speed.Y = 0;
+            isOnGround = true;
+            base.HandleTopCollision(p);
+        }
+
+        public override void HandleBottomCollision(Platform p)
+        {
+            if (!isOnGround)
+            {
+                speed.Y = +2;
+            }
+            pos.X -= speed.X * 1.05f;
+
+            base.HandleBottomCollision(p);
+        }
+        #endregion
+
+        ///Metoder för controller- och keyboard-inputs
+        #region Input Methods
+        public void HandleInputs()
+        {
             #region P1
             if (playerIndex == 1)
             {
@@ -114,58 +209,82 @@ namespace PixelFighters
                         if (gamePadState.IsButtonDown(Buttons.DPadDown))
                         {
                             speed.Y += 5;
+                            if (isOnGround)
+                            {
+                                speed.X *= 0.2f;
+                            }
                         }
-                    }
-                    if (isOnGround)
-                    {
-                        jumpsAvailable = 2;
                     }
                 }
 
                 ///Keyboard inputs för P1
-                if (keyState.IsKeyDown(Keys.D)/* && pos.X < 1360*/)
+                if (keyState.IsKeyDown(Keys.D) && !isInvincible)
                 {
                     facingRight = true;
                     speed.X = 5f;
                 }
-                else if (keyState.IsKeyDown(Keys.A)/* && pos.X > bX*/)
+                else if (keyState.IsKeyDown(Keys.A) && !isInvincible)
                 {
                     facingRight = false;
                     speed.X = -5f;
                 }
 
-                if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) && jumpsAvailable >= 1)
+                if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) && !isInvincible && jumpsAvailable >= 1)
                 {
                     speed.Y = -8;
                     isOnGround = false;
                     jumpsAvailable -= 1;
                 }
-                else if (keyState.IsKeyDown(Keys.S))
+                if (keyState.IsKeyDown(Keys.S))
                 {
                     speed.Y += 5;
+                    if (isOnGround)
+                    {
+                        speed.X *= 0.2f;
+                    }
                 }
 
                 ///Basic attack
-                if (keyState.IsKeyDown(Keys.X) && previousKeyState.IsKeyUp(Keys.X) && frameTimer < 0)
+                if (keyState.IsKeyDown(Keys.G) && previousKeyState.IsKeyUp(Keys.G) && frameTimer < 0)
                 {
                     isAttacking = true;
+                    knockBackModifierX = 15;
+                    knockBackModifierY = 2;
+                    frameTimer = frameInterval * 0.5f;
 
                     if (facingRight)
                     {
-                        attackhitBox.X = (int)pos.X + 25;
-                        frameTimer = frameInterval;
+                        attackHitBox.X = (int)pos.X + 25;
+                        attackHitBox.Y = (int)pos.Y - 25;
                     }
                     else if (!facingRight)
                     {
-                        attackhitBox.X = (int)pos.X - 75;
-                        frameTimer = frameInterval;
+                        attackHitBox.X = (int)pos.X - 75;
+                        attackHitBox.Y = (int)pos.Y - 25;
                     }
                 }
-                else
+                else if (keyState.IsKeyDown(Keys.H) && previousKeyState.IsKeyUp(Keys.H) && frameTimer < 0)
                 {
-                    isAttacking = false;
+                    isAttacking = true;
+                    knockBackModifierX = 5;
+                    knockBackModifierY = 7;
+                    frameTimer = frameInterval * 0.5f;
 
-                    //attackhitBox.X = (int)pos.X - 25; Denna förhindrar attackerna från att vara lite saktare. Vad är den till egentligen? /Jonas
+                    if (facingRight)
+                    {
+                        attackHitBox.X = (int)pos.X + 25;
+                        attackHitBox.Y = (int)pos.Y + 5;
+                    }
+                    else if (!facingRight)
+                    {
+                        attackHitBox.X = (int)pos.X - 75;
+                        attackHitBox.Y = (int)pos.Y + 5;
+                    }
+                }
+                else if (keyState.IsKeyDown(Keys.J) && previousKeyState.IsKeyUp(Keys.J) && frameTimer < 0)
+                {
+                    isInvincible = true;
+                    frameTimer = frameInterval;
                 }
             }
 
@@ -207,120 +326,87 @@ namespace PixelFighters
                         if (gamePadState.IsButtonDown(Buttons.DPadDown))
                         {
                             speed.Y += 5;
+                            if (isOnGround)
+                            {
+                                speed.X *= 0.2f;
+                            }
                         }
-                    }
-                    if (isOnGround)
-                    {
-                        jumpsAvailable = 2;
                     }
                 }
 
                 ///Keyboard inputs för P2
-                if (keyState.IsKeyDown(Keys.Right)/* && pos.X < 1360*/)
+                if (keyState.IsKeyDown(Keys.Right) && !isInvincible)
                 {
                     facingRight = true;
                     speed.X = 5f;
                 }
-                else if (keyState.IsKeyDown(Keys.Left)/* && pos.X > bX*/)
+                else if (keyState.IsKeyDown(Keys.Left) && !isInvincible)
                 {
                     facingRight = false;
                     speed.X = -5f;
                 }
 
-                if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && jumpsAvailable >= 1)
+                if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) && !isInvincible && jumpsAvailable >= 1)
                 {
                     speed.Y = -8;
                     isOnGround = false;
                     jumpsAvailable -= 1;
                 }
-                else if (keyState.IsKeyDown(Keys.Down))
+                if (keyState.IsKeyDown(Keys.Down))
                 {
                     speed.Y += 5;
+                    if (isOnGround)
+                    {
+                        speed.X *= 0.2f;
+                    }
                 }
 
                 ///Basic attack
-
-                if (keyState.IsKeyDown(Keys.NumPad0) && previousKeyState.IsKeyUp(Keys.NumPad0) && frameTimer < 0)
+                if (keyState.IsKeyDown(Keys.NumPad1) && previousKeyState.IsKeyUp(Keys.NumPad1) && frameTimer < 0)
                 {
                     isAttacking = true;
+                    knockBackModifierX = 15;
+                    knockBackModifierY = 2;
+
                     if (facingRight)
                     {
-                        attackhitBox.X = (int)pos.X + 25;
-                        frameTimer = frameInterval;
+                        attackHitBox.X = (int)pos.X + 25;
+                        attackHitBox.Y = (int)pos.Y - 25;
+                        frameTimer = frameInterval * 0.5f;
                     }
                     else if (!facingRight)
                     {
-                        attackhitBox.X = (int)pos.X - 75;
-                        frameTimer = frameInterval;
+                        attackHitBox.X = (int)pos.X - 75;
+                        attackHitBox.Y = (int)pos.Y - 25;
+                        frameTimer = frameInterval * 0.5f;
                     }
                 }
-                else
+                else if (keyState.IsKeyDown(Keys.NumPad2) && previousKeyState.IsKeyUp(Keys.NumPad2) && frameTimer < 0)
                 {
-                    isAttacking = false;
-                    //attackhitBox.X = (int)pos.X - 25; Denna förhindrar attackerna från att vara lite saktare. Vad är den till egentligen? /Jonas
+                    isAttacking = true;
+                    knockBackModifierX = 5;
+                    knockBackModifierY = 7;
+
+                    if (facingRight)
+                    {
+                        attackHitBox.X = (int)pos.X + 25;
+                        attackHitBox.Y = (int)pos.Y + 5;
+                        frameTimer = frameInterval * 0.5f;
+                    }
+                    else if (!facingRight)
+                    {
+                        attackHitBox.X = (int)pos.X - 75;
+                        attackHitBox.Y = (int)pos.Y + 5;
+                        frameTimer = frameInterval * 0.5f;
+                    }
+                }
+                else if (keyState.IsKeyDown(Keys.NumPad3) && previousKeyState.IsKeyUp(Keys.NumPad3) && frameTimer < 0)
+                {
+                    isInvincible = true;
+                    frameTimer = frameInterval;
                 }
             }
             #endregion
-
-            if (isOnGround)
-            {
-                jumpsAvailable = 2;
-            }
-
-            if (pos.Y >= 900 || HP == 0)
-            {
-                HP = 10;
-                stocksRemaining--;
-                pos.X = 140;
-                pos.Y = 300;
-                speed = Vector2.Zero;
-            }
-
-            pos += speed;
-            damageableHitBox.X = (int)pos.X - 25;
-            damageableHitBox.Y = (int)pos.Y - 25;
-            attackhitBox.Y = (int)pos.Y - 25;
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            if (frameTimer > 0)
-            {
-                spriteBatch.Draw(tex, attackhitBox, srcRec, Color.Black);
-            }
-
-            if (playerIndex == 1)
-            {
-                color = Color.Red;
-                spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
-            }
-
-            if (playerIndex == 2)
-            {
-                color = Color.Blue;
-                spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
-            }
-        }
-        #endregion
-
-        ///Skriver över kollisionsmetoderna i MovingObject
-        #region Collision Methods
-        public override void HandleTopCollision(Platform p)
-        {
-            speed.Y = 0;
-            isOnGround = true;
-            base.HandleTopCollision(p);
-        }
-
-        public override void HandleBottomCollision(Platform p)
-        {
-            if (!isOnGround)
-            {
-                speed.Y = +2;
-            }
-            pos.X -= speed.X * 1.05f;
-
-            base.HandleBottomCollision(p);
         }
         #endregion
     }

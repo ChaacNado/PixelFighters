@@ -10,12 +10,13 @@ namespace PixelFighters
 {
     public class MovingObject : GameObject
     {
-        public Rectangle damageableHitBox, groundHitBox, attackhitBox;
+        public Rectangle damageableHitBox, groundHitBox, attackHitBox;
         protected Rectangle srcRec;
         public Vector2 speed;
         protected bool isOnGround;
-        public bool isHit, isAttacking;
-        public int playerIndex;
+        public bool isHit, isAttacking, isInvincible;
+        public int playerIndex, HP, maxHP;
+        public float knockBackModifierX, knockBackModifierY;
 
         #region Properties
         public virtual bool IsOnGround { set { isOnGround = false; } }
@@ -57,17 +58,17 @@ namespace PixelFighters
         ///Metod för stridskollisioner
         public virtual void HandlePlayerCollision(Player p1, Player p2)
         {
-            if (p1.attackhitBox.Intersects(p2.damageableHitBox) && p1.isAttacking)
+            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking && !p2.isInvincible)
             {
                 if (p1.facingRight)
                 {
-                    p2.speed.X += 15;
-                    p2.speed.Y -= 5;
+                    p2.speed.X += p1.knockBackModifierX / (p2.HP * 0.1f);
+                    p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
                 }
                 else if (!p1.facingRight)
                 {
-                    p2.speed.X -= 15;
-                    p2.speed.Y -= 5;
+                    p2.speed.X -= p1.knockBackModifierX / (p2.HP * 0.1f);
+                    p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
                 }
             }
             else
@@ -76,17 +77,17 @@ namespace PixelFighters
                 p2.speed.X = 0;
             }
 
-            if (p2.attackhitBox.Intersects(p1.damageableHitBox) && p2.isAttacking)
+            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking && !p1.isInvincible)
             {
                 if (p2.facingRight)
                 {
-                    p1.speed.X += 15;
-                    p1.speed.Y -= 5;
+                    p1.speed.X += p2.knockBackModifierX / (p1.HP * 0.1f);
+                    p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
                 }
                 else if (!p2.facingRight)
                 {
-                    p1.speed.X -= 15;
-                    p1.speed.Y -= 5;
+                    p1.speed.X -= p2.knockBackModifierX / (p1.HP * 0.1f);
+                    p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
                 }
             }
             else
@@ -99,7 +100,7 @@ namespace PixelFighters
 
         public override void Update(GameTime gameTime)
         {
-            
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)

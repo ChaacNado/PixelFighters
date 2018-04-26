@@ -229,12 +229,12 @@ namespace PixelFighters
                 }
 
                 ///Keyboard inputs för P1
-                if (keyState.IsKeyDown(Keys.D) && !isInvincible)
+                if (keyState.IsKeyDown(Keys.D) && !isInvincible && !inAnimation)
                 {
                     facingRight = true;
                     speed.X = 5f;
                 }
-                else if (keyState.IsKeyDown(Keys.A) && !isInvincible)
+                else if (keyState.IsKeyDown(Keys.A) && !isInvincible && !inAnimation)
                 {
                     facingRight = false;
                     speed.X = -5f;
@@ -246,7 +246,7 @@ namespace PixelFighters
                     isOnGround = false;
                     jumpsAvailable -= 1;
                 }
-                if (keyState.IsKeyDown(Keys.S))
+                if (keyState.IsKeyDown(Keys.S) && !inAnimation)
                 {
                     speed.Y += 5;
                     if (isOnGround)

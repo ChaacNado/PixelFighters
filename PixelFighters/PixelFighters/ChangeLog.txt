@@ -1,4 +1,14 @@
-﻿**********2018-04-19 Version 0.2.6, auth: Kristian Toro**********
+﻿**********2018-04-26 Version 0.2.7, auth: Kristian Toro**********
+{
+Lagt till en ny attack, en form av dash attack.
+Omarbetat hur alla stridsfunktioner fungerar, även storleken på hitboxarna.
+Attacker och dodge har nu en delay, som gör dem mindre "spammable".
+Lagt till en del variabler som underlättar för just kodningen kring stridsfunktionaliteten.
+Bools som förhindrar unwanted konflikter mellan attacker och rörelser finns nu.
+Även en bool som förhindrar att spelare kan sjunka genom marken ifall de blir träffad av attacker som trycker ner en.
+}
+
+**********2018-04-19 Version 0.2.6, auth: Kristian Toro**********
 {
 Döpt om TextureManager till AssetManager. Tagit bort klasserna PlayrTwo och StationaryObject.
 Lagt till en ny attackvariation till båda spelarna, samt en blockfunktion.

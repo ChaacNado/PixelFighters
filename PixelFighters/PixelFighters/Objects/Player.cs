@@ -15,12 +15,13 @@ namespace PixelFighters
         KeyboardState keyState, previousKeyState;
         GamePadState gamePadState, previousGamePadState;
         GamePadCapabilities capabilities;
-        private float rotation = 0;
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY, stocksRemaining;
         private int jumpsAvailable, frame;
-        public bool facingRight;
+        private float rotation = 0;
         private double frameTimer, frameInterval = 400;
+        public bool facingRight;
+        public bool inAnimation;
         #endregion
 
         #region Player Object
@@ -33,7 +34,7 @@ namespace PixelFighters
             bX = (int)ScreenManager.Instance.Dimensions.X;
             damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
-            attackHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height - 16);
+            attackHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             facingRight = true;
             jumpsAvailable = 2;
             stocksRemaining = 3;
@@ -48,6 +49,14 @@ namespace PixelFighters
             keyState = Keyboard.GetState();
 
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            isDunking = false;
+            isHit = false;
+
+            if (frameTimer <= 0)
+            {
+                inAnimation = false;
+            }
 
             if (facingRight)
             {
@@ -110,6 +119,8 @@ namespace PixelFighters
             damageableHitBox.X = (int)pos.X - 25;
             damageableHitBox.Y = (int)pos.Y - 25;
 
+            attackHitBox.X = (int)pos.X + rangeModifierX;
+            attackHitBox.Y = (int)pos.Y + rangeModifierY;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -245,49 +256,98 @@ namespace PixelFighters
                 }
 
                 ///Basic attack
-                if (keyState.IsKeyDown(Keys.G) && previousKeyState.IsKeyUp(Keys.G) && frameTimer < 0)
+                if(frameTimer <= -75)
                 {
-                    isAttacking = true;
-                    knockBackModifierX = 15;
-                    knockBackModifierY = 2;
-                    frameTimer = frameInterval * 0.5f;
+                    if (keyState.IsKeyDown(Keys.H) && previousKeyState.IsKeyUp(Keys.H) && frameTimer < 0)
+                    {
+                        frameTimer = frameInterval * 0.5f;
+                        isAttacking = true;
+                        knockBackModifierX = 15;
+                        knockBackModifierY = 2;
+                        attackHitBox.Width = 64;
+                        attackHitBox.Height = 24;
+                        rangeModifierY = -20;
 
-                    if (facingRight)
-                    {
-                        attackHitBox.X = (int)pos.X + 25;
-                        attackHitBox.Y = (int)pos.Y - 25;
+                        if (facingRight)
+                        {
+                            rangeModifierX = 0;
+                        }
+                        else if (!facingRight)
+                        {
+                            rangeModifierX = -64;
+                        }
                     }
-                    else if (!facingRight)
+                    if (keyState.IsKeyDown(Keys.J) && previousKeyState.IsKeyUp(Keys.J) && frameTimer < 0)
                     {
-                        attackHitBox.X = (int)pos.X - 75;
-                        attackHitBox.Y = (int)pos.Y - 25;
+                        frameTimer = frameInterval * 0.4f;
+                        if (isOnGround)
+                        {
+                            isAttacking = true;
+                            knockBackModifierX = 5;
+                            knockBackModifierY = 7;
+                            attackHitBox.Width = 52;
+                            attackHitBox.Height = 16;
+                            rangeModifierY = 8;
+
+                            if (facingRight)
+                            {
+                                rangeModifierX = 0;
+                            }
+                            else if (!facingRight)
+                            {
+                                rangeModifierX = -52;
+                            }
+                        }
+                        else
+                        {
+                            isDunking = true;
+                            if (frameTimer >= 160)
+                            {
+                                isAttacking = true;
+                                knockBackModifierX = 1;
+                                knockBackModifierY = -15;
+                                attackHitBox.Width = 24;
+                                attackHitBox.Height = 32;
+                                rangeModifierX = -12;
+                                rangeModifierY = 12;
+                            }
+                        }
+                    }
+                    if (keyState.IsKeyDown(Keys.Y) && previousKeyState.IsKeyUp(Keys.Y) && frameTimer < 0)
+                    {
+                        frameTimer = frameInterval * 0.9f;
+                        if (frameTimer >= 340)
+                        {
+                            isAttacking = true;
+                        }
+                        inAnimation = true;
+                        knockBackModifierX = 10;
+                        knockBackModifierY = 3;
+                        attackHitBox.Width = 32;
+                        attackHitBox.Height = 32;
+                        rangeModifierY = -15;
+
+                        if (facingRight)
+                        {
+                            rangeModifierX = 0;
+                            speed.X = 25f;
+                        }
+                        else if (!facingRight)
+                        {
+                            rangeModifierX = -32;
+                            speed.X = -25f;
+                        }
                     }
                 }
-                else if (keyState.IsKeyDown(Keys.H) && previousKeyState.IsKeyUp(Keys.H) && frameTimer < 0)
+                if (frameTimer <= -150)
                 {
-                    isAttacking = true;
-                    knockBackModifierX = 5;
-                    knockBackModifierY = 7;
-                    frameTimer = frameInterval * 0.5f;
-
-                    if (facingRight)
+                    if (keyState.IsKeyDown(Keys.K) && previousKeyState.IsKeyUp(Keys.K) && frameTimer < 0)
                     {
-                        attackHitBox.X = (int)pos.X + 25;
-                        attackHitBox.Y = (int)pos.Y + 5;
+                        isInvincible = true;
+                        frameTimer = frameInterval;
                     }
-                    else if (!facingRight)
-                    {
-                        attackHitBox.X = (int)pos.X - 75;
-                        attackHitBox.Y = (int)pos.Y + 5;
-                    }
-                }
-                else if (keyState.IsKeyDown(Keys.J) && previousKeyState.IsKeyUp(Keys.J) && frameTimer < 0)
-                {
-                    isInvincible = true;
-                    frameTimer = frameInterval;
                 }
             }
-
             #endregion
 
             #region P2
@@ -335,12 +395,12 @@ namespace PixelFighters
                 }
 
                 ///Keyboard inputs för P2
-                if (keyState.IsKeyDown(Keys.Right) && !isInvincible)
+                if (keyState.IsKeyDown(Keys.Right) && !isInvincible && !inAnimation)
                 {
                     facingRight = true;
                     speed.X = 5f;
                 }
-                else if (keyState.IsKeyDown(Keys.Left) && !isInvincible)
+                else if (keyState.IsKeyDown(Keys.Left) && !isInvincible && !inAnimation)
                 {
                     facingRight = false;
                     speed.X = -5f;
@@ -352,7 +412,7 @@ namespace PixelFighters
                     isOnGround = false;
                     jumpsAvailable -= 1;
                 }
-                if (keyState.IsKeyDown(Keys.Down))
+                if (keyState.IsKeyDown(Keys.Down) && !inAnimation)
                 {
                     speed.Y += 5;
                     if (isOnGround)
@@ -362,48 +422,96 @@ namespace PixelFighters
                 }
 
                 ///Basic attack
-                if (keyState.IsKeyDown(Keys.NumPad1) && previousKeyState.IsKeyUp(Keys.NumPad1) && frameTimer < 0)
+                if (frameTimer <= -75)
                 {
-                    isAttacking = true;
-                    knockBackModifierX = 15;
-                    knockBackModifierY = 2;
+                    if (keyState.IsKeyDown(Keys.NumPad1) && previousKeyState.IsKeyUp(Keys.NumPad1) && frameTimer < 0)
+                    {
+                        frameTimer = frameInterval * 0.5f;
+                        isAttacking = true;
+                        knockBackModifierX = 15;
+                        knockBackModifierY = 2;
+                        attackHitBox.Width = 64;
+                        attackHitBox.Height = 24;
+                        rangeModifierY = -20;
 
-                    if (facingRight)
-                    {
-                        attackHitBox.X = (int)pos.X + 25;
-                        attackHitBox.Y = (int)pos.Y - 25;
-                        frameTimer = frameInterval * 0.5f;
+                        if (facingRight)
+                        {
+                            rangeModifierX = 0;
+                        }
+                        else if (!facingRight)
+                        {
+                            rangeModifierX = -64;
+                        }
                     }
-                    else if (!facingRight)
+                    if (keyState.IsKeyDown(Keys.NumPad2) && previousKeyState.IsKeyUp(Keys.NumPad2) && frameTimer < 0)
                     {
-                        attackHitBox.X = (int)pos.X - 75;
-                        attackHitBox.Y = (int)pos.Y - 25;
-                        frameTimer = frameInterval * 0.5f;
+                        frameTimer = frameInterval * 0.4f;
+                        if (isOnGround)
+                        {
+                            isAttacking = true;
+                            knockBackModifierX = 5;
+                            knockBackModifierY = 7;
+                            attackHitBox.Width = 52;
+                            attackHitBox.Height = 16;
+                            rangeModifierY = 8;
+
+                            if (facingRight)
+                            {
+                                rangeModifierX = 0;
+                            }
+                            else if (!facingRight)
+                            {
+                                rangeModifierX = -52;
+                            }
+                        }
+                        else
+                        {
+                            isDunking = true;
+                            if (frameTimer >= 160)
+                            {
+                                isAttacking = true;
+                                knockBackModifierX = 1;
+                                knockBackModifierY = -15;
+                                attackHitBox.Width = 24;
+                                attackHitBox.Height = 32;
+                                rangeModifierX = -12;
+                                rangeModifierY = 12;
+                            }
+                        }
+                    }
+                    if (keyState.IsKeyDown(Keys.NumPad4) && previousKeyState.IsKeyUp(Keys.NumPad4) && frameTimer < 0)
+                    {
+                        frameTimer = frameInterval * 0.9f;
+                        if (frameTimer >= 340)
+                        {
+                            isAttacking = true;
+                        }
+                        inAnimation = true;
+                        knockBackModifierX = 10;
+                        knockBackModifierY = 3;
+                        attackHitBox.Width = 32;
+                        attackHitBox.Height = 32;
+                        rangeModifierY = -15;
+
+                        if (facingRight)
+                        {
+                            rangeModifierX = 0;
+                            speed.X = 25f;
+                        }
+                        else if (!facingRight)
+                        {
+                            rangeModifierX = -32;
+                            speed.X = -25f;
+                        }
                     }
                 }
-                else if (keyState.IsKeyDown(Keys.NumPad2) && previousKeyState.IsKeyUp(Keys.NumPad2) && frameTimer < 0)
+                if (frameTimer <= -150)
                 {
-                    isAttacking = true;
-                    knockBackModifierX = 5;
-                    knockBackModifierY = 7;
-
-                    if (facingRight)
+                    if (keyState.IsKeyDown(Keys.NumPad3) && previousKeyState.IsKeyUp(Keys.NumPad3) && frameTimer < 0)
                     {
-                        attackHitBox.X = (int)pos.X + 25;
-                        attackHitBox.Y = (int)pos.Y + 5;
-                        frameTimer = frameInterval * 0.5f;
+                        isInvincible = true;
+                        frameTimer = frameInterval;
                     }
-                    else if (!facingRight)
-                    {
-                        attackHitBox.X = (int)pos.X - 75;
-                        attackHitBox.Y = (int)pos.Y + 5;
-                        frameTimer = frameInterval * 0.5f;
-                    }
-                }
-                else if (keyState.IsKeyDown(Keys.NumPad3) && previousKeyState.IsKeyUp(Keys.NumPad3) && frameTimer < 0)
-                {
-                    isInvincible = true;
-                    frameTimer = frameInterval;
                 }
             }
             #endregion

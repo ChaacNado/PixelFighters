@@ -88,7 +88,7 @@ namespace PixelFighters
                     Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
             }
-
+           
             ///Platformskollisioner
             foreach (Platform p in platforms)
             {
@@ -104,7 +104,7 @@ namespace PixelFighters
                 }
                 else
                 {
-                    p1.IsOnGround = false;
+                    p1.isOnGround = false;
                 }
             }
             foreach (Platform p in platforms)
@@ -121,22 +121,30 @@ namespace PixelFighters
                 }
                 else
                 {
-                    p2.IsOnGround = false;
+                    p2.isOnGround = false;
                 }
             }
 
             ///Stridskollisioner
-            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking == true)
+            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking == true && !p2.isInvincible)
             {
+                p2.HandlePlayerCollision(p1, p2);
                 p2.isHit = true;
                 p2.HP--;
-                p2.HandlePlayerCollision(p1, p2);
             }
-            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking == true)
+            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking == true && !p1.isInvincible)
             {
+                p2.HandlePlayerCollision(p1, p2);
                 p1.isHit = true;
                 p1.HP--;
-                p2.HandlePlayerCollision(p1, p2);
+            }
+            if (p1.isDunking && p2.isOnGround)
+            {
+                p1.knockBackModifierY = 0;
+            }
+            if (p2.isDunking && p1.isOnGround)
+            {
+                p2.knockBackModifierY = 0;
             }
 
             ///Konditioner för vinst

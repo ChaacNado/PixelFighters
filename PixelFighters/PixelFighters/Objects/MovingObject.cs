@@ -13,13 +13,11 @@ namespace PixelFighters
         public Rectangle damageableHitBox, groundHitBox, attackHitBox;
         protected Rectangle srcRec;
         public Vector2 speed;
-        protected bool isOnGround;
-        public bool isHit, isAttacking, isInvincible;
-        public int playerIndex, HP, maxHP;
+        public bool isOnGround,isHit, isAttacking, isInvincible, isDunking;
+        public int playerIndex, HP, maxHP, rangeModifierX, rangeModifierY;
         public float knockBackModifierX, knockBackModifierY;
 
         #region Properties
-        public virtual bool IsOnGround { set { isOnGround = false; } }
 
         public virtual bool IsTopColliding(Platform p)
         {
@@ -58,17 +56,31 @@ namespace PixelFighters
         ///Metod för stridskollisioner
         public virtual void HandlePlayerCollision(Player p1, Player p2)
         {
-            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking && !p2.isInvincible)
+            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking)
             {
                 if (p1.facingRight)
                 {
-                    p2.speed.X += p1.knockBackModifierX / (p2.HP * 0.1f);
-                    p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
+                    if (p1.isDunking && p2.isOnGround)
+                    {
+                        p2.speed.X += p1.knockBackModifierX * 6;
+                    }
+                    else
+                    {
+                        p2.speed.X += p1.knockBackModifierX / (p2.HP * 0.1f);
+                        p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
+                    }
                 }
                 else if (!p1.facingRight)
                 {
-                    p2.speed.X -= p1.knockBackModifierX / (p2.HP * 0.1f);
-                    p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
+                    if (p1.isDunking && p2.isOnGround)
+                    {
+                        p2.speed.X -= p1.knockBackModifierX * 6;
+                    }
+                    else
+                    {
+                        p2.speed.X -= p1.knockBackModifierX / (p2.HP * 0.1f);
+                        p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
+                    }
                 }
             }
             else
@@ -77,17 +89,31 @@ namespace PixelFighters
                 p2.speed.X = 0;
             }
 
-            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking && !p1.isInvincible)
+            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking)
             {
                 if (p2.facingRight)
                 {
-                    p1.speed.X += p2.knockBackModifierX / (p1.HP * 0.1f);
-                    p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
+                    if (p2.isDunking && p1.isOnGround)
+                    {
+                        p1.speed.X += p2.knockBackModifierX * 3;
+                    }
+                    else
+                    {
+                        p1.speed.X += p2.knockBackModifierX / (p1.HP * 0.1f);
+                        p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
+                    }
                 }
                 else if (!p2.facingRight)
                 {
-                    p1.speed.X -= p2.knockBackModifierX / (p1.HP * 0.1f);
-                    p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
+                    if (p2.isDunking && p1.isOnGround)
+                    {
+                        p1.speed.X -= p2.knockBackModifierX * 3;
+                    }
+                    else
+                    {
+                        p1.speed.X -= p2.knockBackModifierX / (p1.HP * 0.1f);
+                        p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
+                    }
                 }
             }
             else

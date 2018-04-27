@@ -1,4 +1,11 @@
-﻿**********2018-04-26 Version 0.2.7, auth: Kristian Toro**********
+﻿**********2018-04-27 Version 0.2.8, auth: Kristian Toro**********
+{
+Tagit bort upprepad kod från Player-klassen, och gjort om koden så att den kan kopplas till alla spelare lättare.
+Kommenterat över några funktioner i Player-klaseen. Ändrat på input-layouten för keyboards.
+Skrivit in alla stridsfunktioner med controller-inputs.
+}
+
+**********2018-04-26 Version 0.2.7, auth: Kristian Toro**********
 {
 Lagt till en ny attack, en form av dash attack.
 Omarbetat hur alla stridsfunktioner fungerar, även storleken på hitboxarna.

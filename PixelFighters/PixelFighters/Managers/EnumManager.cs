@@ -28,5 +28,7 @@ namespace PixelFighters
         MarkerState2,
         MarkerState3,
         MarkerState4,
+        MarkerState5,
+        MarkerState6,
     }
 }

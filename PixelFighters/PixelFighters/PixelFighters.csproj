@@ -45,8 +45,10 @@
     <Compile Include="Managers\EnumManager.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Managers\GameplayManager.cs" />
+    <Compile Include="Menus\GraphicsMenu.cs" />
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Menus\OptionsMenu.cs" />
+    <Compile Include="Menus\QuitMenu.cs" />
     <Compile Include="Objects\GameObject.cs" />
     <Compile Include="Objects\MovingObject.cs" />
     <Compile Include="Objects\Platform.cs" />
@@ -68,8 +70,10 @@
     <Content Include="Content\fade.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\GraphicsMenu.png" />
     <Content Include="Content\MainMenu.png" />
     <Content Include="Content\OptionsMenu.png" />
+    <Content Include="Content\QuitMenu.png" />
     <Content Include="Content\tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

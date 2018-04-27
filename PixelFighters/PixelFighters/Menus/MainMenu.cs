@@ -2,11 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PixelFighters
 {
@@ -14,15 +9,22 @@ namespace PixelFighters
     {
         #region variables
 
+        int screenWitdh = 1360;
+        int screenHeight = 900;
+
+        //1920x1080 skärmupplösning
+        //int screenWitdh = 1920;
+        //int screenHeight = 1080;
+
         private static MainMenu instance;
 
         public KeyboardState keyState, previousKeyState;
 
         public MarkerState currentMarkerState;
 
-        Rectangle buttonRectangle1, buttonRectangle2, buttonRectangle3, buttonRectangle4;
-        Rectangle buttonSrcRectangle1, buttonSrcRectangle2, buttonSrcRectangle3, buttonSrcRectangle4;
-        Rectangle markedButtonSrcRectangle1, markedButtonSrcRectangle2, markedButtonSrcRectangle3, markedButtonSrcRectangle4;
+        Rectangle playButtonRectangle, optionsButtonRectangle, creditsButtonRectangle, exitButtonRectangle;
+        Rectangle playButtonSrcRectangle, optionsSrcRectangle, creditsButtonSrcRectangle, exitButtonSrcRectangle;
+        Rectangle markedPlayButtonSrcRectanlge, markedOptionsSrcRectangle, markedCreditsSrcRectangle, markedExitButtonSrcRectangle;
 
         #endregion
 
@@ -48,20 +50,20 @@ namespace PixelFighters
         {
             AssetManager.Instance.LoadContent(content);
 
-            buttonRectangle1 = new Rectangle((1360 / 2 - 408 / 2), 100, 408, 96);
-            buttonRectangle2 = new Rectangle((1360 / 2 - 408 / 2), 300, 408, 96);
-            buttonRectangle3 = new Rectangle((1360 / 2 - 408 / 2), 500, 408, 96);
-            buttonRectangle4 = new Rectangle((1360 / 2 - 408 / 2), 700, 408, 96);
+            playButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), (screenHeight / 2) - 208, 408, 96);
+            optionsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), playButtonRectangle.Y + 100, 408, 96);
+            creditsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), optionsButtonRectangle.Y + 100, 408, 96);
+            exitButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), creditsButtonRectangle.Y + 100, 408, 96);
 
-            buttonSrcRectangle1 = new Rectangle(109, 2, 102, 24);
-            buttonSrcRectangle2 = new Rectangle(109, 33, 102, 24);
-            buttonSrcRectangle3 = new Rectangle(109, 64, 102, 24);
-            buttonSrcRectangle4 = new Rectangle(109, 95, 102, 24);
+            playButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
+            optionsSrcRectangle = new Rectangle(109, 33, 102, 24);
+            creditsButtonSrcRectangle = new Rectangle(109, 64, 102, 24);
+            exitButtonSrcRectangle = new Rectangle(109, 95, 102, 24);
 
-            markedButtonSrcRectangle1 = new Rectangle(2, 2, 102, 24);
-            markedButtonSrcRectangle2 = new Rectangle(2, 33, 102, 24);
-            markedButtonSrcRectangle3 = new Rectangle(2, 64, 102, 24);
-            markedButtonSrcRectangle4 = new Rectangle(2, 95, 102, 24);
+            markedPlayButtonSrcRectanlge = new Rectangle(2, 2, 102, 24);
+            markedOptionsSrcRectangle = new Rectangle(2, 33, 102, 24);
+            markedCreditsSrcRectangle = new Rectangle(2, 64, 102, 24);
+            markedExitButtonSrcRectangle = new Rectangle(2, 95, 102, 24);
         }
 
         public void Update(GameTime gameTime, Game1 game1)
@@ -132,24 +134,24 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle1, buttonSrcRectangle1, Color.White);
-            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle2, buttonSrcRectangle2, Color.White);
-            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle3, buttonSrcRectangle3, Color.White);
-            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle4, buttonSrcRectangle4, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, playButtonRectangle, playButtonSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, optionsButtonRectangle, optionsSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, creditsButtonRectangle, creditsButtonSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, exitButtonRectangle, exitButtonSrcRectangle, Color.White);
 
             switch (currentMarkerState)
             {
                 case MarkerState.MarkerState1:
-                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle1, markedButtonSrcRectangle1, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, playButtonRectangle, markedPlayButtonSrcRectanlge, Color.White);
                     break;
                 case MarkerState.MarkerState2:
-                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle2, markedButtonSrcRectangle2, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, optionsButtonRectangle, markedOptionsSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState3:
-                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle3, markedButtonSrcRectangle3, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, creditsButtonRectangle, markedCreditsSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState4:
-                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, buttonRectangle4, markedButtonSrcRectangle4, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, exitButtonRectangle, markedExitButtonSrcRectangle, Color.White);
                     break;
             }
         }

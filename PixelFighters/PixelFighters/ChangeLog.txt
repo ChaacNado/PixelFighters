@@ -1,4 +1,10 @@
-﻿**********2018-04-27 Version 0.3.0, auth: Jonas Ekblad**********
+﻿**********2018-04-27 Version 0.3.1, auth: Elma Carlsson**********
+{
+La till två till klasser i Menus-mappen, GraphicsMenu och QuitMenu. Skapat fler MarkerState enums. Laddat in nya texturer.
+I Quit menyn ska man kunna stänga av spelet och i Graphics menyn ska ingenting hända än, skärmupplösningen och windowed mode fungerar ej än. 
+}
+
+**********2018-04-27 Version 0.3.0, auth: Jonas Ekblad**********
 {
 Flyttade all attack logik från Player klassen till CharacterManager där. Testat så att allt fungerade för keyboard och gamepad som det verka göra innan.
 Lagt till några tillfälliga variabler som inte ska göra någonting för att underlätta att göra fler attacker i framtiden.

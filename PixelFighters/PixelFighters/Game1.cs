@@ -40,6 +40,8 @@ namespace PixelFighters
             GameplayManager.Instance.LoadContent(Content, this);
             MainMenu.Instance.LoadContent(Content, this);
             OptionsMenu.Instance.LoadContent(Content, this);
+            GraphicsMenu.Instance.LoadContent(Content, this);
+            QuitMenu.Instance.LoadContent(Content, this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -108,6 +110,12 @@ namespace PixelFighters
                 case GameState.Options:
                     OptionsMenu.Instance.Update(gameTime, this);
                     break;
+                case GameState.Graphics:
+                    GraphicsMenu.Instance.Update(gameTime, this);
+                    break;
+                case GameState.Quit:
+                    QuitMenu.Instance.Update(gameTime, this);
+                    break;
             }
 
             base.Update(gameTime);
@@ -162,6 +170,14 @@ namespace PixelFighters
                 case GameState.Options:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
                     OptionsMenu.Instance.Draw(spriteBatch);
+                    break;
+                case GameState.Graphics:
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    GraphicsMenu.Instance.Draw(spriteBatch);
+                    break;
+                case GameState.Quit:
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    QuitMenu.Instance.Draw(spriteBatch);
                     break;
             }
            

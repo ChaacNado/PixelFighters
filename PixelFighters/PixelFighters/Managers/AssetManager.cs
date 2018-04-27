@@ -15,7 +15,8 @@ namespace PixelFighters
         ContentManager content;
 
         public SpriteFont spriteFont;
-        public Texture2D rectTex, fadeTex, boxManTex, mainMenuSpritesheet, optionsMenuSpritesheet;
+        public Texture2D rectTex, fadeTex, boxManTex;
+        public Texture2D mainMenuSpritesheet, optionsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet;
 
         private static AssetManager instance;
 
@@ -44,8 +45,11 @@ namespace PixelFighters
             rectTex = Content.Load<Texture2D>("tile");
             fadeTex = Content.Load<Texture2D>("fade");
             boxManTex = Content.Load<Texture2D>("boxMan");
+
             mainMenuSpritesheet = Content.Load<Texture2D>("MainMenu");
             optionsMenuSpritesheet = Content.Load<Texture2D>("OptionsMenu");
+            graphicsMenuSpritesheet = Content.Load<Texture2D>("GraphicsMenu");
+            quitMenuSpritesheet = Content.Load<Texture2D>("QuitMenu");
         }
         #endregion
     }

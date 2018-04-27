@@ -14,15 +14,22 @@ namespace PixelFighters
     {
         #region variables
 
+        int screenWitdh = 1360;
+        int screenHeight = 900;
+
+        //1920x1080 skärmupplösning
+        //int screenWitdh = 1920;
+        //int screenHeight = 1080;
+
         private static OptionsMenu instance;
 
         public KeyboardState keyState, previousKeyState;
 
         public MarkerState currentMarkerState;
 
-        Rectangle buttonRectangle1, buttonRectangle2, buttonRectangle3;
-        Rectangle buttonSrcRectangle1, buttonSrcRectangle2, buttonSrcRectangle3;
-        Rectangle markedButtonSrcRectangle1, markedButtonSrcRectangle2, markedButtonSrcRectangle3;
+        Rectangle soundButtonRectangle, graphicsButtonRectangle, controlsButtonRectangle;
+        Rectangle soundButtonSrcRectangle, graphicsButtonSrcRectangle, controlsButtonSrcRectangle;
+        Rectangle markedSoundButtonSrcRectangle, markedGraphicsButtonSrcRectangle, markedControlsButtonSrcRectangle;
 
         #endregion
 
@@ -48,17 +55,17 @@ namespace PixelFighters
         {
             AssetManager.Instance.LoadContent(content);
 
-            buttonRectangle1 = new Rectangle((1360 / 2 - 408 / 2), 100, 408, 96);
-            buttonRectangle2 = new Rectangle((1360 / 2 - 408 / 2), 300, 408, 96);
-            buttonRectangle3 = new Rectangle((1360 / 2 - 408 / 2), 500, 408, 96);
+            soundButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), (screenHeight / 2) - 156, 408, 96);
+            graphicsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), soundButtonRectangle.Y + 100, 408, 96);
+            controlsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), graphicsButtonRectangle.Y + 100, 408, 96);
 
-            buttonSrcRectangle1 = new Rectangle(109, 2, 102, 24);
-            buttonSrcRectangle2 = new Rectangle(109, 33, 102, 24);
-            buttonSrcRectangle3 = new Rectangle(109, 64, 102, 24);
+            soundButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
+            graphicsButtonSrcRectangle = new Rectangle(109, 33, 102, 24);
+            controlsButtonSrcRectangle = new Rectangle(109, 64, 102, 24);
 
-            markedButtonSrcRectangle1 = new Rectangle(2, 2, 102, 24);
-            markedButtonSrcRectangle2 = new Rectangle(2, 33, 102, 24);
-            markedButtonSrcRectangle3 = new Rectangle(2, 64, 102, 24);
+            markedSoundButtonSrcRectangle = new Rectangle(2, 2, 102, 24);
+            markedGraphicsButtonSrcRectangle = new Rectangle(2, 33, 102, 24);
+            markedControlsButtonSrcRectangle = new Rectangle(2, 64, 102, 24);
         }
 
         public void Update(GameTime gameTime, Game1 game1)
@@ -120,20 +127,20 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, buttonRectangle1, buttonSrcRectangle1, Color.White);
-            spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, buttonRectangle2, buttonSrcRectangle2, Color.White);
-            spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, buttonRectangle3, buttonSrcRectangle3, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, soundButtonRectangle, soundButtonSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, graphicsButtonRectangle, graphicsButtonSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, controlsButtonRectangle, controlsButtonSrcRectangle, Color.White);
 
             switch (currentMarkerState)
             {
                 case MarkerState.MarkerState1:
-                    spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, buttonRectangle1, markedButtonSrcRectangle1, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, soundButtonRectangle, markedSoundButtonSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState2:
-                    spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, buttonRectangle2, markedButtonSrcRectangle2, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, graphicsButtonRectangle, markedGraphicsButtonSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState3:
-                    spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, buttonRectangle3, markedButtonSrcRectangle3, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, controlsButtonRectangle, markedControlsButtonSrcRectangle, Color.White);
                     break;
             }
         }

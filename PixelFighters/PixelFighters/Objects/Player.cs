@@ -19,9 +19,8 @@ namespace PixelFighters
         public int bX, bY, stocksRemaining;
         private int jumpsAvailable, frame;
         private float rotation = 0;
-        private double frameTimer, frameInterval = 400;
-        public bool facingRight;
-        public bool inAnimation;
+        public double frameTimer, frameInterval = 400;
+        public bool facingRight, inAnimation;
         private Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
         #endregion
@@ -49,7 +48,6 @@ namespace PixelFighters
         {
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
-
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             isDunking = false;
@@ -254,86 +252,25 @@ namespace PixelFighters
                     ///Jab attack
                     if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && frameTimer < 0)
                     {
-                        frameTimer = frameInterval * 0.5f;
-                        isAttacking = true;
-                        knockBackModifierX = 15;
-                        knockBackModifierY = 2;
-                        attackHitBox.Width = 64;
-                        attackHitBox.Height = 24;
-                        rangeModifierY = -20;
-
-                        if (facingRight)
-                        {
-                            rangeModifierX = 0;
-                        }
-                        else if (!facingRight)
-                        {
-                            rangeModifierX = -64;
-                        }
+                        CharacterManager.Instance.JabAttack(this);
                     }
                     ///Low attack
                     if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B) && frameTimer < 0)
                     {
-                        frameTimer = frameInterval * 0.4f;
                         if (isOnGround)
                         {
-                            isAttacking = true;
-                            knockBackModifierX = 5;
-                            knockBackModifierY = 7;
-                            attackHitBox.Width = 52;
-                            attackHitBox.Height = 16;
-                            rangeModifierY = 8;
-
-                            if (facingRight)
-                            {
-                                rangeModifierX = 0;
-                            }
-                            else if (!facingRight)
-                            {
-                                rangeModifierX = -52;
-                            }
+                            CharacterManager.Instance.LowAttack(this);
                         }
                         ///Air dunk
                         else
                         {
-                            isDunking = true;
-                            if (frameTimer >= 160)
-                            {
-                                isAttacking = true;
-                                knockBackModifierX = 1;
-                                knockBackModifierY = -15;
-                                attackHitBox.Width = 24;
-                                attackHitBox.Height = 32;
-                                rangeModifierX = -12;
-                                rangeModifierY = 12;
-                            }
+                            CharacterManager.Instance.AirDunk(this);
                         }
                     }
                     ///Dash attack
                     if (gamePadState.IsButtonDown(Buttons.X) && previousGamePadState.IsButtonUp(Buttons.X) && frameTimer < 0)
                     {
-                        frameTimer = frameInterval * 0.9f;
-                        if (frameTimer >= 340)
-                        {
-                            isAttacking = true;
-                        }
-                        inAnimation = true;
-                        knockBackModifierX = 10;
-                        knockBackModifierY = 3;
-                        attackHitBox.Width = 32;
-                        attackHitBox.Height = 32;
-                        rangeModifierY = -15;
-
-                        if (facingRight)
-                        {
-                            rangeModifierX = 0;
-                            speed.X = 25f;
-                        }
-                        else if (!facingRight)
-                        {
-                            rangeModifierX = -32;
-                            speed.X = -25f;
-                        }
+                        CharacterManager.Instance.DashAttack(this);
                     }
                 }
                 if (frameTimer <= -150)
@@ -386,86 +323,25 @@ namespace PixelFighters
                 ///Jab attack
                 if (keyState.IsKeyDown(jabInput) && previousKeyState.IsKeyUp(jabInput) && frameTimer < 0)
                 {
-                    frameTimer = frameInterval * 0.5f;
-                    isAttacking = true;
-                    knockBackModifierX = 15;
-                    knockBackModifierY = 2;
-                    attackHitBox.Width = 64;
-                    attackHitBox.Height = 24;
-                    rangeModifierY = -20;
-
-                    if (facingRight)
-                    {
-                        rangeModifierX = 0;
-                    }
-                    else if (!facingRight)
-                    {
-                        rangeModifierX = -64;
-                    }
+                    CharacterManager.Instance.JabAttack(this);
                 }
                 ///Low attack
                 if (keyState.IsKeyDown(lowInput) && previousKeyState.IsKeyUp(lowInput) && frameTimer < 0)
                 {
-                    frameTimer = frameInterval * 0.4f;
                     if (isOnGround)
                     {
-                        isAttacking = true;
-                        knockBackModifierX = 5;
-                        knockBackModifierY = 7;
-                        attackHitBox.Width = 52;
-                        attackHitBox.Height = 16;
-                        rangeModifierY = 8;
-
-                        if (facingRight)
-                        {
-                            rangeModifierX = 0;
-                        }
-                        else if (!facingRight)
-                        {
-                            rangeModifierX = -52;
-                        }
+                        CharacterManager.Instance.LowAttack(this);
                     }
                     ///Air dunk
                     else
                     {
-                        isDunking = true;
-                        if (frameTimer >= 160)
-                        {
-                            isAttacking = true;
-                            knockBackModifierX = 1;
-                            knockBackModifierY = -15;
-                            attackHitBox.Width = 24;
-                            attackHitBox.Height = 32;
-                            rangeModifierX = -12;
-                            rangeModifierY = 12;
-                        }
+                            CharacterManager.Instance.AirDunk(this);
                     }
                 }
                 ///Dash attack
                 if (keyState.IsKeyDown(dashInput) && previousKeyState.IsKeyUp(dashInput) && frameTimer < 0)
                 {
-                    frameTimer = frameInterval * 0.9f;
-                    if (frameTimer >= 340)
-                    {
-                        isAttacking = true;
-                    }
-                    inAnimation = true;
-                    knockBackModifierX = 10;
-                    knockBackModifierY = 3;
-                    attackHitBox.Width = 32;
-                    attackHitBox.Height = 32;
-                    rangeModifierY = -15;
-
-                    if (facingRight)
-                    {
-                        rangeModifierX = 0;
-                        speed.X = 25f;
-                    }
-                    else if (!facingRight)
-                    {
-                        rangeModifierX = -32;
-                        speed.X = -25f;
-                    }
+                    CharacterManager.Instance.DashAttack(this);
                 }
             }
             if (frameTimer <= -150)

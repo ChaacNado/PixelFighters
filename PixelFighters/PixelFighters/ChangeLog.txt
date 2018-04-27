@@ -1,4 +1,10 @@
-﻿**********2018-04-27 Version 0.2.9, auth: Elma Carlsson & Erik Persson**********
+﻿**********2018-04-27 Version 0.3.0, auth: Jonas Ekblad**********
+{
+Flyttade all attack logik från Player klassen till CharacterManager där. Testat så att allt fungerade för keyboard och gamepad som det verka göra innan.
+Lagt till några tillfälliga variabler som inte ska göra någonting för att underlätta att göra fler attacker i framtiden.
+}
+
+**********2018-04-27 Version 0.2.9, auth: Elma Carlsson & Erik Persson**********
 {
 Gjort en klass för Main Menu och en klass för Options Menu. Skapat enums för olika markerstates som känner av vilken knapp som är markerad. 
 Laddat in nya texturer för menyerna. 

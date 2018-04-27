@@ -38,6 +38,8 @@ namespace PixelFighters
             ///Detta används när man hämtar data från GameplayManager etc
             AssetManager.Instance.LoadContent(Content);
             GameplayManager.Instance.LoadContent(Content, this);
+            MainMenu.Instance.LoadContent(Content, this);
+            OptionsMenu.Instance.LoadContent(Content, this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,10 +60,7 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.MainMenu:
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
-                    {
-                        currentGameState = GameState.CharacterSelect;
-                    }
+                    MainMenu.Instance.Update(gameTime, this);
                     break;
                 case GameState.CharacterSelect:
                     GameplayManager.Instance.Update(gameTime);
@@ -106,6 +105,9 @@ namespace PixelFighters
                         currentGameState = GameState.MainMenu;
                     }
                     break;
+                case GameState.Options:
+                    OptionsMenu.Instance.Update(gameTime, this);
+                    break;
             }
 
             base.Update(gameTime);
@@ -115,7 +117,7 @@ namespace PixelFighters
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
             switch (currentGameState)
             {
@@ -124,8 +126,8 @@ namespace PixelFighters
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER", new Vector2(240, 150), Color.White);
                     break;
                 case GameState.MainMenu:
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Main Menu", new Vector2(240, 90), Color.White);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.White);
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    MainMenu.Instance.Draw(spriteBatch);
                     break;
                 case GameState.CharacterSelect:
                     GraphicsDevice.Clear(Color.LightGray);
@@ -156,7 +158,11 @@ namespace PixelFighters
                     }
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
 
-                    break;                 
+                    break;
+                case GameState.Options:
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    OptionsMenu.Instance.Draw(spriteBatch);
+                    break;
             }
            
             spriteBatch.End();

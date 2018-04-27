@@ -1,4 +1,11 @@
-﻿**********2018-04-27 Version 0.2.8, auth: Kristian Toro**********
+﻿**********2018-04-27 Version 0.2.9, auth: Elma Carlsson & Erik Persson**********
+{
+Gjort en klass för Main Menu och en klass för Options Menu. Skapat enums för olika markerstates som känner av vilken knapp som är markerad. 
+Laddat in nya texturer för menyerna. 
+Fixat så att MainMenu och Options fungerar korrekt med GameStates i Game1, tagit bort vissa gamla "menyer".
+}
+
+**********2018-04-27 Version 0.2.8, auth: Kristian Toro**********
 {
 Tagit bort upprepad kod från Player-klassen, och gjort om koden så att den kan kopplas till alla spelare lättare.
 Kommenterat över några funktioner i Player-klaseen. Ändrat på input-layouten för keyboards.

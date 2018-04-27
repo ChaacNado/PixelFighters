@@ -11,9 +11,22 @@ namespace PixelFighters
         TitleScreen,
         MainMenu,
         CharacterSelect,
-        Options,
         Playtime,
         Pause,
         Results,
+        Options,
+        SoundMusic,
+        Graphics,
+        Controls,
+        Credits,
+        Quit,
+    }
+
+    public enum MarkerState
+    {
+        MarkerState1,
+        MarkerState2,
+        MarkerState3,
+        MarkerState4,
     }
 }

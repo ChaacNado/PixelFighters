@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Users/Elma/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/animFont.spritefont</SourceFile>
-  <SourceTime>2018-04-23T13:11:10.8471633+02:00</SourceTime>
-  <DestFile>D:/Users/Elma/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/bin/Windows/animFont.xnb</DestFile>
-  <DestTime>2018-04-27T20:58:31.6839146+02:00</DestTime>
+  <SourceFile>C:/Users/mikael/Downloads/school/Pixelfighet kod/PixelFighters-master v0.3.1/PixelFighters-master/PixelFighters/PixelFighters/Content/animFont.spritefont</SourceFile>
+  <SourceTime>2018-04-29T15:13:41.2816149+02:00</SourceTime>
+  <DestFile>C:/Users/mikael/Downloads/school/Pixelfighet kod/PixelFighters-master v0.3.1/PixelFighters-master/PixelFighters/PixelFighters/Content/bin/Windows/animFont.xnb</DestFile>
+  <DestTime>2018-04-29T15:16:00.3885473+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

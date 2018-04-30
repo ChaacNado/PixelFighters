@@ -98,8 +98,10 @@ namespace PixelFighters
                 case GameState.Results:
                     GameplayManager.Instance.Timer = 10;
                     GameplayManager.Instance.TimerStart = false;
+                    GameplayManager.Instance.TimerStock = false;
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
+                        
                         GameplayManager.Instance.playerOneWon = false;
                         GameplayManager.Instance.playerTwoWon = false;
                         

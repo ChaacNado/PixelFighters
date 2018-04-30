@@ -1,4 +1,8 @@
-﻿**********2018-04-27 Version 0.3.1, auth: Elma Carlsson**********
+﻿**********2018-04-30 Version 0.3.2m auth: Mikael Zhu**********
+{
+Har fixat så att den som har mest stock när tiden rinner ut vinner.
+}
+**********2018-04-27 Version 0.3.1, auth: Elma Carlsson**********
 {
 La till två till klasser i Menus-mappen, GraphicsMenu och QuitMenu. Skapat fler MarkerState enums. Laddat in nya texturer.
 I Quit menyn ska man kunna stänga av spelet och i Graphics menyn ska ingenting hända än, skärmupplösningen och windowed mode fungerar ej än. 

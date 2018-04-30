@@ -28,6 +28,7 @@ namespace PixelFighters
         public bool TimerStart = false;
         public float Timer = 10;
         public float TimerTic = 0;
+        public bool TimerStock = false;
         public GameState currentGameState;
 
         public bool playerOneWon, playerTwoWon;
@@ -87,8 +88,22 @@ namespace PixelFighters
                 {
                     Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
+                // Den med mest stock vinner när tiden går ut
+                if (Timer <= 0)
+                {
+                    if (p1.stocksRemaining > p2.stocksRemaining)
+                    {
+                        playerOneWon = true;
+                    }
+                    else if (p2.stocksRemaining > p1.stocksRemaining)
+                    {
+                        playerTwoWon = true;
+                    }
+                }
             }
-           
+
+
+
             ///Platformskollisioner
             foreach (Platform p in platforms)
             {
@@ -152,12 +167,14 @@ namespace PixelFighters
             {
                 playerTwoWon = true;
             }
-            if (p2.stocksRemaining == -1)
+            if (p2.stocksRemaining == -1) 
             {
                 playerOneWon = true;
             }
 
-            p1.Update(gameTime);
+
+
+                p1.Update(gameTime);
             p2.Update(gameTime);
 
             ///Styr faden mellan skärmövergångar

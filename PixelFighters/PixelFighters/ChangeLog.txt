@@ -1,4 +1,11 @@
-﻿**********2018-05-07 Version 0.3.3, auth: Kristian Toro**********
+﻿**********2018-05-07 Version 0.3.4, auth: Kristian Toro**********
+{
+Lagt till en variabel som används för val av stage. En ny textfil finns för en andra bana.
+En variabel har skapats som används för att sätta timerns startvärde.
+Text skrivs ut på CharacterSelect-skärmen för att visa val av stage, samt så kan man bläddra mellan dem.
+}
+
+**********2018-05-07 Version 0.3.3, auth: Kristian Toro**********
 {
 Skapat en StageManager klass, som innehåller en parse-string med split.
 Här läses alla kordinater in för spelarnas startpositioner samt olika objekts positioner.

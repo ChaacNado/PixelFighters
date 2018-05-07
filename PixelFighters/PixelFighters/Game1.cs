@@ -20,21 +20,22 @@ namespace PixelFighters
 
         protected override void Initialize()
         {
-            base.Initialize();
-
             currentGameState = GameState.TitleScreen;
+            StageManager.Instance.stageNumber = 1;
 
             ///Här kan vi justera skärmstorleken
             ScreenManager.Instance.Dimensions = new Vector2(1360, 900);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();
+
+            base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-           
+
             ///Detta används när man hämtar data från GameplayManager etc
             AssetManager.Instance.LoadContent(Content);
             GameplayManager.Instance.LoadContent(Content, this);
@@ -50,6 +51,8 @@ namespace PixelFighters
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            System.Diagnostics.Debug.WriteLine(StageManager.Instance.stageNumber);
+
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
@@ -64,18 +67,36 @@ namespace PixelFighters
                     break;
                 case GameState.MainMenu:
                     MainMenu.Instance.Update(gameTime, this);
+                    GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
+                    GameplayManager.Instance.timerStart = false;
+                    GameplayManager.Instance.timerStock = false;
                     break;
                 case GameState.CharacterSelect:
-                    GameplayManager.Instance.Update(gameTime);
+                    MainMenu.Instance.Update(gameTime, this);
+                    if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    {
+                        if (StageManager.Instance.stageNumber <= 1)
+                        {
+                            StageManager.Instance.stageNumber += 1;
+                        }  
+                    }
+                    if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    {
+                        if (StageManager.Instance.stageNumber > 1)
+                        {
+                            StageManager.Instance.stageNumber -= 1;
+                        }
+                    }
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
                         currentGameState = GameState.Playtime;
+                        LoadContent();
                     }
                     break;
                 case GameState.Playtime:
                     GameplayManager.Instance.Update(gameTime);
-                    GameplayManager.Instance.TimerStart = true;
-                    if (GameplayManager.Instance.playerOneWon==true || GameplayManager.Instance.playerTwoWon == true)
+                    GameplayManager.Instance.timerStart = true;
+                    if (GameplayManager.Instance.playerOneWon == true || GameplayManager.Instance.playerTwoWon == true)
                     {
                         currentGameState = GameState.Results;
                     }
@@ -97,15 +118,15 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Results:
-                    GameplayManager.Instance.Timer = 10;
-                    GameplayManager.Instance.TimerStart = false;
-                    GameplayManager.Instance.TimerStock = false;
+                    GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
+                    GameplayManager.Instance.timerStart = false;
+                    GameplayManager.Instance.timerStock = false;
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
                     {
-                        
+
                         GameplayManager.Instance.playerOneWon = false;
                         GameplayManager.Instance.playerTwoWon = false;
-                        
+
                         LoadContent();
                         currentGameState = GameState.MainMenu;
                     }
@@ -142,9 +163,9 @@ namespace PixelFighters
                     break;
                 case GameState.CharacterSelect:
                     GraphicsDevice.Clear(Color.LightGray);
-                    GameplayManager.Instance.Draw(spriteBatch);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character Select", new Vector2(240, 90), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 150), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Stage: " + StageManager.Instance.stageNumber + "", new Vector2(240, 150), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 210), Color.Black);
                     break;
                 case GameState.Playtime:
                     GraphicsDevice.Clear(Color.LightSlateGray);
@@ -183,7 +204,7 @@ namespace PixelFighters
                     QuitMenu.Instance.Draw(spriteBatch);
                     break;
             }
-           
+
             spriteBatch.End();
 
             base.Draw(gameTime);

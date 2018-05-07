@@ -13,10 +13,11 @@ namespace PixelFighters
         #region Variables
         ContentManager content;
 
-        public Vector2 startPosOne, startPosTwo;
-        List<string> strings;
+        public int stageNumber;
+        public Vector2 startPosOne, startPosTwo;       
         public Player p1, p2;
         public List<Platform> platforms;
+        private List<string> strings;
 
         private static StageManager instance;
         #endregion
@@ -39,13 +40,15 @@ namespace PixelFighters
         #region Main Methods
         public void LoadContent(ContentManager Content)
         {
-            content = new ContentManager(Content.ServiceProvider, "Content");
+            //currentStageState = StageState.stage1;
 
-            strings = new List<string>();
-            platforms = new List<Platform>();
+            content = new ContentManager(Content.ServiceProvider, "Content");
 
             p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
             p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
+
+            platforms = new List<Platform>();
+            strings = new List<string>();
 
             while (!AssetManager.Instance.streamReader.EndOfStream)
             {

@@ -18,17 +18,10 @@ namespace PixelFighters
         ContentManager content;
 
         MouseState mouseState, previousMouseState;
-
-        //public Vector2 startPosOne, startPosTwo;
         public Color color;
-        //List<Platform> platforms = new List<Platform>();
-        //Player p1, p2;
 
-        public bool TimerStart = false;
-        public float Timer = 10;
-        public float TimerTic = 0;
-        public bool TimerStock = false;
-        public GameState currentGameState;
+        public bool timerStart = false, timerStock = false;
+        public float matchLength = 60, timer, timerTic = 0;
 
         public bool playerOneWon, playerTwoWon;
 
@@ -57,20 +50,9 @@ namespace PixelFighters
             game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
-            //startPosOne = new Vector2(165, 300);
-            //startPosTwo = new Vector2(1175, 300);
-
-            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(0, 0, 50, 50)));
-            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(170, 600, 1000, 400)));
-            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(120, 400, 200, 50)));
-            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(1020, 400, 200, 50)));
-
-            //p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
-            //p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
+            timer = matchLength;
 
             color = new Color(0, 0, 0, 1f);
-
-            StageManager.Instance.LoadContent(content);
         }
 
         public void Update(GameTime gameTime)
@@ -79,17 +61,17 @@ namespace PixelFighters
             mouseState = Mouse.GetState();
 
             ///Match-timer
-            TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (TimerStart == true)
+            timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (timerStart == true)
             {
-                TimerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (Timer >= 0)
+                if (timer >= 0)
                 {
-                    Timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
-                // Den med mest stock vinner när tiden går ut
-                if (Timer <= 0)
+                ///Den med mest stock vinner när tiden går ut
+                if (timer <= 0)
                 {
                     if (StageManager.Instance.p1.stocksRemaining > StageManager.Instance.p2.stocksRemaining)
                     {
@@ -202,7 +184,7 @@ namespace PixelFighters
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + StageManager.Instance.p1.stocksRemaining, new Vector2(0, 825), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.HP, new Vector2(1200, 800), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + StageManager.Instance.p2.stocksRemaining, new Vector2(1200, 825), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + Timer.ToString("0"), new Vector2(680, 100), Color.White);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion

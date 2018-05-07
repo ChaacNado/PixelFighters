@@ -626,3 +626,4 @@ C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Win
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\OptionsMenu.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\stage1.txt
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\stage2.txt

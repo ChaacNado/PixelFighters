@@ -12,7 +12,7 @@ namespace PixelFighters
     {
         public Rectangle bottomHitBox, topHitBox;
 
-        public Platform(Texture2D tex, Vector2 pos, Rectangle hitBox) : base(tex, pos)
+        public Platform(Texture2D tex, Rectangle hitBox) : base(tex)
         {
             this.tex = tex;
             color = Color.White;

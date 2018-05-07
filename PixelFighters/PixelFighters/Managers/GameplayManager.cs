@@ -16,14 +16,13 @@ namespace PixelFighters
         #region Variables
         public Game1 game;
         ContentManager content;
-        SpriteFont Time;
 
         MouseState mouseState, previousMouseState;
 
-        public Vector2 startPosOne, startPosTwo;
+        //public Vector2 startPosOne, startPosTwo;
         public Color color;
-        List<Platform> platforms = new List<Platform>();
-        Player p1, p2;
+        //List<Platform> platforms = new List<Platform>();
+        //Player p1, p2;
 
         public bool TimerStart = false;
         public float Timer = 10;
@@ -58,19 +57,20 @@ namespace PixelFighters
             game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
-            startPosOne = new Vector2(165, 300);
-            startPosTwo = new Vector2(1175, 300);
+            //startPosOne = new Vector2(165, 300);
+            //startPosTwo = new Vector2(1175, 300);
 
-            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(0, 0), new Rectangle(0, 0, 50, 50)));
-            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(170, 600), new Rectangle(170, 600, 1000, 400)));
-            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(120, 400), new Rectangle(120, 400, 200, 50)));
-            platforms.Add(new Platform(AssetManager.Instance.rectTex, new Vector2(1020, 400), new Rectangle(1020, 400, 200, 50)));
+            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(0, 0, 50, 50)));
+            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(170, 600, 1000, 400)));
+            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(120, 400, 200, 50)));
+            //platforms.Add(new Platform(AssetManager.Instance.rectTex, new Rectangle(1020, 400, 200, 50)));
 
-            p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
-            p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
+            //p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
+            //p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
 
             color = new Color(0, 0, 0, 1f);
-            Time = Content.Load<SpriteFont>("Time");
+
+            StageManager.Instance.LoadContent(content);
         }
 
         public void Update(GameTime gameTime)
@@ -91,11 +91,11 @@ namespace PixelFighters
                 // Den med mest stock vinner när tiden går ut
                 if (Timer <= 0)
                 {
-                    if (p1.stocksRemaining > p2.stocksRemaining)
+                    if (StageManager.Instance.p1.stocksRemaining > StageManager.Instance.p2.stocksRemaining)
                     {
                         playerOneWon = true;
                     }
-                    else if (p2.stocksRemaining > p1.stocksRemaining)
+                    else if (StageManager.Instance.p2.stocksRemaining > StageManager.Instance.p1.stocksRemaining)
                     {
                         playerTwoWon = true;
                     }
@@ -105,77 +105,77 @@ namespace PixelFighters
 
 
             ///Platformskollisioner
-            foreach (Platform p in platforms)
+            foreach (Platform p in StageManager.Instance.platforms)
             {
-                if (p1.IsTopColliding(p))
+                if (StageManager.Instance.p1.IsTopColliding(p))
                 {
-                    p1.HandleTopCollision(p);
+                    StageManager.Instance.p1.HandleTopCollision(p);
                     break;
                 }
-                if (p1.IsBottomColliding(p))
+                if (StageManager.Instance.p1.IsBottomColliding(p))
                 {
-                    p1.HandleBottomCollision(p);
+                    StageManager.Instance.p1.HandleBottomCollision(p);
                     break;
                 }
                 else
                 {
-                    p1.isOnGround = false;
+                    StageManager.Instance.p1.isOnGround = false;
                 }
             }
-            foreach (Platform p in platforms)
+            foreach (Platform p in StageManager.Instance.platforms)
             {
-                if (p2.IsTopColliding(p))
+                if (StageManager.Instance.p2.IsTopColliding(p))
                 {
-                    p2.HandleTopCollision(p);
+                    StageManager.Instance.p2.HandleTopCollision(p);
                     break;
                 }
-                if (p2.IsBottomColliding(p))
+                if (StageManager.Instance.p2.IsBottomColliding(p))
                 {
-                    p2.HandleBottomCollision(p);
+                    StageManager.Instance.p2.HandleBottomCollision(p);
                     break;
                 }
                 else
                 {
-                    p2.isOnGround = false;
+                    StageManager.Instance.p2.isOnGround = false;
                 }
             }
 
             ///Stridskollisioner
-            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking == true && !p2.isInvincible)
+            if (StageManager.Instance.p1.attackHitBox.Intersects(StageManager.Instance.p2.damageableHitBox) && StageManager.Instance.p1.isAttacking == true && !StageManager.Instance.p2.isInvincible)
             {
-                p2.HandlePlayerCollision(p1, p2);
-                p2.isHit = true;
-                p2.HP--;
+                StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
+                StageManager.Instance.p2.isHit = true;
+                StageManager.Instance.p2.HP--;
             }
-            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking == true && !p1.isInvincible)
+            if (StageManager.Instance.p2.attackHitBox.Intersects(StageManager.Instance.p1.damageableHitBox) && StageManager.Instance.p2.isAttacking == true && !StageManager.Instance.p1.isInvincible)
             {
-                p2.HandlePlayerCollision(p1, p2);
-                p1.isHit = true;
-                p1.HP--;
+                StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
+                StageManager.Instance.p1.isHit = true;
+                StageManager.Instance.p1.HP--;
             }
-            if (p1.isDunking && p2.isOnGround)
+            if (StageManager.Instance.p1.isDunking && StageManager.Instance.p2.isOnGround)
             {
-                p1.knockBackModifierY = 0;
+                StageManager.Instance.p1.knockBackModifierY = 0;
             }
-            if (p2.isDunking && p1.isOnGround)
+            if (StageManager.Instance.p2.isDunking && StageManager.Instance.p1.isOnGround)
             {
-                p2.knockBackModifierY = 0;
+                StageManager.Instance.p2.knockBackModifierY = 0;
             }
 
             ///Konditioner för vinst
-            if (p1.stocksRemaining == -1)
+            if (StageManager.Instance.p1.stocksRemaining == -1)
             {
                 playerTwoWon = true;
             }
-            if (p2.stocksRemaining == -1) 
+            if (StageManager.Instance.p2.stocksRemaining == -1)
             {
                 playerOneWon = true;
             }
 
 
 
-                p1.Update(gameTime);
-            p2.Update(gameTime);
+            StageManager.Instance.p1.Update(gameTime);
+            StageManager.Instance.p2.Update(gameTime);
 
             ///Styr faden mellan skärmövergångar
             if (color.A > 0)
@@ -190,19 +190,19 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Platform p in platforms)
+            foreach (Platform p in StageManager.Instance.platforms)
             {
                 p.Draw(spriteBatch);
             }
 
-            p1.Draw(spriteBatch);
-            p2.Draw(spriteBatch);
+            StageManager.Instance.p1.Draw(spriteBatch);
+            StageManager.Instance.p2.Draw(spriteBatch);
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.HP, new Vector2(0, 800), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2(0, 825), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.HP, new Vector2(1200, 800), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2(1200, 825), Color.Blue);
-            spriteBatch.DrawString(Time, Timer.ToString("0"), new Vector2(680, 100), Color.White);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + StageManager.Instance.p1.HP, new Vector2(0, 800), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + StageManager.Instance.p1.stocksRemaining, new Vector2(0, 825), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.HP, new Vector2(1200, 800), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + StageManager.Instance.p2.stocksRemaining, new Vector2(1200, 825), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + Timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion

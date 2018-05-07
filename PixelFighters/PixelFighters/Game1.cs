@@ -38,10 +38,11 @@ namespace PixelFighters
             ///Detta används när man hämtar data från GameplayManager etc
             AssetManager.Instance.LoadContent(Content);
             GameplayManager.Instance.LoadContent(Content, this);
-            MainMenu.Instance.LoadContent(Content, this);
-            OptionsMenu.Instance.LoadContent(Content, this);
-            GraphicsMenu.Instance.LoadContent(Content, this);
-            QuitMenu.Instance.LoadContent(Content, this);
+            MainMenu.Instance.LoadContent(Content);
+            OptionsMenu.Instance.LoadContent(Content);
+            GraphicsMenu.Instance.LoadContent(Content);
+            QuitMenu.Instance.LoadContent(Content);
+            StageManager.Instance.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)

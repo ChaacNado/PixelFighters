@@ -1,7 +1,17 @@
-﻿**********2018-04-30 Version 0.3.2m auth: Mikael Zhu**********
+﻿**********2018-05-07 Version 0.3.3, auth: Kristian Toro**********
+{
+Skapat en StageManager klass, som innehåller en parse-string med split.
+Här läses alla kordinater in för spelarnas startpositioner samt olika objekts positioner.
+Alla kordinater läses in från textfiler med hjälp av en streamreader.
+En textfil med namnet stage1 har skapats, den har alla kordinater för vår testbana.
+En stor mängd klasser har anpassats för att hämta data från StageManager-klassen.
+}
+
+**********2018-04-30 Version 0.3.2 auth: Mikael Zhu**********
 {
 Har fixat så att den som har mest stock när tiden rinner ut vinner.
 }
+
 **********2018-04-27 Version 0.3.1, auth: Elma Carlsson**********
 {
 La till två till klasser i Menus-mappen, GraphicsMenu och QuitMenu. Skapat fler MarkerState enums. Laddat in nya texturer.

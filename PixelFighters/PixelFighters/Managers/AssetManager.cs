@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace PixelFighters
 
         ContentManager content;
 
+        public StreamReader streamReader;
         public SpriteFont spriteFont;
         public Texture2D rectTex, fadeTex, boxManTex;
         public Texture2D mainMenuSpritesheet, optionsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet;
@@ -41,6 +43,9 @@ namespace PixelFighters
         public void LoadContent(ContentManager Content)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
+
+            streamReader = new StreamReader("stage1.txt");
+
             spriteFont = Content.Load<SpriteFont>("font1");
             rectTex = Content.Load<Texture2D>("tile");
             fadeTex = Content.Load<Texture2D>("fade");

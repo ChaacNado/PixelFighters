@@ -621,3 +621,8 @@ C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v0.3.1\Pix
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v0.3.1\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v0.3.1\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v0.3.1\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\GraphicsMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\MainMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\OptionsMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\stage1.txt

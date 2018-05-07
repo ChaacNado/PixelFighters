@@ -15,6 +15,7 @@ namespace PixelFighters
         KeyboardState keyState, previousKeyState;
         GamePadState gamePadState, previousGamePadState;
         GamePadCapabilities capabilities;
+
         SpriteEffects playerFx = SpriteEffects.None;
         public int bX, bY, stocksRemaining;
         private int jumpsAvailable, frame;
@@ -124,11 +125,11 @@ namespace PixelFighters
                 speed = Vector2.Zero;
                 if (playerIndex == 1)
                 {
-                    pos = GameplayManager.Instance.startPosOne;
+                    pos = StageManager.Instance.startPosOne;
                 }
                 if (playerIndex == 2)
                 {
-                    pos = GameplayManager.Instance.startPosTwo;
+                    pos = StageManager.Instance.startPosTwo;
                 }
             }
 
@@ -335,7 +336,7 @@ namespace PixelFighters
                     ///Air dunk
                     else
                     {
-                            CharacterManager.Instance.AirDunk(this);
+                        CharacterManager.Instance.AirDunk(this);
                     }
                 }
                 ///Dash attack

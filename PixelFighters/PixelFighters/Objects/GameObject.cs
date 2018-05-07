@@ -14,10 +14,9 @@ namespace PixelFighters
         protected Texture2D tex;
         public Color color;
 
-        public GameObject(Texture2D tex, Vector2 pos)
+        public GameObject(Texture2D tex)
         {
             this.tex = tex;
-            this.pos = pos;
         }
 
         public abstract void Update(GameTime gameTime);

@@ -18,7 +18,6 @@ namespace PixelFighters
         public float knockBackModifierX, knockBackModifierY;
 
         #region Properties
-
         public virtual bool IsTopColliding(Platform p)
         {
             return new Rectangle(damageableHitBox.X, damageableHitBox.Y + 1, damageableHitBox.Width, damageableHitBox.Height).Intersects(p.topHitBox);
@@ -30,7 +29,7 @@ namespace PixelFighters
         }
         #endregion
 
-        public MovingObject(Texture2D tex, Vector2 pos, Rectangle srcRec) : base(tex, pos)
+        public MovingObject(Texture2D tex, Vector2 pos, Rectangle srcRec) : base(tex)
         {
             this.tex = tex;
             this.pos = pos;

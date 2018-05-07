@@ -12,7 +12,7 @@ namespace PixelFighters
 {
     class QuitMenu
     {
-        #region variables
+        #region Variables
 
         int screenWitdh = 1360;
         int screenHeight = 900;
@@ -32,7 +32,7 @@ namespace PixelFighters
 
         #endregion
 
-        #region properties
+        #region Properties
 
         public static QuitMenu Instance
         {
@@ -48,9 +48,9 @@ namespace PixelFighters
 
         #endregion
 
-        #region main Methods
+        #region Main Methods
 
-        public void LoadContent(ContentManager content, Game1 game1)
+        public void LoadContent(ContentManager content)
         {
             AssetManager.Instance.LoadContent(content);
 

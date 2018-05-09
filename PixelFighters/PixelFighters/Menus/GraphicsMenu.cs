@@ -14,13 +14,6 @@ namespace PixelFighters
     {
         #region Variables
 
-        int screenWitdh = 1360;
-        int screenHeight = 900;
-
-        //1920x1080 skärmupplösning
-        //int screenWitdh = 1920;
-        //int screenHeight = 1080;
-
         private bool windowedMode;
         private int resolution = 1;
 
@@ -33,7 +26,7 @@ namespace PixelFighters
         Rectangle windowedButtonRectangle, resolutionButtonRectangle, applyButtonRectangle, resolutionRectangle;
         Rectangle windowedButtonYesSrcRectangle, windowedButtonNoSrcRectangle, resolutionButtonSrcRectangle, applyButtonSrcRectangle;
         Rectangle markedWindowedButtonYesSrcRectangle, markedWindowedButtonNoSrcRectangle, markedResolutionButtonSrcRectangle, markedApplyButtonSrcRectangle, leftMarkedButtonSrcRectangle, rightMarkedButtonSrcRectangle;
-        Rectangle resolution1366x768, resolution1920x1080;
+        Rectangle resolution1366x768SrcRectangle, resolution1920x1080SrcRectangle;
 
         #endregion
 
@@ -59,10 +52,10 @@ namespace PixelFighters
         {
             AssetManager.Instance.LoadContent(content);
 
-            windowedButtonRectangle = new Rectangle((screenWitdh / 2 - 756 / 2), (screenHeight / 2) - 136, 756, 72);
-            resolutionButtonRectangle = new Rectangle((screenWitdh / 2 - 756 / 2), windowedButtonRectangle.Y + 100, 756, 72);
-            applyButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), screenHeight - 200, 384, 72);
-            resolutionRectangle = new Rectangle(resolutionButtonRectangle.X + 100, resolutionButtonRectangle.Y, 296, 40);
+            windowedButtonRectangle = new Rectangle(0, 0, 756, 72);
+            resolutionButtonRectangle = new Rectangle(0, 0, 756, 72);
+            resolutionRectangle = new Rectangle(0, 0, 308, 40);
+            applyButtonRectangle = new Rectangle(0, 0, 384, 72);
 
             windowedButtonYesSrcRectangle = new Rectangle(0, 222, 202, 18);
             windowedButtonNoSrcRectangle = new Rectangle(0, 199, 202, 18);
@@ -74,12 +67,21 @@ namespace PixelFighters
             markedApplyButtonSrcRectangle = new Rectangle(96, 146, 96, 18);
             leftMarkedButtonSrcRectangle = new Rectangle(0, 95, 202, 18);
             rightMarkedButtonSrcRectangle = new Rectangle(0, 117, 202, 18);
-            resolution1366x768 = new Rectangle(0, 165, 74, 10);
-            resolution1920x1080 = new Rectangle(0, 187, 74, 10);
+            resolution1366x768SrcRectangle = new Rectangle(0, 165, 77, 10);
+            resolution1920x1080SrcRectangle = new Rectangle(0, 187, 77, 10);
         }
 
         public void Update(GameTime gameTime, Game1 game1)
         {
+            windowedButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - windowedButtonRectangle.Width / 2;
+            windowedButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 136;
+            resolutionButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - resolutionButtonRectangle.Width / 2;
+            resolutionButtonRectangle.Y = windowedButtonRectangle.Y + 100;
+            resolutionRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2;
+            resolutionRectangle.Y = resolutionButtonRectangle.Y + 15;
+            applyButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - applyButtonRectangle.Width / 2;
+            applyButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y - 200;
+
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 
@@ -232,12 +234,12 @@ namespace PixelFighters
 
             if (resolution == 1)
             {
-                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1366x768, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1366x768SrcRectangle, Color.White);
             }
 
             if (resolution == 2)
             {
-                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1920x1080, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1920x1080SrcRectangle, Color.White);
             }
         }
 

@@ -13,14 +13,6 @@ namespace PixelFighters
     class OptionsMenu
     {
         #region Variables
-
-        int screenWitdh = 1360;
-        int screenHeight = 900;
-
-        //1920x1080 skärmupplösning
-        //int screenWitdh = 1920;
-        //int screenHeight = 1080;
-
         private static OptionsMenu instance;
 
         public KeyboardState keyState, previousKeyState;
@@ -55,9 +47,9 @@ namespace PixelFighters
         {
             AssetManager.Instance.LoadContent(content);
 
-            soundButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), (screenHeight / 2) - 156, 408, 96);
-            graphicsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), soundButtonRectangle.Y + 100, 408, 96);
-            controlsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), graphicsButtonRectangle.Y + 100, 408, 96);
+            soundButtonRectangle = new Rectangle(0, 0, 408, 96);
+            graphicsButtonRectangle = new Rectangle(0, 0, 408, 96);
+            controlsButtonRectangle = new Rectangle(0, 0, 408, 96);
 
             soundButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
             graphicsButtonSrcRectangle = new Rectangle(109, 33, 102, 24);
@@ -70,6 +62,13 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime, Game1 game1)
         {
+            soundButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - soundButtonRectangle.Width / 2;
+            soundButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 156;
+            graphicsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - graphicsButtonRectangle.Width / 2;
+            graphicsButtonRectangle.Y = soundButtonRectangle.Y + 100;
+            controlsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - controlsButtonRectangle.Width / 2;
+            controlsButtonRectangle.Y = graphicsButtonRectangle.Y + 100;
+
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 

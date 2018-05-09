@@ -9,13 +9,6 @@ namespace PixelFighters
     {
         #region Variables
 
-        int screenWitdh = 1360;
-        int screenHeight = 900;
-
-        //1920x1080 skärmupplösning
-        //int screenWitdh = 1920;
-        //int screenHeight = 1080;
-
         private static MainMenu instance;
 
         public KeyboardState keyState, previousKeyState;
@@ -50,10 +43,10 @@ namespace PixelFighters
         {
             AssetManager.Instance.LoadContent(content);
 
-            playButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), (screenHeight / 2) - 208, 408, 96);
-            optionsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), playButtonRectangle.Y + 100, 408, 96);
-            creditsButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), optionsButtonRectangle.Y + 100, 408, 96);
-            exitButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), creditsButtonRectangle.Y + 100, 408, 96);
+            playButtonRectangle = new Rectangle(0, 0, 408, 96);
+            optionsButtonRectangle = new Rectangle(0, 0, 408, 96);
+            creditsButtonRectangle = new Rectangle(0, 0, 408, 96);
+            exitButtonRectangle = new Rectangle(0, 0, 408, 96);
 
             playButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
             optionsSrcRectangle = new Rectangle(109, 33, 102, 24);
@@ -68,6 +61,15 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime, Game1 game1)
         {
+            playButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - playButtonRectangle.Width / 2;
+            playButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 208;
+            optionsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - optionsButtonRectangle.Width / 2;
+            optionsButtonRectangle.Y = playButtonRectangle.Y + 100;
+            creditsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - creditsButtonRectangle.Width / 2;
+            creditsButtonRectangle.Y = optionsButtonRectangle.Y + 100;
+            exitButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - exitButtonRectangle.Width / 2;
+            exitButtonRectangle.Y = creditsButtonRectangle.Y + 100;
+
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 

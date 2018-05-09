@@ -1,4 +1,8 @@
-﻿**********2018-05-09 Version 0.3.7, auth: Elma Carlsson**********
+﻿**********2018-05-09 Version 0.3.8, auth: Erik Persson**********
+{
+La till så menyerna centreras i olika upplösningar samt tog bort några rader onödig kod i meny klasserna. 
+}
+**********2018-05-09 Version 0.3.7, auth: Elma Carlsson**********
 {
 Ändrat standard skärmupplösningen till 1366x768, som är mer passande än 1360x900.
 Lagt till i graphics menyn att man kan ändra spelet till fullskärm, samt välja om man vill ha 1366x768 eller 1920x1080 skärmupplösning.

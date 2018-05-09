@@ -14,13 +14,6 @@ namespace PixelFighters
     {
         #region Variables
 
-        int screenWitdh = 1360;
-        int screenHeight = 900;
-
-        //1920x1080 skärmupplösning
-        //int screenWitdh = 1920;
-        //int screenHeight = 1080;
-
         private static QuitMenu instance;
 
         public KeyboardState keyState, previousKeyState;
@@ -54,8 +47,8 @@ namespace PixelFighters
         {
             AssetManager.Instance.LoadContent(content);
 
-            textRectangle = new Rectangle((screenWitdh / 2 - 540 / 2), (screenHeight / 3), 540, 164);
-            buttonRectangle = new Rectangle((screenWitdh / 2 - 260 / 2), textRectangle.Y + 200, 260, 72);
+            textRectangle = new Rectangle(0, 0, 540, 164);
+            buttonRectangle = new Rectangle(0, 0, 260, 72);
 
             textSrcRectangle = new Rectangle(1, 2, 135, 41);
             yesButtonSrcRectangle = new Rectangle(4, 44, 65, 18);
@@ -64,6 +57,11 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime, Game1 game1)
         {
+            textRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - textRectangle.Width / 2;
+            textRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 3;
+            buttonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - buttonRectangle.Width / 2;
+            buttonRectangle.Y = textRectangle.Y + 200;
+
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 

@@ -1,4 +1,10 @@
-﻿**********2018-05-07 Version 0.3.4, auth: Kristian Toro**********
+﻿**********2018-05-09 Version 0.3.5, auth: Kristian Toro**********
+{
+Ändrat lite på hur isHit-boolean fungerar.
+Gjort att karaktärerna byter färg när isHit är true.
+}
+
+**********2018-05-07 Version 0.3.4, auth: Kristian Toro**********
 {
 Lagt till en variabel som används för val av stage. En ny textfil finns för en andra bana.
 En variabel har skapats som används för att sätta timerns startvärde.

@@ -51,7 +51,7 @@ namespace PixelFighters
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            System.Diagnostics.Debug.WriteLine(StageManager.Instance.stageNumber);
+            System.Diagnostics.Debug.WriteLine(StageManager.Instance.p1.isHit);
 
             previousKeyState = keyState;
             keyState = Keyboard.GetState();

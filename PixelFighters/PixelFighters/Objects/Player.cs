@@ -52,7 +52,6 @@ namespace PixelFighters
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             isDunking = false;
-            isHit = false;
 
             if (frameTimer <= 0)
             {
@@ -153,7 +152,14 @@ namespace PixelFighters
             {
                 if (!isInvincible)
                 {
-                    color = Color.Red;
+                    if (isHit)
+                    {
+                        color = Color.White;
+                    }
+                    else
+                    {
+                        color = Color.Red;
+                    }                   
                     spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
                 }
                 if (isInvincible)
@@ -166,7 +172,14 @@ namespace PixelFighters
             {
                 if (!isInvincible)
                 {
-                    color = Color.Blue;
+                    if (isHit)
+                    {
+                        color = Color.White;
+                    }
+                    else
+                    {
+                        color = Color.Blue;
+                    }
                     spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
                 }
                 if (isInvincible)

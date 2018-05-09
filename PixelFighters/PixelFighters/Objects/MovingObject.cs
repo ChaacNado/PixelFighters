@@ -13,7 +13,7 @@ namespace PixelFighters
         public Rectangle damageableHitBox, groundHitBox, attackHitBox;
         protected Rectangle srcRec;
         public Vector2 speed;
-        public bool isOnGround,isHit, isAttacking, isInvincible, isDunking;
+        public bool isOnGround, isHit, isAttacking, isInvincible, isDunking;
         public int playerIndex, HP, maxHP, rangeModifierX, rangeModifierY;
         public float knockBackModifierX, knockBackModifierY;
 

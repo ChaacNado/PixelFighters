@@ -129,16 +129,27 @@ namespace PixelFighters
                 StageManager.Instance.p2.isHit = true;
                 StageManager.Instance.p2.HP--;
             }
+            else if (!StageManager.Instance.p1.isAttacking)
+            {
+                StageManager.Instance.p2.isHit = false;
+            }
+
+            if (StageManager.Instance.p1.isDunking && StageManager.Instance.p2.isOnGround)
+            {
+                StageManager.Instance.p1.knockBackModifierY = 0;
+            }
+
             if (StageManager.Instance.p2.attackHitBox.Intersects(StageManager.Instance.p1.damageableHitBox) && StageManager.Instance.p2.isAttacking == true && !StageManager.Instance.p1.isInvincible)
             {
                 StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
                 StageManager.Instance.p1.isHit = true;
                 StageManager.Instance.p1.HP--;
             }
-            if (StageManager.Instance.p1.isDunking && StageManager.Instance.p2.isOnGround)
+            else if(!StageManager.Instance.p2.isAttacking)
             {
-                StageManager.Instance.p1.knockBackModifierY = 0;
+                StageManager.Instance.p1.isHit = false;
             }
+
             if (StageManager.Instance.p2.isDunking && StageManager.Instance.p1.isOnGround)
             {
                 StageManager.Instance.p2.knockBackModifierY = 0;

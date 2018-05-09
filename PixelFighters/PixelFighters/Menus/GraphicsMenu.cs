@@ -21,15 +21,19 @@ namespace PixelFighters
         //int screenWitdh = 1920;
         //int screenHeight = 1080;
 
+        private bool windowedMode;
+        private int resolution = 1;
+
         private static GraphicsMenu instance;
 
         public KeyboardState keyState, previousKeyState;
 
         public MarkerState currentMarkerState;
 
-        Rectangle windowedButtonRectangle, resolutionButtonRectangle, applyButtonRectangle;
-        Rectangle windowedButtonSrcRectangle, windowedYesButtonSrcRectangle, windowedNoButtonSrcRectangle, resolutionButtonSrcRectangle, applyButtonSrcRectangle;
-        Rectangle markedResolutionButtonSrcRectangle, markedApplyButtonSrcRectangle, leftMarkedButtonSrcRectangle, rightMarkedButtonSrcRectangle;
+        Rectangle windowedButtonRectangle, resolutionButtonRectangle, applyButtonRectangle, resolutionRectangle;
+        Rectangle windowedButtonYesSrcRectangle, windowedButtonNoSrcRectangle, resolutionButtonSrcRectangle, applyButtonSrcRectangle;
+        Rectangle markedWindowedButtonYesSrcRectangle, markedWindowedButtonNoSrcRectangle, markedResolutionButtonSrcRectangle, markedApplyButtonSrcRectangle, leftMarkedButtonSrcRectangle, rightMarkedButtonSrcRectangle;
+        Rectangle resolution1366x768, resolution1920x1080;
 
         #endregion
 
@@ -58,16 +62,20 @@ namespace PixelFighters
             windowedButtonRectangle = new Rectangle((screenWitdh / 2 - 756 / 2), (screenHeight / 2) - 136, 756, 72);
             resolutionButtonRectangle = new Rectangle((screenWitdh / 2 - 756 / 2), windowedButtonRectangle.Y + 100, 756, 72);
             applyButtonRectangle = new Rectangle((screenWitdh / 2 - 408 / 2), screenHeight - 200, 384, 72);
+            resolutionRectangle = new Rectangle(resolutionButtonRectangle.X + 100, resolutionButtonRectangle.Y, 296, 40);
 
-            windowedButtonSrcRectangle = new Rectangle(0, 199, 202, 18);
-            windowedYesButtonSrcRectangle = new Rectangle(0, 0, 202, 18);
-            windowedNoButtonSrcRectangle = new Rectangle(0, 23, 202, 18);
+            windowedButtonYesSrcRectangle = new Rectangle(0, 222, 202, 18);
+            windowedButtonNoSrcRectangle = new Rectangle(0, 199, 202, 18);
+            markedWindowedButtonYesSrcRectangle = new Rectangle(0, 0, 202, 18);
+            markedWindowedButtonNoSrcRectangle = new Rectangle(0, 23, 202, 18);
             resolutionButtonSrcRectangle = new Rectangle(0, 51, 202, 18);
             applyButtonSrcRectangle = new Rectangle(96, 170, 96, 18);
             markedResolutionButtonSrcRectangle = new Rectangle(0, 73, 202, 18);
             markedApplyButtonSrcRectangle = new Rectangle(96, 146, 96, 18);
             leftMarkedButtonSrcRectangle = new Rectangle(0, 95, 202, 18);
             rightMarkedButtonSrcRectangle = new Rectangle(0, 117, 202, 18);
+            resolution1366x768 = new Rectangle(0, 165, 74, 10);
+            resolution1920x1080 = new Rectangle(0, 187, 74, 10);
         }
 
         public void Update(GameTime gameTime, Game1 game1)
@@ -83,6 +91,7 @@ namespace PixelFighters
             switch (currentMarkerState)
             {
                 case MarkerState.MarkerState1:
+                    windowedMode = true;
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
                     {
                         currentMarkerState = MarkerState.MarkerState2;
@@ -93,6 +102,7 @@ namespace PixelFighters
                     }
                     break;
                 case MarkerState.MarkerState2:
+                    windowedMode = false;
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
                     {
                         currentMarkerState = MarkerState.MarkerState1;
@@ -109,7 +119,15 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up))
                     {
-                        currentMarkerState = MarkerState.MarkerState1;
+                        if (windowedMode == true)
+                        {
+                            currentMarkerState = MarkerState.MarkerState1;
+                        }
+
+                        if (windowedMode == false)
+                        {
+                            currentMarkerState = MarkerState.MarkerState2;
+                        }
                     }
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
                     {
@@ -121,47 +139,52 @@ namespace PixelFighters
                     }
                     break;
                 case MarkerState.MarkerState4:
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down))
-                    {
-                        currentMarkerState = MarkerState.MarkerState6;
-                    }
-                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up))
-                    {
-                        currentMarkerState = MarkerState.MarkerState1;
-                    }
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
-                    //if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
-                    //{
-                    //    //Här ska skärmupplösningens siffror ändras på skärmen (bläddras)
-                    //}
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    {
+                        resolution = 1;
+                    }
                     break;
                 case MarkerState.MarkerState5:
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down))
-                    {
-                        currentMarkerState = MarkerState.MarkerState6;
-                    }
-                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up))
-                    {
-                        currentMarkerState = MarkerState.MarkerState2;
-                    }
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
-                    //if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
-                    //{
-                    //    //Här ska skärmupplösningens siffror ändras på skärmen (bläddras)
-                    //}
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    {
+                        resolution = 2;
+                    }
                     break;
                 case MarkerState.MarkerState6:
 
-                    //if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
-                    //{
-                    //    //Här ska alla inställningar bli applicerade
-                    //}
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
+                    {
+                        if (windowedMode == true)
+                        {
+                            game1.graphics.IsFullScreen = false;
+                        }
+                        if (windowedMode == false)
+                        {
+                            game1.graphics.IsFullScreen = true;
+                        }
+                        if (resolution == 1)
+                        {
+                            ScreenManager.Instance.Dimensions = new Vector2(1366, 768);
+                            game1.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
+                            game1.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+
+                        }
+                        if (resolution == 2)
+                        {
+                            ScreenManager.Instance.Dimensions = new Vector2(1920, 1080);
+                            game1.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
+                            game1.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+                        }
+                        game1.graphics.ApplyChanges();
+                    }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
@@ -172,17 +195,26 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, windowedButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionButtonRectangle, resolutionButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, applyButtonRectangle, applyButtonSrcRectangle, Color.White);
+
+            if (windowedMode == true)
+            {
+                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, windowedButtonYesSrcRectangle, Color.White);
+            }
+
+            if (windowedMode == false)
+            {
+                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, windowedButtonNoSrcRectangle, Color.White);
+            }
 
             switch (currentMarkerState)
             {
                 case MarkerState.MarkerState1:
-                    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, windowedYesButtonSrcRectangle, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, markedWindowedButtonYesSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState2:
-                    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, windowedNoButtonSrcRectangle, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, markedWindowedButtonNoSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState3:
                     spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionButtonRectangle, markedResolutionButtonSrcRectangle, Color.White);
@@ -196,6 +228,16 @@ namespace PixelFighters
                 case MarkerState.MarkerState6:
                     spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, applyButtonRectangle, markedApplyButtonSrcRectangle, Color.White);
                     break;
+            }
+
+            if (resolution == 1)
+            {
+                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1366x768, Color.White);
+            }
+
+            if (resolution == 2)
+            {
+                spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1920x1080, Color.White);
             }
         }
 

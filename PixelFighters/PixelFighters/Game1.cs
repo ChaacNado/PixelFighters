@@ -24,7 +24,7 @@ namespace PixelFighters
             StageManager.Instance.stageNumber = 1;
 
             ///Här kan vi justera skärmstorleken
-            ScreenManager.Instance.Dimensions = new Vector2(1360, 900);
+            ScreenManager.Instance.Dimensions = new Vector2(1366, 768);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();

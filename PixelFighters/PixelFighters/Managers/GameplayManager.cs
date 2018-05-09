@@ -156,11 +156,11 @@ namespace PixelFighters
             }
 
             ///Konditioner för vinst
-            if (StageManager.Instance.p1.stocksRemaining == -1)
+            if (StageManager.Instance.p1.stocksRemaining <= 0)
             {
                 playerTwoWon = true;
             }
-            if (StageManager.Instance.p2.stocksRemaining == -1)
+            if (StageManager.Instance.p2.stocksRemaining <= 0)
             {
                 playerOneWon = true;
             }

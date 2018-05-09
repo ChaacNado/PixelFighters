@@ -41,6 +41,9 @@ namespace PixelFighters
             jumpsAvailable = 2;
             stocksRemaining = 3;
             maxHP = 50;
+            HP = maxHP;
+
+            InitializeInputs();
         }
         #endregion
 
@@ -88,36 +91,10 @@ namespace PixelFighters
 
             speed.X *= 0.9f;
 
-            ///Inputs beroende på spelare
-            if (playerIndex == 1)
-            {
-                jabInput = Keys.J;
-                dashInput = Keys.K;
-                lowInput = Keys.L;
-                dodgeInput = Keys.O;
-                jumpInput = Keys.W;
-                leftInput = Keys.A;
-                downInput = Keys.S;
-                rightInput = Keys.D;
-                controllerIndex = PlayerIndex.One;
-            }
-            if (playerIndex == 2)
-            {
-                jabInput = Keys.NumPad1;
-                dashInput = Keys.NumPad2;
-                lowInput = Keys.NumPad3;
-                dodgeInput = Keys.NumPad6;
-                jumpInput = Keys.Up;
-                leftInput = Keys.Left;
-                downInput = Keys.Down;
-                rightInput = Keys.Right;
-                controllerIndex = PlayerIndex.Two;
-            }
-
             HandleInputs();
 
             ///Vad som leder till att man förlorar en stock
-            if (pos.Y >= 900 || HP == 0)
+            if (pos.Y >= bY || pos.Y <= -bY / 3 || pos.X <= -300 || pos.X >= bX + 300 || HP <= 0)
             {
                 HP = maxHP;
                 stocksRemaining--;
@@ -159,7 +136,7 @@ namespace PixelFighters
                     else
                     {
                         color = Color.Red;
-                    }                   
+                    }
                     spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
                 }
                 if (isInvincible)
@@ -215,6 +192,35 @@ namespace PixelFighters
 
         ///Metoder för controller- och keyboard-inputs
         #region Input Methods
+        public void InitializeInputs()
+        {
+            ///Inputs beroende på spelare
+            if (playerIndex == 1)
+            {
+                jabInput = Keys.J;
+                dashInput = Keys.K;
+                lowInput = Keys.L;
+                dodgeInput = Keys.O;
+                jumpInput = Keys.W;
+                leftInput = Keys.A;
+                downInput = Keys.S;
+                rightInput = Keys.D;
+                controllerIndex = PlayerIndex.One;
+            }
+            if (playerIndex == 2)
+            {
+                jabInput = Keys.NumPad1;
+                dashInput = Keys.NumPad2;
+                lowInput = Keys.NumPad3;
+                dodgeInput = Keys.NumPad6;
+                jumpInput = Keys.Up;
+                leftInput = Keys.Left;
+                downInput = Keys.Down;
+                rightInput = Keys.Right;
+                controllerIndex = PlayerIndex.Two;
+            }
+        }
+
         public void HandleInputs()
         {
             ///Controller-inputs

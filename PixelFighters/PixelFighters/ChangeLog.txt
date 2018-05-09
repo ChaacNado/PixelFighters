@@ -1,4 +1,12 @@
-﻿**********2018-05-09 Version 0.3.5, auth: Kristian Toro**********
+﻿**********2018-05-09 Version 0.3.6, auth: Kristian Toro**********
+{
+Spelarna kan nu förlora stocks ifall de hamnar för högt upp, eller för långt bort i x-led på skärmen.
+Ändrat så att en strid tar slut när stocks är på 0 istället för -1.
+Löste ett problem där man förlorade en stock så  fort matchen börjar.
+Flyttat på koden för input-layouten från Player-klassens Update till en egen metod, som laddas in i konstruktorn.
+}
+
+**********2018-05-09 Version 0.3.5, auth: Kristian Toro**********
 {
 Ändrat lite på hur isHit-boolean fungerar.
 Gjort att karaktärerna byter färg när isHit är true.

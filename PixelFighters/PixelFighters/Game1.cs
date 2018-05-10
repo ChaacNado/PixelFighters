@@ -50,7 +50,7 @@ namespace PixelFighters
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             System.Diagnostics.Debug.WriteLine(StageManager.Instance.p1.isHit);
@@ -64,7 +64,7 @@ namespace PixelFighters
             switch (currentGameState)
             {
                 case GameState.TitleScreen:
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
                     {
                         currentGameState = GameState.MainMenu;
                     }

@@ -1,4 +1,8 @@
-﻿**********2018-05-10 Version 0.3.9, auth: Erik Persson**********
+﻿**********2018-05-10 Version 0.3.9.1, auth: Erik Persson**********
+{
+Handkontroll fungerar på titlescreen nu med och backknappen på handkontroll stänger ej av programmet längre. Flyttade även upp hp/stocks så det syns på båda upplösningarna.
+}
+**********2018-05-10 Version 0.3.9, auth: Erik Persson**********
 {
 Menyer kan nu kontrolleras med en handkontroll.
 }

@@ -191,10 +191,10 @@ namespace PixelFighters
             StageManager.Instance.p1.Draw(spriteBatch);
             StageManager.Instance.p2.Draw(spriteBatch);
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + StageManager.Instance.p1.HP, new Vector2(0, 800), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + StageManager.Instance.p1.stocksRemaining, new Vector2(0, 825), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.HP, new Vector2(1200, 800), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + StageManager.Instance.p2.stocksRemaining, new Vector2(1200, 825), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + StageManager.Instance.p1.HP, new Vector2(0, 675), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + StageManager.Instance.p1.stocksRemaining, new Vector2(0, 700), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.HP, new Vector2(1200, 675), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + StageManager.Instance.p2.stocksRemaining, new Vector2(1200, 700), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }

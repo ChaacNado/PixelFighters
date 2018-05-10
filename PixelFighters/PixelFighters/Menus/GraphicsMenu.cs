@@ -19,9 +19,10 @@ namespace PixelFighters
 
         private static GraphicsMenu instance;
 
-        public KeyboardState keyState, previousKeyState;
+        KeyboardState keyState, previousKeyState;
+        GamePadState gamePadState, previousGamePadState;
 
-        public MarkerState currentMarkerState;
+        MarkerState currentMarkerState;
 
         Rectangle windowedButtonRectangle, resolutionButtonRectangle, applyButtonRectangle, resolutionRectangle;
         Rectangle windowedButtonYesSrcRectangle, windowedButtonNoSrcRectangle, resolutionButtonSrcRectangle, applyButtonSrcRectangle;
@@ -85,7 +86,10 @@ namespace PixelFighters
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 
-            if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back))
+            previousGamePadState = game1.previousGamePadState;
+            gamePadState = game1.gamePadState;
+
+            if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B))
             {
                 game1.currentGameState = GameState.Options;
             }
@@ -94,32 +98,32 @@ namespace PixelFighters
             {
                 case MarkerState.MarkerState1:
                     windowedMode = true;
-                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadState.IsButtonDown(Buttons.DPadRight) && previousGamePadState.IsButtonUp(Buttons.DPadRight))
                     {
                         currentMarkerState = MarkerState.MarkerState2;
                     }
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down))
+                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadState.IsButtonDown(Buttons.DPadDown) && previousGamePadState.IsButtonUp(Buttons.DPadDown))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
                     break;
                 case MarkerState.MarkerState2:
                     windowedMode = false;
-                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadState.IsButtonDown(Buttons.DPadLeft) && previousGamePadState.IsButtonUp(Buttons.DPadLeft))
                     {
                         currentMarkerState = MarkerState.MarkerState1;
                     }
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down))
+                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadState.IsButtonDown(Buttons.DPadDown) && previousGamePadState.IsButtonUp(Buttons.DPadDown))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
                     break;
                 case MarkerState.MarkerState3:
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down))
+                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadState.IsButtonDown(Buttons.DPadDown) && previousGamePadState.IsButtonUp(Buttons.DPadDown))
                     {
                         currentMarkerState = MarkerState.MarkerState6;
                     }
-                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up))
+                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadState.IsButtonDown(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.DPadUp))
                     {
                         if (windowedMode == true)
                         {
@@ -131,38 +135,40 @@ namespace PixelFighters
                             currentMarkerState = MarkerState.MarkerState2;
                         }
                     }
-                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadState.IsButtonDown(Buttons.DPadLeft) && previousGamePadState.IsButtonUp(Buttons.DPadLeft))
                     {
                         currentMarkerState = MarkerState.MarkerState4;
                     }
-                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadState.IsButtonDown(Buttons.DPadRight) && previousGamePadState.IsButtonUp(Buttons.DPadRight))
                     {
                         currentMarkerState = MarkerState.MarkerState5;
                     }
                     break;
                 case MarkerState.MarkerState4:
-                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadState.IsButtonDown(Buttons.DPadRight) && previousGamePadState.IsButtonUp(Buttons.DPadRight))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left)
+                        || gamePadState.IsButtonDown(Buttons.DPadLeft) && previousGamePadState.IsButtonUp(Buttons.DPadLeft) || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
                     {
                         resolution = 1;
                     }
                     break;
                 case MarkerState.MarkerState5:
-                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadState.IsButtonDown(Buttons.DPadLeft) && previousGamePadState.IsButtonUp(Buttons.DPadLeft))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) 
+                        || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) || gamePadState.IsButtonDown(Buttons.DPadRight) && previousGamePadState.IsButtonUp(Buttons.DPadRight))
                     {
                         resolution = 2;
                     }
                     break;
                 case MarkerState.MarkerState6:
 
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
                     {
                         if (windowedMode == true)
                         {
@@ -187,7 +193,7 @@ namespace PixelFighters
                         }
                         game1.graphics.ApplyChanges();
                     }
-                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up))
+                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadState.IsButtonDown(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.DPadUp))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }

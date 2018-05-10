@@ -11,6 +11,8 @@ namespace PixelFighters
         SpriteBatch spriteBatch;
         public GraphicsDeviceManager graphics;
         public KeyboardState keyState, previousKeyState;
+        public GamePadState gamePadState, previousGamePadState;
+        GamePadCapabilities capabilities;
 
         public Game1()
         {
@@ -56,6 +58,8 @@ namespace PixelFighters
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
+            previousGamePadState = gamePadState;
+            gamePadState = GamePad.GetState(PlayerIndex.One);
             ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
             {

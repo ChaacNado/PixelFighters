@@ -127,11 +127,16 @@ namespace PixelFighters
             {
                 StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
                 StageManager.Instance.p2.isHit = true;
-                StageManager.Instance.p2.HP--;
+                if (StageManager.Instance.p2.hasTakenDamage == false)
+                {
+                    StageManager.Instance.p2.currentHP -= StageManager.Instance.p2.damageDealt;
+                }
+                StageManager.Instance.p2.hasTakenDamage = true;
             }
             else if (!StageManager.Instance.p1.isAttacking)
             {
                 StageManager.Instance.p2.isHit = false;
+                StageManager.Instance.p2.hasTakenDamage = false;
             }
 
             if (StageManager.Instance.p1.isDunking && StageManager.Instance.p2.isOnGround)
@@ -143,11 +148,16 @@ namespace PixelFighters
             {
                 StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
                 StageManager.Instance.p1.isHit = true;
-                StageManager.Instance.p1.HP--;
+                if (StageManager.Instance.p1.hasTakenDamage == false)
+                {
+                    StageManager.Instance.p1.currentHP -= StageManager.Instance.p2.damageDealt;
+                }
+                StageManager.Instance.p1.hasTakenDamage = true;
             }
-            else if(!StageManager.Instance.p2.isAttacking)
+            else if (!StageManager.Instance.p2.isAttacking)
             {
                 StageManager.Instance.p1.isHit = false;
+                StageManager.Instance.p1.hasTakenDamage = false;
             }
 
             if (StageManager.Instance.p2.isDunking && StageManager.Instance.p1.isOnGround)
@@ -191,9 +201,9 @@ namespace PixelFighters
             StageManager.Instance.p1.Draw(spriteBatch);
             StageManager.Instance.p2.Draw(spriteBatch);
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + StageManager.Instance.p1.HP, new Vector2(0, 675), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + StageManager.Instance.p1.currentHP, new Vector2(0, 675), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + StageManager.Instance.p1.stocksRemaining, new Vector2(0, 700), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.HP, new Vector2(1200, 675), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.currentHP, new Vector2(1200, 675), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + StageManager.Instance.p2.stocksRemaining, new Vector2(1200, 700), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);

@@ -48,6 +48,7 @@ namespace PixelFighters
                 player.attackHitBox.Width = 64;
                 player.attackHitBox.Height = 24;
                 player.rangeModifierY = -20;
+                player.damageDealt = 2;
 
                 if (player.facingRight)
                 {
@@ -71,6 +72,7 @@ namespace PixelFighters
                 player.attackHitBox.Width = 52;
                 player.attackHitBox.Height = 16;
                 player.rangeModifierY = 8;
+                player.damageDealt = 4;
 
                 if (player.facingRight)
                 {
@@ -98,6 +100,7 @@ namespace PixelFighters
                     player.attackHitBox.Height = 32;
                     player.rangeModifierX = -12;
                     player.rangeModifierY = 12;
+                    player.damageDealt = 6;
                 }
             }
         }
@@ -117,6 +120,7 @@ namespace PixelFighters
                 player.attackHitBox.Width = 32;
                 player.attackHitBox.Height = 32;
                 player.rangeModifierY = -15;
+                player.damageDealt = 5;
 
                 if (player.facingRight)
                 {

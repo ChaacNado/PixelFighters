@@ -1,25 +1,36 @@
-﻿**********2018-05-11 Version 0.4.0, auth: Elma Carlsson**********
+﻿**********2018-05-12 Version 0.4.1, auth: Kristian Toro**********
+{
+Ändrat lite på hur skada tilldelas. Karaktärer kan nu enbart ta skada en gång per attack.
+Skadan är nu förbestämd, beroende på vilken attack det är, istället för att slå 1 på hälsan per tick.
+}
+
+**********2018-05-11 Version 0.4.0, auth: Elma Carlsson**********
 {
 Laddade upp första versionen av character spritesheet, samt en av banorna. (Bildfiler)
 }
+
 **********2018-05-10 Version 0.3.9.1, auth: Erik Persson**********
 {
 Handkontroll fungerar på titlescreen nu med och backknappen på handkontroll stänger ej av programmet längre. Flyttade även upp hp/stocks så det syns på båda upplösningarna.
 }
+
 **********2018-05-10 Version 0.3.9, auth: Erik Persson**********
 {
 Menyer kan nu kontrolleras med en handkontroll.
 }
+
 **********2018-05-09 Version 0.3.8, auth: Erik Persson**********
 {
 La till så menyerna centreras i olika upplösningar samt tog bort några rader onödig kod i meny klasserna. 
 }
+
 **********2018-05-09 Version 0.3.7, auth: Elma Carlsson**********
 {
 Ändrat standard skärmupplösningen till 1366x768, som är mer passande än 1360x900.
 Lagt till i graphics menyn att man kan ändra spelet till fullskärm, samt välja om man vill ha 1366x768 eller 1920x1080 skärmupplösning.
 Laddat in en ny graphics meny sprite och tagit bort en gammal.
 }
+
 **********2018-05-09 Version 0.3.6, auth: Kristian Toro**********
 {
 Spelarna kan nu förlora stocks ifall de hamnar för högt upp, eller för långt bort i x-led på skärmen.

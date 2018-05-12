@@ -21,11 +21,6 @@ namespace PixelFighters
             topHitBox = new Rectangle(hitBox.X, hitBox.Y, hitBox.Width, 1);
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(tex, bottomHitBox, color);

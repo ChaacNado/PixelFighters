@@ -19,8 +19,6 @@ namespace PixelFighters
             this.tex = tex;
         }
 
-        public abstract void Update(GameTime gameTime);
-
         public abstract void Draw(SpriteBatch spriteBatch);
     }
 }

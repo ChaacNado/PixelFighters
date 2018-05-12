@@ -53,7 +53,7 @@ namespace PixelFighters
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            System.Diagnostics.Debug.WriteLine(StageManager.Instance.p1.isHit);
+            System.Diagnostics.Debug.WriteLine(StageManager.Instance.p1.hasTakenDamage);
 
             previousKeyState = keyState;
             keyState = Keyboard.GetState();

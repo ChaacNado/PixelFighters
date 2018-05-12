@@ -13,8 +13,8 @@ namespace PixelFighters
         public Rectangle damageableHitBox, groundHitBox, attackHitBox;
         protected Rectangle srcRec;
         public Vector2 speed;
-        public bool isOnGround, isHit, isAttacking, isInvincible, isDunking;
-        public int playerIndex, HP, maxHP, rangeModifierX, rangeModifierY;
+        public bool isOnGround, isHit, hasTakenDamage, isAttacking, isInvincible, isDunking;
+        public int playerIndex, currentHP, maxHP, rangeModifierX, rangeModifierY, damageDealt;
         public float knockBackModifierX, knockBackModifierY;
 
         #region Properties
@@ -65,8 +65,8 @@ namespace PixelFighters
                     }
                     else
                     {
-                        p2.speed.X += p1.knockBackModifierX / (p2.HP * 0.1f);
-                        p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
+                        p2.speed.X += p1.knockBackModifierX / (p2.currentHP * 0.1f);
+                        p2.speed.Y -= p1.knockBackModifierY / (p2.currentHP * 0.1f);
                     }
                 }
                 else if (!p1.facingRight)
@@ -77,14 +77,13 @@ namespace PixelFighters
                     }
                     else
                     {
-                        p2.speed.X -= p1.knockBackModifierX / (p2.HP * 0.1f);
-                        p2.speed.Y -= p1.knockBackModifierY / (p2.HP * 0.1f);
+                        p2.speed.X -= p1.knockBackModifierX / (p2.currentHP * 0.1f);
+                        p2.speed.Y -= p1.knockBackModifierY / (p2.currentHP * 0.1f);
                     }
                 }
             }
             else
             {
-                p2.isHit = false;
                 p2.speed.X = 0;
             }
 
@@ -98,8 +97,8 @@ namespace PixelFighters
                     }
                     else
                     {
-                        p1.speed.X += p2.knockBackModifierX / (p1.HP * 0.1f);
-                        p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
+                        p1.speed.X += p2.knockBackModifierX / (p1.currentHP * 0.1f);
+                        p1.speed.Y -= p2.knockBackModifierY / (p1.currentHP * 0.1f);
                     }
                 }
                 else if (!p2.facingRight)
@@ -110,20 +109,19 @@ namespace PixelFighters
                     }
                     else
                     {
-                        p1.speed.X -= p2.knockBackModifierX / (p1.HP * 0.1f);
-                        p1.speed.Y -= p2.knockBackModifierY / (p1.HP * 0.1f);
+                        p1.speed.X -= p2.knockBackModifierX / (p1.currentHP * 0.1f);
+                        p1.speed.Y -= p2.knockBackModifierY / (p1.currentHP * 0.1f);
                     }
                 }
             }
             else
             {
-                p1.isHit = false;
                 p1.speed.X *= 0;
             }
         }
         #endregion
 
-        public override void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
 
         }

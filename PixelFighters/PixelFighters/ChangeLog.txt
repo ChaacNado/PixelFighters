@@ -1,7 +1,7 @@
 ﻿**********2018-05-14 Version 0.4.2, auth: Kristian Toro**********
 {
 Tagit bort onödiga kodrader. Fixat att både p1 och p2 kan navigera i menyer.
-Allt som har med keys och buttons är nu kopplat till Player. Lagt till de menyinputs som saknades.
+Lagt till de menyinputs som saknades.
 Tog bort StageManager, då den var helt onödig. GameplayManager hanterade ändå allt som hände i StageManager.
 
 Kommit en liten bit med character select.

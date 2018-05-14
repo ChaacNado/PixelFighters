@@ -237,11 +237,22 @@ namespace PixelFighters
                     {
                         playerOneWon = true;
                     }
-                    else if (p2.stocksRemaining > Instance.p1.stocksRemaining)
+                    else if (p2.stocksRemaining > p1.stocksRemaining)
                     {
                         playerTwoWon = true;
                     }
+                    //Om båda har lika mycket stocks, sudden Death
+                    if(p1.stocksRemaining == p2.stocksRemaining)
+                    {
+
+                        p1.stocksRemaining = 1;
+                        p2.stocksRemaining = 1;
+                        p1.currentHP = 10;
+                        p2.currentHP = 10;
+
+                    }
                 }
+                
             }
             #endregion
 
@@ -273,8 +284,13 @@ namespace PixelFighters
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2(0, 700), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2(1200, 675), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2(1200, 700), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(680, 100), Color.White);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(650, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
+
+            if(timer <= 0)
+            {
+                spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2(625, 120), Color.Black);
+            }
         }
         #endregion
     }

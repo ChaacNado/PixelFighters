@@ -24,6 +24,7 @@ namespace PixelFighters
         public bool facingRight, inAnimation;
         public Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
+
         #endregion
 
         #region Player Object

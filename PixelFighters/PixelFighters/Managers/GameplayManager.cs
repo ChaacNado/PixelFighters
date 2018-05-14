@@ -10,12 +10,18 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    ///Används för att inte få in för mycket skit i Game1
     public class GameplayManager
     {
         #region Variables
         public Game1 game;
         ContentManager content;
+
+        public int stageNumber = 1;
+        public Vector2 startPosOne, startPosTwo;
+        public Player p1, p2;
+        public List<Player> players;
+        public List<Platform> platforms;
+        private List<string> strings;
 
         MouseState mouseState, previousMouseState;
         public Color color;
@@ -53,6 +59,67 @@ namespace PixelFighters
             timer = matchLength;
 
             color = new Color(0, 0, 0, 1f);
+
+            stageNumber = 1;
+
+            p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
+            p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
+            players = new List<Player>
+            {
+                p1,
+                p2
+            };
+
+            platforms = new List<Platform>();
+            strings = new List<string>();
+
+            while (!AssetManager.Instance.streamReader.EndOfStream)
+            {
+                strings.Add(AssetManager.Instance.streamReader.ReadLine());
+            }
+            AssetManager.Instance.streamReader.Close();
+
+            for (int j = 0; j < strings.Count; j++)
+            {
+                string[] coordinates = strings[j].Split(';');
+                for (int i = 0; i < coordinates.Length; i++)
+                {
+                    string[] xy = coordinates[i].Split(',');
+                    try
+                    {
+                        int x = Convert.ToInt32(xy[0]);
+                        int y = Convert.ToInt32(xy[1]);
+                        Vector2 pos = new Vector2(x, y);
+
+                        Rectangle rect = new Rectangle(0, 0, 0, 0);
+                        if (xy.Length == 4)
+                        {
+                            int w = Convert.ToInt32(xy[2]);
+                            int h = Convert.ToInt32(xy[3]);
+                            rect = new Rectangle(x, y, w, h);
+                        }
+                        if (j == 0)
+                        {
+                            rect = new Rectangle(0, 0, 50, 50);
+                            startPosOne = new Vector2(x, y);
+                        }
+                        if (j == 1)
+                        {
+                            rect = new Rectangle(0, 0, 50, 50);
+                            startPosTwo = new Vector2(x, y);
+                        }
+                        if (j == 2)
+                        {
+                            platforms.Add(new Platform(AssetManager.Instance.rectTex, rect));
+                        }
+
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine("Input string is not a sequence of digits.");
+                    }
+                }
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -60,8 +127,101 @@ namespace PixelFighters
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
-            ///Match-timer
             timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+            #region Platform Collision
+            foreach (Platform p in platforms)
+            {
+                if (p1.IsTopColliding(p))
+                {
+                    p1.HandleTopCollision(p);
+                    break;
+                }
+                if (p1.IsBottomColliding(p))
+                {
+                    p1.HandleBottomCollision(p);
+                    break;
+                }
+                else
+                {
+                    p1.isOnGround = false;
+                }
+            }
+            foreach (Platform p in platforms)
+            {
+                if (p2.IsTopColliding(p))
+                {
+                    p2.HandleTopCollision(p);
+                    break;
+                }
+                if (p2.IsBottomColliding(p))
+                {
+                    p2.HandleBottomCollision(p);
+                    break;
+                }
+                else
+                {
+                    p2.isOnGround = false;
+                }
+            }
+            #endregion
+
+            #region Combat Collision
+            if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking == true && !p2.isInvincible)
+            {
+                p2.HandlePlayerCollision(p1, p2);
+                p2.isHit = true;
+                if (p2.hasTakenDamage == false)
+                {
+                    p2.currentHP -= p2.damageDealt;
+                }
+                p2.hasTakenDamage = true;
+            }
+            else if (!p1.isAttacking)
+            {
+                p2.isHit = false;
+                p2.hasTakenDamage = false;
+            }
+
+            if (p1.isDunking && p2.isOnGround)
+            {
+                p1.knockBackModifierY = 0;
+            }
+
+            if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking == true && !p1.isInvincible)
+            {
+                p2.HandlePlayerCollision(p1, p2);
+                p1.isHit = true;
+                if (p1.hasTakenDamage == false)
+                {
+                    p1.currentHP -= Instance.p2.damageDealt;
+                }
+                p1.hasTakenDamage = true;
+            }
+            else if (!p2.isAttacking)
+            {
+                p1.isHit = false;
+                p1.hasTakenDamage = false;
+            }
+
+            if (p2.isDunking && p1.isOnGround)
+            {
+                p2.knockBackModifierY = 0;
+            }
+            #endregion
+
+            #region Victory Conditions
+            if (p1.stocksRemaining <= 0)
+            {
+                playerTwoWon = true;
+            }
+            if (p2.stocksRemaining <= 0)
+            {
+                playerOneWon = true;
+            }
+
+            ///Match-timer
             if (timerStart == true)
             {
                 timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -73,112 +233,20 @@ namespace PixelFighters
                 ///Den med mest stock vinner när tiden går ut
                 if (timer <= 0)
                 {
-                    if (StageManager.Instance.p1.stocksRemaining > StageManager.Instance.p2.stocksRemaining)
+                    if (p1.stocksRemaining > p2.stocksRemaining)
                     {
                         playerOneWon = true;
                     }
-                    else if (StageManager.Instance.p2.stocksRemaining > StageManager.Instance.p1.stocksRemaining)
+                    else if (p2.stocksRemaining > Instance.p1.stocksRemaining)
                     {
                         playerTwoWon = true;
                     }
                 }
             }
+            #endregion
 
-
-
-            ///Platformskollisioner
-            foreach (Platform p in StageManager.Instance.platforms)
-            {
-                if (StageManager.Instance.p1.IsTopColliding(p))
-                {
-                    StageManager.Instance.p1.HandleTopCollision(p);
-                    break;
-                }
-                if (StageManager.Instance.p1.IsBottomColliding(p))
-                {
-                    StageManager.Instance.p1.HandleBottomCollision(p);
-                    break;
-                }
-                else
-                {
-                    StageManager.Instance.p1.isOnGround = false;
-                }
-            }
-            foreach (Platform p in StageManager.Instance.platforms)
-            {
-                if (StageManager.Instance.p2.IsTopColliding(p))
-                {
-                    StageManager.Instance.p2.HandleTopCollision(p);
-                    break;
-                }
-                if (StageManager.Instance.p2.IsBottomColliding(p))
-                {
-                    StageManager.Instance.p2.HandleBottomCollision(p);
-                    break;
-                }
-                else
-                {
-                    StageManager.Instance.p2.isOnGround = false;
-                }
-            }
-
-            ///Stridskollisioner
-            if (StageManager.Instance.p1.attackHitBox.Intersects(StageManager.Instance.p2.damageableHitBox) && StageManager.Instance.p1.isAttacking == true && !StageManager.Instance.p2.isInvincible)
-            {
-                StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
-                StageManager.Instance.p2.isHit = true;
-                if (StageManager.Instance.p2.hasTakenDamage == false)
-                {
-                    StageManager.Instance.p2.currentHP -= StageManager.Instance.p2.damageDealt;
-                }
-                StageManager.Instance.p2.hasTakenDamage = true;
-            }
-            else if (!StageManager.Instance.p1.isAttacking)
-            {
-                StageManager.Instance.p2.isHit = false;
-                StageManager.Instance.p2.hasTakenDamage = false;
-            }
-
-            if (StageManager.Instance.p1.isDunking && StageManager.Instance.p2.isOnGround)
-            {
-                StageManager.Instance.p1.knockBackModifierY = 0;
-            }
-
-            if (StageManager.Instance.p2.attackHitBox.Intersects(StageManager.Instance.p1.damageableHitBox) && StageManager.Instance.p2.isAttacking == true && !StageManager.Instance.p1.isInvincible)
-            {
-                StageManager.Instance.p2.HandlePlayerCollision(StageManager.Instance.p1, StageManager.Instance.p2);
-                StageManager.Instance.p1.isHit = true;
-                if (StageManager.Instance.p1.hasTakenDamage == false)
-                {
-                    StageManager.Instance.p1.currentHP -= StageManager.Instance.p2.damageDealt;
-                }
-                StageManager.Instance.p1.hasTakenDamage = true;
-            }
-            else if (!StageManager.Instance.p2.isAttacking)
-            {
-                StageManager.Instance.p1.isHit = false;
-                StageManager.Instance.p1.hasTakenDamage = false;
-            }
-
-            if (StageManager.Instance.p2.isDunking && StageManager.Instance.p1.isOnGround)
-            {
-                StageManager.Instance.p2.knockBackModifierY = 0;
-            }
-
-            ///Konditioner för vinst
-            if (StageManager.Instance.p1.stocksRemaining <= 0)
-            {
-                playerTwoWon = true;
-            }
-            if (StageManager.Instance.p2.stocksRemaining <= 0)
-            {
-                playerOneWon = true;
-            }
-
-
-
-            StageManager.Instance.p1.Update(gameTime);
-            StageManager.Instance.p2.Update(gameTime);
+            p1.Update(gameTime);
+            p2.Update(gameTime);
 
             ///Styr faden mellan skärmövergångar
             if (color.A > 0)
@@ -193,22 +261,21 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Platform p in StageManager.Instance.platforms)
+            foreach (Platform p in platforms)
             {
                 p.Draw(spriteBatch);
             }
 
-            StageManager.Instance.p1.Draw(spriteBatch);
-            StageManager.Instance.p2.Draw(spriteBatch);
+            p1.Draw(spriteBatch);
+            p2.Draw(spriteBatch);
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + StageManager.Instance.p1.currentHP, new Vector2(0, 675), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + StageManager.Instance.p1.stocksRemaining, new Vector2(0, 700), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + StageManager.Instance.p2.currentHP, new Vector2(1200, 675), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + StageManager.Instance.p2.stocksRemaining, new Vector2(1200, 700), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2(0, 675), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2(0, 700), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2(1200, 675), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2(1200, 700), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(680, 100), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
         }
         #endregion
     }
-
 }

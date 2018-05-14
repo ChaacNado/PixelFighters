@@ -58,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\ScreenManager.cs" />
     <Compile Include="Managers\AssetManager.cs" />
-    <Compile Include="Managers\StageManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

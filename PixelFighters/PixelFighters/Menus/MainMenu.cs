@@ -42,8 +42,6 @@ namespace PixelFighters
 
         public void LoadContent(ContentManager content)
         {
-            AssetManager.Instance.LoadContent(content);
-
             playButtonRectangle = new Rectangle(0, 0, 408, 96);
             optionsButtonRectangle = new Rectangle(0, 0, 408, 96);
             creditsButtonRectangle = new Rectangle(0, 0, 408, 96);
@@ -74,8 +72,8 @@ namespace PixelFighters
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 
-            previousGamePadState = game1.previousGamePadState;
-            gamePadState = game1.gamePadState;
+            previousGamePadState = game1.previousGamePadStateOne;
+            gamePadState = game1.gamePadStateOne;
 
             switch (currentMarkerState)
             {

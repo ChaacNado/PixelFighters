@@ -8,5 +8,6 @@ namespace PixelFighters
 {
     class CharacterSelectMenu
     {
+
     }
 }

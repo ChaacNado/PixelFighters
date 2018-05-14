@@ -14,9 +14,9 @@ namespace PixelFighters
         ///Denna bör nog enbart modifera och nås av Player eller möjligtvis MovingObject
 
         #region Variables
-        int selectedCharacter;
-        Rectangle srcRec; //Eftersom vi inte har någon srcRec än så kan den inte implimenteras. 
-        bool temporaryBoolean; // Tillfällig bool som alltid är falsk. Är endast till för att visa var som selectedCharacter ska vara när vi får användning av den.
+        public CharacterState currentCharacter;
+
+        Rectangle srcRec; //Eftersom vi inte har någon srcRec än så kan den inte implimenteras
 
         private static CharacterManager instance;
         #endregion
@@ -35,11 +35,11 @@ namespace PixelFighters
             }
         }
         #endregion
-        
+
         #region Attack Methods
         public void JabAttack(Player player)
         {
-            if (!temporaryBoolean) //selectedCharacter == 1
+            if (currentCharacter == CharacterState.character1)
             {
                 player.frameTimer = player.frameInterval * 0.5f;
                 player.isAttacking = true;
@@ -63,7 +63,7 @@ namespace PixelFighters
 
         public void LowAttack(Player player)
         {
-            if (!temporaryBoolean) //selectedCharacter == 1
+            if (currentCharacter == CharacterState.character1)
             {
                 player.frameTimer = player.frameInterval * 0.4f;
                 player.isAttacking = true;
@@ -87,7 +87,7 @@ namespace PixelFighters
 
         public void AirDunk(Player player)
         {
-            if (!temporaryBoolean) //selectedCharacter == 1
+            if (currentCharacter == CharacterState.character1)
             {
                 player.frameTimer = player.frameInterval * 0.4f;
                 player.isDunking = true;
@@ -107,7 +107,7 @@ namespace PixelFighters
 
         public void DashAttack(Player player)
         {
-            if (!temporaryBoolean) //selectedCharacter == 1
+            if (currentCharacter == CharacterState.character1)
             {
                 player.frameTimer = player.frameInterval * 0.9f;
                 if (player.frameTimer >= 340)

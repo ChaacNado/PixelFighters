@@ -22,10 +22,12 @@ namespace PixelFighters
         Quit,
     }
 
-    public enum StageState
+    public enum CharacterState
     {
-        stage1,
-        stage2,
+        character1,
+        character2,
+        character3,
+        character4,
     }
 
     public enum MarkerState

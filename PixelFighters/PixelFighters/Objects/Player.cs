@@ -12,8 +12,8 @@ namespace PixelFighters
     public class Player : MovingObject
     {
         #region Variables
-        KeyboardState keyState, previousKeyState;
-        GamePadState gamePadState, previousGamePadState;
+        public KeyboardState keyState, previousKeyState;
+        public GamePadState gamePadState, previousGamePadState;
         GamePadCapabilities capabilities;
 
         SpriteEffects playerFx = SpriteEffects.None;
@@ -22,7 +22,7 @@ namespace PixelFighters
         private float rotation = 0;
         public double frameTimer, frameInterval = 400;
         public bool facingRight, inAnimation;
-        private Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
+        public Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
         #endregion
 
@@ -101,11 +101,11 @@ namespace PixelFighters
                 speed = Vector2.Zero;
                 if (playerIndex == 1)
                 {
-                    pos = StageManager.Instance.startPosOne;
+                    pos = GameplayManager.Instance.startPosOne;
                 }
                 if (playerIndex == 2)
                 {
-                    pos = StageManager.Instance.startPosTwo;
+                    pos = GameplayManager.Instance.startPosTwo;
                 }
             }
 

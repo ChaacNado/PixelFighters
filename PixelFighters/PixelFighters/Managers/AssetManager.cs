@@ -44,7 +44,7 @@ namespace PixelFighters
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
 
-            streamReader = new StreamReader("stage" + StageManager.Instance.stageNumber + ".txt");
+            streamReader = new StreamReader("stage" + GameplayManager.Instance.stageNumber + ".txt");
 
             spriteFont = Content.Load<SpriteFont>("font1");
             rectTex = Content.Load<Texture2D>("tile");

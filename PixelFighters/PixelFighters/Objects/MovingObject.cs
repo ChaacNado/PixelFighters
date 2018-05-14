@@ -123,7 +123,7 @@ namespace PixelFighters
 
         public virtual void Update(GameTime gameTime)
         {
-
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)

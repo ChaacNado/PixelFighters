@@ -46,8 +46,6 @@ namespace PixelFighters
 
         public void LoadContent(ContentManager content)
         {
-            AssetManager.Instance.LoadContent(content);
-
             textRectangle = new Rectangle(0, 0, 540, 164);
             buttonRectangle = new Rectangle(0, 0, 260, 72);
 
@@ -66,8 +64,8 @@ namespace PixelFighters
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 
-            previousGamePadState = game1.previousGamePadState;
-            gamePadState = game1.gamePadState;
+            previousGamePadState = game1.previousGamePadStateOne;
+            gamePadState = game1.gamePadStateOne;
 
             if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B))
             {

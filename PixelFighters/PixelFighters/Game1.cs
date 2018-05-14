@@ -11,8 +11,7 @@ namespace PixelFighters
         SpriteBatch spriteBatch;
         public GraphicsDeviceManager graphics;
         public KeyboardState keyState, previousKeyState;
-        public GamePadState gamePadState, previousGamePadState;
-        GamePadCapabilities capabilities;
+        public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
 
         public Game1()
         {
@@ -23,7 +22,8 @@ namespace PixelFighters
         protected override void Initialize()
         {
             currentGameState = GameState.TitleScreen;
-            StageManager.Instance.stageNumber = 1;
+            GameplayManager.Instance.stageNumber = 1;
+            CharacterManager.Instance.currentCharacter = CharacterState.character1;
 
             ///Här kan vi justera skärmstorleken
             ScreenManager.Instance.Dimensions = new Vector2(1366, 768);
@@ -45,7 +45,7 @@ namespace PixelFighters
             OptionsMenu.Instance.LoadContent(Content);
             GraphicsMenu.Instance.LoadContent(Content);
             QuitMenu.Instance.LoadContent(Content);
-            StageManager.Instance.LoadContent(Content);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -53,18 +53,20 @@ namespace PixelFighters
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            System.Diagnostics.Debug.WriteLine(StageManager.Instance.p1.hasTakenDamage);
-
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
-            previousGamePadState = gamePadState;
-            gamePadState = GamePad.GetState(PlayerIndex.One);
+            previousGamePadStateOne = gamePadStateOne;
+            gamePadStateOne = GamePad.GetState(PlayerIndex.One);
+            previousGamePadStateTwo = gamePadStateTwo;
+            gamePadStateTwo = GamePad.GetState(PlayerIndex.Two);
+
             ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
             {
                 case GameState.TitleScreen:
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
+                        || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         currentGameState = GameState.MainMenu;
                     }
@@ -77,24 +79,31 @@ namespace PixelFighters
                     break;
                 case GameState.CharacterSelect:
                     MainMenu.Instance.Update(gameTime, this);
-                    if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right))
+                    if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
+                        || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
-                        if (StageManager.Instance.stageNumber <= 1)
+                        if (GameplayManager.Instance.stageNumber <= 1)
                         {
-                            StageManager.Instance.stageNumber += 1;
+                            GameplayManager.Instance.stageNumber += 1;
                         }  
                     }
-                    if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left))
+                    if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left)
+                        || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
                     {
-                        if (StageManager.Instance.stageNumber > 1)
+                        if (GameplayManager.Instance.stageNumber > 1)
                         {
-                            StageManager.Instance.stageNumber -= 1;
+                            GameplayManager.Instance.stageNumber -= 1;
                         }
                     }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
+                        || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         currentGameState = GameState.Playtime;
                         LoadContent();
+                    }
+                    if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back))
+                    {
+                        currentGameState = GameState.MainMenu;
                     }
                     break;
                 case GameState.Playtime:
@@ -105,17 +114,20 @@ namespace PixelFighters
                         currentGameState = GameState.Results;
                     }
 
-                    if (keyState.IsKeyDown(Keys.P) && previousKeyState.IsKeyUp(Keys.P))
+                    if (keyState.IsKeyDown(Keys.D8) && previousKeyState.IsKeyUp(Keys.D8) || keyState.IsKeyDown(Keys.NumPad8) && previousKeyState.IsKeyUp(Keys.NumPad8)
+                        || gamePadStateOne.IsButtonDown(Buttons.Start) && previousGamePadStateOne.IsButtonUp(Buttons.Start) || gamePadStateTwo.IsButtonDown(Buttons.Start) && previousGamePadStateTwo.IsButtonUp(Buttons.Start))
                     {
                         currentGameState = GameState.Pause;
                     }
                     break;
                 case GameState.Pause:
-                    if (keyState.IsKeyDown(Keys.P) && previousKeyState.IsKeyUp(Keys.P))
+                    if (keyState.IsKeyDown(Keys.D8) && previousKeyState.IsKeyUp(Keys.D8) || keyState.IsKeyDown(Keys.NumPad8) && previousKeyState.IsKeyUp(Keys.NumPad8)
+                        || gamePadStateOne.IsButtonDown(Buttons.Start) && previousGamePadStateOne.IsButtonUp(Buttons.Start) || gamePadStateTwo.IsButtonDown(Buttons.Start) && previousGamePadStateTwo.IsButtonUp(Buttons.Start))
                     {
                         currentGameState = GameState.Playtime;
                     }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
+                        || gamePadStateOne.IsButtonDown(Buttons.Back) && previousGamePadStateOne.IsButtonUp(Buttons.Back) || gamePadStateTwo.IsButtonDown(Buttons.Back) && previousGamePadStateTwo.IsButtonUp(Buttons.Back))
                     {
                         LoadContent();
                         currentGameState = GameState.MainMenu;
@@ -125,7 +137,8 @@ namespace PixelFighters
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
                     GameplayManager.Instance.timerStock = false;
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
+                        || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
 
                         GameplayManager.Instance.playerOneWon = false;
@@ -168,13 +181,14 @@ namespace PixelFighters
                 case GameState.CharacterSelect:
                     GraphicsDevice.Clear(Color.LightGray);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character Select", new Vector2(240, 90), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Stage: " + StageManager.Instance.stageNumber + "", new Vector2(240, 150), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 210), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Stage: " + GameplayManager.Instance.stageNumber + "", new Vector2(240, 150), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character: " + CharacterManager.Instance.currentCharacter + "", new Vector2(240, 210), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 270), Color.Black);
                     break;
                 case GameState.Playtime:
                     GraphicsDevice.Clear(Color.LightSlateGray);
                     GameplayManager.Instance.Draw(spriteBatch);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press P to pause the game", new Vector2(240, 90), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press 8 to pause the game", new Vector2(240, 90), Color.White);
                     break;
                 case GameState.Pause:
                     GraphicsDevice.Clear(Color.GreenYellow * 0.5f);

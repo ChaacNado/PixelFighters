@@ -23,7 +23,6 @@ namespace PixelFighters
         {
             currentGameState = GameState.TitleScreen;
             GameplayManager.Instance.stageNumber = 1;
-            CharacterManager.Instance.currentCharacter = CharacterState.character1;
 
             ///Här kan vi justera skärmstorleken
             ScreenManager.Instance.Dimensions = new Vector2(1366, 768);
@@ -79,6 +78,7 @@ namespace PixelFighters
                     break;
                 case GameState.CharacterSelect:
                     MainMenu.Instance.Update(gameTime, this);
+                    GameplayManager.Instance.Update(gameTime);
                     if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
                         || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
@@ -182,7 +182,8 @@ namespace PixelFighters
                     GraphicsDevice.Clear(Color.LightGray);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character Select", new Vector2(240, 90), Color.Black);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Stage: " + GameplayManager.Instance.stageNumber + "", new Vector2(240, 150), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character: " + CharacterManager.Instance.currentCharacter + "", new Vector2(240, 210), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character: " + GameplayManager.Instance.p1.characterName + "", new Vector2(240, 210), Color.Black);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character: " + GameplayManager.Instance.p2.characterName + "", new Vector2(720, 210), Color.Black);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 270), Color.Black);
                     break;
                 case GameState.Playtime:

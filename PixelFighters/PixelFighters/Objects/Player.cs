@@ -17,7 +17,8 @@ namespace PixelFighters
         GamePadCapabilities capabilities;
 
         SpriteEffects playerFx = SpriteEffects.None;
-        public int bX, bY, stocksRemaining;
+        public string characterName;
+        public int bX, bY, stocksRemaining, currentCharacter;
         private int jumpsAvailable, frame;
         private float rotation = 0;
         public double frameTimer, frameInterval = 400;
@@ -43,6 +44,7 @@ namespace PixelFighters
             stocksRemaining = 3;
             maxHP = 50;
             currentHP = maxHP;
+            currentCharacter = 1;
 
             InitializeInputs();
         }
@@ -53,6 +55,9 @@ namespace PixelFighters
         {
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
+
+            CharacterManager.Instance.UpdateName(this);
+
             frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
             isDunking = false;

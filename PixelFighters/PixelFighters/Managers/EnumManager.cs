@@ -22,14 +22,6 @@ namespace PixelFighters
         Quit,
     }
 
-    public enum CharacterState
-    {
-        character1,
-        character2,
-        character3,
-        character4,
-    }
-
     public enum MarkerState
     {
         MarkerState1,

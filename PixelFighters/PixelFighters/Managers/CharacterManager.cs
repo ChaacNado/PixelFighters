@@ -14,8 +14,6 @@ namespace PixelFighters
         ///Denna bör nog enbart modifera och nås av Player eller möjligtvis MovingObject
 
         #region Variables
-        public CharacterState currentCharacter;
-
         Rectangle srcRec; //Eftersom vi inte har någon srcRec än så kan den inte implimenteras
 
         private static CharacterManager instance;
@@ -36,10 +34,22 @@ namespace PixelFighters
         }
         #endregion
 
+        public void UpdateName(Player player)
+        {
+            if (player.currentCharacter == 1)
+            {
+                player.characterName = "Boxer Dood";
+            }
+            if (player.currentCharacter == 2)
+            {
+                player.characterName = "Mac Enchiz";
+            }
+        }
+
         #region Attack Methods
         public void JabAttack(Player player)
         {
-            if (currentCharacter == CharacterState.character1)
+            if (player.currentCharacter == 1)
             {
                 player.frameTimer = player.frameInterval * 0.5f;
                 player.isAttacking = true;
@@ -63,7 +73,7 @@ namespace PixelFighters
 
         public void LowAttack(Player player)
         {
-            if (currentCharacter == CharacterState.character1)
+            if (player.currentCharacter == 1)
             {
                 player.frameTimer = player.frameInterval * 0.4f;
                 player.isAttacking = true;
@@ -87,7 +97,7 @@ namespace PixelFighters
 
         public void AirDunk(Player player)
         {
-            if (currentCharacter == CharacterState.character1)
+            if (player.currentCharacter == 1)
             {
                 player.frameTimer = player.frameInterval * 0.4f;
                 player.isDunking = true;
@@ -107,7 +117,7 @@ namespace PixelFighters
 
         public void DashAttack(Player player)
         {
-            if (currentCharacter == CharacterState.character1)
+            if (player.currentCharacter == 1)
             {
                 player.frameTimer = player.frameInterval * 0.9f;
                 if (player.frameTimer >= 340)

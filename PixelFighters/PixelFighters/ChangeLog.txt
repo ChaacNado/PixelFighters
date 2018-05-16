@@ -1,7 +1,14 @@
-﻿**********2018-05-14 Version 0.4.3, auth: Mikael Zhu************
+﻿**********2018-05-14 Version 0.4.2, auth: Kristian Toro**********
+{
+Ändrat på hur character select fungerar.
+Syns vilken karaktär man valt med hjälp av en string. Båda spelarna har sin egen.
+}
+
+**********2018-05-14 Version 0.4.3, auth: Mikael Zhu************
 {
 Nu när båda karaktärer har lika mycket stocks, kommer det bli sudden death där båda spelare får 10 hp och en stock. Kommer även stå på skärmen att det är sudden death.
 }
+
 **********2018-05-14 Version 0.4.2, auth: Kristian Toro**********
 {
 Tagit bort onödiga kodrader. Fixat att både p1 och p2 kan navigera i menyer.

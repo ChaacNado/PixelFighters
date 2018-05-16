@@ -10,16 +10,11 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class QuitMenu
+    class QuitMenu:BaseMenu
     {
         #region Variables
 
         private static QuitMenu instance;
-
-        KeyboardState keyState, previousKeyState;
-        GamePadState gamePadState, previousGamePadState;
-
-        MarkerState currentMarkerState;
 
         Rectangle textRectangle, buttonRectangle;
         Rectangle textSrcRectangle, yesButtonSrcRectangle, noButtonSrcRectangle;
@@ -44,7 +39,7 @@ namespace PixelFighters
 
         #region Main Methods
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
             textRectangle = new Rectangle(0, 0, 540, 164);
             buttonRectangle = new Rectangle(0, 0, 260, 72);
@@ -54,7 +49,7 @@ namespace PixelFighters
             noButtonSrcRectangle = new Rectangle(4, 67, 65, 18);
         }
 
-        public void Update(GameTime gameTime, Game1 game1)
+        public override void Update(GameTime gameTime, Game1 game1)
         {
             textRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - textRectangle.Width / 2;
             textRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 3;
@@ -97,7 +92,7 @@ namespace PixelFighters
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(AssetManager.Instance.quitMenuSpritesheet, textRectangle, textSrcRectangle, Color.White);
 

@@ -694,3 +694,6 @@ C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master V 0.4.2\Pi
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master V 0.4.2\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master V 0.4.2\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master V 0.4.2\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characters.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\powerup.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\warningtape platforms.xnb

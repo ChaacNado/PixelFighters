@@ -1,4 +1,8 @@
-﻿**********2018-05-14 Version 0.4.2, auth: Kristian Toro**********
+﻿**********2018-05-16 Version 0.4.5, auth: Erik Persson**********
+{
+Laggt till en basmeny som menyerna ärver ifrån.
+}
+**********2018-05-14 Version 0.4.4, auth: Kristian Toro**********
 {
 Ändrat på hur character select fungerar.
 Syns vilken karaktär man valt med hjälp av en string. Båda spelarna har sin egen.

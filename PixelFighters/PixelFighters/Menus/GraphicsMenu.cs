@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class GraphicsMenu
+    class GraphicsMenu:BaseMenu
     {
         #region Variables
 
@@ -18,11 +18,6 @@ namespace PixelFighters
         private int resolution = 1;
 
         private static GraphicsMenu instance;
-
-        KeyboardState keyState, previousKeyState;
-        GamePadState gamePadState, previousGamePadState;
-
-        MarkerState currentMarkerState;
 
         Rectangle windowedButtonRectangle, resolutionButtonRectangle, applyButtonRectangle, resolutionRectangle;
         Rectangle windowedButtonYesSrcRectangle, windowedButtonNoSrcRectangle, resolutionButtonSrcRectangle, applyButtonSrcRectangle;
@@ -49,7 +44,7 @@ namespace PixelFighters
 
         #region Main Methods
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
             AssetManager.Instance.LoadContent(content);
 
@@ -72,7 +67,7 @@ namespace PixelFighters
             resolution1920x1080SrcRectangle = new Rectangle(0, 187, 77, 10);
         }
 
-        public void Update(GameTime gameTime, Game1 game1)
+        public override void Update(GameTime gameTime, Game1 game1)
         {
             windowedButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - windowedButtonRectangle.Width / 2;
             windowedButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 136;
@@ -201,7 +196,7 @@ namespace PixelFighters
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionButtonRectangle, resolutionButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, applyButtonRectangle, applyButtonSrcRectangle, Color.White);

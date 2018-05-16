@@ -5,16 +5,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PixelFighters
 {
-    class MainMenu
+    class MainMenu : BaseMenu
     {
         #region Variables
 
         private static MainMenu instance;
-
-        KeyboardState keyState, previousKeyState;
-        GamePadState gamePadState, previousGamePadState;
-
-        MarkerState currentMarkerState;
 
         Rectangle playButtonRectangle, optionsButtonRectangle, creditsButtonRectangle, exitButtonRectangle;
         Rectangle playButtonSrcRectangle, optionsSrcRectangle, creditsButtonSrcRectangle, exitButtonSrcRectangle;
@@ -40,7 +35,7 @@ namespace PixelFighters
 
         #region Main Methods
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
             playButtonRectangle = new Rectangle(0, 0, 408, 96);
             optionsButtonRectangle = new Rectangle(0, 0, 408, 96);
@@ -58,7 +53,7 @@ namespace PixelFighters
             markedExitButtonSrcRectangle = new Rectangle(2, 95, 102, 24);
         }
 
-        public void Update(GameTime gameTime, Game1 game1)
+        public override void Update(GameTime gameTime, Game1 game1)
         {
             playButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - playButtonRectangle.Width / 2;
             playButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 208;
@@ -136,7 +131,7 @@ namespace PixelFighters
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, playButtonRectangle, playButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, optionsButtonRectangle, optionsSrcRectangle, Color.White);

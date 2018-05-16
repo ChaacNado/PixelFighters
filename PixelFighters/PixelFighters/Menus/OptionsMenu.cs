@@ -10,15 +10,10 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class OptionsMenu
+    class OptionsMenu:BaseMenu
     {
         #region Variables
         private static OptionsMenu instance;
-
-        KeyboardState keyState, previousKeyState;
-        GamePadState gamePadState, previousGamePadState;
-
-        MarkerState currentMarkerState;
 
         Rectangle soundButtonRectangle, graphicsButtonRectangle, controlsButtonRectangle;
         Rectangle soundButtonSrcRectangle, graphicsButtonSrcRectangle, controlsButtonSrcRectangle;
@@ -44,7 +39,7 @@ namespace PixelFighters
 
         #region main Methods
 
-        public void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager content)
         {
             soundButtonRectangle = new Rectangle(0, 0, 408, 96);
             graphicsButtonRectangle = new Rectangle(0, 0, 408, 96);
@@ -59,7 +54,7 @@ namespace PixelFighters
             markedControlsButtonSrcRectangle = new Rectangle(2, 64, 102, 24);
         }
 
-        public void Update(GameTime gameTime, Game1 game1)
+        public override void Update(GameTime gameTime, Game1 game1)
         {
             soundButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - soundButtonRectangle.Width / 2;
             soundButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 156;
@@ -126,7 +121,7 @@ namespace PixelFighters
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, soundButtonRectangle, soundButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.optionsMenuSpritesheet, graphicsButtonRectangle, graphicsButtonSrcRectangle, Color.White);

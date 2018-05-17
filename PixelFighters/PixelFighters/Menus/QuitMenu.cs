@@ -14,40 +14,22 @@ namespace PixelFighters
     {
         #region Variables
 
-        private static QuitMenu instance;
-
         Rectangle textRectangle, buttonRectangle;
         Rectangle textSrcRectangle, yesButtonSrcRectangle, noButtonSrcRectangle;
 
         #endregion
 
-        #region Properties
-
-        public static QuitMenu Instance
+        public QuitMenu()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new QuitMenu();
-                }
-                return instance;
-            }
-        }
-
-        #endregion
-
-        #region Main Methods
-
-        public override void LoadContent(ContentManager content)
-        {
-            textRectangle = new Rectangle(0, 0, 540, 164);
-            buttonRectangle = new Rectangle(0, 0, 260, 72);
+            textRectangle = new Rectangle(0, -100, 540, 164);
+            buttonRectangle = new Rectangle(0, -100, 260, 72);
 
             textSrcRectangle = new Rectangle(1, 2, 135, 41);
             yesButtonSrcRectangle = new Rectangle(4, 44, 65, 18);
             noButtonSrcRectangle = new Rectangle(4, 67, 65, 18);
         }
+
+        #region Main Methods
 
         public override void Update(GameTime gameTime, Game1 game1)
         {

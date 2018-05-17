@@ -13,37 +13,17 @@ namespace PixelFighters
     class OptionsMenu:BaseMenu
     {
         #region Variables
-        private static OptionsMenu instance;
 
         Rectangle soundButtonRectangle, graphicsButtonRectangle, controlsButtonRectangle;
         Rectangle soundButtonSrcRectangle, graphicsButtonSrcRectangle, controlsButtonSrcRectangle;
         Rectangle markedSoundButtonSrcRectangle, markedGraphicsButtonSrcRectangle, markedControlsButtonSrcRectangle;
 
         #endregion
-
-        #region Properties
-
-        public static OptionsMenu Instance
+        public OptionsMenu()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new OptionsMenu();
-                }
-                return instance;
-            }
-        }
-
-        #endregion
-
-        #region main Methods
-
-        public override void LoadContent(ContentManager content)
-        {
-            soundButtonRectangle = new Rectangle(0, 0, 408, 96);
-            graphicsButtonRectangle = new Rectangle(0, 0, 408, 96);
-            controlsButtonRectangle = new Rectangle(0, 0, 408, 96);
+            soundButtonRectangle = new Rectangle(0, -100, 408, 96);
+            graphicsButtonRectangle = new Rectangle(0, -100, 408, 96);
+            controlsButtonRectangle = new Rectangle(0, -100, 408, 96);
 
             soundButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
             graphicsButtonSrcRectangle = new Rectangle(109, 33, 102, 24);
@@ -53,6 +33,8 @@ namespace PixelFighters
             markedGraphicsButtonSrcRectangle = new Rectangle(2, 33, 102, 24);
             markedControlsButtonSrcRectangle = new Rectangle(2, 64, 102, 24);
         }
+
+        #region main Methods
 
         public override void Update(GameTime gameTime, Game1 game1)
         {

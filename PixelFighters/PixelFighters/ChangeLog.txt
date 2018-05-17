@@ -1,4 +1,8 @@
-﻿**********2018-05-16 Version 0.4.5, auth: Erik Persson**********
+﻿**********2018-05-17 Version 0.4.6, auth: Erik Persson**********
+{
+Alla menyer använder sig av en konstruktor istället för en instance.
+}
+**********2018-05-16 Version 0.4.5, auth: Erik Persson**********
 {
 Laggt till en basmeny som menyerna ärver ifrån.
 }

@@ -17,8 +17,6 @@ namespace PixelFighters
 
         protected MarkerState currentMarkerState;
 
-        public abstract void LoadContent(ContentManager content);
-
         public abstract void Update(GameTime gameTime, Game1 game1);
 
         public abstract void Draw(SpriteBatch spriteBatch);

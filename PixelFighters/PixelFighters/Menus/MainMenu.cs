@@ -9,38 +9,18 @@ namespace PixelFighters
     {
         #region Variables
 
-        private static MainMenu instance;
-
         Rectangle playButtonRectangle, optionsButtonRectangle, creditsButtonRectangle, exitButtonRectangle;
         Rectangle playButtonSrcRectangle, optionsSrcRectangle, creditsButtonSrcRectangle, exitButtonSrcRectangle;
         Rectangle markedPlayButtonSrcRectanlge, markedOptionsSrcRectangle, markedCreditsSrcRectangle, markedExitButtonSrcRectangle;
 
         #endregion
 
-        #region Properties
-
-        public static MainMenu Instance
+        public MainMenu()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MainMenu();
-                }
-                return instance;
-            }
-        }
-
-        #endregion
-
-        #region Main Methods
-
-        public override void LoadContent(ContentManager content)
-        {
-            playButtonRectangle = new Rectangle(0, 0, 408, 96);
-            optionsButtonRectangle = new Rectangle(0, 0, 408, 96);
-            creditsButtonRectangle = new Rectangle(0, 0, 408, 96);
-            exitButtonRectangle = new Rectangle(0, 0, 408, 96);
+            playButtonRectangle = new Rectangle(0, -100, 408, 96);
+            optionsButtonRectangle = new Rectangle(0, -100, 408, 96);
+            creditsButtonRectangle = new Rectangle(0, -100, 408, 96);
+            exitButtonRectangle = new Rectangle(0, -100, 408, 96);
 
             playButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
             optionsSrcRectangle = new Rectangle(109, 33, 102, 24);
@@ -52,6 +32,8 @@ namespace PixelFighters
             markedCreditsSrcRectangle = new Rectangle(2, 64, 102, 24);
             markedExitButtonSrcRectangle = new Rectangle(2, 95, 102, 24);
         }
+
+        #region Main Methods
 
         public override void Update(GameTime gameTime, Game1 game1)
         {

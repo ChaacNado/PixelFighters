@@ -13,6 +13,8 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
 
+        BaseMenu mainMenu, quitMenu, optionsMenu, graphicsMenu;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -40,10 +42,10 @@ namespace PixelFighters
             ///Detta används när man hämtar data från GameplayManager etc
             AssetManager.Instance.LoadContent(Content);
             GameplayManager.Instance.LoadContent(Content, this);
-            MainMenu.Instance.LoadContent(Content);
-            OptionsMenu.Instance.LoadContent(Content);
-            GraphicsMenu.Instance.LoadContent(Content);
-            QuitMenu.Instance.LoadContent(Content);
+            mainMenu = new MainMenu();
+            optionsMenu = new OptionsMenu();
+            quitMenu = new QuitMenu();
+            graphicsMenu = new GraphicsMenu();
 
         }
 
@@ -71,13 +73,13 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.MainMenu:
-                    MainMenu.Instance.Update(gameTime, this);
+                    mainMenu.Update(gameTime, this);
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
                     GameplayManager.Instance.timerStock = false;
                     break;
                 case GameState.CharacterSelect:
-                    MainMenu.Instance.Update(gameTime, this);
+                    mainMenu.Update(gameTime, this);
                     GameplayManager.Instance.Update(gameTime);
                     if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
                         || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
@@ -149,13 +151,13 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Options:
-                    OptionsMenu.Instance.Update(gameTime, this);
+                    optionsMenu.Update(gameTime, this);
                     break;
                 case GameState.Graphics:
-                    GraphicsMenu.Instance.Update(gameTime, this);
+                    graphicsMenu.Update(gameTime, this);
                     break;
                 case GameState.Quit:
-                    QuitMenu.Instance.Update(gameTime, this);
+                    quitMenu.Update(gameTime, this);
                     break;
             }
 
@@ -176,7 +178,7 @@ namespace PixelFighters
                     break;
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
-                    MainMenu.Instance.Draw(spriteBatch);
+                    mainMenu.Draw(spriteBatch);
                     break;
                 case GameState.CharacterSelect:
                     GraphicsDevice.Clear(Color.LightGray);
@@ -212,15 +214,15 @@ namespace PixelFighters
                     break;
                 case GameState.Options:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
-                    OptionsMenu.Instance.Draw(spriteBatch);
+                    optionsMenu.Draw(spriteBatch);
                     break;
                 case GameState.Graphics:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
-                    GraphicsMenu.Instance.Draw(spriteBatch);
+                    graphicsMenu.Draw(spriteBatch);
                     break;
                 case GameState.Quit:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
-                    QuitMenu.Instance.Draw(spriteBatch);
+                    quitMenu.Draw(spriteBatch);
                     break;
             }
 

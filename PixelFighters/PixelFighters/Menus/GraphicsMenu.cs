@@ -25,33 +25,12 @@ namespace PixelFighters
         Rectangle resolution1366x768SrcRectangle, resolution1920x1080SrcRectangle;
 
         #endregion
-
-        #region Properties
-
-        public static GraphicsMenu Instance
+        public GraphicsMenu()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GraphicsMenu();
-                }
-                return instance;
-            }
-        }
-
-        #endregion
-
-        #region Main Methods
-
-        public override void LoadContent(ContentManager content)
-        {
-            AssetManager.Instance.LoadContent(content);
-
-            windowedButtonRectangle = new Rectangle(0, 0, 756, 72);
-            resolutionButtonRectangle = new Rectangle(0, 0, 756, 72);
-            resolutionRectangle = new Rectangle(0, 0, 308, 40);
-            applyButtonRectangle = new Rectangle(0, 0, 384, 72);
+            windowedButtonRectangle = new Rectangle(0, -100, 756, 72);
+            resolutionButtonRectangle = new Rectangle(0, -100, 756, 72);
+            resolutionRectangle = new Rectangle(0, -100, 308, 40);
+            applyButtonRectangle = new Rectangle(0, -100, 384, 72);
 
             windowedButtonYesSrcRectangle = new Rectangle(0, 222, 202, 18);
             windowedButtonNoSrcRectangle = new Rectangle(0, 199, 202, 18);
@@ -66,6 +45,7 @@ namespace PixelFighters
             resolution1366x768SrcRectangle = new Rectangle(0, 165, 77, 10);
             resolution1920x1080SrcRectangle = new Rectangle(0, 187, 77, 10);
         }
+        #region Main Methods
 
         public override void Update(GameTime gameTime, Game1 game1)
         {

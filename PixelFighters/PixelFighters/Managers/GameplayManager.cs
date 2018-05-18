@@ -174,7 +174,7 @@ namespace PixelFighters
                 p2.isHit = true;
                 if (p2.hasTakenDamage == false)
                 {
-                    p2.currentHP -= p2.damageDealt;
+                    p2.currentHP -= p1.damageDealt;
                 }
                 p2.hasTakenDamage = true;
             }

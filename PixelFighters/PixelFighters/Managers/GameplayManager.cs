@@ -119,12 +119,16 @@ namespace PixelFighters
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Camera camera)
         {
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
             timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            //Kamera
+            camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);
+            camera.cameraFocus.Y = ((p1.pos.Y + p2.pos.Y) / 2);
 
             #region Platform Collision
             foreach (Platform p in platforms)
@@ -267,7 +271,7 @@ namespace PixelFighters
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             foreach (Platform p in platforms)
             {
@@ -277,16 +281,16 @@ namespace PixelFighters
             p1.Draw(spriteBatch);
             p2.Draw(spriteBatch);
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2(0, 675), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2(0, 700), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2(1200, 675), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2(1200, 700), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2(650, 100), Color.White);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2((int)camera.cameraFocus.X - (ScreenManager.Instance.Dimensions.X / 2), (int)camera.cameraFocus.Y + (ScreenManager.Instance.Dimensions.Y / 3)), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2((int)camera.cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3 - 50), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2((int)camera.cameraFocus.X + ScreenManager.Instance.Dimensions.X / 2 - 125, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2((int)camera.cameraFocus.X + ScreenManager.Instance.Dimensions.X / 2 - 140, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3 - 50), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2((int)camera.cameraFocus.X, (int)camera.cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2), Color.White);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
 
             if(timer <= 0)
             {
-                spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2(625, 120), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2((int)camera.cameraFocus.X, (int)camera.cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 3), Color.Black);
             }
         }
         #endregion

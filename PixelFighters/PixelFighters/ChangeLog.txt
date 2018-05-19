@@ -1,4 +1,9 @@
-﻿**********2018-05-19 Version 0.4.7, auth: Kristian Toro & Mikael Zhu**********
+﻿
+**********2018-05-17 Version 0.4.8, auth: Erik Persson**********
+{
+La in Camera-klass samt la in nödvindig kod i gameplaymanager och game1 för att den ska fungera.
+}
+**********2018-05-19 Version 0.4.7, auth: Kristian Toro & Mikael Zhu**********
 {
 Man kan nu bläddra mellan olika karaktärer (obs enbart ett index som läser ut ett namn, enbart karaktär 1 har moves).
 Tydliggjort vilken spelare som har vunnit.

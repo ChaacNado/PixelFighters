@@ -1,11 +1,20 @@
-﻿**********2018-05-17 Version 0.4.6, auth: Erik Persson**********
+﻿**********2018-05-19 Version 0.4.7, auth: Kristian Toro**********
+{
+Man kan nu bläddra mellan olika karaktärer (obs enbart ett index som läser ut ett namn, enbart karaktär 1 har moves).
+Tydliggjort vilken spelare som har vunnit.
+Andra mindre justeringar har gjorts.
+}
+
+**********2018-05-17 Version 0.4.6, auth: Erik Persson**********
 {
 Alla menyer använder sig av en konstruktor istället för en instance.
 }
+
 **********2018-05-16 Version 0.4.5, auth: Erik Persson**********
 {
 Laggt till en basmeny som menyerna ärver ifrån.
 }
+
 **********2018-05-14 Version 0.4.4, auth: Kristian Toro**********
 {
 Ändrat på hur character select fungerar.

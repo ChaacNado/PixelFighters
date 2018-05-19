@@ -34,15 +34,23 @@ namespace PixelFighters
         }
         #endregion
 
+        ///Skriver ut namnet på vald karaktär i character select
         public void UpdateName(Player player)
         {
+            ///Boxare
             if (player.currentCharacter == 1)
             {
-                player.characterName = "Boxer Dood";
+                player.characterName = "Philip Albert Jackson";
             }
+            ///Rugbyspelare
             if (player.currentCharacter == 2)
             {
                 player.characterName = "Mac Enchiz";
+            }
+            ///Curlingspelare
+            if (player.currentCharacter == 3)
+            {
+                player.characterName = "Aiden Fortin";
             }
         }
 

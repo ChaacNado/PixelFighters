@@ -41,7 +41,7 @@ namespace PixelFighters
 
             ///Detta används när man hämtar data från GameplayManager etc
             AssetManager.Instance.LoadContent(Content);
-            GameplayManager.Instance.LoadContent(Content, this);
+            GameplayManager.Instance.LoadContent(Content);
             mainMenu = new MainMenu();
             optionsMenu = new OptionsMenu();
             quitMenu = new QuitMenu();
@@ -95,6 +95,34 @@ namespace PixelFighters
                         if (GameplayManager.Instance.stageNumber > 1)
                         {
                             GameplayManager.Instance.stageNumber -= 1;
+                        }
+                    }
+                    if (keyState.IsKeyDown(Keys.S) && previousKeyState.IsKeyUp(Keys.S) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown))
+                    {
+                        if (GameplayManager.Instance.p1.currentCharacter <= 2)
+                        {
+                            GameplayManager.Instance.p1.currentCharacter += 1;
+                        }  
+                    }
+                    if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
+                    {
+                        if (GameplayManager.Instance.p1.currentCharacter > 1)
+                        {
+                            GameplayManager.Instance.p1.currentCharacter -= 1;
+                        }
+                    }
+                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
+                    {
+                        if (GameplayManager.Instance.p2.currentCharacter <= 2)
+                        {
+                            GameplayManager.Instance.p2.currentCharacter += 1;
+                        }
+                    }
+                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
+                    {
+                        if (GameplayManager.Instance.p2.currentCharacter > 1)
+                        {
+                            GameplayManager.Instance.p2.currentCharacter -= 1;
                         }
                     }
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
@@ -200,16 +228,17 @@ namespace PixelFighters
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
                     break;
                 case GameState.Results:
-                    GraphicsDevice.Clear(Color.Brown);
                     if (GameplayManager.Instance.playerOneWon == true)
                     {
-                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER ONE WON!", new Vector2(600, 450), Color.White);
+                        GraphicsDevice.Clear(Color.Brown);
+                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER ONE WON!", new Vector2(600, 350), Color.White);
                     }
                     if (GameplayManager.Instance.playerTwoWon == true)
                     {
-                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER TWO WON!", new Vector2(600, 450), Color.White);
+                        GraphicsDevice.Clear(Color.RoyalBlue);
+                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER TWO WON!", new Vector2(600, 350), Color.White);
                     }
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 550), Color.White);
+                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 400), Color.White);
 
                     break;
                 case GameState.Options:

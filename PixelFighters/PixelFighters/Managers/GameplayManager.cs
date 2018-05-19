@@ -13,7 +13,6 @@ namespace PixelFighters
     public class GameplayManager
     {
         #region Variables
-        public Game1 game;
         ContentManager content;
 
         public int stageNumber = 1;
@@ -50,10 +49,8 @@ namespace PixelFighters
         #endregion
 
         #region Main Methods
-        public void LoadContent(ContentManager Content, Game1 game)
+        public void LoadContent(ContentManager Content)
         {
-            this.game = game;
-            game.IsMouseVisible = true;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
             timer = matchLength;
@@ -128,7 +125,6 @@ namespace PixelFighters
             mouseState = Mouse.GetState();
 
             timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
 
             #region Platform Collision
             foreach (Platform p in platforms)
@@ -247,17 +243,18 @@ namespace PixelFighters
 
                         p1.stocksRemaining = 1;
                         p2.stocksRemaining = 1;
-                        p1.currentHP = 10;
-                        p2.currentHP = 10;
+                        p1.currentHP = 1;
+                        p2.currentHP = 1;
 
                     }
-                }
-                
+                }               
             }
             #endregion
 
-            p1.Update(gameTime);
-            p2.Update(gameTime);
+            foreach (Player player in players)
+            {
+                player.Update(gameTime);
+            }
 
             ///Styr faden mellan skärmövergångar
             if (color.A > 0)

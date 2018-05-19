@@ -1,4 +1,4 @@
-﻿**********2018-05-19 Version 0.4.7, auth: Kristian Toro**********
+﻿**********2018-05-19 Version 0.4.7, auth: Kristian Toro & Mikael Zhu**********
 {
 Man kan nu bläddra mellan olika karaktärer (obs enbart ett index som läser ut ett namn, enbart karaktär 1 har moves).
 Tydliggjort vilken spelare som har vunnit.

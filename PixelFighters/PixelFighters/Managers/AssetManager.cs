@@ -56,6 +56,7 @@ namespace PixelFighters
             graphicsMenuSpritesheet = Content.Load<Texture2D>("GraphicsMenu");
             quitMenuSpritesheet = Content.Load<Texture2D>("QuitMenu");
         }
+
         #endregion
     }
 }

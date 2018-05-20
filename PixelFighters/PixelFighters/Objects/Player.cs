@@ -12,6 +12,8 @@ namespace PixelFighters
     public class Player : MovingObject
     {
         #region Variables
+        Game1 game;
+        GameState currentGamestate;
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadState, previousGamePadState;
         GamePadCapabilities capabilities;
@@ -29,7 +31,7 @@ namespace PixelFighters
         #endregion
 
         #region Player Object
-        public Player(Texture2D tex, Vector2 pos, Rectangle srcRec, int playerIndex) : base(tex, pos, srcRec)
+        public Player(Texture2D tex, Vector2 pos, Rectangle srcRec, int playerIndex, Game1 game) : base(tex, pos, srcRec)
         {
             this.srcRec = srcRec;
             this.playerIndex = playerIndex;
@@ -44,7 +46,7 @@ namespace PixelFighters
             stocksRemaining = 3;
             maxHP = 50;
             currentHP = maxHP;
-            currentCharacter = 1;
+            this.game = game;
 
             InitializeInputs();
         }
@@ -53,74 +55,80 @@ namespace PixelFighters
         #region Main Methods
         public override void Update(GameTime gameTime)
         {
+            currentGamestate = game.currentGameState;
+
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
             CharacterManager.Instance.UpdateName(this);
 
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (currentGamestate == GameState.Playtime)
+            {
 
-            isDunking = false;
+                frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (frameTimer <= 0)
-            {
-                inAnimation = false;
-                isAttacking = false;
-                isInvincible = false;
-            }
+                isDunking = false;
 
-            if (facingRight)
-            {
-                playerFx = SpriteEffects.None;
-            }
-            if (!facingRight)
-            {
-                playerFx = SpriteEffects.FlipHorizontally;
-            }
-
-            if (isOnGround)
-            {
-                jumpsAvailable = 2;
-            }
-            if (!isOnGround)
-            {
-                speed.Y += 0.2f;
-                if (speed.Y >= 20)
+                if (frameTimer <= 0)
                 {
-                    speed.Y = 20;
+                    inAnimation = false;
+                    isAttacking = false;
+                    isInvincible = false;
                 }
-                if (jumpsAvailable == 2)
+
+                if (facingRight)
                 {
-                    jumpsAvailable = 1;
+                    playerFx = SpriteEffects.None;
                 }
+                if (!facingRight)
+                {
+                    playerFx = SpriteEffects.FlipHorizontally;
+                }
+
+                if (isOnGround)
+                {
+                    jumpsAvailable = 2;
+                }
+                if (!isOnGround)
+                {
+                    speed.Y += 0.2f;
+                    if (speed.Y >= 20)
+                    {
+                        speed.Y = 20;
+                    }
+                    if (jumpsAvailable == 2)
+                    {
+                        jumpsAvailable = 1;
+                    }
+                }
+
+                speed.X *= 0.9f;
+
+                HandleInputs();
+
+                ///Vad som leder till att man förlorar en stock
+                if (pos.Y >= bY || pos.Y <= -bY / 3 || pos.X <= -300 || pos.X >= bX + 300 || currentHP <= 0)
+                {
+                    currentHP = maxHP;
+                    stocksRemaining--;
+                    speed = Vector2.Zero;
+                    if (playerIndex == 1)
+                    {
+                        pos = GameplayManager.Instance.startPosOne;
+                    }
+                    if (playerIndex == 2)
+                    {
+                        pos = GameplayManager.Instance.startPosTwo;
+                    }
+                }
+
+                pos += speed;
+                damageableHitBox.X = (int)pos.X - 25;
+                damageableHitBox.Y = (int)pos.Y - 25;
+
+                attackHitBox.X = (int)pos.X + rangeModifierX;
+                attackHitBox.Y = (int)pos.Y + rangeModifierY;
             }
-
-            speed.X *= 0.9f;
-
-            HandleInputs();
-
-            ///Vad som leder till att man förlorar en stock
-            if (pos.Y >= bY || pos.Y <= -bY / 3 || pos.X <= -300 || pos.X >= bX + 300 || currentHP <= 0)
-            {
-                currentHP = maxHP;
-                stocksRemaining--;
-                speed = Vector2.Zero;
-                if (playerIndex == 1)
-                {
-                    pos = GameplayManager.Instance.startPosOne;
-                }
-                if (playerIndex == 2)
-                {
-                    pos = GameplayManager.Instance.startPosTwo;
-                }
-            }
-
-            pos += speed;
-            damageableHitBox.X = (int)pos.X - 25;
-            damageableHitBox.Y = (int)pos.Y - 25;
-
-            attackHitBox.X = (int)pos.X + rangeModifierX;
-            attackHitBox.Y = (int)pos.Y + rangeModifierY;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

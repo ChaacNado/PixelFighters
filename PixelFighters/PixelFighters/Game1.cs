@@ -15,6 +15,8 @@ namespace PixelFighters
         Camera camera;
         BaseMenu mainMenu, quitMenu, optionsMenu, graphicsMenu;
 
+        private int currentCharacterOne = 1, currentCharacterTwo = 1;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -42,7 +44,8 @@ namespace PixelFighters
 
             ///Detta används när man hämtar data från GameplayManager etc
             AssetManager.Instance.LoadContent(Content);
-            GameplayManager.Instance.LoadContent(Content);
+
+            GameplayManager.Instance.LoadContent(Content, this);
             mainMenu = new MainMenu();
             optionsMenu = new OptionsMenu();
             quitMenu = new QuitMenu();
@@ -64,6 +67,9 @@ namespace PixelFighters
             gamePadStateOne = GamePad.GetState(PlayerIndex.One);
             previousGamePadStateTwo = gamePadStateTwo;
             gamePadStateTwo = GamePad.GetState(PlayerIndex.Two);
+
+            GameplayManager.Instance.p1.currentCharacter = currentCharacterOne;
+            GameplayManager.Instance.p2.currentCharacter = currentCharacterTwo;
 
             ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
@@ -106,30 +112,30 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.S) && previousKeyState.IsKeyUp(Keys.S) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown))
                     {
-                        if (GameplayManager.Instance.p1.currentCharacter <= 2)
+                        if (currentCharacterOne <= 2)
                         {
-                            GameplayManager.Instance.p1.currentCharacter += 1;
+                            currentCharacterOne += 1;
                         }  
                     }
                     if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
                     {
-                        if (GameplayManager.Instance.p1.currentCharacter > 1)
+                        if (currentCharacterOne > 1)
                         {
-                            GameplayManager.Instance.p1.currentCharacter -= 1;
+                            currentCharacterOne -= 1;
                         }
                     }
                     if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
                     {
-                        if (GameplayManager.Instance.p2.currentCharacter <= 2)
+                        if (currentCharacterTwo <= 2)
                         {
-                            GameplayManager.Instance.p2.currentCharacter += 1;
+                            currentCharacterTwo += 1;
                         }
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
                     {
-                        if (GameplayManager.Instance.p2.currentCharacter > 1)
+                        if (currentCharacterTwo > 1)
                         {
-                            GameplayManager.Instance.p2.currentCharacter -= 1;
+                            currentCharacterTwo -= 1;
                         }
                     }
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)

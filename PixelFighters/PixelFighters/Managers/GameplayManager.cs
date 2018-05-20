@@ -13,6 +13,7 @@ namespace PixelFighters
     public class GameplayManager
     {
         #region Variables
+        Game1 game;
         ContentManager content;
 
         public int stageNumber = 1;
@@ -49,8 +50,9 @@ namespace PixelFighters
         #endregion
 
         #region Main Methods
-        public void LoadContent(ContentManager Content)
+        public void LoadContent(ContentManager Content, Game1 game)
         {
+            this.game = game;
             content = new ContentManager(Content.ServiceProvider, "Content");
 
             timer = matchLength;
@@ -59,8 +61,8 @@ namespace PixelFighters
 
             stageNumber = 1;
 
-            p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1);
-            p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2);
+            p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1, game);
+            p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2, game);
             players = new List<Player>
             {
                 p1,
@@ -125,6 +127,8 @@ namespace PixelFighters
             mouseState = Mouse.GetState();
 
             timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            System.Diagnostics.Debug.WriteLine(p1.currentCharacter);
 
             //Kamera
             camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);

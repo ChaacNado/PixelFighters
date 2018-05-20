@@ -1,8 +1,17 @@
-﻿
+﻿**********2018-05-20 Version 0.4.9, auth: Kristian Toro**********
+{
+Förbättrade på hur karaktärsindexen fungerar. Nu behåller karaktären sitt index när Playtime är igång.
+Försökt ändra på hur streamReadern laddas in, vilket skapade en del ovälkomna resultat. Ändrade tillbaka.
+Skrivit om kod i Player-klassen för att undvika att karaktärernas funktionalitet är igång under CharacterSelect.
+Skrivit kod som kan vara till hjälp i Camera-klassen. Koden tar bort problemet med vyn på CharacterSelect-skärmen.
+Koden buggar dock till under Playtime, både Time och spelarnas hälsostats kan röra sig ut ur vyn.
+}
+
 **********2018-05-17 Version 0.4.8, auth: Erik Persson**********
 {
 La in Camera-klass samt la in nödvindig kod i gameplaymanager och game1 för att den ska fungera.
 }
+
 **********2018-05-19 Version 0.4.7, auth: Kristian Toro & Mikael Zhu**********
 {
 Man kan nu bläddra mellan olika karaktärer (obs enbart ett index som läser ut ett namn, enbart karaktär 1 har moves).

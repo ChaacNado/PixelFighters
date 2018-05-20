@@ -48,7 +48,7 @@ namespace PixelFighters
             currentHP = maxHP;
             this.game = game;
 
-            InitializeInputs();
+            //InitializeInputs();
         }
         #endregion
 

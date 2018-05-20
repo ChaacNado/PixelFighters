@@ -1,4 +1,9 @@
-﻿**********2018-05-20 Version 0.4.9, auth: Kristian Toro**********
+﻿**********2018-05-20 Version 0.5, auth: Erik Persson**********
+{
+Ändrade i samtliga menyer så båda handkontrollerna kan bläddra samt la in kommenterer i menyerna som säger vad de olika markerstates markerar.
+}
+
+**********2018-05-20 Version 0.4.9, auth: Kristian Toro**********
 {
 Förbättrade på hur karaktärsindexen fungerar. Nu behåller karaktären sitt index när Playtime är igång.
 Försökt ändra på hur streamReadern laddas in, vilket skapade en del ovälkomna resultat. Ändrade tillbaka.

@@ -41,32 +41,36 @@ namespace PixelFighters
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 
-            previousGamePadState = game1.previousGamePadStateOne;
-            gamePadState = game1.gamePadStateOne;
+            previousGamePadStateOne = game1.previousGamePadStateOne;
+            gamePadStateOne = game1.gamePadStateOne;
+            previousGamePadStateTwo = game1.previousGamePadStateTwo;
+            gamePadStateTwo = game1.gamePadStateTwo;
 
-            if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B))
+            if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
             {
                 game1.currentGameState = GameState.MainMenu;
             }
 
             switch (currentMarkerState)
             {
+                //Markerstate1 = ja-knappen
                 case MarkerState.MarkerState1:
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         game1.Exit();
                     }
-                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadState.IsButtonDown(Buttons.DPadRight) && previousGamePadState.IsButtonUp(Buttons.DPadRight))
+                    if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
                         currentMarkerState = MarkerState.MarkerState2;
                     }
                     break;
+                //Markerstate2 = nej-knappen
                 case MarkerState.MarkerState2:
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         game1.currentGameState = GameState.MainMenu;
                     }
-                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadState.IsButtonDown(Buttons.DPadLeft) && previousGamePadState.IsButtonUp(Buttons.DPadLeft))
+                    if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
                     {
                         currentMarkerState = MarkerState.MarkerState1;
                     }

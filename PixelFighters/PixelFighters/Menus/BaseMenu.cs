@@ -13,7 +13,7 @@ namespace PixelFighters
     public abstract class BaseMenu
     {
         protected KeyboardState keyState, previousKeyState;
-        protected GamePadState gamePadState, previousGamePadState;
+        protected GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
 
         protected MarkerState currentMarkerState;
 

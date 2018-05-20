@@ -18,14 +18,14 @@ namespace PixelFighters
         public float knockBackModifierX, knockBackModifierY;
 
         #region Properties
-        public virtual bool IsTopColliding(Platform p)
+        public virtual bool IsTopColliding(Platform platform)
         {
-            return new Rectangle(damageableHitBox.X, damageableHitBox.Y + 1, damageableHitBox.Width, damageableHitBox.Height).Intersects(p.topHitBox);
+            return new Rectangle(damageableHitBox.X, damageableHitBox.Y + 1, damageableHitBox.Width, damageableHitBox.Height).Intersects(platform.topHitBox);
         }
 
-        public virtual bool IsBottomColliding(Platform p)
+        public virtual bool IsBottomColliding(Platform platform)
         {
-            return new Rectangle(damageableHitBox.X, damageableHitBox.Y, damageableHitBox.Width, damageableHitBox.Height).Intersects(p.bottomHitBox);
+            return new Rectangle(damageableHitBox.X, damageableHitBox.Y, damageableHitBox.Width, damageableHitBox.Height).Intersects(platform.bottomHitBox);
         }
         #endregion
 
@@ -39,17 +39,17 @@ namespace PixelFighters
 
         #region Collision Methods
         ///Metod för kollisioner mellan spelare och ovansidan av platformarna
-        public virtual void HandleTopCollision(Platform p)
+        public virtual void HandleTopCollision(Platform platform)
         {
-            damageableHitBox.Y = p.topHitBox.Y - damageableHitBox.Height / 2;
+            damageableHitBox.Y = platform.topHitBox.Y - damageableHitBox.Height / 2;
             pos.Y = damageableHitBox.Y;
         }
 
         ///Metod för kollisioner mellan spelare och undersidan av platformarna
-        public virtual void HandleBottomCollision(Platform p)
+        public virtual void HandleBottomCollision(Platform platform)
         {
-            damageableHitBox.Y = p.bottomHitBox.Y + damageableHitBox.Height / 2;
-            damageableHitBox.X = p.bottomHitBox.X - damageableHitBox.Width / 2;
+            damageableHitBox.Y = platform.bottomHitBox.Y + damageableHitBox.Height / 2;
+            damageableHitBox.X = platform.bottomHitBox.X - damageableHitBox.Width / 2;
         }
 
         ///Metod för stridskollisioner

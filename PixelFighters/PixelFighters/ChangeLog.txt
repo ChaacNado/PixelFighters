@@ -1,4 +1,9 @@
-﻿**********2018-05-20 Version 0.5, auth: Erik Persson**********
+﻿**********2018-05-20 Version 0.5.1, auth: Mikael Zhu**********
+{
+Fått in en knapp i main meny som kallas för story
+Ändrade också så att det står platform istället för p i movingobjeects och player
+}
+**********2018-05-20 Version 0.5, auth: Erik Persson**********
 {
 Ändrade i samtliga menyer så båda handkontrollerna kan bläddra samt la in kommenterer i menyerna som säger vad de olika markerstates markerar.
 }

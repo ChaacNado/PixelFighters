@@ -184,15 +184,15 @@ namespace PixelFighters
 
         ///Skriver över kollisionsmetoderna i MovingObject
         #region Collision Methods
-        public override void HandleTopCollision(Platform p)
+        public override void HandleTopCollision(Platform platform)
         {
             speed.Y = 0;
             isOnGround = true;
-            base.HandleTopCollision(p);
+            base.HandleTopCollision(platform);
         }
 
         ///Håller spelaren ovanpå platformar
-        public override void HandleBottomCollision(Platform p)
+        public override void HandleBottomCollision(Platform platform)
         {
             if (!isOnGround)
             {
@@ -200,7 +200,7 @@ namespace PixelFighters
             }
             pos.X -= speed.X * 1.05f;
 
-            base.HandleBottomCollision(p);
+            base.HandleBottomCollision(platform);
         }
         #endregion
 

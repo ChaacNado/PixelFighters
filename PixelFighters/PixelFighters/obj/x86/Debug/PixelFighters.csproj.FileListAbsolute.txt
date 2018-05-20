@@ -722,3 +722,54 @@ C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bi
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.png
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.png
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csprojAssemblyReference.cache
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csprojAssemblyReference.cache
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\fade.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\tile.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\animFont.spritefont
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\font1.spritefont
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\GraphicsMenu.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\MainMenu.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\OptionsMenu.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.png
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\stage1.txt
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\stage2.txt
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\animFont.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\boxMan.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\fade.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\font1.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\GraphicsMenu.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\MainMenu.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\OptionsMenu.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\powerup.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\tile.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\Time.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\warningtape platforms.xnb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\PixelFighters.exe
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\PixelFighters.pdb
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CopyComplete

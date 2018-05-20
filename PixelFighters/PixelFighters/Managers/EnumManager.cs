@@ -15,6 +15,7 @@ namespace PixelFighters
         Pause,
         Results,
         Options,
+        Story,
         SoundMusic,
         Graphics,
         Controls,

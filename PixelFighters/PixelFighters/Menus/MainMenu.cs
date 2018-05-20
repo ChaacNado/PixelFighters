@@ -9,9 +9,9 @@ namespace PixelFighters
     {
         #region Variables
 
-        Rectangle playButtonRectangle, optionsButtonRectangle, creditsButtonRectangle, exitButtonRectangle;
-        Rectangle playButtonSrcRectangle, optionsSrcRectangle, creditsButtonSrcRectangle, exitButtonSrcRectangle;
-        Rectangle markedPlayButtonSrcRectanlge, markedOptionsSrcRectangle, markedCreditsSrcRectangle, markedExitButtonSrcRectangle;
+        Rectangle playButtonRectangle, optionsButtonRectangle, storyButtonRectangle, creditsButtonRectangle, exitButtonRectangle;
+        Rectangle playButtonSrcRectangle, optionsSrcRectangle, storyButtonSrcRectangle, creditsButtonSrcRectangle, exitButtonSrcRectangle;
+        Rectangle markedPlayButtonSrcRectanlge, markedOptionsSrcRectangle, markedStorySrcRectangle, markedCreditsSrcRectangle, markedExitButtonSrcRectangle;
 
         #endregion
 
@@ -19,18 +19,21 @@ namespace PixelFighters
         {
             playButtonRectangle = new Rectangle(0, -100, 408, 96);
             optionsButtonRectangle = new Rectangle(0, -100, 408, 96);
+            storyButtonRectangle = new Rectangle(0, -100, 408, 96);
             creditsButtonRectangle = new Rectangle(0, -100, 408, 96);
             exitButtonRectangle = new Rectangle(0, -100, 408, 96);
 
             playButtonSrcRectangle = new Rectangle(109, 2, 102, 24);
             optionsSrcRectangle = new Rectangle(109, 33, 102, 24);
-            creditsButtonSrcRectangle = new Rectangle(109, 64, 102, 24);
-            exitButtonSrcRectangle = new Rectangle(109, 95, 102, 24);
+            storyButtonSrcRectangle = new Rectangle(109, 64, 102, 24);
+            creditsButtonSrcRectangle = new Rectangle(109, 95, 102, 24);
+            exitButtonSrcRectangle = new Rectangle(109, 126, 102, 24);
 
             markedPlayButtonSrcRectanlge = new Rectangle(2, 2, 102, 24);
             markedOptionsSrcRectangle = new Rectangle(2, 33, 102, 24);
-            markedCreditsSrcRectangle = new Rectangle(2, 64, 102, 24);
-            markedExitButtonSrcRectangle = new Rectangle(2, 95, 102, 24);
+            markedStorySrcRectangle = new Rectangle(2, 64, 102, 24);
+            markedCreditsSrcRectangle = new Rectangle(2, 95, 102, 24);
+            markedExitButtonSrcRectangle = new Rectangle(2, 126, 102, 24);
         }
 
         #region Main Methods
@@ -41,8 +44,10 @@ namespace PixelFighters
             playButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 208;
             optionsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - optionsButtonRectangle.Width / 2;
             optionsButtonRectangle.Y = playButtonRectangle.Y + 100;
+            storyButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - storyButtonRectangle.Width / 2;
+            storyButtonRectangle.Y = optionsButtonRectangle.Y + 100;
             creditsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - creditsButtonRectangle.Width / 2;
-            creditsButtonRectangle.Y = optionsButtonRectangle.Y + 100;
+            creditsButtonRectangle.Y = storyButtonRectangle.Y + 100;
             exitButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - exitButtonRectangle.Width / 2;
             exitButtonRectangle.Y = creditsButtonRectangle.Y + 100;
 
@@ -86,23 +91,38 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState1;
                     }
                     break;
-                //Markerstate3 = Creditsknappen
+                //MarkerState3 = storyknappen
                 case MarkerState.MarkerState3:
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    {
+                        game1.currentGameState = GameState.Story;
+                    }
+                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown))
+                    {
+                        currentMarkerState = MarkerState.MarkerState4;
+                    }
+                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
+                    {
+                        currentMarkerState = MarkerState.MarkerState2;
+                    }
+                    break;
+                //Markerstate4 = Creditsknappen
+                case MarkerState.MarkerState4:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         game1.currentGameState = GameState.Credits;
                     }
                     if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
                     {
-                        currentMarkerState = MarkerState.MarkerState4;
+                        currentMarkerState = MarkerState.MarkerState5;
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
                     {
-                        currentMarkerState = MarkerState.MarkerState2;
+                        currentMarkerState = MarkerState.MarkerState3;
                     }
                     break;
-                //Markerstate4 = Quitknappen
-                case MarkerState.MarkerState4:
+                //Markerstate5 = Quitknappen
+                case MarkerState.MarkerState5:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         game1.currentGameState = GameState.Quit;
@@ -113,7 +133,7 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
                     {
-                        currentMarkerState = MarkerState.MarkerState3;
+                        currentMarkerState = MarkerState.MarkerState4;
                     }
                     break;
             }
@@ -123,6 +143,7 @@ namespace PixelFighters
         {
             spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, playButtonRectangle, playButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, optionsButtonRectangle, optionsSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, storyButtonRectangle, storyButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, creditsButtonRectangle, creditsButtonSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, exitButtonRectangle, exitButtonSrcRectangle, Color.White);
 
@@ -135,14 +156,19 @@ namespace PixelFighters
                     spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, optionsButtonRectangle, markedOptionsSrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState3:
-                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, creditsButtonRectangle, markedCreditsSrcRectangle, Color.White);
+                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, storyButtonRectangle, markedStorySrcRectangle, Color.White);
                     break;
                 case MarkerState.MarkerState4:
+                    spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, creditsButtonRectangle, markedCreditsSrcRectangle, Color.White);
+                    break;
+                case MarkerState.MarkerState5:
                     spriteBatch.Draw(AssetManager.Instance.mainMenuSpritesheet, exitButtonRectangle, markedExitButtonSrcRectangle, Color.White);
                     break;
             }
         }
+    }
+        
 
         #endregion
-    }
-}
+}   
+

@@ -773,3 +773,6 @@ C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\Pixe
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CopyComplete
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.png
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.png
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characters.xnb

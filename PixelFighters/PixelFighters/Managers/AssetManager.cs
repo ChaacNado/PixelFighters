@@ -13,12 +13,10 @@ namespace PixelFighters
     {
         #region Variables
 
-        ContentManager content;
-
         public StreamReader streamReader;
         public SpriteFont spriteFont;
         public Texture2D rectTex, fadeTex, boxManTex;
-        public Texture2D mainMenuSpritesheet, optionsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet;
+        public Texture2D mainMenuSpritesheet, optionsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet, characterSpriteSheet;
 
         private static AssetManager instance;
 
@@ -42,14 +40,13 @@ namespace PixelFighters
         #region Main Methods
         public void LoadContent(ContentManager Content)
         {
-            content = new ContentManager(Content.ServiceProvider, "Content");
-
             streamReader = new StreamReader("stage" + GameplayManager.Instance.stageNumber + ".txt");
 
             spriteFont = Content.Load<SpriteFont>("font1");
             rectTex = Content.Load<Texture2D>("tile");
             fadeTex = Content.Load<Texture2D>("fade");
             boxManTex = Content.Load<Texture2D>("boxMan");
+            characterSpriteSheet = Content.Load<Texture2D>("characters");
 
             mainMenuSpritesheet = Content.Load<Texture2D>("MainMenu");
             optionsMenuSpritesheet = Content.Load<Texture2D>("OptionsMenu");

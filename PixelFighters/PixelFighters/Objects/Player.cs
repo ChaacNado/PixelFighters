@@ -21,17 +21,17 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         public string characterName;
         public int bX, bY, stocksRemaining, currentCharacter;
-        private int jumpsAvailable, frame;
+        private int jumpsAvailable, frame, srcWidthBoxer = 29, srcHeightBoxer = 61, srcWidthRugby = 30, srcHeightRugby = 63;
         private float rotation = 0;
-        public double frameTimer, frameInterval = 400;
-        public bool facingRight, inAnimation;
+        public double frameTimer,attackFrameTimer, frameInterval = 400;
+        public bool facingRight, inAnimation, moving;
         public Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
 
         #endregion
 
         #region Player Object
-        public Player(Texture2D tex, Vector2 pos, Rectangle srcRec, int playerIndex, Game1 game) : base(tex, pos, srcRec)
+        public Player(Texture2D tex, Vector2 pos, Rectangle srcRec, int playerIndex, Game1 game, bool facingRight) : base(tex, pos, srcRec)
         {
             this.srcRec = srcRec;
             this.playerIndex = playerIndex;
@@ -41,14 +41,14 @@ namespace PixelFighters
             damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
             attackHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
-            facingRight = true;
+            this.facingRight = facingRight;
             jumpsAvailable = 2;
             stocksRemaining = 3;
             maxHP = 50;
             currentHP = maxHP;
             this.game = game;
 
-            //InitializeInputs();
+            InitializeInputs();
         }
         #endregion
 
@@ -60,16 +60,47 @@ namespace PixelFighters
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
-            CharacterManager.Instance.UpdateName(this);
+            CharacterManager.Instance.SelectedCharacter(this);
 
             if (currentGamestate == GameState.Playtime)
             {
 
+                attackFrameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
                 frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-
+                
                 isDunking = false;
 
-                if (frameTimer <= 0)
+                if (frameTimer <= 0 && moving)
+                {
+                    frameTimer = frameInterval;
+                    frame++;
+                    if (currentCharacter == 1)
+                    {
+                        srcRec.X = (frame % 4) * srcWidthBoxer;
+                        srcRec.Width = srcWidthBoxer;
+                        srcRec.Height = srcHeightBoxer;
+                    }
+                    else if (currentCharacter == 2)
+                    {
+                        srcRec.X = (frame % 4) * srcWidthRugby;
+                        srcRec.Width = srcWidthRugby;
+                    }
+                }
+                else if (!moving && !inAnimation && !isAttacking && isOnGround)
+                {
+                    srcRec.X = 0;
+                    if (currentCharacter == 1)
+                    {
+                        srcRec.Width = srcWidthBoxer;
+                        srcRec.Height = srcHeightBoxer;
+                    }
+                    else if (currentCharacter == 2)
+                    {
+                        srcRec.Width = srcWidthRugby;
+                    }
+                }
+
+                if (attackFrameTimer <= 0)
                 {
                     inAnimation = false;
                     isAttacking = false;
@@ -104,6 +135,10 @@ namespace PixelFighters
 
                 speed.X *= 0.9f;
 
+                if (isOnGround && moving)
+                {
+                    moving = false;
+                }
                 HandleInputs();
 
                 ///Vad som leder till att man förlorar en stock
@@ -121,7 +156,7 @@ namespace PixelFighters
                         pos = GameplayManager.Instance.startPosTwo;
                     }
                 }
-
+                
                 pos += speed;
                 damageableHitBox.X = (int)pos.X - 25;
                 damageableHitBox.Y = (int)pos.Y - 25;
@@ -134,9 +169,9 @@ namespace PixelFighters
         public override void Draw(SpriteBatch spriteBatch)
         {
             ///Ritar ut strids-hitbox
-            if (frameTimer > 0 && isAttacking)
+            if (attackFrameTimer > 0 && isAttacking)
             {
-                spriteBatch.Draw(tex, attackHitBox, srcRec, Color.Black);
+                //spriteBatch.Draw(tex, attackHitBox, srcRec, Color.Black);
             }
 
             if (playerIndex == 1)
@@ -149,7 +184,7 @@ namespace PixelFighters
                     }
                     else
                     {
-                        color = Color.Red;
+                        color = Color.White;
                     }
                     spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
                 }
@@ -169,7 +204,7 @@ namespace PixelFighters
                     }
                     else
                     {
-                        color = Color.Blue;
+                        color = Color.White;
                     }
                     spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
                 }
@@ -252,11 +287,19 @@ namespace PixelFighters
                     {
                         facingRight = true;
                         speed.X = 5;
+                        if (isOnGround)
+                        {
+                            moving = true;
+                        }
                     }
                     if (gamePadState.DPad.Left == ButtonState.Pressed && !isInvincible && !inAnimation)
                     {
                         facingRight = false;
                         speed.X = -5;
+                        if (isOnGround)
+                        {
+                            moving = true;
+                        }
                     }
                 }
 
@@ -269,6 +312,17 @@ namespace PixelFighters
                             speed.Y = -8;
                             isOnGround = false;
                             jumpsAvailable -= 1;
+                            moving = false;
+
+                            if (currentCharacter == 1)
+                            {
+                                srcRec.X = 307;
+                                srcRec.Width = srcWidthBoxer;
+                            }
+                            else if (currentCharacter == 2)
+                            {
+                                srcRec.X = 488;
+                            }
                         }
                     }
                     if (gamePadState.IsButtonDown(Buttons.DPadDown) && !inAnimation)
@@ -281,15 +335,15 @@ namespace PixelFighters
                     }
                 }
                 ///Strids-inputs
-                if (frameTimer <= -75)
+                if (attackFrameTimer <= -75)
                 {
                     ///Jab attack
-                    if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && frameTimer < 0)
+                    if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && attackFrameTimer < 0)
                     {
                         CharacterManager.Instance.JabAttack(this);
                     }
                     ///Low attack
-                    if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B) && frameTimer < 0)
+                    if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B) && attackFrameTimer < 0)
                     {
                         if (isOnGround)
                         {
@@ -302,20 +356,20 @@ namespace PixelFighters
                         }
                     }
                     ///Dash attack
-                    if (gamePadState.IsButtonDown(Buttons.X) && previousGamePadState.IsButtonUp(Buttons.X) && frameTimer < 0)
+                    if (gamePadState.IsButtonDown(Buttons.X) && previousGamePadState.IsButtonUp(Buttons.X) && attackFrameTimer < 0)
                     {
                         CharacterManager.Instance.DashAttack(this);
                     }
                 }
-                if (frameTimer <= -150)
+                if (attackFrameTimer <= -150)
                 {
                     ///Dodge
-                    if (frameTimer < 0)
+                    if (attackFrameTimer < 0)
                     {
                         if (gamePadState.IsButtonDown(Buttons.RightTrigger) && previousGamePadState.IsButtonUp(Buttons.RightTrigger) || gamePadState.IsButtonDown(Buttons.LeftTrigger) && previousGamePadState.IsButtonUp(Buttons.LeftTrigger))
                         {
                             isInvincible = true;
-                            frameTimer = frameInterval;
+                            attackFrameTimer = frameInterval;
                         }
                     }
                 }
@@ -329,11 +383,19 @@ namespace PixelFighters
             {
                 facingRight = true;
                 speed.X = 5;
+                if (isOnGround)
+                {
+                    moving = true;
+                }
             }
             else if (keyState.IsKeyDown(leftInput) && !isInvincible && !inAnimation)
             {
                 facingRight = false;
                 speed.X = -5;
+                if (isOnGround)
+                {
+                    moving = true;
+                }
             }
 
             if (keyState.IsKeyDown(jumpInput) && previousKeyState.IsKeyUp(jumpInput) && !isInvincible && jumpsAvailable >= 1)
@@ -341,6 +403,17 @@ namespace PixelFighters
                 speed.Y = -8;
                 isOnGround = false;
                 jumpsAvailable -= 1;
+                moving = false;
+
+                if (currentCharacter == 1)
+                {
+                    srcRec.X = 307;
+                    srcRec.Width = srcWidthBoxer;
+                }
+                else if (currentCharacter == 2)
+                {
+                    srcRec.X = 488;
+                }
             }
             if (keyState.IsKeyDown(downInput) && previousKeyState.IsKeyUp(jumpInput) && !inAnimation)
             {
@@ -352,15 +425,15 @@ namespace PixelFighters
             }
 
             ///Strids-inputs
-            if (frameTimer <= -75)
+            if (attackFrameTimer <= -75)
             {
                 ///Jab attack
-                if (keyState.IsKeyDown(jabInput) && previousKeyState.IsKeyUp(jabInput) && frameTimer < 0)
+                if (keyState.IsKeyDown(jabInput) && previousKeyState.IsKeyUp(jabInput) && attackFrameTimer < 0)
                 {
                     CharacterManager.Instance.JabAttack(this);
                 }
                 ///Low attack
-                if (keyState.IsKeyDown(lowInput) && previousKeyState.IsKeyUp(lowInput) && frameTimer < 0)
+                if (keyState.IsKeyDown(lowInput) && previousKeyState.IsKeyUp(lowInput) && attackFrameTimer < 0)
                 {
                     if (isOnGround)
                     {
@@ -373,18 +446,18 @@ namespace PixelFighters
                     }
                 }
                 ///Dash attack
-                if (keyState.IsKeyDown(dashInput) && previousKeyState.IsKeyUp(dashInput) && frameTimer < 0)
+                if (keyState.IsKeyDown(dashInput) && previousKeyState.IsKeyUp(dashInput) && attackFrameTimer < 0)
                 {
                     CharacterManager.Instance.DashAttack(this);
                 }
             }
-            if (frameTimer <= -150)
+            if (attackFrameTimer <= -150)
             {
                 ///Dodge
-                if (keyState.IsKeyDown(dodgeInput) && previousKeyState.IsKeyUp(dodgeInput) && frameTimer < 0)
+                if (keyState.IsKeyDown(dodgeInput) && previousKeyState.IsKeyUp(dodgeInput) && attackFrameTimer < 0)
                 {
                     isInvincible = true;
-                    frameTimer = frameInterval;
+                    attackFrameTimer = frameInterval;
                 }
             }
             #endregion

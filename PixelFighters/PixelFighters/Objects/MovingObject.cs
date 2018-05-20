@@ -10,8 +10,7 @@ namespace PixelFighters
 {
     public class MovingObject : GameObject
     {
-        public Rectangle damageableHitBox, groundHitBox, attackHitBox;
-        protected Rectangle srcRec;
+        public Rectangle damageableHitBox, groundHitBox, attackHitBox, srcRec;
         public Vector2 speed;
         public bool isOnGround, isHit, hasTakenDamage, isAttacking, isInvincible, isDunking;
         public int playerIndex, currentHP, maxHP, rangeModifierX, rangeModifierY, damageDealt;

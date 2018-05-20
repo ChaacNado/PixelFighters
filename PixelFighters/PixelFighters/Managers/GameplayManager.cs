@@ -14,7 +14,6 @@ namespace PixelFighters
     {
         #region Variables
         Game1 game;
-        ContentManager content;
 
         public int stageNumber = 1;
         public Vector2 startPosOne, startPosTwo;
@@ -27,7 +26,7 @@ namespace PixelFighters
         public Color color;
 
         public bool timerStart = false, timerStock = false;
-        public float matchLength = 60, timer, timerTic = 0;
+        public float matchLength = 60, timer;
 
         public bool playerOneWon, playerTwoWon;
 
@@ -53,7 +52,6 @@ namespace PixelFighters
         public void LoadContent(ContentManager Content, Game1 game)
         {
             this.game = game;
-            content = new ContentManager(Content.ServiceProvider, "Content");
 
             timer = matchLength;
 
@@ -61,8 +59,8 @@ namespace PixelFighters
 
             stageNumber = 1;
 
-            p1 = new Player(AssetManager.Instance.boxManTex, startPosOne, new Rectangle(0, 0, 50, 50), 1, game);
-            p2 = new Player(AssetManager.Instance.boxManTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2, game);
+            p1 = new Player(AssetManager.Instance.characterSpriteSheet, startPosOne, new Rectangle(0, 0, 29, 61), 1, game, true);
+            p2 = new Player(AssetManager.Instance.characterSpriteSheet, startPosTwo, new Rectangle(0, 78, 30, 61), 2, game, false);
             players = new List<Player>
             {
                 p1,
@@ -125,9 +123,7 @@ namespace PixelFighters
         {
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
-
-            timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+            
             System.Diagnostics.Debug.WriteLine(p1.currentCharacter);
 
             //Kamera
@@ -228,8 +224,6 @@ namespace PixelFighters
             ///Match-timer
             if (timerStart == true)
             {
-                timerTic += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                 if (timer >= 0)
                 {
                     timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -282,17 +276,19 @@ namespace PixelFighters
                 p.Draw(spriteBatch);
             }
 
-            p1.Draw(spriteBatch);
-            p2.Draw(spriteBatch);
+            foreach (Player player in players)
+            {
+                player.Draw(spriteBatch);
+            }
 
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2((int)camera.cameraFocus.X - (ScreenManager.Instance.Dimensions.X / 2), (int)camera.cameraFocus.Y + (ScreenManager.Instance.Dimensions.Y / 3)), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2((int)camera.cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3 - 50), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2((int)camera.cameraFocus.X + ScreenManager.Instance.Dimensions.X / 2 - 125, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2((int)camera.cameraFocus.X + ScreenManager.Instance.Dimensions.X / 2 - 140, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3 - 50), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2((int)camera.cameraFocus.X, (int)camera.cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2), Color.White);
-            spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle(0, 0, (int)ScreenManager.Instance.Dimensions.X, (int)ScreenManager.Instance.Dimensions.Y), color);
+            spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.cameraFocus.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.cameraFocus.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
 
-            if(timer <= 0)
+            if (timer <= 0)
             {
                 spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2((int)camera.cameraFocus.X, (int)camera.cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 3), Color.Black);
             }

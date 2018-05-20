@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/mikael/Downloads/school/Pixelfighet kod/PixelFighters-master v 0.5/PixelFighters-master/PixelFighters/PixelFighters/Content/font1.spritefont</SourceFile>
-  <SourceTime>2018-05-20T18:51:52.7348867+02:00</SourceTime>
-  <DestFile>C:/Users/mikael/Downloads/school/Pixelfighet kod/PixelFighters-master v 0.5/PixelFighters-master/PixelFighters/PixelFighters/Content/bin/Windows/font1.xnb</DestFile>
-  <DestTime>2018-05-20T18:58:51.5910036+02:00</DestTime>
+  <SourceFile>C:/Users/Jonas.E/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/font1.spritefont</SourceFile>
+  <SourceTime>2018-05-20T19:36:08.7244051+02:00</SourceTime>
+  <DestFile>C:/Users/Jonas.E/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/bin/Windows/font1.xnb</DestFile>
+  <DestTime>2018-05-20T19:40:46.3156556+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -1,4 +1,9 @@
-﻿**********2018-05-20 Version 0.5.1, auth: Jonas Ekblad**********
+﻿**********2018-05-20 Version 0.5.1, auth: Elma Carlsson & Mikael Zhu & Erik Persson**********
+{
+Början på en story meny, det går att bläddra mellan olika karaktärer men ingen text är inlagd.
+}
+
+**********2018-05-20 Version 0.5.1, auth: Jonas Ekblad**********
 {
 Satte in all animation till boxaren. Hastighet och attacker logik har jag inte rört.
 Fixat faden så att positionen av den förskjuts med kameran istället för att ha en statisk position.

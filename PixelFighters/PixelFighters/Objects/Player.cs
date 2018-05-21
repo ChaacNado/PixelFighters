@@ -84,7 +84,14 @@ namespace PixelFighters
                 }
                 else if (!moving && !inAnimation && !isAttacking && isOnGround)
                 {
-                    srcRec.X = 0;
+                    if (currentCharacter != 3)
+                    {
+                        srcRec.X = 0;
+                    }
+                    else
+                    {
+                        srcRec.X = 200;
+                    }
 
                     srcRec.Width = srcWidthModifier;
                     srcRec.Height = srcHeightModifier;

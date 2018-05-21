@@ -1,4 +1,9 @@
-﻿**********2018-05-21 Version 0.5.7, auth: Kristian Toro**********
+﻿**********2018-05-22 Version 0.5.8, auth: Jonas Ekblad**********
+{
+Gjorde animering till rugby och curling karaktärerna.
+}
+
+**********2018-05-21 Version 0.5.7, auth: Kristian Toro**********
 {
 Snyggade till animationen.
 }

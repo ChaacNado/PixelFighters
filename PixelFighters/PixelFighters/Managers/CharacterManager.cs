@@ -14,7 +14,7 @@ namespace PixelFighters
         ///Denna bör nog enbart modifera och nås av Player eller möjligtvis MovingObject
 
         #region Variables
-       
+
         private static CharacterManager instance;
         #endregion
 
@@ -43,6 +43,10 @@ namespace PixelFighters
                 player.srcWidthModifier = 29;
                 player.srcHeightModifier = 61;
 
+                if (player.playerIndex == 2)
+                {
+                    player.srcRec.Y = 78;
+                }
                 if (!player.isOnGround && !player.isAttacking)
                 {
                     player.srcRec.X = 307;
@@ -54,26 +58,37 @@ namespace PixelFighters
             {
                 player.characterName = "Mac Enchiz";
                 player.srcWidthModifier = 30;
-                player.srcHeightModifier = 63;
+                player.srcHeightModifier = 71;
 
                 if (player.playerIndex == 1)
                 {
-                    player.srcRec.Y = 156;
-
-                    if (!player.isOnGround)
-                    {
-                        player.srcRec.X = 488;
-                    }
+                    player.srcRec.Y = 155;
                 }
                 else
                 {
                     player.srcRec.Y = 227;
+                }
+                if (!player.isOnGround && !player.isAttacking)
+                {
+                    player.srcRec.X = 489;
+                    player.srcRec.Width = player.srcWidthModifier - 1;
                 }
             }
             ///Curlingspelare
             if (player.currentCharacter == 3)
             {
                 player.characterName = "Aiden Fortin";
+                player.srcWidthModifier = 49;
+                player.srcHeightModifier = 61;
+
+                if (player.playerIndex == 1)
+                {
+                    player.srcRec.Y = 337;
+                }
+                else
+                {
+                    player.srcRec.Y = 437;
+                }
             }
         }
 
@@ -108,6 +123,29 @@ namespace PixelFighters
                 else if (!player.facingRight)
                 {
                     player.rangeModifierX = -64;
+                }
+            }
+            else if (player.currentCharacter == 2)
+            {
+                player.attackFrameTimer = player.frameInterval;
+                player.isAttacking = true;
+                //if (player.attackFrameTimer > player.frameInterval * 0.5f)
+                //{
+                //    player.srcRec.X = 120;                Ett försök till att få gubben att "ladda" upp attacken.
+                //    player.srcRec.Width = 27;
+                //}
+                //player.srcRec.X = 147;
+                //player.srcRec.Width = 54;
+
+                if (player.isOnGround)
+                {
+                    player.srcRec.X = 147;
+                    player.srcRec.Width = 54;
+                }
+                else if (!player.isOnGround)
+                {
+                    player.srcRec.X = 644;
+                    player.srcRec.Width = 54;
                 }
             }
         }
@@ -172,6 +210,35 @@ namespace PixelFighters
                 player.srcRec.X = 436;
                 player.srcRec.Width = 80;
                 player.inAnimation = true;
+                player.knockBackModifierX = 10;
+                player.knockBackModifierY = 3;
+                player.attackHitBox.Width = 32;
+                player.attackHitBox.Height = 32;
+                player.rangeModifierY = -15;
+                player.damageDealt = 5;
+
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = 0;
+                    player.speed.X = 25f;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -32;
+                    player.speed.X = -25f;
+                }
+            }
+            else if (player.currentCharacter == 2)
+            {
+                player.attackFrameTimer = player.frameInterval * 0.9f;
+                if (player.attackFrameTimer >= 340)
+                {
+                    player.isAttacking = true;
+                }
+                player.srcRec.X = 577;
+                player.srcRec.Width = 67;
+                player.inAnimation = true;
+
                 player.knockBackModifierX = 10;
                 player.knockBackModifierY = 3;
                 player.attackHitBox.Width = 32;

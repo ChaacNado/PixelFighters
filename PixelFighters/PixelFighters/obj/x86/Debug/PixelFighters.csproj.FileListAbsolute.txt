@@ -789,3 +789,7 @@ D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Win
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.png
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.png
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.xnb
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.png
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.png
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.xnb
+C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.xnb

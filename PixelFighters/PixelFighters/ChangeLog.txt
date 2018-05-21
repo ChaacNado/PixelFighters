@@ -1,4 +1,13 @@
-﻿**********2018-05-21 Version 0.5.3, auth: Elma Carlsson**********
+﻿**********2018-05-21 Version 0.5.6, auth: Kristian Toro & Jonas Ekblad**********
+{
+Fixat så att hitboxen har samma storlek som source rectangle.
+Gjort liten justering på animationen.
+Fått spelarens hitbox som känner av kollision med marken att fungera bättre.
+Gjort justeringar på platformarnas tophitbox.
+Gett en mer låst position på alla HUD-föremål.
+}
+
+**********2018-05-21 Version 0.5.5, auth: Elma Carlsson**********
 {
 La till en creditsmeny med våra namn.
 }

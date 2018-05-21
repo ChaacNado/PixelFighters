@@ -19,7 +19,7 @@ namespace PixelFighters
         #region Properties
         public virtual bool IsTopColliding(Platform platform)
         {
-            return new Rectangle(damageableHitBox.X, damageableHitBox.Y + 1, damageableHitBox.Width, damageableHitBox.Height).Intersects(platform.topHitBox);
+            return new Rectangle(groundHitBox.X, groundHitBox.Y, groundHitBox.Width, groundHitBox.Height).Intersects(platform.topHitBox);
         }
 
         public virtual bool IsBottomColliding(Platform platform)
@@ -33,15 +33,15 @@ namespace PixelFighters
             this.tex = tex;
             this.pos = pos;
             this.srcRec = srcRec;
-            damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
+            damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, damageableHitBox.Width, damageableHitBox.Height);
         }
 
         #region Collision Methods
         ///Metod för kollisioner mellan spelare och ovansidan av platformarna
         public virtual void HandleTopCollision(Platform platform)
         {
-            damageableHitBox.Y = platform.topHitBox.Y - damageableHitBox.Height / 2;
-            pos.Y = damageableHitBox.Y;
+            groundHitBox.Y = platform.topHitBox.Y - damageableHitBox.Height / 2;
+            pos.Y = groundHitBox.Y;
         }
 
         ///Metod för kollisioner mellan spelare och undersidan av platformarna

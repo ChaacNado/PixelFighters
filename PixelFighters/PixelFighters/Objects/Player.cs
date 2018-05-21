@@ -132,7 +132,7 @@ namespace PixelFighters
                 HandleInputs();
 
                 ///Vad som leder till att man förlorar en stock
-                if (pos.Y >= bY || pos.Y <= -bY / 3 || pos.X <= -300 || pos.X >= bX + 300 || currentHP <= 0)
+                if (pos.Y >= bY + 300 || pos.Y <= -bY / 3 || pos.X <= -300 || pos.X >= bX + 300 || currentHP <= 0)
                 {
                     currentHP = maxHP;
                     stocksRemaining--;
@@ -148,8 +148,11 @@ namespace PixelFighters
                 }
 
                 pos += speed;
-                damageableHitBox.X = (int)pos.X - 25;
-                damageableHitBox.Y = (int)pos.Y - 25;
+                damageableHitBox.X = (int)pos.X - srcWidthModifier / 2;
+                damageableHitBox.Y = (int)pos.Y - srcHeightModifier / 2;
+
+                groundHitBox.X = (int)pos.X - srcWidthModifier / 2;
+                groundHitBox.Y = (int)pos.Y + srcHeightModifier / 2;
 
                 attackHitBox.X = (int)pos.X + rangeModifierX;
                 attackHitBox.Y = (int)pos.Y + rangeModifierY;
@@ -161,8 +164,11 @@ namespace PixelFighters
             ///Ritar ut strids-hitbox
             if (attackFrameTimer > 0 && isAttacking)
             {
-                spriteBatch.Draw(attackTex, attackHitBox, srcRec, Color.Red * 0.7f);
+                spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
             }
+
+            spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
+            spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
 
             if (playerIndex == 1)
             {
@@ -394,20 +400,11 @@ namespace PixelFighters
                 isOnGround = false;
                 jumpsAvailable -= 1;
                 moving = false;
-
-                if (currentCharacter == 1)
-                {
-                    srcRec.X = 307;
-                    srcRec.Width = srcWidthModifier;
-                }
-                else if (currentCharacter == 2)
-                {
-                    srcRec.X = 488;
-                }
             }
             if (keyState.IsKeyDown(downInput) && previousKeyState.IsKeyUp(jumpInput) && !inAnimation)
             {
-                speed.Y += 5;
+                speed.Y = 10;
+                speed.Y += 2;
                 if (isOnGround)
                 {
                     speed.X *= 0.2f;

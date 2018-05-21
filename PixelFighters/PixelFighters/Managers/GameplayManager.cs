@@ -17,6 +17,7 @@ namespace PixelFighters
 
         public int stageNumber = 1;
         public Vector2 startPosOne, startPosTwo;
+        Rectangle srcRecOne, srcRecTwo;
         public Player p1, p2;
         public List<Player> players;
         public List<Platform> platforms;
@@ -59,8 +60,10 @@ namespace PixelFighters
 
             stageNumber = 1;
 
-            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, new Rectangle(0, 0, 50, 50), 1, game, true);
-            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2, game, false);
+            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, 1, game, true);
+            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, srcRecTwo, 2, game, false);
+            srcRecOne = new Rectangle(0, 0, 0, 0);
+            srcRecTwo = new Rectangle(0, 0, 0, 0);
             players = new List<Player>
             {
                 p1,
@@ -97,12 +100,10 @@ namespace PixelFighters
                         }
                         if (j == 0)
                         {
-                            rect = new Rectangle(0, 0, p1.srcWidthModifier, p1.srcHeightModifier);
                             startPosOne = new Vector2(x, y);
                         }
                         if (j == 1)
                         {
-                            rect = new Rectangle(0, 0, p2.srcWidthModifier, p2.srcHeightModifier);
                             startPosTwo = new Vector2(x, y);
                         }
                         if (j == 2)
@@ -123,8 +124,11 @@ namespace PixelFighters
         {
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
-            
-            System.Diagnostics.Debug.WriteLine(p1.isOnGround);
+
+            srcRecOne.Width = p1.srcWidthModifier;
+            srcRecOne.Height = p1.srcHeightModifier;
+            srcRecTwo.Width = p2.srcWidthModifier;
+            srcRecTwo.Height = p2.srcHeightModifier;
 
             ///Kamera
             camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);
@@ -281,16 +285,16 @@ namespace PixelFighters
                 player.Draw(spriteBatch);
             }
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2((int)camera.cameraFocus.X - (ScreenManager.Instance.Dimensions.X / 2), (int)camera.cameraFocus.Y + (ScreenManager.Instance.Dimensions.Y / 3)), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2((int)camera.cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3 - 50), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2((int)camera.cameraFocus.X + ScreenManager.Instance.Dimensions.X / 2 - 125, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2((int)camera.cameraFocus.X + ScreenManager.Instance.Dimensions.X / 2 - 140, (int)camera.cameraFocus.Y + ScreenManager.Instance.Dimensions.Y / 3 - 50), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2((int)camera.cameraFocus.X, (int)camera.cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2), Color.White);
-            spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.cameraFocus.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.cameraFocus.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.05f), (int)camera.pos.Y + (ScreenManager.Instance.Dimensions.Y * 0.90f)), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.05f), (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.85f), Color.Red);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.85f), (int)camera.pos.Y + (ScreenManager.Instance.Dimensions.Y * 0.90f)), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.85f), (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.85f), Color.Blue);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.45f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.1f), Color.White);
+            spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
 
             if (timer <= 0)
             {
-                spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2((int)camera.cameraFocus.X, (int)camera.cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 3), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.435f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.13f), Color.Black);
             }
         }
         #endregion

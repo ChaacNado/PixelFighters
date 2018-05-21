@@ -42,6 +42,12 @@ namespace PixelFighters
                 player.characterName = "Philip Albert Jackson";
                 player.srcWidthModifier = 29;
                 player.srcHeightModifier = 61;
+
+                if (!player.isOnGround && !player.isAttacking)
+                {
+                    player.srcRec.X = 307;
+                    player.srcRec.Width = player.srcWidthModifier;
+                }
             }
             ///Rugbyspelare
             if (player.currentCharacter == 2)
@@ -53,6 +59,11 @@ namespace PixelFighters
                 if (player.playerIndex == 1)
                 {
                     player.srcRec.Y = 156;
+
+                    if (!player.isOnGround)
+                    {
+                        player.srcRec.X = 488;
+                    }
                 }
                 else
                 {

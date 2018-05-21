@@ -18,7 +18,7 @@ namespace PixelFighters
             color = Color.White;
 
             bottomHitBox = new Rectangle(hitBox.X, hitBox.Y + 1, hitBox.Width, hitBox.Height);
-            topHitBox = new Rectangle(hitBox.X, hitBox.Y, hitBox.Width, 1);
+            topHitBox = new Rectangle(hitBox.X, hitBox.Y, hitBox.Width, 25);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -13,7 +13,7 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
-        BaseMenu mainMenu, quitMenu, optionsMenu, graphicsMenu;
+        BaseMenu mainMenu, optionsMenu, storyMenu, quitMenu, graphicsMenu;
 
         private int currentCharacterOne = 1, currentCharacterTwo = 1;
 
@@ -48,6 +48,7 @@ namespace PixelFighters
             GameplayManager.Instance.LoadContent(Content, this);
             mainMenu = new MainMenu();
             optionsMenu = new OptionsMenu();
+            storyMenu = new StoryMenu();
             quitMenu = new QuitMenu();
             graphicsMenu = new GraphicsMenu();
 
@@ -195,6 +196,10 @@ namespace PixelFighters
                 case GameState.Options:
                     optionsMenu.Update(gameTime, this);
                     break;
+                case GameState.Story:
+                    camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
+                    storyMenu.Update(gameTime, this);
+                    break;
                 case GameState.Graphics:
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     graphicsMenu.Update(gameTime, this);
@@ -260,13 +265,17 @@ namespace PixelFighters
                     GraphicsDevice.Clear(new Color(203, 219, 252));
                     optionsMenu.Draw(spriteBatch);
                     break;
-                case GameState.Graphics:
+                case GameState.Story:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
-                    graphicsMenu.Draw(spriteBatch);
+                    storyMenu.Draw(spriteBatch);
                     break;
                 case GameState.Quit:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
                     quitMenu.Draw(spriteBatch);
+                    break;
+                case GameState.Graphics:
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    graphicsMenu.Draw(spriteBatch);
                     break;
             }
 

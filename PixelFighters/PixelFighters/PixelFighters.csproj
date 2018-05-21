@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Menus\StoryMenu.cs" />
     <Compile Include="Screen\Camera.cs" />
     <Compile Include="Menus\BaseMenu.cs" />
     <Compile Include="Menus\CharacterSelectMenu.cs" />
@@ -92,6 +93,7 @@
     <Content Include="Content\QuitMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\StoryMenu.png" />
     <Content Include="Content\tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

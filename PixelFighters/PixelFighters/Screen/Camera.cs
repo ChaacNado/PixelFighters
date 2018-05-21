@@ -54,8 +54,6 @@ namespace PixelFighters
                 }
             }
 
-            System.Diagnostics.Debug.WriteLine(pos.Y);
-
             transform = Matrix.CreateTranslation(new Vector3(-pos.X, -pos.Y, 0)) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
         }
     }

@@ -24,7 +24,7 @@ namespace PixelFighters
         public int bX, bY, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier;
         private int jumpsAvailable, frame;
         private float rotation = 0;
-        public double frameTimer, attackFrameTimer, frameInterval = 400;
+        public double frameTimer, attackFrameTimer, frameInterval = 150;
         public bool facingRight, inAnimation, moving;
         public Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
@@ -72,7 +72,7 @@ namespace PixelFighters
 
                 isDunking = false;
 
-                if (frameTimer <= 0 && moving)
+                if (frameTimer <= 0 && moving && isOnGround)
                 {
                     frameTimer = frameInterval;
                     frame++;

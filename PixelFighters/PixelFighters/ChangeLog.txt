@@ -1,4 +1,9 @@
-﻿**********2018-05-21 Version 0.5.6, auth: Kristian Toro & Jonas Ekblad**********
+﻿**********2018-05-21 Version 0.5.7, auth: Kristian Toro**********
+{
+Snyggade till animationen.
+}
+
+**********2018-05-21 Version 0.5.6, auth: Kristian Toro & Jonas Ekblad**********
 {
 Fixat så att hitboxen har samma storlek som source rectangle.
 Gjort liten justering på animationen.

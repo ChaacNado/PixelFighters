@@ -40,13 +40,15 @@ namespace PixelFighters
             if (player.currentCharacter == 1)
             {
                 player.characterName = "Philip Albert Jackson";
+                player.srcWidthModifier = 29;
+                player.srcHeightModifier = 61;
             }
             ///Rugbyspelare
             if (player.currentCharacter == 2)
             {
                 player.characterName = "Mac Enchiz";
-                player.srcRec.Width = 30;
-                player.srcRec.Height = 63;
+                player.srcWidthModifier = 30;
+                player.srcHeightModifier = 63;
 
                 if (player.playerIndex == 1)
                 {

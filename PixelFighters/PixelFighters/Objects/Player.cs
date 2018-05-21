@@ -19,11 +19,12 @@ namespace PixelFighters
         GamePadCapabilities capabilities;
 
         SpriteEffects playerFx = SpriteEffects.None;
+        Texture2D attackTex;
         public string characterName;
-        public int bX, bY, stocksRemaining, currentCharacter;
-        private int jumpsAvailable, frame, srcWidthBoxer = 29, srcHeightBoxer = 61, srcWidthRugby = 30, srcHeightRugby = 63;
+        public int bX, bY, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier;
+        private int jumpsAvailable, frame;
         private float rotation = 0;
-        public double frameTimer,attackFrameTimer, frameInterval = 400;
+        public double frameTimer, attackFrameTimer, frameInterval = 400;
         public bool facingRight, inAnimation, moving;
         public Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
@@ -31,9 +32,10 @@ namespace PixelFighters
         #endregion
 
         #region Player Object
-        public Player(Texture2D tex, Vector2 pos, Rectangle srcRec, int playerIndex, Game1 game, bool facingRight) : base(tex, pos, srcRec)
+        public Player(Texture2D tex, Texture2D attackTex, Vector2 pos, Rectangle srcRec, int playerIndex, Game1 game, bool facingRight) : base(tex, pos, srcRec)
         {
             this.srcRec = srcRec;
+            this.attackTex = attackTex;
             this.playerIndex = playerIndex;
             speed = new Vector2(0, 0);
             bY = (int)ScreenManager.Instance.Dimensions.Y;
@@ -67,37 +69,25 @@ namespace PixelFighters
 
                 attackFrameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
                 frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-                
+
                 isDunking = false;
 
                 if (frameTimer <= 0 && moving)
                 {
                     frameTimer = frameInterval;
                     frame++;
-                    if (currentCharacter == 1)
-                    {
-                        srcRec.X = (frame % 4) * srcWidthBoxer;
-                        srcRec.Width = srcWidthBoxer;
-                        srcRec.Height = srcHeightBoxer;
-                    }
-                    else if (currentCharacter == 2)
-                    {
-                        srcRec.X = (frame % 4) * srcWidthRugby;
-                        srcRec.Width = srcWidthRugby;
-                    }
+
+                    srcRec.X = (frame % 4) * srcWidthModifier;
+                    srcRec.Width = srcWidthModifier;
+                    srcRec.Height = srcHeightModifier;
+
                 }
                 else if (!moving && !inAnimation && !isAttacking && isOnGround)
                 {
                     srcRec.X = 0;
-                    if (currentCharacter == 1)
-                    {
-                        srcRec.Width = srcWidthBoxer;
-                        srcRec.Height = srcHeightBoxer;
-                    }
-                    else if (currentCharacter == 2)
-                    {
-                        srcRec.Width = srcWidthRugby;
-                    }
+
+                    srcRec.Width = srcWidthModifier;
+                    srcRec.Height = srcHeightModifier;
                 }
 
                 if (attackFrameTimer <= 0)
@@ -156,7 +146,7 @@ namespace PixelFighters
                         pos = GameplayManager.Instance.startPosTwo;
                     }
                 }
-                
+
                 pos += speed;
                 damageableHitBox.X = (int)pos.X - 25;
                 damageableHitBox.Y = (int)pos.Y - 25;
@@ -171,7 +161,7 @@ namespace PixelFighters
             ///Ritar ut strids-hitbox
             if (attackFrameTimer > 0 && isAttacking)
             {
-                //spriteBatch.Draw(tex, attackHitBox, srcRec, Color.Black);
+                spriteBatch.Draw(attackTex, attackHitBox, srcRec, Color.Red * 0.7f);
             }
 
             if (playerIndex == 1)
@@ -186,12 +176,12 @@ namespace PixelFighters
                     {
                         color = Color.White;
                     }
-                    spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                    spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
                 }
                 if (isInvincible)
                 {
                     color = Color.Pink;
-                    spriteBatch.Draw(tex, pos, srcRec, color * 0.5f, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                    spriteBatch.Draw(tex, pos, srcRec, color * 0.5f, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
                 }
             }
             if (playerIndex == 2)
@@ -206,12 +196,12 @@ namespace PixelFighters
                     {
                         color = Color.White;
                     }
-                    spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                    spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
                 }
                 if (isInvincible)
                 {
                     color = Color.Cyan;
-                    spriteBatch.Draw(tex, pos, srcRec, color * 0.5f, rotation, new Vector2(damageableHitBox.Width / 2, damageableHitBox.Height / 2), 1, playerFx, 1);
+                    spriteBatch.Draw(tex, pos, srcRec, color * 0.5f, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
                 }
             }
         }
@@ -317,7 +307,7 @@ namespace PixelFighters
                             if (currentCharacter == 1)
                             {
                                 srcRec.X = 307;
-                                srcRec.Width = srcWidthBoxer;
+                                srcRec.Width = srcWidthModifier;
                             }
                             else if (currentCharacter == 2)
                             {
@@ -408,7 +398,7 @@ namespace PixelFighters
                 if (currentCharacter == 1)
                 {
                     srcRec.X = 307;
-                    srcRec.Width = srcWidthBoxer;
+                    srcRec.Width = srcWidthModifier;
                 }
                 else if (currentCharacter == 2)
                 {

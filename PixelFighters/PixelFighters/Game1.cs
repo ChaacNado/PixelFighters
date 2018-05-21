@@ -93,6 +93,7 @@ namespace PixelFighters
                     GameplayManager.Instance.timerStock = false;
                     break;
                 case GameState.CharacterSelect:
+                    camera.inMenu = true;
                     mainMenu.Update(gameTime, this);
                     GameplayManager.Instance.Update(gameTime, camera);
                     if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
@@ -151,6 +152,7 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Playtime:
+                    camera.inMenu = false;
                     GameplayManager.Instance.Update(gameTime, camera);
                     GameplayManager.Instance.timerStart = true;
                     if (GameplayManager.Instance.playerOneWon == true || GameplayManager.Instance.playerTwoWon == true)

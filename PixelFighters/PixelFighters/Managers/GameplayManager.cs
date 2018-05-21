@@ -59,8 +59,8 @@ namespace PixelFighters
 
             stageNumber = 1;
 
-            p1 = new Player(AssetManager.Instance.characterSpriteSheet, startPosOne, new Rectangle(0, 0, 29, 61), 1, game, true);
-            p2 = new Player(AssetManager.Instance.characterSpriteSheet, startPosTwo, new Rectangle(0, 78, 30, 61), 2, game, false);
+            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, new Rectangle(0, 0, 50, 50), 1, game, true);
+            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, new Rectangle(0, 0, 50, 50), 2, game, false);
             players = new List<Player>
             {
                 p1,
@@ -97,12 +97,12 @@ namespace PixelFighters
                         }
                         if (j == 0)
                         {
-                            rect = new Rectangle(0, 0, 50, 50);
+                            rect = new Rectangle(0, 0, p1.srcWidthModifier, p1.srcHeightModifier);
                             startPosOne = new Vector2(x, y);
                         }
                         if (j == 1)
                         {
-                            rect = new Rectangle(0, 0, 50, 50);
+                            rect = new Rectangle(0, 0, p2.srcWidthModifier, p2.srcHeightModifier);
                             startPosTwo = new Vector2(x, y);
                         }
                         if (j == 2)
@@ -124,9 +124,9 @@ namespace PixelFighters
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
             
-            System.Diagnostics.Debug.WriteLine(p1.currentCharacter);
+            System.Diagnostics.Debug.WriteLine(p1.isOnGround);
 
-            //Kamera
+            ///Kamera
             camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);
             camera.cameraFocus.Y = ((p1.pos.Y + p2.pos.Y) / 2);
 

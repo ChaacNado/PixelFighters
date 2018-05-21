@@ -781,3 +781,5 @@ D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.exe
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.pdb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characters.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.xnb

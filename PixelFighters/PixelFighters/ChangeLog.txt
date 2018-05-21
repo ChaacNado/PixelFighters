@@ -1,4 +1,9 @@
-﻿**********2018-05-21 Version 0.5.4, auth: Kristian Toro**********
+﻿**********2018-05-21 Version 0.5.3, auth: Elma Carlsson**********
+{
+La till en creditsmeny med våra namn.
+}
+
+**********2018-05-21 Version 0.5.4, auth: Kristian Toro**********
 {
 Gjort gemensam mofifier-variabler för justeringen av source rectangles som hanteras genom CharacterManager.
 Fixat så att spelarnas origin baseras på source rectangle.

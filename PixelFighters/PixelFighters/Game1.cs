@@ -13,7 +13,7 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
-        BaseMenu mainMenu, optionsMenu, storyMenu, quitMenu, graphicsMenu;
+        BaseMenu mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu;
 
         private int currentCharacterOne = 1, currentCharacterTwo = 1;
 
@@ -49,6 +49,7 @@ namespace PixelFighters
             mainMenu = new MainMenu();
             optionsMenu = new OptionsMenu();
             storyMenu = new StoryMenu();
+            creditsMenu = new CreditsMenu();
             quitMenu = new QuitMenu();
             graphicsMenu = new GraphicsMenu();
 
@@ -202,6 +203,10 @@ namespace PixelFighters
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     storyMenu.Update(gameTime, this);
                     break;
+                case GameState.Credits:
+                    camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
+                    creditsMenu.Update(gameTime, this);
+                    break;
                 case GameState.Graphics:
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     graphicsMenu.Update(gameTime, this);
@@ -270,6 +275,10 @@ namespace PixelFighters
                 case GameState.Story:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
                     storyMenu.Draw(spriteBatch);
+                    break;
+                case GameState.Credits:
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    creditsMenu.Draw(spriteBatch);
                     break;
                 case GameState.Quit:
                     GraphicsDevice.Clear(new Color(203, 219, 252));

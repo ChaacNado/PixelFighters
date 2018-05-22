@@ -16,6 +16,7 @@ namespace PixelFighters
         protected GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
 
         protected MarkerState currentMarkerState;
+        protected SecondaryMarkerState currentSecondaryMarkerState;
 
         public abstract void Update(GameTime gameTime, Game1 game1);
 

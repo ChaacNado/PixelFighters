@@ -792,3 +792,4 @@ C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.xnb
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.xnb
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\PausedMenu.xnb
+D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CharacterSelectMenu.xnb

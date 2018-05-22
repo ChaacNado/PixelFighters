@@ -80,6 +80,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\characters.png" />
+    <Content Include="Content\CharacterSelectMenu.png" />
     <Content Include="Content\CreditsMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

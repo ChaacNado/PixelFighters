@@ -31,5 +31,19 @@ namespace PixelFighters
         MarkerState4,
         MarkerState5,
         MarkerState6,
+        MarkerState7,
+        MarkerState8,
+        MarkerState9,
+        MarkerState10,
+        MarkerState11,
+    }
+
+    public enum SecondaryMarkerState
+    {
+        SecondaryMarkerState1,
+        SecondaryMarkerState2,
+        SecondaryMarkerState3,
+        SecondaryMarkerState4,
+        SecondaryMarkerState5,
     }
 }

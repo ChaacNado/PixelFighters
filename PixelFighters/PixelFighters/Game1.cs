@@ -14,8 +14,9 @@ namespace PixelFighters
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
         BaseMenu mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, pausedMenu;
+        CharacterSelectMenu characterSelectMenu;
 
-        private int currentCharacterOne = 1, currentCharacterTwo = 1;
+        public int currentCharacterOne = 1, currentCharacterTwo = 1;
 
         public Game1()
         {
@@ -53,6 +54,7 @@ namespace PixelFighters
             quitMenu = new QuitMenu();
             graphicsMenu = new GraphicsMenu();
             pausedMenu = new PausedMenu();
+            characterSelectMenu = new CharacterSelectMenu();
 
         }
 
@@ -62,6 +64,8 @@ namespace PixelFighters
                 Exit();
 
             camera.Update(gameTime);
+
+            System.Diagnostics.Debug.WriteLine(characterSelectMenu.player1ChosenCharacter);
 
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
@@ -96,62 +100,15 @@ namespace PixelFighters
                     break;
                 case GameState.CharacterSelect:
                     camera.inMenu = true;
-                    mainMenu.Update(gameTime, this);
                     GameplayManager.Instance.Update(gameTime, camera);
-                    if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
-                        || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
-                    {
-                        if (GameplayManager.Instance.stageNumber <= 1)
-                        {
-                            GameplayManager.Instance.stageNumber += 1;
-                        }  
-                    }
-                    if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left)
-                        || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
-                    {
-                        if (GameplayManager.Instance.stageNumber > 1)
-                        {
-                            GameplayManager.Instance.stageNumber -= 1;
-                        }
-                    }
-                    if (keyState.IsKeyDown(Keys.S) && previousKeyState.IsKeyUp(Keys.S) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown))
-                    {
-                        if (currentCharacterOne <= 2)
-                        {
-                            currentCharacterOne += 1;
-                        }  
-                    }
-                    if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
-                    {
-                        if (currentCharacterOne > 1)
-                        {
-                            currentCharacterOne -= 1;
-                        }
-                    }
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
-                    {
-                        if (currentCharacterTwo <= 2)
-                        {
-                            currentCharacterTwo += 1;
-                        }
-                    }
-                    if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
-                    {
-                        if (currentCharacterTwo > 1)
-                        {
-                            currentCharacterTwo -= 1;
-                        }
-                    }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
-                        || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
+                    if (characterSelectMenu.player1Ready == true && characterSelectMenu.player2Ready == true) 
                     {
                         currentGameState = GameState.Playtime;
                         LoadContent();
+                        characterSelectMenu.player1Ready = false;
+                        characterSelectMenu.player2Ready = false;                        
                     }
-                    if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back))
-                    {
-                        currentGameState = GameState.MainMenu;
-                    }
+                    characterSelectMenu.Update(gameTime, this);
                     break;
                 case GameState.Playtime:
                     camera.inMenu = false;
@@ -228,12 +185,8 @@ namespace PixelFighters
                     mainMenu.Draw(spriteBatch);
                     break;
                 case GameState.CharacterSelect:
-                    GraphicsDevice.Clear(Color.LightGray);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character Select", new Vector2(240, 90), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Stage: " + GameplayManager.Instance.stageNumber + "", new Vector2(240, 150), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character: " + GameplayManager.Instance.p1.characterName + "", new Vector2(240, 210), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Character: " + GameplayManager.Instance.p2.characterName + "", new Vector2(720, 210), Color.Black);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to proceed", new Vector2(240, 270), Color.Black);
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    characterSelectMenu.Draw(spriteBatch);
                     break;
                 case GameState.Playtime:
                     GraphicsDevice.Clear(Color.LightSlateGray);

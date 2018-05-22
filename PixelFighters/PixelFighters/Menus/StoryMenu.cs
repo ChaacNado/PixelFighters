@@ -61,37 +61,20 @@ namespace PixelFighters
         {
             characterTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 416;
             characterTextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 370;
-
             leftButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 532;
             leftButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2;
-
             rightButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 500;
             rightButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2;
-
-            //boxerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 3 - 200;
             boxerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 418;
             boxerRectangle.Y = characterTextRectangle.Y + 100;
-
             americanFootballerRectangle.X = boxerRectangle.X + 212;
             americanFootballerRectangle.Y = characterTextRectangle.Y + 100;
-
             curlerRectangle.X = americanFootballerRectangle.X + 212;
             curlerRectangle.Y = characterTextRectangle.Y + 100;
-
             baseballerRectangle.X = curlerRectangle.X + 212;
             baseballerRectangle.Y = characterTextRectangle.Y + 100;
-
             textRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 418;
             textRectangle.Y = boxerRectangle.Y + 212;
-
-            //windowedButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - windowedButtonRectangle.Width / 2;
-            //windowedButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 136;
-            //resolutionButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - resolutionButtonRectangle.Width / 2;
-            //resolutionButtonRectangle.Y = windowedButtonRectangle.Y + 100;
-            //resolutionRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2;
-            //resolutionRectangle.Y = resolutionButtonRectangle.Y + 15;
-            //applyButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - applyButtonRectangle.Width / 2;
-            //applyButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y - 200;
 
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
@@ -105,7 +88,7 @@ namespace PixelFighters
             {
                 game1.currentGameState = GameState.MainMenu;
             }
-
+            //Bläddrar mellan olika karaktärer
             if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
             {
                 if (characterPage == 4)
@@ -117,7 +100,6 @@ namespace PixelFighters
                     characterPage++;
                 }
             }
-
             if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
             {
                 if (characterPage == 1)
@@ -129,118 +111,6 @@ namespace PixelFighters
                     characterPage--;
                 }
             }
-
-            //switch (currentMarkerState)
-            //{
-            //    //Markerstate1 = yes-knapp till windowed mode
-            //    case MarkerState.MarkerState1:
-            //        windowedMode = true;
-            //        if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState2;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState3;
-            //        }
-            //        break;
-            //    //Markerstate2 = no-knapp till windowed mode
-            //    case MarkerState.MarkerState2:
-            //        windowedMode = false;
-            //        if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState1;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState3;
-            //        }
-            //        break;
-            //    //Markerstate3 = markerar vald upplösning 
-            //    case MarkerState.MarkerState3:
-            //        if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState6;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
-            //        {
-            //            if (windowedMode == true)
-            //            {
-            //                currentMarkerState = MarkerState.MarkerState1;
-            //            }
-
-            //            if (windowedMode == false)
-            //            {
-            //                currentMarkerState = MarkerState.MarkerState2;
-            //            }
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState4;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState5;
-            //        }
-            //        break;
-            //    //Markerstate4 = vänster pil till upplösning
-            //    case MarkerState.MarkerState4:
-            //        if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState3;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft)
-            //            || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
-            //        {
-            //            resolution = 1;
-            //        }
-            //        break;
-            //    //Markerstate5 = höger pil till upplösning
-            //    case MarkerState.MarkerState5:
-            //        if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState3;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
-            //            || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
-            //        {
-            //            resolution = 2;
-            //        }
-            //        break;
-            //    //Markerstate6 = Applyknappen
-            //    case MarkerState.MarkerState6:
-
-            //        if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
-            //        {
-            //            if (windowedMode == true)
-            //            {
-            //                game1.graphics.IsFullScreen = false;
-            //            }
-            //            if (windowedMode == false)
-            //            {
-            //                game1.graphics.IsFullScreen = true;
-            //            }
-            //            if (resolution == 1)
-            //            {
-            //                ScreenManager.Instance.Dimensions = new Vector2(1366, 768);
-            //                game1.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            //                game1.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
-
-            //            }
-            //            if (resolution == 2)
-            //            {
-            //                ScreenManager.Instance.Dimensions = new Vector2(1920, 1080);
-            //                game1.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            //                game1.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
-            //            }
-            //            game1.graphics.ApplyChanges();
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState3;
-            //        }
-            //        break;
-            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -264,66 +134,32 @@ namespace PixelFighters
             {
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, rightButtonRectangle, markedRightButtonSrcRectangle, Color.White);
             }
-
+            //Boxare
             if (characterPage == 1)
             {
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, characterTextRectangle, theBoxerSrcRectangle, Color.White);
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, boxerRectangle, boxerSrcRectangle, Color.White);
 
             }
+            //Amerikansk fotbollsspelare
             if (characterPage == 2)
             {
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, characterTextRectangle, theAmericanFootballerSrcRectangle, Color.White);
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, americanFootballerRectangle, americanFootballerSrcRectangle, Color.White);
 
             }
+            //Curlare
             if (characterPage == 3)
             {
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, characterTextRectangle, theCurlerSrcRectangle, Color.White);
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, curlerRectangle, curlerSrcRectangle, Color.White);
             }
+            //Baseballspelare
             if (characterPage == 4)
             {
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, characterTextRectangle, theBaseballerSrcRectangle, Color.White);
                 spriteBatch.Draw(AssetManager.Instance.storyMenuSpritesheet, baseballerRectangle, baseballerSrcRectangle, Color.White);
             }
-
-            //if (windowedMode == false)
-            //{
-            //    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, windowedButtonNoSrcRectangle, Color.White);
-            //}
-
-            //switch (currentMarkerState)
-            //{
-            //    case MarkerState.MarkerState1:
-            //        spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, markedWindowedButtonYesSrcRectangle, Color.White);
-            //        break;
-            //    case MarkerState.MarkerState2:
-            //        spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, windowedButtonRectangle, markedWindowedButtonNoSrcRectangle, Color.White);
-            //        break;
-            //    case MarkerState.MarkerState3:
-            //        spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionButtonRectangle, markedResolutionButtonSrcRectangle, Color.White);
-            //        break;
-            //    case MarkerState.MarkerState4:
-            //        spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionButtonRectangle, leftMarkedButtonSrcRectangle, Color.White);
-            //        break;
-            //    case MarkerState.MarkerState5:
-            //        spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionButtonRectangle, rightMarkedButtonSrcRectangle, Color.White);
-            //        break;
-            //    case MarkerState.MarkerState6:
-            //        spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, applyButtonRectangle, markedApplyButtonSrcRectangle, Color.White);
-            //        break;
-            //}
-
-            //if (resolution == 1)
-            //{
-            //    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1366x768SrcRectangle, Color.White);
-            //}
-
-            //if (resolution == 2)
-            //{
-            //    spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1920x1080SrcRectangle, Color.White);
-            //}
         }
 
         #endregion

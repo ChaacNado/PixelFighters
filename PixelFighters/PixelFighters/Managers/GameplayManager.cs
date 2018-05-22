@@ -31,6 +31,9 @@ namespace PixelFighters
 
         public bool playerOneWon, playerTwoWon;
 
+        Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect;
+        Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc;
+
         private static GameplayManager instance;
         #endregion
 
@@ -118,6 +121,24 @@ namespace PixelFighters
                     }
                 }
             }
+
+            timerBoxRect = new Rectangle(0, 0, 92, 68);
+            p1HPbarRect = new Rectangle(0, 0, 444, 72);
+            p2HPbarRect = new Rectangle(0, 0, 444, 72);
+            p1currentHPbarRect = new Rectangle(0, 0, 400, 40);
+            p2currentHPbarRect = new Rectangle(0, 0, 400, 40);
+            p1Heart1Rect = new Rectangle(0, 0, 56, 48);
+            p1Heart2Rect = new Rectangle(0, 0, 56, 48);
+            p1Heart3Rect = new Rectangle(0, 0, 56, 48);
+
+            p2Heart1Rect = new Rectangle(0, 0, 56, 48);
+            p2Heart2Rect = new Rectangle(0, 0, 56, 48);
+            p2Heart3Rect = new Rectangle(0, 0, 56, 48);
+
+            timerBoxSrc = new Rectangle(0, 54, 24, 18);
+            hpBarSrc = new Rectangle(0, 15, 112, 19);
+            currentHPbarSrc = new Rectangle(6, 38, 101, 11);
+            redHeartSrc = new Rectangle(1, 1, 15, 13);
         }
 
         public void Update(GameTime gameTime, Camera camera)
@@ -257,6 +278,38 @@ namespace PixelFighters
             }
             #endregion
 
+            #region HUD
+            timerBoxRect.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X / 2 - timerBoxRect.Width / 2;
+            timerBoxRect.Y = (int)camera.pos.Y + (int)ScreenManager.Instance.Dimensions.Y / 50;
+
+            p1HPbarRect.X = (int)camera.pos.X + 10;
+            p1HPbarRect.Y = (int)camera.pos.Y + (int)ScreenManager.Instance.Dimensions.Y - p1HPbarRect.Height - 10;
+            p2HPbarRect.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X - p2HPbarRect.Width - 10;
+            p2HPbarRect.Y = (int)camera.pos.Y + (int)ScreenManager.Instance.Dimensions.Y - p2HPbarRect.Height - 10;
+
+            p1currentHPbarRect.X = p1HPbarRect.X + 24;
+            p1currentHPbarRect.Y = p1HPbarRect.Y + 16;
+            p1currentHPbarRect.Width = p1.currentHP * 8;
+
+            p2currentHPbarRect.Width = p2.currentHP * 8;
+            p2currentHPbarRect.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X - p2currentHPbarRect.Width - 30;
+            p2currentHPbarRect.Y = (int)camera.pos.Y + (int)ScreenManager.Instance.Dimensions.Y - p2currentHPbarRect.Height - 26;
+
+            p1Heart1Rect.X = p1HPbarRect.X;
+            p1Heart1Rect.Y = p1HPbarRect.Y - p1HPbarRect.Height + 20;
+            p1Heart2Rect.X = p1Heart1Rect.X + p1Heart2Rect.Width + 5;
+            p1Heart2Rect.Y = p1Heart1Rect.Y;
+            p1Heart3Rect.X = p1Heart2Rect.X + p1Heart3Rect.Width + 5;
+            p1Heart3Rect.Y = p1Heart1Rect.Y;
+
+            p2Heart1Rect.X = p2HPbarRect.X + p2HPbarRect.Width / 2 + 45;
+            p2Heart1Rect.Y = p1Heart1Rect.Y;
+            p2Heart2Rect.X = p2Heart1Rect.X + p1Heart2Rect.Width + 5;
+            p2Heart2Rect.Y = p2Heart1Rect.Y;
+            p2Heart3Rect.X = p2Heart2Rect.X + p1Heart3Rect.Width + 5;
+            p2Heart3Rect.Y = p2Heart1Rect.Y;
+            #endregion
+
             foreach (Player player in players)
             {
                 player.Update(gameTime);
@@ -285,11 +338,49 @@ namespace PixelFighters
                 player.Draw(spriteBatch);
             }
 
+            spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, timerBoxRect, timerBoxSrc, Color.White);
+
+            spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1HPbarRect, hpBarSrc, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2HPbarRect, hpBarSrc, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1currentHPbarRect, currentHPbarSrc, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2currentHPbarRect, currentHPbarSrc, Color.White);
+
+            if (p1.stocksRemaining == 1)
+            {
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1Heart1Rect, redHeartSrc, Color.White);
+            }
+            if (p1.stocksRemaining == 2)
+            {
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1Heart1Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1Heart2Rect, redHeartSrc, Color.White);
+            }
+            if (p1.stocksRemaining == 3)
+            {
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1Heart1Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1Heart2Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1Heart3Rect, redHeartSrc, Color.White);
+            }
+            if (p2.stocksRemaining == 1)
+            {
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart1Rect, redHeartSrc, Color.White);
+            }
+            if (p2.stocksRemaining == 2)
+            {
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart1Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart2Rect, redHeartSrc, Color.White);
+            }
+            if (p2.stocksRemaining == 3)
+            {
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart1Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart2Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
+            }
+
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.05f), (int)camera.pos.Y + (ScreenManager.Instance.Dimensions.Y * 0.90f)), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.05f), (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.85f), Color.Red);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.85f), (int)camera.pos.Y + (ScreenManager.Instance.Dimensions.Y * 0.90f)), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.85f), (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.85f), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Time: " + timer.ToString("0"), new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.45f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.1f), Color.White);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X+ timerBoxRect.Width/2 -10, timerBoxRect.Y+timerBoxRect.Height/2 -10), Color.Black);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
 
             if (timer <= 0)

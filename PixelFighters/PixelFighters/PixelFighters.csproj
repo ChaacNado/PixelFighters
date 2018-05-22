@@ -95,6 +95,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\PausedMenu.png" />
+    <Content Include="Content\PlaytimeHUDSpritesheet.png" />
     <Content Include="Content\QuitMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

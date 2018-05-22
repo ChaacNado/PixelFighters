@@ -1,4 +1,8 @@
-﻿**********2018-05-22 Version 0.6.1, auth: Elma Carlsson**********
+﻿**********2018-05-22 Version 0.6.2, auth: Erik Persson**********
+{
+La in HUD i gameplaymanager.
+}
+**********2018-05-22 Version 0.6.1, auth: Elma Carlsson**********
 {
 La in en ny klass, characterSelectMenu, och bytte ut logiken i game1 som bestämde bana och karaktär.
 }

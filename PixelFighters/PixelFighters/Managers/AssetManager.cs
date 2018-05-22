@@ -16,7 +16,7 @@ namespace PixelFighters
         public StreamReader streamReader;
         public SpriteFont spriteFont;
         public Texture2D rectTex, fadeTex, boxManTex;
-        public Texture2D mainMenuSpritesheet, optionsMenuSpritesheet, storyMenuSpritesheet, creditsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet, pausedMenuSpritesheet, characterSpriteSheet, characterSelectSpritesheet;
+        public Texture2D mainMenuSpritesheet, optionsMenuSpritesheet, storyMenuSpritesheet, creditsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet, pausedMenuSpritesheet, characterSpriteSheet, characterSelectSpritesheet, playTimeHUDSpritesheet;
 
         private static AssetManager instance;
 
@@ -56,6 +56,7 @@ namespace PixelFighters
             quitMenuSpritesheet = Content.Load<Texture2D>("QuitMenu");
             pausedMenuSpritesheet = Content.Load<Texture2D>("PausedMenu");
             characterSelectSpritesheet = Content.Load<Texture2D>("CharacterSelectMenu");
+            playTimeHUDSpritesheet = Content.Load<Texture2D>("PlaytimeHUDSpritesheet");
         }
 
         #endregion

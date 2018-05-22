@@ -328,6 +328,8 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
+            spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);
+
             foreach (Platform p in platforms)
             {
                 p.Draw(spriteBatch);
@@ -376,10 +378,6 @@ namespace PixelFighters
                 spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
             }
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne HP: " + p1.currentHP, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.05f), (int)camera.pos.Y + (ScreenManager.Instance.Dimensions.Y * 0.90f)), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerOne stocks: " + p1.stocksRemaining, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.05f), (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.85f), Color.Red);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo HP: " + p2.currentHP, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.85f), (int)camera.pos.Y + (ScreenManager.Instance.Dimensions.Y * 0.90f)), Color.Blue);
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PlayerTwo stocks: " + p2.stocksRemaining, new Vector2((int)camera.pos.X + (ScreenManager.Instance.Dimensions.X * 0.85f), (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.85f), Color.Blue);
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X+ timerBoxRect.Width/2 -10, timerBoxRect.Y+timerBoxRect.Height/2 -10), Color.Black);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
 

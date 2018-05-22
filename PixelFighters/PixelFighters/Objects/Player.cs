@@ -22,10 +22,10 @@ namespace PixelFighters
         Texture2D attackTex;
         public string characterName;
         public int bX, bY, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier;
-        private int jumpsAvailable, frame;
+        private int jumpsAvailable, frame, attackFrame;
         private float rotation = 0;
-        public double frameTimer, attackFrameTimer, frameInterval = 150;
-        public bool facingRight, inAnimation, moving;
+        public double frameTimer, attackFrameTimer, frameInterval, frameAttackInterval;
+        public bool facingRight, inAnimation, moving, jabAttack;
         public Keys jabInput, lowInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
 
@@ -37,6 +37,8 @@ namespace PixelFighters
             this.srcRec = srcRec;
             this.attackTex = attackTex;
             this.playerIndex = playerIndex;
+            frameInterval = 150;
+            frameAttackInterval = 400;
             speed = new Vector2(0, 0);
             bY = (int)ScreenManager.Instance.Dimensions.Y;
             bX = (int)ScreenManager.Instance.Dimensions.X;
@@ -72,7 +74,7 @@ namespace PixelFighters
 
                 isDunking = false;
 
-                if (frameTimer <= 0 && moving && isOnGround)
+                if (frameTimer <= 0 && moving && isOnGround && !isAttacking)
                 {
                     frameTimer = frameInterval;
                     frame++;
@@ -80,8 +82,14 @@ namespace PixelFighters
                     srcRec.X = (frame % 4) * srcWidthModifier;
                     srcRec.Width = srcWidthModifier;
                     srcRec.Height = srcHeightModifier;
-
                 }
+                //else if (frameTimer <= 0 && isAttacking)
+                //{
+                //    frameTimer = frameInterval;
+                //    attackFrame++;
+                //    srcRec.X = (attackFrame % 2) * 310;
+
+                //}
                 else if (!moving && !inAnimation && !isAttacking && isOnGround)
                 {
                     if (currentCharacter != 3)
@@ -102,6 +110,7 @@ namespace PixelFighters
                     inAnimation = false;
                     isAttacking = false;
                     isInvincible = false;
+                    //attackFrame = 0;
                 }
 
                 if (facingRight)
@@ -372,7 +381,7 @@ namespace PixelFighters
                         if (gamePadState.IsButtonDown(Buttons.RightTrigger) && previousGamePadState.IsButtonUp(Buttons.RightTrigger) || gamePadState.IsButtonDown(Buttons.LeftTrigger) && previousGamePadState.IsButtonUp(Buttons.LeftTrigger))
                         {
                             isInvincible = true;
-                            attackFrameTimer = frameInterval;
+                            attackFrameTimer = frameAttackInterval;
                         }
                     }
                 }
@@ -451,7 +460,7 @@ namespace PixelFighters
                 if (keyState.IsKeyDown(dodgeInput) && previousKeyState.IsKeyUp(dodgeInput) && attackFrameTimer < 0)
                 {
                     isInvincible = true;
-                    attackFrameTimer = frameInterval;
+                    attackFrameTimer = frameAttackInterval;
                 }
             }
             #endregion

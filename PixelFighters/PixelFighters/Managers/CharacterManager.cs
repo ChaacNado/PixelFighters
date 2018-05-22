@@ -36,58 +36,87 @@ namespace PixelFighters
         ///Skriver ut namnet på vald karaktär i character select
         public void SelectedCharacter(Player player)
         {
-            ///Boxare
-            if (player.currentCharacter == 1)
+            if (!player.isAttacking)
             {
-                player.characterName = "Philip Albert Jackson";
-                player.srcWidthModifier = 29;
-                player.srcHeightModifier = 61;
+                ///Boxare
+                if (player.currentCharacter == 1)
+                {
+                    player.characterName = "Philip Albert Jackson";
+                    player.srcWidthModifier = 29;
+                    player.srcHeightModifier = 61;
 
-                if (player.playerIndex == 2)
-                {
-                    player.srcRec.Y = 78;
+                    if (player.playerIndex == 2)
+                    {
+                        player.srcRec.Y = 78;
+                    }
+                    if (!player.isOnGround && !player.isAttacking)
+                    {
+                        player.srcRec.X = 307;
+                        player.srcRec.Width = player.srcWidthModifier;
+                    }
                 }
-                if (!player.isOnGround && !player.isAttacking)
+                ///Rugbyspelare
+                if (player.currentCharacter == 2)
                 {
-                    player.srcRec.X = 307;
-                    player.srcRec.Width = player.srcWidthModifier;
-                }
-            }
-            ///Rugbyspelare
-            if (player.currentCharacter == 2)
-            {
-                player.characterName = "Mac Enchiz";
-                player.srcWidthModifier = 30;
-                player.srcHeightModifier = 71;
+                    player.characterName = "Mac Enchiz";
+                    player.srcWidthModifier = 30;
+                    player.srcHeightModifier = 71;
 
-                if (player.playerIndex == 1)
-                {
-                    player.srcRec.Y = 155;
+                    if (player.playerIndex == 1)
+                    {
+                        player.srcRec.Y = 156;
+                    }
+                    else
+                    {
+                        player.srcRec.Y = 228;
+                    }
+                    if (!player.isOnGround && !player.isAttacking)
+                    {
+                        player.srcRec.X = 489;
+                        player.srcRec.Width = player.srcWidthModifier - 1;
+                    }
                 }
-                else
+                ///Curlingspelare
+                if (player.currentCharacter == 3)
                 {
-                    player.srcRec.Y = 227;
-                }
-                if (!player.isOnGround && !player.isAttacking)
-                {
-                    player.srcRec.X = 489;
-                    player.srcRec.Width = player.srcWidthModifier - 1;
-                }
-            }
-            ///Curlingspelare
-            if (player.currentCharacter == 3)
-            {
-                player.characterName = "Aiden Fortin";
-                player.srcWidthModifier = 49;
-                player.srcHeightModifier = 61;
+                    player.characterName = "Aiden Fortin";
+                    player.srcWidthModifier = 49;
+                    player.srcHeightModifier = 61;
 
-                if (player.playerIndex == 1)
-                {
-                    player.srcRec.Y = 337;
+                    if (player.playerIndex == 1)
+                    {
+                        player.srcRec.Y = 337;
+                    }
+                    else
+                    {
+                        player.srcRec.Y = 437;
+                    }
+                    if (!player.isOnGround && !player.isAttacking)
+                    {
+                        player.srcRec.X = 675;
+                        player.srcRec.Width = player.srcWidthModifier;
+                    }
                 }
-                else
+                ///Baseball spelaren
+                if (player.currentCharacter == 4)
                 {
-                    player.srcRec.Y = 437;
+                    player.characterName = "iunno";
+                    player.srcWidthModifier = 40;
+                    player.srcHeightModifier = 62;
+
+                    if (player.playerIndex == 1)
+                    {
+                        player.srcRec.Y = 533;
+                    }
+                    else
+                    {
+                        player.srcRec.Y = 633;
+                    }
+                    if (!player.isOnGround && !player.isAttacking)
+                    {
+                        player.srcRec.X = 565;
+                        player.srcRec.Width = player.srcWidthModifier;
+                    }
                 }
             }
         }
@@ -95,9 +124,10 @@ namespace PixelFighters
         #region Attack Methods
         public void JabAttack(Player player)
         {
+            #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = player.frameInterval * 0.5f;
+                player.attackFrameTimer = player.frameAttackInterval * 0.5f;
                 player.isAttacking = true;
                 player.knockBackModifierX = 15;
                 player.knockBackModifierY = 2;
@@ -125,17 +155,13 @@ namespace PixelFighters
                     player.rangeModifierX = -64;
                 }
             }
+            #endregion
+
+            #region Rugby
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = player.frameInterval;
+                player.attackFrameTimer = player.frameAttackInterval;
                 player.isAttacking = true;
-                //if (player.attackFrameTimer > player.frameInterval * 0.5f)
-                //{
-                //    player.srcRec.X = 120;                Ett försök till att få gubben att "ladda" upp attacken.
-                //    player.srcRec.Width = 27;
-                //}
-                //player.srcRec.X = 147;
-                //player.srcRec.Width = 54;
 
                 if (player.isOnGround)
                 {
@@ -148,13 +174,54 @@ namespace PixelFighters
                     player.srcRec.Width = 54;
                 }
             }
+            #endregion
+
+            #region Curling
+            //Behöver bättre animering.
+            else if (player.currentCharacter == 3)
+            {
+                player.attackFrameTimer = player.frameAttackInterval;
+                player.isAttacking = true;
+
+                if (player.isOnGround)
+                {
+                    player.srcRec.X = 250;
+                }
+                else if (!player.isOnGround)
+                {
+                    player.srcRec.X = 925;
+                    player.srcRec.Width = 49;
+                }
+            }
+            #endregion
+
+            #region Baseball
+            //Flyger bakåt. Vet inte varför.
+            else if (player.currentCharacter == 4)
+            {
+                player.attackFrameTimer = player.frameAttackInterval;
+                player.isAttacking = true;
+
+                if (player.isOnGround)
+                {
+                    player.srcRec.X = 205;
+                    player.srcRec.Width = 67;
+                }
+                else if (!player.isOnGround)
+                {
+                    player.srcRec.X = 860;
+                    player.srcRec.Width = 66;
+                }
+            }
+            #endregion
         }
 
         public void LowAttack(Player player)
         {
+            #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = player.frameInterval * 0.4f;
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
                 player.srcRec.X = 188;
                 player.srcRec.Width = 47;
                 player.isAttacking = true;
@@ -174,13 +241,48 @@ namespace PixelFighters
                     player.rangeModifierX = -52;
                 }
             }
+            #endregion
+
+            #region Rugby
+            //Behöver bättre animering.
+            else if (player.currentCharacter == 2)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
+                player.srcRec.X = 279;
+                player.srcRec.Width = 44;
+                player.isAttacking = true;
+            }
+            #endregion
+
+            #region Curling
+            //Behöver bättre animering.
+            else if (player.currentCharacter == 3)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
+                player.srcRec.X = 490;
+                player.srcRec.Width = 92;
+                player.isAttacking = true;
+            }
+            #endregion
+
+            #region Baseball    
+            //Behöver bättre animering.
+            else if (player.currentCharacter == 4)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
+                player.srcRec.X = 355;
+                player.srcRec.Width = 69;
+                player.isAttacking = true;
+            }
+            #endregion
         }
 
         public void AirDunk(Player player)
         {
+            #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = player.frameInterval * 0.4f;
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
                 player.isDunking = true;
                 if (player.attackFrameTimer >= 160)
                 {
@@ -196,13 +298,78 @@ namespace PixelFighters
                     player.damageDealt = 6;
                 }
             }
+            #endregion
+
+            #region Rugby
+            else if (player.currentCharacter == 2)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
+                player.isDunking = true;
+                if (player.attackFrameTimer >= 160)
+                {
+                    player.srcRec.X = 540;
+                    player.srcRec.Width = 37;
+                    player.isAttacking = true;
+                    player.knockBackModifierX = 1;
+                    player.knockBackModifierY = -15;
+                    player.attackHitBox.Width = 24;
+                    player.attackHitBox.Height = 32;
+                    player.rangeModifierX = -12;
+                    player.rangeModifierY = 12;
+                    player.damageDealt = 6;
+                }
+            }
+            #endregion
+
+            #region Curling
+            else if (player.currentCharacter == 3)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
+                player.isDunking = true;
+                if (player.attackFrameTimer >= 160)
+                {
+                    player.srcRec.X = 760;
+                    player.srcRec.Width = 32;
+                    player.isAttacking = true;
+                    player.knockBackModifierX = 1;
+                    player.knockBackModifierY = -15;
+                    player.attackHitBox.Width = 24;
+                    player.attackHitBox.Height = 32;
+                    player.rangeModifierX = -12;
+                    player.rangeModifierY = 12;
+                    player.damageDealt = 6;
+                }
+            }
+            #endregion
+
+            #region Baseball
+            else if (player.currentCharacter == 4)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.4f;
+                player.isDunking = true;
+                if (player.attackFrameTimer >= 160)
+                {
+                    player.srcRec.X = 725;
+                    player.srcRec.Width = 43;
+                    player.isAttacking = true;
+                    player.knockBackModifierX = 1;
+                    player.knockBackModifierY = -15;
+                    player.attackHitBox.Width = 24;
+                    player.attackHitBox.Height = 32;
+                    player.rangeModifierX = -12;
+                    player.rangeModifierY = 12;
+                    player.damageDealt = 6;
+                }
+            }
+            #endregion
         }
 
         public void DashAttack(Player player)
         {
+            #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = player.frameInterval * 0.9f;
+                player.attackFrameTimer = player.frameAttackInterval * 0.9f;
                 if (player.attackFrameTimer >= 340)
                 {
                     player.isAttacking = true;
@@ -228,9 +395,12 @@ namespace PixelFighters
                     player.speed.X = -25f;
                 }
             }
+            #endregion
+
+            #region Rugby
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = player.frameInterval * 0.9f;
+                player.attackFrameTimer = player.frameAttackInterval * 0.9f;
                 if (player.attackFrameTimer >= 340)
                 {
                     player.isAttacking = true;
@@ -257,6 +427,71 @@ namespace PixelFighters
                     player.speed.X = -25f;
                 }
             }
+            #endregion
+
+            #region Curling
+            else if (player.currentCharacter == 3)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.9f;
+                if (player.attackFrameTimer >= 340)
+                {
+                    player.isAttacking = true;
+                }
+                player.srcRec.X = 835;
+                player.srcRec.Width = 90;
+                player.inAnimation = true;
+
+                player.knockBackModifierX = 10;
+                player.knockBackModifierY = 3;
+                player.attackHitBox.Width = 32;
+                player.attackHitBox.Height = 32;
+                player.rangeModifierY = -15;
+                player.damageDealt = 5;
+
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = 0;
+                    player.speed.X = 25f;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -32;
+                    player.speed.X = -25f;
+                }
+            }
+            #endregion
+
+            #region Baseball
+            else if (player.currentCharacter == 4)
+            {
+                player.attackFrameTimer = player.frameAttackInterval * 0.9f;
+                if (player.attackFrameTimer >= 340)
+                {
+                    player.isAttacking = true;
+                }
+                player.srcRec.X = 770;
+                player.srcRec.Width = 87;
+                player.inAnimation = true;
+
+                player.knockBackModifierX = 10;
+                player.knockBackModifierY = 3;
+                player.attackHitBox.Width = 32;
+                player.attackHitBox.Height = 32;
+                player.rangeModifierY = -15;
+                player.damageDealt = 5;
+
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = 0;
+                    player.speed.X = 25f;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -32;
+                    player.speed.X = -25f;
+                }
+            }
+            #endregion
         }
         #endregion
     }

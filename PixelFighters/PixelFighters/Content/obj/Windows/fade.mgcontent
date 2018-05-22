@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Hemocroid/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/fade.png</SourceFile>
-  <SourceTime>2018-04-16T17:20:05.9949126+02:00</SourceTime>
-  <DestFile>C:/Users/Hemocroid/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/bin/Windows/fade.xnb</DestFile>
-  <DestTime>2018-05-22T21:23:56.3605592+02:00</DestTime>
+  <SourceFile>C:/Users/Jonas.E/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/fade.png</SourceFile>
+  <SourceTime>2018-05-22T00:49:05.1339419+02:00</SourceTime>
+  <DestFile>C:/Users/Jonas.E/Documents/GitHub/PixelFighters/PixelFighters/PixelFighters/Content/bin/Windows/fade.xnb</DestFile>
+  <DestTime>2018-05-23T00:17:06.0807751+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

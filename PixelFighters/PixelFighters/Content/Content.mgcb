@@ -70,18 +70,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Time.spritefont
 
-#begin MainMenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:MainMenu.png
-
 #begin OptionsMenu.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -178,6 +166,18 @@
 /processorParam:TextureFormat=Color
 /build:characters.png
 
+#begin CreditsMenu.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:CreditsMenu.png
+
 #begin StoryMenu.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -190,7 +190,7 @@
 /processorParam:TextureFormat=Color
 /build:StoryMenu.png
 
-#begin CreditsMenu.png
+#begin MainMenu.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -200,5 +200,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:CreditsMenu.png
+/build:MainMenu.png
+
+#begin PausedMenu.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PausedMenu.png
 

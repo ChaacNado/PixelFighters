@@ -733,7 +733,6 @@ D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Win
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.png
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\fade.png
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\GraphicsMenu.png
-D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\MainMenu.png
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\OptionsMenu.png
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.png
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\tile.png
@@ -784,7 +783,6 @@ D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characters.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.xnb
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.png
-D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.png
 D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.png
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.png
@@ -793,3 +791,4 @@ C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.png
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\CreditsMenu.xnb
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\StoryMenu.xnb
+D:\Users\Elma\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\PausedMenu.xnb

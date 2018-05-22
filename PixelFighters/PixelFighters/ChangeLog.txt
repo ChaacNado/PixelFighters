@@ -1,4 +1,11 @@
-﻿**********2018-05-22 Version 0.5.8, auth: Jonas Ekblad**********
+﻿**********2018-05-22 Version 0.3.9, auth: Elma Carlsson**********
+{
+Fixat main menu, både grafiken och att den är centrerad. 
+Lagt till ny bild till story menu, där alla karaktärer är.
+Fixat en PausedMenu, som fungerar halvt. Det enda problemet med den är att, när man pausar, så centrerar den inte på karaktärerna, utan på "mitten av banan". Detta är pga annars kommer paus knapparna i sidan.
+}
+
+**********2018-05-22 Version 0.5.8, auth: Jonas Ekblad**********
 {
 Gjorde animering till rugby och curling karaktärerna.
 }

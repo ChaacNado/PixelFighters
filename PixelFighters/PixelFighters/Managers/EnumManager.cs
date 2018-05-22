@@ -12,7 +12,7 @@ namespace PixelFighters
         MainMenu,
         CharacterSelect,
         Playtime,
-        Pause,
+        Paused,
         Results,
         Options,
         Story,

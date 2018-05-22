@@ -13,7 +13,7 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
-        BaseMenu mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu;
+        BaseMenu mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, pausedMenu;
 
         private int currentCharacterOne = 1, currentCharacterTwo = 1;
 
@@ -52,6 +52,7 @@ namespace PixelFighters
             creditsMenu = new CreditsMenu();
             quitMenu = new QuitMenu();
             graphicsMenu = new GraphicsMenu();
+            pausedMenu = new PausedMenu();
 
         }
 
@@ -164,21 +165,12 @@ namespace PixelFighters
                     if (keyState.IsKeyDown(Keys.D8) && previousKeyState.IsKeyUp(Keys.D8) || keyState.IsKeyDown(Keys.NumPad8) && previousKeyState.IsKeyUp(Keys.NumPad8)
                         || gamePadStateOne.IsButtonDown(Buttons.Start) && previousGamePadStateOne.IsButtonUp(Buttons.Start) || gamePadStateTwo.IsButtonDown(Buttons.Start) && previousGamePadStateTwo.IsButtonUp(Buttons.Start))
                     {
-                        currentGameState = GameState.Pause;
+                        currentGameState = GameState.Paused;
                     }
                     break;
-                case GameState.Pause:
-                    if (keyState.IsKeyDown(Keys.D8) && previousKeyState.IsKeyUp(Keys.D8) || keyState.IsKeyDown(Keys.NumPad8) && previousKeyState.IsKeyUp(Keys.NumPad8)
-                        || gamePadStateOne.IsButtonDown(Buttons.Start) && previousGamePadStateOne.IsButtonUp(Buttons.Start) || gamePadStateTwo.IsButtonDown(Buttons.Start) && previousGamePadStateTwo.IsButtonUp(Buttons.Start))
-                    {
-                        currentGameState = GameState.Playtime;
-                    }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
-                        || gamePadStateOne.IsButtonDown(Buttons.Back) && previousGamePadStateOne.IsButtonUp(Buttons.Back) || gamePadStateTwo.IsButtonDown(Buttons.Back) && previousGamePadStateTwo.IsButtonUp(Buttons.Back))
-                    {
-                        LoadContent();
-                        currentGameState = GameState.MainMenu;
-                    }
+                case GameState.Paused:
+                    camera.inMenu = true;
+                    pausedMenu.Update(gameTime, this);
                     break;
                 case GameState.Results:
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
@@ -248,11 +240,10 @@ namespace PixelFighters
                     GameplayManager.Instance.Draw(spriteBatch, camera);
                     spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press 8 to pause the game", new Vector2(240, 90), Color.White);
                     break;
-                case GameState.Pause:
-                    GraphicsDevice.Clear(Color.GreenYellow * 0.5f);
+                case GameState.Paused:
+                    GraphicsDevice.Clear(Color.LightSlateGray);
                     GameplayManager.Instance.Draw(spriteBatch, camera);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PAUSE", new Vector2(630, 360), Color.HotPink);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(540, 420), Color.HotPink);
+                    pausedMenu.Draw(spriteBatch);
                     break;
                 case GameState.Results:
                     if (GameplayManager.Instance.playerOneWon == true)

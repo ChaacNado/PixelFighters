@@ -16,20 +16,13 @@ namespace PixelFighters
 
         int characterPage;
         Rectangle characterTextRectangle, leftButtonRectangle, rightButtonRectangle, textRectangle, boxerRectangle, americanFootballerRectangle, curlerRectangle, baseballerRectangle;
-        Rectangle theBoxerSrcRectangle, theAmericanFootballerSrcRectangle, theCurlerSrcRectangle, theBaseballerSrcRectangle, leftButtonSrcRectangle, rightButtonSrcRectangle, markedLeftButtonSrcRectangle, markedRightButtonSrcRectangle, textSrcRectangle/*, windowedButtonYesSrcRectangle, windowedButtonNoSrcRectangle, resolutionButtonSrcRectangle, applyButtonSrcRectangle*/;
+        Rectangle theBoxerSrcRectangle, theAmericanFootballerSrcRectangle, theCurlerSrcRectangle, theBaseballerSrcRectangle, leftButtonSrcRectangle, rightButtonSrcRectangle, markedLeftButtonSrcRectangle, markedRightButtonSrcRectangle, textSrcRectangle;
         Rectangle boxerSrcRectangle, americanFootballerSrcRectangle, curlerSrcRectangle, baseballerSrcRectangle, hiddenBoxerSrcRectangle, hiddenAmericanFootballerSrcRectangle, hiddenCurlerSrcRectangle, hiddenBaseballerSrcRectangle;
-        //Rectangle /*markedWindowedButtonYesSrcRectangle, markedWindowedButtonNoSrcRectangle, markedResolutionButtonSrcRectangle, markedApplyButtonSrcRectangle, leftMarkedButtonSrcRectangle, rightMarkedButtonSrcRectangle*/;
-        //Rectangle resolution1366x768SrcRectangle, resolution1920x1080SrcRectangle;
 
         #endregion
         public StoryMenu()
         {
             characterPage = 1;
-            
-            //windowedButtonRectangle = new Rectangle(0, -100, 756, 72);
-            //resolutionButtonRectangle = new Rectangle(0, -100, 756, 72);
-            //resolutionRectangle = new Rectangle(0, -100, 308, 40);
-            //applyButtonRectangle = new Rectangle(0, -100, 384, 72);
 
             characterTextRectangle = new Rectangle(0, 0, 832, 40);
             leftButtonRectangle = new Rectangle(0, 0, 32, 48);
@@ -39,8 +32,6 @@ namespace PixelFighters
             americanFootballerRectangle = new Rectangle(0, 0, 200, 200);
             curlerRectangle = new Rectangle(0, 0, 200, 200);
             baseballerRectangle = new Rectangle(0, 0, 200, 200);
-            //textRectangle = new Rectangle(0, 0, 756, 72);
-            //characterRectangle = new Rectangle(0, -100, 756, 72);
 
             leftButtonSrcRectangle = new Rectangle(0, 16, 8, 12);
             rightButtonSrcRectangle = new Rectangle(15, 0, 8, 12);
@@ -63,21 +54,6 @@ namespace PixelFighters
             hiddenBaseballerSrcRectangle = new Rectangle(159, 149, 50, 50);
 
             textSrcRectangle = new Rectangle(0, 203, 209, 76);
-
-
-
-            //windowedButtonYesSrcRectangle = new Rectangle(0, 222, 202, 18);
-            //windowedButtonNoSrcRectangle = new Rectangle(0, 199, 202, 18);
-            //markedWindowedButtonYesSrcRectangle = new Rectangle(0, 0, 202, 18);
-            //markedWindowedButtonNoSrcRectangle = new Rectangle(0, 23, 202, 18);
-            //resolutionButtonSrcRectangle = new Rectangle(0, 51, 202, 18);
-            //applyButtonSrcRectangle = new Rectangle(96, 170, 96, 18);
-            //markedResolutionButtonSrcRectangle = new Rectangle(0, 73, 202, 18);
-            //markedApplyButtonSrcRectangle = new Rectangle(96, 146, 96, 18);
-            //leftMarkedButtonSrcRectangle = new Rectangle(0, 95, 202, 18);
-            //rightMarkedButtonSrcRectangle = new Rectangle(0, 117, 202, 18);
-            //resolution1366x768SrcRectangle = new Rectangle(0, 165, 77, 10);
-            //resolution1920x1080SrcRectangle = new Rectangle(0, 187, 77, 10);
         }
         #region Main Methods
 

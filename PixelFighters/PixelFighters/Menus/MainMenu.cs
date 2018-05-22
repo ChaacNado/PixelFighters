@@ -41,7 +41,7 @@ namespace PixelFighters
         public override void Update(GameTime gameTime, Game1 game1)
         {
             playButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - playButtonRectangle.Width / 2;
-            playButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 208;
+            playButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 260;
             optionsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - optionsButtonRectangle.Width / 2;
             optionsButtonRectangle.Y = playButtonRectangle.Y + 100;
             storyButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - storyButtonRectangle.Width / 2;

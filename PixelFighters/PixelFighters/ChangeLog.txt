@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.7.3, auth: Elma Carlsson**********
+﻿
+**********2018-05-24 Version 0.7.4, auth: Erik Persson**********
+{
+Lagt in en resultatskärm. fixat olika buggar med kameran och andra buggar som inte resettade spelet efter match.
+}
+**********2018-05-23 Version 0.7.3, auth: Elma Carlsson**********
 {
 Lagt in en slarvig story text på varje person. Fixat så det finns en controlsmenu, som visar alla knappar som används i spelet, både i menyerna och i spelet.
 }

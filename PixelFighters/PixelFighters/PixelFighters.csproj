@@ -47,6 +47,7 @@
     <Compile Include="Menus\PausedMenu.cs" />
     <Compile Include="Menus\StoryMenu.cs" />
     <Compile Include="Menus\TitlescreenMenu.cs" />
+    <Compile Include="ResultScreenMenu.cs" />
     <Compile Include="Screen\Camera.cs" />
     <Compile Include="Menus\BaseMenu.cs" />
     <Compile Include="Menus\CharacterSelectMenu.cs" />

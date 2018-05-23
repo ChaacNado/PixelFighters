@@ -17,7 +17,7 @@ namespace PixelFighters
         public SpriteFont spriteFont, timerPixelFont, storyPixelFont;
         public Texture2D rectTex, fadeTex, boxManTex;
         public Texture2D shineTitlescreenTexture, centerTitlescreenTexture, textTitlescreenTexture, mainMenuSpritesheet, optionsMenuSpritesheet, storyMenuSpritesheet, creditsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet,
-            pausedMenuSpritesheet, characterSpriteSheet, characterSelectSpritesheet, playTimeHUDSpritesheet, backgroundTex, soundMusicMenuSpriteSheet, controlsMenuSpritesheet;
+            pausedMenuSpritesheet, characterSpriteSheet, characterSelectSpritesheet, playTimeHUDSpritesheet, backgroundTex, soundMusicMenuSpriteSheet, controlsMenuSpritesheet, resultsMenuSpriteSheet;
 
         private static AssetManager instance;
 
@@ -66,6 +66,7 @@ namespace PixelFighters
             characterSelectSpritesheet = Content.Load<Texture2D>("CharacterSelectMenu");
             playTimeHUDSpritesheet = Content.Load<Texture2D>("PlaytimeHUDSpritesheet");
             controlsMenuSpritesheet = Content.Load<Texture2D>("ControlsMenu");
+            resultsMenuSpriteSheet = Content.Load<Texture2D>("ResultsMenu");
         }
 
         #endregion

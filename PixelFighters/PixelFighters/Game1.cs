@@ -16,6 +16,7 @@ namespace PixelFighters
         BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, soundMenu, controlsMenu;
         CharacterSelectMenu characterSelectMenu;
         PausedMenu pausedMenu;
+        ResultScreenMenu resultScreenMenu;
 
         public int currentCharacterOne = 1, currentCharacterTwo = 1;
 
@@ -57,6 +58,7 @@ namespace PixelFighters
             graphicsMenu = new GraphicsMenu();
             soundMenu = new SoundMenu();
             pausedMenu = new PausedMenu();
+            resultScreenMenu = new ResultScreenMenu();
             characterSelectMenu = new CharacterSelectMenu();
             controlsMenu = new ControlsMenu();
         }
@@ -101,8 +103,8 @@ namespace PixelFighters
                     GameplayManager.Instance.timerStock = false;
                     break;
                 case GameState.CharacterSelect:
-                    camera.inMenu = true;
                     GameplayManager.Instance.Update(gameTime, camera);
+                    camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     if (characterSelectMenu.player1Ready == true && characterSelectMenu.player2Ready == true) 
                     {
                         currentGameState = GameState.Playtime;
@@ -128,7 +130,6 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Paused:
-                    //camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     pausedMenu.Update(gameTime, this, camera);
                     break;
                 case GameState.Results:
@@ -136,13 +137,26 @@ namespace PixelFighters
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
                     GameplayManager.Instance.timerStock = false;
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
-                        || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
+                    resultScreenMenu.Update(gameTime, this);
+
+                    if (resultScreenMenu.playAgain == true && (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A)))
                     {
 
                         GameplayManager.Instance.playerOneWon = false;
                         GameplayManager.Instance.playerTwoWon = false;
+                        currentCharacterOne = 1;
+                        currentCharacterTwo = 1;
+                        LoadContent();
+                        currentGameState = GameState.CharacterSelect;
+                    }
 
+                    if (resultScreenMenu.playAgain == false && (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A)))
+                    {
+
+                        GameplayManager.Instance.playerOneWon = false;
+                        GameplayManager.Instance.playerTwoWon = false;
+                        currentCharacterOne = 1;
+                        currentCharacterTwo = 1;
                         LoadContent();
                         currentGameState = GameState.MainMenu;
                     }
@@ -174,7 +188,6 @@ namespace PixelFighters
                     quitMenu.Update(gameTime, this);
                     break;
             }
-
             base.Update(gameTime);
         }
 
@@ -189,8 +202,6 @@ namespace PixelFighters
                 case GameState.TitleScreen:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
                     titlescreenMenu.Draw(spriteBatch);
-                    //spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PIXELFIGHTERS", new Vector2(240, 90), Color.Orange);
-                    //spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER", new Vector2(240, 150), Color.White);
                     break;
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
@@ -211,18 +222,8 @@ namespace PixelFighters
                     pausedMenu.Draw(spriteBatch);
                     break;
                 case GameState.Results:
-                    if (GameplayManager.Instance.playerOneWon == true)
-                    {
-                        GraphicsDevice.Clear(Color.Brown);
-                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER ONE WON!", new Vector2(600, 350), Color.White);
-                    }
-                    if (GameplayManager.Instance.playerTwoWon == true)
-                    {
-                        GraphicsDevice.Clear(Color.RoyalBlue);
-                        spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PLAYER TWO WON!", new Vector2(600, 350), Color.White);
-                    }
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER to quit to main menu", new Vector2(560, 400), Color.White);
-
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    resultScreenMenu.Draw(spriteBatch);
                     break;
                 case GameState.Options:
                     GraphicsDevice.Clear(new Color(203, 219, 252));

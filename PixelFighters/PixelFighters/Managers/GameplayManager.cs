@@ -76,12 +76,14 @@ namespace PixelFighters
             platforms = new List<Platform>();
             strings = new List<string>();
 
+            ///Läser strängar från fil
             while (!AssetManager.Instance.streamReader.EndOfStream)
             {
                 strings.Add(AssetManager.Instance.streamReader.ReadLine());
             }
             AssetManager.Instance.streamReader.Close();
 
+            ///Delar upp olika delar av strängarna, både genom radindex och med hjälp av tecken
             for (int j = 0; j < strings.Count; j++)
             {
                 string[] coordinates = strings[j].Split(';');
@@ -153,10 +155,11 @@ namespace PixelFighters
             srcRecTwo.Width = p2.srcWidthModifier;
             srcRecTwo.Height = p2.srcHeightModifier;
 
-            ///Kamera
+            ///Uppdaterar kamerafokus
             camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);
             camera.cameraFocus.Y = ((p1.pos.Y + p2.pos.Y) / 2);
 
+            ///Kollision mellan spelarna och platformar
             #region Platform Collision
             foreach (Platform p in platforms)
             {
@@ -194,6 +197,7 @@ namespace PixelFighters
             }
             #endregion
 
+            ///Kollision mellan spelarnas offensiva hitbox och motståndarens hitbox
             #region Combat Collision
             if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking == true && !p2.isInvincible)
             {
@@ -238,7 +242,9 @@ namespace PixelFighters
             }
             #endregion
 
+            ///Konditioner för vinst
             #region Victory Conditions
+            ///Slut på stocks
             if (p1.stocksRemaining <= 0)
             {
                 playerTwoWon = true;
@@ -266,20 +272,19 @@ namespace PixelFighters
                     {
                         playerTwoWon = true;
                     }
-                    //Om båda har lika mycket stocks, sudden Death
-                    if(p1.stocksRemaining == p2.stocksRemaining)
+                    ///Om båda har lika mycket stocks, avgörs matchen genom sudden Death
+                    if (p1.stocksRemaining == p2.stocksRemaining)
                     {
-
                         p1.stocksRemaining = 1;
                         p2.stocksRemaining = 1;
                         p1.currentHP = 1;
                         p2.currentHP = 1;
-
                     }
-                }               
+                }
             }
             #endregion
 
+            ///Uppdaterar positionerna på HUD-objekten
             #region HUD
             timerBoxRect.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X / 2 - timerBoxRect.Width / 2;
             timerBoxRect.Y = (int)camera.pos.Y + (int)ScreenManager.Instance.Dimensions.Y / 50;
@@ -317,7 +322,8 @@ namespace PixelFighters
                 player.Update(gameTime);
             }
 
-            ///Styr faden mellan skärmövergångar
+            ///Styr in-och uttoning mellan skärmövergångar
+            #region Fade
             if (color.A > 0)
             {
                 color.A--;
@@ -326,6 +332,7 @@ namespace PixelFighters
             {
                 color.A = 0;
             }
+            #endregion
         }
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
@@ -380,7 +387,7 @@ namespace PixelFighters
                 spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
             }
 
-            spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X+ timerBoxRect.Width/2 -10, timerBoxRect.Y+timerBoxRect.Height/2 -10), Color.Black);
+            spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X + timerBoxRect.Width / 2 - 10, timerBoxRect.Y + timerBoxRect.Height / 2 - 10), Color.Black);
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
 
             if (timer <= 0)

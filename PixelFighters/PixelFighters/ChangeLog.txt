@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.6.6, auth: Kristian Toro**********
+﻿**********2018-05-23 Version 0.6.7, auth: Kristian Toro**********
+{
+Skrivit nya kommentarer och snyggat till koden i Player, GameplayManager och CharacterManager
+}
+
+**********2018-05-23 Version 0.6.6, auth: Kristian Toro**********
 {
 Lagt till isRespawning i Player, samt fått spelaren att tydligare visa att den respawnar.
 Spelaren är odödlig och faller ej under en kort stund när den respawnar.

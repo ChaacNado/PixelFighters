@@ -97,7 +97,7 @@ namespace PixelFighters
                         player.srcRec.Width = player.srcWidthModifier;
                     }
                 }
-                ///Baseball spelaren
+                ///Baseballspelare
                 if (player.currentCharacter == 4)
                 {
                     player.characterName = "iunno";
@@ -127,7 +127,7 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = 200;
+                player.actionFrameTimer = 200;
                 player.cooldownModifier = 150;
                 player.isAttacking = true;
                 player.inAnimation = true;
@@ -164,7 +164,7 @@ namespace PixelFighters
             #region Rugby
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = 400;
+                player.actionFrameTimer = 400;
                 player.isAttacking = true;
 
                 if (player.isOnGround)
@@ -184,7 +184,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 3)
             {
-                player.attackFrameTimer = 400;
+                player.actionFrameTimer = 400;
                 player.isAttacking = true;
 
                 if (player.isOnGround)
@@ -203,7 +203,7 @@ namespace PixelFighters
             //Flyger bakåt. Vet inte varför.
             else if (player.currentCharacter == 4)
             {
-                player.attackFrameTimer = 400;
+                player.actionFrameTimer = 400;
                 player.isAttacking = true;
 
                 if (player.isOnGround)
@@ -225,7 +225,7 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.cooldownModifier = 300;
                 player.srcRec.X = 188;
                 player.srcRec.Width = 47;
@@ -253,7 +253,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.srcRec.X = 279;
                 player.srcRec.Width = 44;
                 player.isAttacking = true;
@@ -264,7 +264,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 3)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.srcRec.X = 490;
                 player.srcRec.Width = 92;
                 player.isAttacking = true;
@@ -275,7 +275,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 4)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.srcRec.X = 355;
                 player.srcRec.Width = 69;
                 player.isAttacking = true;
@@ -288,7 +288,7 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = 400;
+                player.actionFrameTimer = 400;
                 player.cooldownModifier = 250;
                 player.srcRec.X = 367;
                 player.srcRec.Width = 28;
@@ -311,7 +311,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.srcRec.X = 279;
                 player.srcRec.Width = 44;
                 player.isAttacking = true;
@@ -322,7 +322,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 3)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.srcRec.X = 490;
                 player.srcRec.Width = 92;
                 player.isAttacking = true;
@@ -333,7 +333,7 @@ namespace PixelFighters
             //Behöver bättre animering.
             else if (player.currentCharacter == 4)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.srcRec.X = 355;
                 player.srcRec.Width = 69;
                 player.isAttacking = true;
@@ -346,7 +346,7 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.cooldownModifier = 400;
                 player.isDunking = true;
                 player.inAnimation = true;
@@ -375,9 +375,9 @@ namespace PixelFighters
             #region Rugby
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.isDunking = true;
-                if (player.attackFrameTimer >= 160)
+                if (player.actionFrameTimer >= 160)
                 {
                     player.srcRec.X = 540;
                     player.srcRec.Width = 37;
@@ -396,9 +396,9 @@ namespace PixelFighters
             #region Curling
             else if (player.currentCharacter == 3)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.isDunking = true;
-                if (player.attackFrameTimer >= 160)
+                if (player.actionFrameTimer >= 160)
                 {
                     player.srcRec.X = 760;
                     player.srcRec.Width = 32;
@@ -417,9 +417,9 @@ namespace PixelFighters
             #region Baseball
             else if (player.currentCharacter == 4)
             {
-                player.attackFrameTimer = 160;
+                player.actionFrameTimer = 160;
                 player.isDunking = true;
-                if (player.attackFrameTimer >= 160)
+                if (player.actionFrameTimer >= 160)
                 {
                     player.srcRec.X = 725;
                     player.srcRec.Width = 43;
@@ -441,7 +441,7 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.attackFrameTimer = 360;
+                player.actionFrameTimer = 360;
                 player.cooldownModifier = 400;
                 player.isAttacking = true;
                 player.srcRec.X = 436;
@@ -470,8 +470,8 @@ namespace PixelFighters
             #region Rugby
             else if (player.currentCharacter == 2)
             {
-                player.attackFrameTimer = 360;
-                if (player.attackFrameTimer >= 340)
+                player.actionFrameTimer = 360;
+                if (player.actionFrameTimer >= 340)
                 {
                     player.isAttacking = true;
                 }
@@ -502,8 +502,8 @@ namespace PixelFighters
             #region Curling
             else if (player.currentCharacter == 3)
             {
-                player.attackFrameTimer = 360;
-                if (player.attackFrameTimer >= 340)
+                player.actionFrameTimer = 360;
+                if (player.actionFrameTimer >= 340)
                 {
                     player.isAttacking = true;
                 }
@@ -534,8 +534,8 @@ namespace PixelFighters
             #region Baseball
             else if (player.currentCharacter == 4)
             {
-                player.attackFrameTimer = 360;
-                if (player.attackFrameTimer >= 340)
+                player.actionFrameTimer = 360;
+                if (player.actionFrameTimer >= 340)
                 {
                     player.isAttacking = true;
                 }

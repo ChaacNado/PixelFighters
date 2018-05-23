@@ -374,11 +374,11 @@ namespace PixelFighters
             }
             if (p2.stocksRemaining == 1)
             {
-                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart1Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
             }
             if (p2.stocksRemaining == 2)
             {
-                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart1Rect, redHeartSrc, Color.White);
+                spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
                 spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart2Rect, redHeartSrc, Color.White);
             }
             if (p2.stocksRemaining == 3)

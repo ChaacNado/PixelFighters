@@ -126,7 +126,7 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Paused:
-                    camera.inMenu = true;
+                    camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     pausedMenu.Update(gameTime, this);
                     break;
                 case GameState.Results:

@@ -1,5 +1,9 @@
 ﻿**********2018-05-23 Version 0.7.1, auth: Elma Carlsson**********
 {
+Fix på pause kameran. Player 2 hjärtan tickar på rätt håll.
+}
+**********2018-05-23 Version 0.7.1, auth: Elma Carlsson**********
+{
 Lätt fix på character menu, samt laddade upp textur till results menu.
 }
 

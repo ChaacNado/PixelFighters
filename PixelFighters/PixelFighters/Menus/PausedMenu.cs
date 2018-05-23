@@ -10,9 +10,12 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class PausedMenu : BaseMenu
+    class PausedMenu
     {
         #region Variables
+        protected KeyboardState keyState, previousKeyState;
+        protected MarkerState currentMarkerState;
+        protected GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
 
         Rectangle greyRectangle, pausedRectangle, resumeQuitRectangle;
         Rectangle greySrcRectangle, pausedSrcRectangle, resumeSrcRectangle, quitSrcRectangle;
@@ -33,12 +36,12 @@ namespace PixelFighters
 
         #region Main Methods
 
-        public override void Update(GameTime gameTime, Game1 game1)
+        public void Update(GameTime gameTime, Game1 game1, Camera camera)
         {
-            pausedRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 208;
-            pausedRectangle.Y = (int)ScreenManager.Instance.Dimensions.X / 2 - 550;
-            resumeQuitRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 204;
-            resumeQuitRectangle.Y = pausedRectangle.Y + 100;
+            pausedRectangle.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X / 2 - 208;
+            pausedRectangle.Y = (int)camera.pos.Y + (int)ScreenManager.Instance.Dimensions.X / 2 - 550;
+            resumeQuitRectangle.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X / 2 - 204;
+            resumeQuitRectangle.Y = (int)camera.pos.Y + pausedRectangle.Y + 100;
 
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
@@ -75,7 +78,7 @@ namespace PixelFighters
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(AssetManager.Instance.pausedMenuSpritesheet, greyRectangle, greySrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.pausedMenuSpritesheet, pausedRectangle, pausedSrcRectangle, Color.White);

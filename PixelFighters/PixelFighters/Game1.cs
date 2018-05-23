@@ -13,8 +13,9 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
-        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, pausedMenu;
+        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu;
         CharacterSelectMenu characterSelectMenu;
+        PausedMenu pausedMenu;
 
         public int currentCharacterOne = 1, currentCharacterTwo = 1;
 
@@ -126,8 +127,8 @@ namespace PixelFighters
                     }
                     break;
                 case GameState.Paused:
-                    camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
-                    pausedMenu.Update(gameTime, this);
+                    //camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
+                    pausedMenu.Update(gameTime, this, camera);
                     break;
                 case GameState.Results:
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);

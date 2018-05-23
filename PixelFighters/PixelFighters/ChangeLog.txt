@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.7.0, auth: Kristian Toro**********
+﻿**********2018-05-23 Version 0.7.1, auth: Elma Carlsson**********
+{
+Lätt fix på character menu, samt laddade upp textur till results menu.
+}
+
+**********2018-05-23 Version 0.7.0, auth: Kristian Toro**********
 {
 Justerat alla karaktärers JabAttack.
 Nu visas tydligt hur länge karaktärernas attacker har en aktiv attackHitbox, med hjälp av färg.

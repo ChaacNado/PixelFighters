@@ -16,8 +16,8 @@ namespace PixelFighters
 
         public int lastMarkedCharacter, secondaryLastMarkedCharacter, player1ChosenCharacter, player2ChosenCharacter, mapChosen;
         public bool player1Ready, player2Ready;
-        Rectangle livesTextRectangle, minutesTextRectangle, mapTextRectangle, livesBoxRectangle, minutesBoxRectangle, mapBoxRectangle, charactersRectangle, ready1Rectangle, ready2Rectangle, player1Rectangle, player2Rectangle, player1MarkerRectangle, player2MarkerRectangle /*livesRectangle, minutesRectangle, mapRectangle*/;
-        Rectangle livesTextSrcRectangle, minutesTextSrcRectangle, mapTextSrcRectangle, livesBoxSrcRectangle, minutesBoxSrcRectangle, mapBoxSrcRectangle, smallBoxleftSrcRectangle, smallBoxRightSrcRectangle, bigBoxLeftSrcRectangle, bigBoxRightSrcRectangle, charactersSrcRectangle, readySrcRectangle, notReadySrcRectangle, markedReadySrcRectangle, markedNotReadySrcRectangle, playerSrcRectangle, player1MarkerSrcRectangle, player2MarkerSrcRectangle, standardMapSrcRectangle, spaceMapSrcRectangle;
+        Rectangle livesTextRectangle, minutesTextRectangle, mapTextRectangle, livesBoxRectangle, minutesBoxRectangle, mapBoxRectangle, charactersRectangle, ready1Rectangle, ready2Rectangle, player1Rectangle, player2Rectangle, player1MarkerRectangle, player2MarkerRectangle, player1TextRectangle, player2TextRectangle;
+        Rectangle livesTextSrcRectangle, minutesTextSrcRectangle, mapTextSrcRectangle, livesBoxSrcRectangle, minutesBoxSrcRectangle, mapBoxSrcRectangle, smallBoxleftSrcRectangle, smallBoxRightSrcRectangle, bigBoxLeftSrcRectangle, bigBoxRightSrcRectangle, charactersSrcRectangle, readySrcRectangle, notReadySrcRectangle, markedReadySrcRectangle, markedNotReadySrcRectangle, playerSrcRectangle, player1MarkerSrcRectangle, player2MarkerSrcRectangle, standardMapSrcRectangle, spaceMapSrcRectangle, player1TextSrcRectangle, player2TextSrcRectangle;
         Rectangle boxer1SrcRectangle, boxer2SrcRectangle, americanFootballer1SrcRectangle, americanFootballer2SrcRectangle, curler1SrcRectangle, curler2SrcRectangle, baseballer1SrcRectangle, baseballer2SrcRectangle;
 
         #endregion
@@ -42,6 +42,8 @@ namespace PixelFighters
             ready2Rectangle = new Rectangle(0, 0, 480, 90);
             player1Rectangle = new Rectangle(0, 0, 300, 300);
             player2Rectangle = new Rectangle(0, 0, 300, 300);
+            player1TextRectangle = new Rectangle(0, 0, 220, 140);
+            player2TextRectangle = new Rectangle(0, 0, 240, 140);
 
             player1MarkerRectangle = new Rectangle(0, 0, 216, 216);
             player2MarkerRectangle = new Rectangle(0, 0, 216, 216);
@@ -65,6 +67,8 @@ namespace PixelFighters
             markedReadySrcRectangle = new Rectangle(110, 273, 96, 18);
             markedNotReadySrcRectangle = new Rectangle(3, 273, 96, 18);
             playerSrcRectangle = new Rectangle(159, 104, 50, 50);
+            player1TextSrcRectangle = new Rectangle(160, 160, 11, 7);
+            player2TextSrcRectangle = new Rectangle(176, 160, 12, 7);
 
             player1MarkerSrcRectangle = new Rectangle(0, 102, 54, 54);
             player2MarkerSrcRectangle = new Rectangle(56, 102, 54, 54);
@@ -105,6 +109,10 @@ namespace PixelFighters
             ready1Rectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 268;
             ready2Rectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 340;
             ready2Rectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 268;
+            player1TextRectangle.X = (int)ScreenManager.Instance.Dimensions.Y / 2 + 15;
+            player1TextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 100;
+            player2TextRectangle.X = (int)ScreenManager.Instance.Dimensions.Y / 2 + 670;
+            player2TextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 100;
 
             player1Rectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 660;
             player1Rectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 60;
@@ -620,6 +628,9 @@ namespace PixelFighters
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, charactersRectangle, charactersSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, ready1Rectangle, notReadySrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, ready2Rectangle, notReadySrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, player1TextRectangle, player1TextSrcRectangle, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, player2TextRectangle, player2TextSrcRectangle, Color.White);
+
 
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, player1Rectangle, playerSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, player2Rectangle, playerSrcRectangle, Color.White);

@@ -101,6 +101,7 @@
     <Content Include="Content\QuitMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ResultsMenu.png" />
     <Content Include="Content\shineTitlescreen.png" />
     <Content Include="Content\StoryMenu.png" />
     <Content Include="Content\textTitlescreen.png" />

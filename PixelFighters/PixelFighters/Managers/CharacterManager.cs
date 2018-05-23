@@ -302,6 +302,7 @@ namespace PixelFighters
                 player.rangeModifierX = -12;
                 player.rangeModifierY = -40;
                 player.damageDealt = 3;
+                player.speed.X = 0;
                 player.speed.Y = -10;
             }
             #endregion

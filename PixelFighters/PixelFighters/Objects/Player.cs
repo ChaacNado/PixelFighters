@@ -23,10 +23,10 @@ namespace PixelFighters
         Random rnd;
         public string characterName;
         public int bX, bY, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier, cooldownModifier;
-        private int jumpsAvailable, highAttackAvailable, frame, attackFrame;
+        private int jumpsAvailable, highAttackAvailable, frame;
         private float rotation = 0;
         public double frameTimer, attackFrameTimer, frameInterval;
-        public bool facingRight, inAnimation, moving, jabAttack;
+        public bool facingRight, inAnimation, moving, isRespawning;
         public Keys jabInput, lowInput, highInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
 
@@ -53,7 +53,7 @@ namespace PixelFighters
             stocksRemaining = 3;
             maxHP = 50;
             currentHP = maxHP;
-            
+
 
             InitializeInputs();
         }
@@ -113,7 +113,7 @@ namespace PixelFighters
                     inAnimation = false;
                     isAttacking = false;
                     isInvincible = false;
-                    //attackFrame = 0;
+                    isRespawning = false;
                 }
 
                 if (facingRight)
@@ -132,7 +132,10 @@ namespace PixelFighters
                 }
                 if (!isOnGround)
                 {
-                    speed.Y += 0.2f;
+                    if (!isRespawning || isHit)
+                    {
+                        speed.Y += 0.2f;
+                    }                    
                     if (speed.Y >= 20)
                     {
                         speed.Y = 20;
@@ -160,10 +163,19 @@ namespace PixelFighters
                     if (playerIndex == 1)
                     {
                         pos = GameplayManager.Instance.startPosOne;
+                        facingRight = true;
                     }
                     if (playerIndex == 2)
                     {
                         pos = GameplayManager.Instance.startPosTwo;
+                        facingRight = false;
+                    }
+                    if (attackFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isOnGround)
+                    {
+                        cooldownModifier = 700;
+                        attackFrameTimer = cooldownModifier;
+                        isInvincible = true;
+                        isRespawning = true;
                     }
                 }
 
@@ -198,13 +210,12 @@ namespace PixelFighters
                 }
                 if (isInvincible)
                 {
-                    color = Color.Pink * 0.7f;    
+                    color = Color.Pink * 0.7f;
                 }
-                if (highAttackAvailable <= 0 && !inAnimation)
+                if (isRespawning || highAttackAvailable <= 0 && !inAnimation)
                 {
                     color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble()) * 0.7f;
                 }
-                spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
             }
             if (playerIndex == 2)
             {
@@ -216,12 +227,12 @@ namespace PixelFighters
                 {
                     color = Color.Cyan * 0.7f;
                 }
-                if (highAttackAvailable <= 0 && !inAnimation)
+                if (isRespawning || highAttackAvailable <= 0 && !inAnimation)
                 {
                     color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble()) * 0.7f;
                 }
-                spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
             }
+            spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
         }
         #endregion
 
@@ -336,7 +347,7 @@ namespace PixelFighters
                         }
                     }
                     if (gamePadState.IsButtonDown(Buttons.DPadDown) && !inAnimation)
-                    { 
+                    {
                         if (isOnGround)
                         {
                             speed.X *= 0.5f;

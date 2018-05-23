@@ -1,4 +1,12 @@
-﻿**********2018-05-23 Version 0.6.5, auth: Kristian Toro**********
+﻿**********2018-05-23 Version 0.6.6, auth: Kristian Toro**********
+{
+Lagt till isRespawning i Player, samt fått spelaren att tydligare visa att den respawnar.
+Spelaren är odödlig och faller ej under en kort stund när den respawnar.
+Gjort några små ändringar och begränsningar på fallfysiken.
+Stoppat boxarens speed i x-led medan han utför HighAttack, för att förhindra platformskollision som kan stoppa spelarens upplyftande rörelse.
+}
+
+**********2018-05-23 Version 0.6.5, auth: Kristian Toro**********
 {
 Tagit bort några onödiga else-satser från MovingObject.
 }

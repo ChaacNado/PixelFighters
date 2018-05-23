@@ -45,47 +45,11 @@ namespace PixelFighters
             {
                 game1.currentGameState = GameState.MainMenu;
             }
-
-            //switch (currentMarkerState)
-            //{
-            //    //Markerstate1 = ja-knappen
-            //    case MarkerState.MarkerState1:
-            //        if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
-            //        {
-            //            game1.Exit();
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState2;
-            //        }
-            //        break;
-            //    //Markerstate2 = nej-knappen
-            //    case MarkerState.MarkerState2:
-            //        if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
-            //        {
-            //            game1.currentGameState = GameState.MainMenu;
-            //        }
-            //        if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
-            //        {
-            //            currentMarkerState = MarkerState.MarkerState1;
-            //        }
-            //        break;
-            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(AssetManager.Instance.creditsMenuSpritesheet, creditsRectangle, creditsSrcRectangle, Color.White);
-
-            //switch (currentMarkerState)
-            //{
-            //    case MarkerState.MarkerState1:
-            //        spriteBatch.Draw(AssetManager.Instance.quitMenuSpritesheet, buttonRectangle, yesButtonSrcRectangle, Color.White);
-            //        break;
-            //    case MarkerState.MarkerState2:
-            //        spriteBatch.Draw(AssetManager.Instance.quitMenuSpritesheet, buttonRectangle, noButtonSrcRectangle, Color.White);
-            //        break;
-            //}
         }
 
         #endregion

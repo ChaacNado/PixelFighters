@@ -40,6 +40,11 @@ namespace PixelFighters
 
         public override void Update(GameTime gameTime, Game1 game1)
         {
+            if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
+            {
+                game1.currentGameState = GameState.TitleScreen;
+            }
+
             playButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - playButtonRectangle.Width / 2;
             playButtonRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 260;
             optionsButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - optionsButtonRectangle.Width / 2;

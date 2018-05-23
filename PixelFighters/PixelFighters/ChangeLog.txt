@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.6.6, auth: Kristian Toro**********
+﻿**********2018-05-23 Version 0.6.7, auth: Elma Carlsson**********
+{
+Fixat titlescreen klass, samt att man kan backa från main menu till titlescreen. Fixat till timern med ny font, ny storlek och nya positioner. När tiden är tresiffrig har den en position, när den är tvåsiffrig har den en  annan, för att centrera den.
+}
+
+**********2018-05-23 Version 0.6.6, auth: Kristian Toro**********
 {
 Lagt till isRespawning i Player, samt fått spelaren att tydligare visa att den respawnar.
 Spelaren är odödlig och faller ej under en kort stund när den respawnar.

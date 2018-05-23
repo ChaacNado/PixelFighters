@@ -13,7 +13,7 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
-        BaseMenu mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, pausedMenu;
+        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, pausedMenu;
         CharacterSelectMenu characterSelectMenu;
 
         public int currentCharacterOne = 1, currentCharacterTwo = 1;
@@ -47,6 +47,7 @@ namespace PixelFighters
             AssetManager.Instance.LoadContent(Content);
 
             GameplayManager.Instance.LoadContent(Content, this);
+            titlescreenMenu = new TitlescreenMenu();
             mainMenu = new MainMenu();
             optionsMenu = new OptionsMenu();
             storyMenu = new StoryMenu();
@@ -87,6 +88,7 @@ namespace PixelFighters
                     {
                         currentGameState = GameState.MainMenu;
                     }
+                    titlescreenMenu.Update(gameTime, this);
                     break;
                 case GameState.MainMenu:
                     camera.zoom = 1;
@@ -175,8 +177,10 @@ namespace PixelFighters
             switch (currentGameState)
             {
                 case GameState.TitleScreen:
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PIXELFIGHTERS", new Vector2(240, 90), Color.Orange);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER", new Vector2(240, 150), Color.White);
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    titlescreenMenu.Draw(spriteBatch);
+                    //spriteBatch.DrawString(AssetManager.Instance.spriteFont, "PIXELFIGHTERS", new Vector2(240, 90), Color.Orange);
+                    //spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press ENTER", new Vector2(240, 150), Color.White);
                     break;
                 case GameState.MainMenu:
                     GraphicsDevice.Clear(new Color(203, 219, 252));

@@ -44,6 +44,7 @@
     <Compile Include="Menus\CreditsMenu.cs" />
     <Compile Include="Menus\PausedMenu.cs" />
     <Compile Include="Menus\StoryMenu.cs" />
+    <Compile Include="Menus\TitlescreenMenu.cs" />
     <Compile Include="Screen\Camera.cs" />
     <Compile Include="Menus\BaseMenu.cs" />
     <Compile Include="Menus\CharacterSelectMenu.cs" />
@@ -73,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\boxMan.png" />
+    <Content Include="Content\center.png" />
     <Content Include="Content\characterBoxer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -99,7 +101,9 @@
     <Content Include="Content\QuitMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\shineTitlescreen.png" />
     <Content Include="Content\StoryMenu.png" />
+    <Content Include="Content\textTitlescreen.png" />
     <Content Include="Content\tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

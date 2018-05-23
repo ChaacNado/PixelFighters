@@ -1,4 +1,19 @@
-﻿**********2018-05-22 Version 0.6.3, auth: Jonas Ekblad**********
+﻿**********2018-05-23 Version 0.6.4, auth: Kristian Toro**********
+{
+Lagt till HighAttack i CharacterManager, samt highInput i Player.
+Fått in HighAttack i både keyboard och controller inputs.
+Lagt till en cooldownModifier, som ändrar cooldown beroende på attack.
+Begränsat HighAttack, kan bara användas en gång tills att man lagt fötterna på mark igen.
+Delvis fått in "restless" efter användning av HighAttack, begränsar vad som kan användas innan den är tillgänglig igen.
+Spelare ändrar färg under "restless".
+Modifierat hitboxarna så att de passar boxarens attacker.
+Ändrat source rectangle vid boxarens HighAttack.
+Tagit bort attackFrameInterval och gjort om till hårdkodning i CharacterManager, pga för många röriga multiplikationer.
+tagit bort "fastfall" medan spelarna har fötterna på mark.
+Den gamla buggiga crouchen är därmed borta, men kommer återvända när vi laddar in source rectangle för det.
+}
+
+**********2018-05-22 Version 0.6.3, auth: Jonas Ekblad**********
 {
 Fixat animationer till alla karaktärer. And a secret.
 }

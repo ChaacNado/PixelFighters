@@ -65,8 +65,6 @@ namespace PixelFighters
 
             camera.Update(gameTime);
 
-            System.Diagnostics.Debug.WriteLine(characterSelectMenu.player1ChosenCharacter);
-
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 

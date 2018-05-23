@@ -146,6 +146,8 @@ namespace PixelFighters
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
+            System.Diagnostics.Debug.WriteLine(p1.cooldownModifier);
+
             srcRecOne.Width = p1.srcWidthModifier;
             srcRecOne.Height = p1.srcHeightModifier;
             srcRecTwo.Width = p2.srcWidthModifier;

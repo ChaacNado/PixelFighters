@@ -144,7 +144,7 @@ namespace PixelFighters
                     if (!isRespawning || isHit)
                     {
                         speed.Y += 0.2f;
-                    }                    
+                    }
                     if (speed.Y >= 20)
                     {
                         speed.Y = 20;
@@ -210,6 +210,8 @@ namespace PixelFighters
             spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
             spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
 
+            spriteBatch.Draw(tex, pos, srcRec, Color.White, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
+
             if (playerIndex == 1)
             {
                 if (!isInvincible)
@@ -220,6 +222,10 @@ namespace PixelFighters
                 {
                     color = Color.Pink * 0.7f;
                 }
+                if (actionFrameTimer > 0 && isAttacking)
+                {
+                    color = Color.DeepPink * 0.9f;
+                }
                 if (isRespawning || highAttackAvailable <= 0 && !inAnimation)
                 {
                     color = new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble()) * 0.7f;
@@ -229,11 +235,15 @@ namespace PixelFighters
             {
                 if (!isInvincible)
                 {
-                    color = Color.White;
+                    color = Color.White * 0.0f;
                 }
                 if (isInvincible)
                 {
-                    color = Color.Cyan * 0.7f;
+                    color = Color.Turquoise * 0.7f;
+                }
+                if (actionFrameTimer > 0 && isAttacking)
+                {
+                    color = Color.Cyan * 0.9f;
                 }
                 if (isRespawning || highAttackAvailable <= 0 && !inAnimation)
                 {

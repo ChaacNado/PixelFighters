@@ -198,16 +198,16 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
-                player.actionFrameTimer = 200;
+                player.actionFrameTimer = 125;
                 player.cooldownModifier = 150;
                 player.isAttacking = true;
                 player.inAnimation = true;
-                player.knockBackModifierX = 15;
+                player.knockBackModifierX = 12;
                 player.knockBackModifierY = 2;
                 player.attackHitBox.Width = 32;
                 player.attackHitBox.Height = 24;
                 player.rangeModifierY = -30;
-                player.damageDealt = 2;
+                player.damageDealt = 1;
 
                 if (player.isOnGround)
                 {
@@ -235,8 +235,16 @@ namespace PixelFighters
             #region Rugby
             else if (player.currentCharacter == 2)
             {
-                player.actionFrameTimer = 400;
+                player.actionFrameTimer = 175;
+                player.cooldownModifier = 300;
                 player.isAttacking = true;
+                player.inAnimation = true;
+                player.knockBackModifierX = 22;
+                player.knockBackModifierY = 1;
+                player.attackHitBox.Width = 56;
+                player.attackHitBox.Height = 40;
+                player.rangeModifierY = -40;
+                player.damageDealt = 3;
 
                 if (player.isOnGround)
                 {
@@ -248,34 +256,71 @@ namespace PixelFighters
                     player.srcRec.X = 644;
                     player.srcRec.Width = 54;
                 }
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = -24;
+                    player.speed.X = 2;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -32;
+                    player.speed.X = -2;
+                }
             }
             #endregion
 
             #region Curling
-            //Behöver bättre animering.
             else if (player.currentCharacter == 3)
             {
-                player.actionFrameTimer = 400;
+                player.actionFrameTimer = 110;
+                player.cooldownModifier = 300;
                 player.isAttacking = true;
+                player.inAnimation = true;
+                player.knockBackModifierX = 20;
+                player.knockBackModifierY = 2;
+                player.attackHitBox.Width = 40;
+                player.attackHitBox.Height = 24;
+                player.rangeModifierY = -16;
+                player.damageDealt = 3;
 
                 if (player.isOnGround)
                 {
                     player.srcRec.X = 250;
+                    player.srcRec.Width = 59;
                 }
                 else if (!player.isOnGround)
                 {
                     player.srcRec.X = 925;
+                    player.srcRec.Y = 308;
                     player.srcRec.Width = 49;
+                    player.srcRec.Height = 92;
+                }
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = 0;
+                    player.speed.X = 0;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -40;
+                    player.speed.X = -0;
                 }
             }
             #endregion
 
             #region Baseball
-            //Flyger bakåt. Vet inte varför.
             else if (player.currentCharacter == 4)
             {
-                player.actionFrameTimer = 400;
+                player.actionFrameTimer = 75;
+                player.cooldownModifier = 400;
                 player.isAttacking = true;
+                player.inAnimation = true;
+                player.knockBackModifierX = 25;
+                player.knockBackModifierY = 7;
+                player.attackHitBox.Width = 64;
+                player.attackHitBox.Height = 32;
+                player.rangeModifierY = -24;
+                player.damageDealt = 4;
 
                 if (player.isOnGround)
                 {
@@ -286,6 +331,16 @@ namespace PixelFighters
                 {
                     player.srcRec.X = 860;
                     player.srcRec.Width = 66;
+                }
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = -16;
+                    player.speed.X = 1;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -40;
+                    player.speed.X = -1;
                 }
             }
             #endregion

@@ -337,6 +337,7 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
+
             spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);
 
             foreach (Platform p in platforms)
@@ -390,7 +391,7 @@ namespace PixelFighters
             //spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X + timerBoxRect.Width / 2 - 10, timerBoxRect.Y + timerBoxRect.Height / 2 - 10), Color.Black);
 
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
-            
+
             if (timer > 99.5)
             {
                 spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 30, timerBoxRect.Y + 2), Color.Black);

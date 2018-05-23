@@ -27,7 +27,7 @@ namespace PixelFighters
         public Color color;
 
         public bool timerStart = false, timerStock = false;
-        public float matchLength = 60, timer;
+        public float matchLength = 105, timer;
 
         public bool playerOneWon, playerTwoWon;
 
@@ -124,7 +124,7 @@ namespace PixelFighters
                 }
             }
 
-            timerBoxRect = new Rectangle(0, 0, 92, 68);
+            timerBoxRect = new Rectangle(0, 0, 140, 72);
             p1HPbarRect = new Rectangle(0, 0, 444, 72);
             p2HPbarRect = new Rectangle(0, 0, 444, 72);
             p1currentHPbarRect = new Rectangle(0, 0, 400, 40);
@@ -137,7 +137,7 @@ namespace PixelFighters
             p2Heart2Rect = new Rectangle(0, 0, 56, 48);
             p2Heart3Rect = new Rectangle(0, 0, 56, 48);
 
-            timerBoxSrc = new Rectangle(0, 54, 24, 18);
+            timerBoxSrc = new Rectangle(0, 54, 35, 18);
             hpBarSrc = new Rectangle(0, 15, 112, 19);
             currentHPbarSrc = new Rectangle(6, 38, 101, 11);
             redHeartSrc = new Rectangle(1, 1, 15, 13);
@@ -388,7 +388,17 @@ namespace PixelFighters
             }
 
             spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X + timerBoxRect.Width / 2 - 10, timerBoxRect.Y + timerBoxRect.Height / 2 - 10), Color.Black);
+
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
+            
+            if (timer > 99.5)
+            {
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 30, timerBoxRect.Y + 2), Color.Black);
+            }
+            if (timer < 99.5)
+            {
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 37, timerBoxRect.Y + 2), Color.Black);
+            }
 
             if (timer <= 0)
             {

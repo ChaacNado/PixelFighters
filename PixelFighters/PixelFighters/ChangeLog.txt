@@ -1,6 +1,11 @@
-﻿**********2018-05-23 Version 0.6.7, auth: Kristian Toro**********
+**********2018-05-23 Version 0.6.8, auth: Kristian Toro**********
 {
 Skrivit nya kommentarer och snyggat till koden i Player, GameplayManager och CharacterManager
+}
+
+﻿**********2018-05-23 Version 0.6.7, auth: Elma Carlsson**********
+{
+Fixat titlescreen klass, samt att man kan backa från main menu till titlescreen. Fixat till timern med ny font, ny storlek och nya positioner. När tiden är tresiffrig har den en position, när den är tvåsiffrig har den en  annan, för att centrera den.
 }
 
 **********2018-05-23 Version 0.6.6, auth: Kristian Toro**********

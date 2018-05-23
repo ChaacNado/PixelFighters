@@ -81,10 +81,6 @@ namespace PixelFighters
                     }
                 }
             }
-            else
-            {
-                p2.speed.X = 0;
-            }
 
             if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking)
             {
@@ -112,10 +108,6 @@ namespace PixelFighters
                         p1.speed.Y -= p2.knockBackModifierY / (p1.currentHP * 0.1f);
                     }
                 }
-            }
-            else
-            {
-                p1.speed.X *= 0;
             }
         }
         #endregion

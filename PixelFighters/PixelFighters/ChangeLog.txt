@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.6.4, auth: Kristian Toro**********
+﻿**********2018-05-23 Version 0.6.5, auth: Kristian Toro**********
+{
+Tagit bort några onödiga else-satser från MovingObject.
+}
+
+**********2018-05-23 Version 0.6.4, auth: Kristian Toro**********
 {
 Lagt till HighAttack i CharacterManager, samt highInput i Player.
 Fått in HighAttack i både keyboard och controller inputs.

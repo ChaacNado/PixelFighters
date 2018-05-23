@@ -110,10 +110,10 @@
     <Content Include="Content\warningtape platforms.png" />
     <Content Include="Icon.ico" />
     <Content Include="ChangeLog.txt" />
-    <Content Include="stage1.txt">
+    <Content Include="stage2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="stage2.txt">
+    <Content Include="stage1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

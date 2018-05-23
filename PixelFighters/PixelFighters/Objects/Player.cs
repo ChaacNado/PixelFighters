@@ -22,11 +22,11 @@ namespace PixelFighters
         Texture2D attackTex;
         Random rnd;
         public string characterName;
-        public int bX, bY, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier, cooldownModifier;
-        private int jumpsAvailable, highAttackAvailable, frame;
+        public int bX, bY, jumpsAvailable, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier, cooldownModifier, speedXModifier, speedYModifier;
+        private int highAttackAvailable, frame;
         private float rotation = 0;
         public double frameTimer, actionFrameTimer, frameInterval;
-        public bool facingRight, inAnimation, moving, isRespawning;
+        public bool facingRight, inAnimation, moving, isRespawning, isCrouching;
         public Keys jabInput, lowInput, highInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
         private PlayerIndex controllerIndex;
 
@@ -75,6 +75,8 @@ namespace PixelFighters
                 frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 isDunking = false;
+
+                isCrouching = false;
 
                 ///Animering
                 if (frameTimer <= 0 && moving && isOnGround && !isAttacking)
@@ -314,7 +316,7 @@ namespace PixelFighters
                     if (gamePadState.DPad.Right == ButtonState.Pressed && !isInvincible && !inAnimation)
                     {
                         facingRight = true;
-                        speed.X = 5;
+                        speed.X = speedXModifier;
                         if (isOnGround)
                         {
                             moving = true;
@@ -324,7 +326,7 @@ namespace PixelFighters
                     if (gamePadState.DPad.Left == ButtonState.Pressed && !isInvincible && !inAnimation)
                     {
                         facingRight = false;
-                        speed.X = -5;
+                        speed.X = -speedXModifier;
                         if (isOnGround)
                         {
                             moving = true;
@@ -338,7 +340,7 @@ namespace PixelFighters
                         ///Hoppa
                         if (gamePadState.IsButtonDown(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.DPadUp) || gamePadState.IsButtonDown(Buttons.Y) && previousGamePadState.IsButtonUp(Buttons.Y))
                         {
-                            speed.Y = -8;
+                            speed.Y = -speedYModifier;
                             isOnGround = false;
                             jumpsAvailable -= 1;
                             moving = false;
@@ -354,11 +356,12 @@ namespace PixelFighters
                         }
                     }
                     ///Fastfall eller crouch
-                    if (gamePadState.IsButtonDown(Buttons.DPadDown) && !inAnimation)
+                    if (gamePadState.IsButtonDown(Buttons.DPadDown) && previousGamePadState.IsButtonUp(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.Y) && !inAnimation)
                     {
                         if (isOnGround)
                         {
                             speed.X *= 0.5f;
+                            isCrouching = true;
                         }
                         else
                         {
@@ -426,7 +429,7 @@ namespace PixelFighters
             if (keyState.IsKeyDown(rightInput) && !isInvincible && !inAnimation)
             {
                 facingRight = true;
-                speed.X = 5;
+                speed.X = speedXModifier;
                 if (isOnGround)
                 {
                     moving = true;
@@ -436,7 +439,7 @@ namespace PixelFighters
             else if (keyState.IsKeyDown(leftInput) && !isInvincible && !inAnimation)
             {
                 facingRight = false;
-                speed.X = -5;
+                speed.X = -speedXModifier;
                 if (isOnGround)
                 {
                     moving = true;
@@ -445,7 +448,7 @@ namespace PixelFighters
             ///Hoppa
             if (keyState.IsKeyDown(jumpInput) && previousKeyState.IsKeyUp(jumpInput) && !isInvincible && jumpsAvailable >= 1 && highAttackAvailable >= 1)
             {
-                speed.Y = -8;
+                speed.Y = -speedYModifier;
                 isOnGround = false;
                 jumpsAvailable -= 1;
                 moving = false;
@@ -456,6 +459,7 @@ namespace PixelFighters
                 if (isOnGround)
                 {
                     speed.X *= 0.5f;
+                    isCrouching = true;
                 }
                 else
                 {

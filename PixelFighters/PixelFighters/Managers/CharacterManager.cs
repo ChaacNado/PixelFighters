@@ -44,6 +44,29 @@ namespace PixelFighters
                     player.characterName = "Philip Albert Jackson";
                     player.srcWidthModifier = 29;
                     player.srcHeightModifier = 61;
+                    if (player.isOnGround)
+                    {
+                        player.speedXModifier = 6;
+                    }
+                    else
+                    {
+                        player.speedXModifier = 4;
+                    }
+                    if (player.jumpsAvailable >= 2)
+                    {
+                        player.speedYModifier = 5;
+                    }
+                    else
+                    {
+                        player.speedYModifier = 7;
+                    }
+
+                    //if (player.isCrouching)
+                    //{
+                    //    player.srcRec.X = 235;
+                    //    player.srcRec.Y = 22;
+                    //    player.srcHeightModifier = 39;
+                    //}
 
                     if (player.playerIndex == 2)
                     {
@@ -61,6 +84,22 @@ namespace PixelFighters
                     player.characterName = "Mac Enchiz";
                     player.srcWidthModifier = 30;
                     player.srcHeightModifier = 71;
+                    if (player.isOnGround)
+                    {
+                        player.speedXModifier = 5;
+                    }
+                    else
+                    {
+                        player.speedXModifier = 4;
+                    }
+                    if (player.jumpsAvailable >= 2)
+                    {
+                        player.speedYModifier = 5;
+                    }
+                    else
+                    {
+                        player.speedYModifier = 7;
+                    }
 
                     if (player.playerIndex == 1)
                     {
@@ -82,6 +121,22 @@ namespace PixelFighters
                     player.characterName = "Aiden Fortin";
                     player.srcWidthModifier = 49;
                     player.srcHeightModifier = 61;
+                    if (player.isOnGround)
+                    {
+                        player.speedXModifier = 4;
+                    }
+                    else
+                    {
+                        player.speedXModifier = 4;
+                    }
+                    if (player.jumpsAvailable >= 2)
+                    {
+                        player.speedYModifier = 6;
+                    }
+                    else
+                    {
+                        player.speedYModifier = 5;
+                    }
 
                     if (player.playerIndex == 1)
                     {
@@ -100,9 +155,25 @@ namespace PixelFighters
                 ///Baseballspelare
                 if (player.currentCharacter == 4)
                 {
-                    player.characterName = "iunno";
+                    player.characterName = "Rin Suzume";
                     player.srcWidthModifier = 40;
                     player.srcHeightModifier = 62;
+                    if (player.isOnGround)
+                    {
+                        player.speedXModifier = 7;
+                    }
+                    else
+                    {
+                        player.speedXModifier = 3;
+                    }
+                    if (player.jumpsAvailable >= 2)
+                    {
+                        player.speedYModifier = 7;
+                    }
+                    else
+                    {
+                        player.speedYModifier = 5;
+                    }
 
                     if (player.playerIndex == 1)
                     {

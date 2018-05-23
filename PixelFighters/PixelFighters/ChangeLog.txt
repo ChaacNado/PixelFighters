@@ -1,6 +1,16 @@
+﻿**********2018-05-23 Version 0.7.0, auth: Kristian Toro**********
+{
+Modifierat karaktärernas individuella speed. Bytt namn mellan stage1 och stage2.
+}
+
+**********2018-05-23 Version 0.6.9, auth: Kristian Toro**********
+{
+Infört speedXModifier, speedYModifier och isCrouching i Player.
+}
+
 **********2018-05-23 Version 0.6.8, auth: Kristian Toro**********
 {
-Skrivit nya kommentarer och snyggat till koden i Player, GameplayManager och CharacterManager
+Skrivit nya kommentarer och snyggat till koden i Player, GameplayManager och CharacterManager.
 }
 
 ﻿**********2018-05-23 Version 0.6.7, auth: Elma Carlsson**********

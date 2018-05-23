@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Menus\SoundMenu.cs" />
     <Compile Include="Menus\CreditsMenu.cs" />
     <Compile Include="Menus\PausedMenu.cs" />
     <Compile Include="Menus\StoryMenu.cs" />
@@ -103,6 +104,7 @@
     </Content>
     <Content Include="Content\ResultsMenu.png" />
     <Content Include="Content\shineTitlescreen.png" />
+    <Content Include="Content\SoundMusicMenu.png" />
     <Content Include="Content\StoryMenu.png" />
     <Content Include="Content\textTitlescreen.png" />
     <Content Include="Content\tile.png">

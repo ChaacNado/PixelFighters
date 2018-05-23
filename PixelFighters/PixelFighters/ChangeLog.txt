@@ -1,4 +1,8 @@
-﻿**********2018-05-23 Version 0.7.1, auth: Elma Carlsson**********
+﻿**********2018-05-23 Version 0.7.2, auth: Erik Persson**********
+{
+Inlaggt en non funtional soundmeny.
+}
+**********2018-05-23 Version 0.7.2, auth: Erik Persson**********
 {
 Fix på pause kameran. Player 2 hjärtan tickar på rätt håll.
 }

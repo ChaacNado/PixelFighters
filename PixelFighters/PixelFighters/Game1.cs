@@ -13,7 +13,7 @@ namespace PixelFighters
         public KeyboardState keyState, previousKeyState;
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
-        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu;
+        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, soundMenu;
         CharacterSelectMenu characterSelectMenu;
         PausedMenu pausedMenu;
 
@@ -55,6 +55,7 @@ namespace PixelFighters
             creditsMenu = new CreditsMenu();
             quitMenu = new QuitMenu();
             graphicsMenu = new GraphicsMenu();
+            soundMenu = new SoundMenu();
             pausedMenu = new PausedMenu();
             characterSelectMenu = new CharacterSelectMenu();
 
@@ -161,6 +162,10 @@ namespace PixelFighters
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     graphicsMenu.Update(gameTime, this);
                     break;
+                case GameState.SoundMusic:
+                    camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
+                    soundMenu.Update(gameTime, this);
+                    break;
                 case GameState.Quit:
                     quitMenu.Update(gameTime, this);
                     break;
@@ -234,6 +239,10 @@ namespace PixelFighters
                 case GameState.Graphics:
                     GraphicsDevice.Clear(new Color(203, 219, 252));
                     graphicsMenu.Draw(spriteBatch);
+                    break;
+                case GameState.SoundMusic:
+                    GraphicsDevice.Clear(new Color(203, 219, 252));
+                    soundMenu.Draw(spriteBatch);
                     break;
             }
 

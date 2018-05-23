@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.7.2, auth: Erik Persson**********
+﻿**********2018-05-23 Version 0.7.3, auth: Elma Carlsson**********
+{
+Lagt in en slarvig story text på varje person. Fixat så det finns en controlsmenu, som visar alla knappar som används i spelet, både i menyerna och i spelet.
+}
+
+**********2018-05-23 Version 0.7.2, auth: Erik Persson**********
 {
 Inlaggt en non funtional soundmeny.
 }

@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Menus\ControlsMenu.cs" />
     <Compile Include="Menus\SoundMenu.cs" />
     <Compile Include="Menus\CreditsMenu.cs" />
     <Compile Include="Menus\PausedMenu.cs" />
@@ -84,6 +85,7 @@
     </Content>
     <Content Include="Content\characters.png" />
     <Content Include="Content\CharacterSelectMenu.png" />
+    <Content Include="Content\ControlsMenu.png" />
     <Content Include="Content\CreditsMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

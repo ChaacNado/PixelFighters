@@ -247,12 +247,12 @@ namespace PixelFighters
                 {
                     spriteBatch.Draw(tex, attackHitBox, projectileSrcRec, Color.White, 0, Vector2.Zero, playerFx, 1);
                 }
-                spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
+                //spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
             }
 
             ///Ritar ut kollisions-hitboxes
-            spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
-            spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
+            //spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
+            //spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
 
             spriteBatch.Draw(tex, pos, srcRec, Color.White, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
             if (isInvincible)

@@ -92,14 +92,14 @@ namespace PixelFighters
         {
             livesTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 500;
             livesTextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 370;
-            minutesTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 118;
+            minutesTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 500/*118*/;
             minutesTextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 370;
             mapTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 356;
             mapTextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 370;
 
             livesBoxRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 513;
             livesBoxRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 320;
-            minutesBoxRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 92;
+            minutesBoxRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 474/*92*/;
             minutesBoxRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 320;
             mapBoxRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 215;
             mapBoxRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 320;
@@ -159,7 +159,7 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
                     {
-                        currentMarkerState = MarkerState.MarkerState5;
+                        currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
                 //Markerstate2 = Amerikansk fotbollsspelare
@@ -188,7 +188,7 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
                     {
-                        currentMarkerState = MarkerState.MarkerState5;
+                        currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
                 //MarkerState3 = Curlare
@@ -217,7 +217,7 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
                     {
-                        currentMarkerState = MarkerState.MarkerState5;
+                        currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
                 //Markerstate4 = Baseballspelare
@@ -242,7 +242,7 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
                     {
-                        currentMarkerState = MarkerState.MarkerState5;
+                        currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
                     //Markerstate5 = Lives vänster knapp
@@ -324,10 +324,10 @@ namespace PixelFighters
                     {
                         currentMarkerState = MarkerState.MarkerState8;
                     }
-                    if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft))
-                    {
-                        currentMarkerState = MarkerState.MarkerState6;
-                    }
+                    //if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft))
+                    //{
+                    //    currentMarkerState = MarkerState.MarkerState6;
+                    //}
                     if (keyState.IsKeyDown(Keys.S) && previousKeyState.IsKeyUp(Keys.S) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown))
                     {
                         if (lastMarkedCharacter == 1)
@@ -630,11 +630,11 @@ namespace PixelFighters
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesTextRectangle, livesTextSrcRectangle, Color.White);
+            //spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesTextRectangle, livesTextSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, minutesTextRectangle, minutesTextSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, mapTextRectangle, mapTextSrcRectangle, Color.White);
 
-            spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesBoxRectangle, livesBoxSrcRectangle, Color.White);
+            //spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesBoxRectangle, livesBoxSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, minutesBoxRectangle, minutesBoxSrcRectangle, Color.White);
             spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, mapBoxRectangle, mapBoxSrcRectangle, Color.White);
 
@@ -704,12 +704,12 @@ namespace PixelFighters
                 case MarkerState.MarkerState4:
                     spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, player1MarkerRectangle, player1MarkerSrcRectangle, Color.White);
                     break;
-                case MarkerState.MarkerState5:
-                    spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesBoxRectangle, smallBoxleftSrcRectangle, Color.White);
-                    break;
-                case MarkerState.MarkerState6:
-                    spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesBoxRectangle, smallBoxRightSrcRectangle, Color.White);
-                    break;
+                //case MarkerState.MarkerState5:
+                //    spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesBoxRectangle, smallBoxleftSrcRectangle, Color.White);
+                //    break;
+                //case MarkerState.MarkerState6:
+                //    spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, livesBoxRectangle, smallBoxRightSrcRectangle, Color.White);
+                //    break;
                 case MarkerState.MarkerState7:
                     spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, minutesBoxRectangle, smallBoxleftSrcRectangle, Color.White);
                     break;

@@ -17,7 +17,7 @@ namespace PixelFighters
 
         public int stageNumber = 1;
         public Vector2 startPosOne, startPosTwo;
-        Rectangle srcRecOne, srcRecTwo;
+        Rectangle srcRecOne, srcRecTwo, projectileSrcRec;
         public Player p1, p2;
         public List<Player> players;
         public List<Platform> platforms;
@@ -63,10 +63,11 @@ namespace PixelFighters
 
             stageNumber = 1;
 
-            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, 1, game, true);
-            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, srcRecTwo, 2, game, false);
+            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, projectileSrcRec, 1, game, true);
+            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, srcRecTwo, projectileSrcRec, 2, game, false);
             srcRecOne = new Rectangle(0, 0, 0, 0);
             srcRecTwo = new Rectangle(0, 0, 0, 0);
+            projectileSrcRec = new Rectangle(0, 0, 0, 0);
             players = new List<Player>
             {
                 p1,
@@ -148,7 +149,7 @@ namespace PixelFighters
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
-            System.Diagnostics.Debug.WriteLine(p1.isCrouching);
+            System.Diagnostics.Debug.WriteLine(p1.isAttacking);
 
             srcRecOne.Width = p1.srcWidthModifier;
             srcRecOne.Height = p1.srcHeightModifier;
@@ -338,7 +339,7 @@ namespace PixelFighters
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
 
-            spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);
+            spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White * 0);
 
             foreach (Platform p in platforms)
             {

@@ -1,4 +1,10 @@
-﻿**********2018-05-23 Version 0.7.1, auth: Elma Carlsson**********
+﻿**********2018-05-23 Version 0.7.X, auth: Kristian Toro**********
+{
+Justerat alla karaktärers en miljard modifiers, source rectangles och hitboxes för varje attack.
+Skapat projektil-logik. Utfört många andra mindre ändringar.
+}
+
+**********2018-05-23 Version 0.7.1, auth: Elma Carlsson**********
 {
 Fix på pause kameran. Player 2 hjärtan tickar på rätt håll.
 }

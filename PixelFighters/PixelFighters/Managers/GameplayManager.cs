@@ -17,7 +17,6 @@ namespace PixelFighters
 
         public int stageNumber = 1;
         public Vector2 startPosOne, startPosTwo;
-        Rectangle srcRecOne, srcRecTwo, projectileSrcRec;
         public Player p1, p2;
         public List<Player> players;
         public List<Platform> platforms;
@@ -25,12 +24,14 @@ namespace PixelFighters
 
         MouseState mouseState, previousMouseState;
         public Color color;
+        Random rnd;
 
         public bool timerStart = false, timerStock = false;
         public float matchLength, timer;
 
         public bool playerOneWon, playerTwoWon;
 
+        Rectangle srcRecOne, srcRecTwo, projectileSrcRec;
         Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect, p1Arrow, p2Arrow;
         Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc, p1ArrowSrc, p2ArrowSrc;
 
@@ -60,6 +61,7 @@ namespace PixelFighters
             timer = matchLength;
 
             color = new Color(0, 0, 0, 1f);
+            rnd = new Random();
 
             stageNumber = 1;
 
@@ -419,14 +421,18 @@ namespace PixelFighters
             {
                 spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 12, timerBoxRect.Y -6), Color.Black);
             }
-            if (timer < 99.5)
+            if (timer < 99.5 && timer > 9.5)
             {
                 spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 32, timerBoxRect.Y + -6), Color.Black);
+            }
+            if (timer < 9.5 && timer > 0.5)
+            {
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 52, timerBoxRect.Y + -6), new Color((float)rnd.NextDouble(), (float)rnd.NextDouble(), (float)rnd.NextDouble()));
             }
 
             if (timer <= 0)
             {
-                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, "Sudden Death", new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.435f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.13f), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, "Sudden Death", new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.340f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.13f), Color.Red);
             }
         }
         #endregion

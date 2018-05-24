@@ -1,4 +1,10 @@
-﻿**********2018-05-24 Version 0.7.9, auth: Kristian Toro**********
+﻿**********2018-05-24 Version 0.8.0, auth: Kristian Toro**********
+{
+Fått in flashiga effekter på timern när den räknar ner de 10 sista sekunderna på matchen.
+Snyggat till texten som skriver ut sudden death.
+}
+
+**********2018-05-24 Version 0.7.9, auth: Kristian Toro**********
 {
 Ökat max antal minuter som man kan ha på timern, ställt standardtimern till 5 minuter (förslag genom feedback från utställningen).
 Förstorat timerfonten samt rektangeln bakom (förslag genom feedback från utställningen).

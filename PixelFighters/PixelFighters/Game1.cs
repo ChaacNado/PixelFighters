@@ -18,7 +18,7 @@ namespace PixelFighters
         PausedMenu pausedMenu;
         ResultScreenMenu resultScreenMenu;
 
-        public int currentCharacterOne = 1, currentCharacterTwo = 1;
+        public int currentCharacterOne = 1, currentCharacterTwo = 1, currentChosenMap = 1, currentChosenMinutes = 2 /*currentChosenLives=1*/;
 
         public Game1()
         {
@@ -80,6 +80,10 @@ namespace PixelFighters
 
             GameplayManager.Instance.p1.currentCharacter = currentCharacterOne;
             GameplayManager.Instance.p2.currentCharacter = currentCharacterTwo;
+            GameplayManager.Instance.stageNumber = currentChosenMap;
+            GameplayManager.Instance.matchLength = currentChosenMinutes * 60;
+            //GameplayManager.Instance.p1. = currentChosenLives;
+            //GameplayManager.Instance.p2. = currentChosenLives;
 
             ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
@@ -146,6 +150,9 @@ namespace PixelFighters
                         GameplayManager.Instance.playerTwoWon = false;
                         currentCharacterOne = 1;
                         currentCharacterTwo = 1;
+                        currentChosenMap = 1;
+                        currentChosenMinutes = 2;
+                        /*currentChosenLives=1*/
                         LoadContent();
                         currentGameState = GameState.CharacterSelect;
                     }
@@ -157,6 +164,9 @@ namespace PixelFighters
                         GameplayManager.Instance.playerTwoWon = false;
                         currentCharacterOne = 1;
                         currentCharacterTwo = 1;
+                        currentChosenMap = 1;
+                        currentChosenMinutes = 2;
+                        /*currentChosenLives=1*/
                         LoadContent();
                         currentGameState = GameState.MainMenu;
                     }

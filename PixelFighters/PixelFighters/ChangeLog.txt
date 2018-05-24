@@ -1,4 +1,9 @@
-﻿**********2018-05-23 Version 0.7.6, auth: Kristian Toro**********
+﻿**********2018-05-24 Version 0.7.7, auth: Erik Persson**********
+{
+man kan ändra minuter i characterselect. p1 och p2 ovanför spelarna. lite buggfixar i samband med pause.
+}
+
+**********2018-05-23 Version 0.7.6, auth: Kristian Toro**********
 {
 Justerat alla karaktärers en miljard modifiers, source rectangles och hitboxes för varje attack.
 Skapat projektil-logik. Utfört många andra mindre ändringar.

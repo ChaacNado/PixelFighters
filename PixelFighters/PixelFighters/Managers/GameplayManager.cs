@@ -31,8 +31,8 @@ namespace PixelFighters
 
         public bool playerOneWon, playerTwoWon;
 
-        Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect;
-        Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc;
+        Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect, p1Arrow, p2Arrow;
+        Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc, p1ArrowSrc, p2ArrowSrc;
 
         private static GameplayManager instance;
         #endregion
@@ -138,10 +138,15 @@ namespace PixelFighters
             p2Heart2Rect = new Rectangle(0, 0, 56, 48);
             p2Heart3Rect = new Rectangle(0, 0, 56, 48);
 
+            p1Arrow = new Rectangle(0, 0, 22, 26);
+            p2Arrow = new Rectangle(0, 0, 22, 26);
+
             timerBoxSrc = new Rectangle(0, 54, 35, 18);
             hpBarSrc = new Rectangle(0, 15, 112, 19);
             currentHPbarSrc = new Rectangle(6, 38, 101, 11);
             redHeartSrc = new Rectangle(1, 1, 15, 13);
+            p1ArrowSrc = new Rectangle(617, 0, 11, 13);
+            p2ArrowSrc = new Rectangle(633, 0, 12, 13);
         }
 
         public void Update(GameTime gameTime, Camera camera)
@@ -316,6 +321,12 @@ namespace PixelFighters
             p2Heart2Rect.Y = p2Heart1Rect.Y;
             p2Heart3Rect.X = p2Heart2Rect.X + p1Heart3Rect.Width + 5;
             p2Heart3Rect.Y = p2Heart1Rect.Y;
+
+            p1Arrow.X = (int)p1.damageableHitBox.X + 5;
+            p1Arrow.Y = (int)p1.damageableHitBox.Y - p1Arrow.Height - 10;
+
+            p2Arrow.X = (int)p2.damageableHitBox.X + 5;
+            p2Arrow.Y = (int)p2.damageableHitBox.Y - p2Arrow.Height - 10;
             #endregion
 
             foreach (Player player in players)
@@ -339,7 +350,12 @@ namespace PixelFighters
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
 
-            spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);
+            if (stageNumber == 2)
+            {
+                //Bakgrunden täckte inte allting spelaren såg             
+                //spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);             
+                spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(-1000, -800), Color.White);
+            }
 
             foreach (Platform p in platforms)
             {
@@ -388,6 +404,9 @@ namespace PixelFighters
                 spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart2Rect, redHeartSrc, Color.White);
                 spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
             }
+
+            spriteBatch.Draw(AssetManager.Instance.characterSpriteSheet, p1Arrow, p1ArrowSrc, Color.White);
+            spriteBatch.Draw(AssetManager.Instance.characterSpriteSheet, p2Arrow, p2ArrowSrc, Color.White);
 
             //spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X + timerBoxRect.Width / 2 - 10, timerBoxRect.Y + timerBoxRect.Height / 2 - 10), Color.Black);
 

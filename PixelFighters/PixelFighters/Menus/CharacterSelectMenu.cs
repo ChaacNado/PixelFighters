@@ -14,7 +14,7 @@ namespace PixelFighters
     {
         #region Variables
 
-        public int lastMarkedCharacter, secondaryLastMarkedCharacter, player1ChosenCharacter, player2ChosenCharacter, mapChosen;
+        public int lastMarkedCharacter, secondaryLastMarkedCharacter, player1ChosenCharacter, player2ChosenCharacter, mapChosen, minutesChosen;
         public bool player1Ready, player2Ready;
         Rectangle livesTextRectangle, minutesTextRectangle, mapTextRectangle, livesBoxRectangle, minutesBoxRectangle, mapBoxRectangle, charactersRectangle, ready1Rectangle, ready2Rectangle, player1Rectangle, player2Rectangle, player1MarkerRectangle, player2MarkerRectangle, player1TextRectangle, player2TextRectangle;
         Rectangle livesTextSrcRectangle, minutesTextSrcRectangle, mapTextSrcRectangle, livesBoxSrcRectangle, minutesBoxSrcRectangle, mapBoxSrcRectangle, smallBoxleftSrcRectangle, smallBoxRightSrcRectangle, bigBoxLeftSrcRectangle, bigBoxRightSrcRectangle, charactersSrcRectangle, readySrcRectangle, notReadySrcRectangle, markedReadySrcRectangle, markedNotReadySrcRectangle, playerSrcRectangle, player1MarkerSrcRectangle, player2MarkerSrcRectangle, standardMapSrcRectangle, spaceMapSrcRectangle, player1TextSrcRectangle, player2TextSrcRectangle;
@@ -28,6 +28,7 @@ namespace PixelFighters
             player1ChosenCharacter = 1;
             player2ChosenCharacter = 1;
             mapChosen = 1;
+            minutesChosen = 2;
 
             livesTextRectangle = new Rectangle(0, 0, 156, 40);
             minutesTextRectangle = new Rectangle(0, 0, 236, 40);
@@ -310,10 +311,15 @@ namespace PixelFighters
                     break;
                 //Markerstate7 = Minutes vänster knapp
                 case MarkerState.MarkerState7:
-                    //if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
-                    //{
-                    //    Färre minuter
-                    //}
+                    if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    {
+                        if (game1.currentChosenMinutes > 1)
+                        {
+                            game1.currentChosenMinutes -= 1;
+                            minutesChosen -= 1;
+                        }
+
+                    }
                     if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight))
                     {
                         currentMarkerState = MarkerState.MarkerState8;
@@ -344,10 +350,15 @@ namespace PixelFighters
                     break;
                 //Markerstate8 = Minutes höger knapp
                 case MarkerState.MarkerState8:
-                    //if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
-                    //{
-                    //    Fler minuter
-                    //}
+                    if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    {
+                        if (game1.currentChosenMinutes <= 4)
+                        {
+                            game1.currentChosenMinutes += 1;
+                            minutesChosen += 1;
+                        }
+
+                    }
                     if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight))
                     {
                         currentMarkerState = MarkerState.MarkerState9;
@@ -383,6 +394,7 @@ namespace PixelFighters
                         if (mapChosen > 1)
                         {
                             mapChosen -= 1;
+                            game1.currentChosenMap -= 1;
                         }
                     }
                     if (keyState.IsKeyDown(Keys.D) && previousKeyState.IsKeyUp(Keys.D) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight))
@@ -420,6 +432,7 @@ namespace PixelFighters
                         if (mapChosen <= 1)
                         {
                             mapChosen += 1;
+                            game1.currentChosenMap += 1;
                         }
                     }
                     if (keyState.IsKeyDown(Keys.A) && previousKeyState.IsKeyUp(Keys.A) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft))
@@ -749,6 +762,7 @@ namespace PixelFighters
             {
                 spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, mapBoxRectangle, spaceMapSrcRectangle, Color.White);
             }
+            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, minutesChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 77, minutesBoxRectangle.Y + 4), Color.Black);
         }
 
         #endregion

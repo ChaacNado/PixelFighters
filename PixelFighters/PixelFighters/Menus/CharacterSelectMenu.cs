@@ -109,9 +109,9 @@ namespace PixelFighters
             ready1Rectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 268;
             ready2Rectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 340;
             ready2Rectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 268;
-            player1TextRectangle.X = (int)ScreenManager.Instance.Dimensions.Y / 2 + 15;
+            player1TextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 290;
             player1TextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 100;
-            player2TextRectangle.X = (int)ScreenManager.Instance.Dimensions.Y / 2 + 670;
+            player2TextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 370;
             player2TextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 100;
 
             player1Rectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 660;
@@ -483,7 +483,7 @@ namespace PixelFighters
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
                     player2MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;
 
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         //P2 väljer karaktär
                         game1.currentCharacterTwo = 1;
@@ -508,7 +508,7 @@ namespace PixelFighters
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 214;
                     player2MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;
 
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         //P2 väljer karaktär
                         game1.currentCharacterTwo = 2;
@@ -537,7 +537,7 @@ namespace PixelFighters
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 2;
                     player2MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;
 
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         //P2 väljer karaktär
                         game1.currentCharacterTwo = 3;
@@ -566,7 +566,7 @@ namespace PixelFighters
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 210;
                     player2MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;
 
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         //P2 väljer karaktär
                         game1.currentCharacterTwo = 4;

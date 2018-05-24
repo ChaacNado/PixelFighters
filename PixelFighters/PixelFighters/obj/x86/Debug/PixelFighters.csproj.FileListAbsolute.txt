@@ -824,3 +824,5 @@ C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bi
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\textTitlescreen.xnb
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\ResultsMenu.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\ResultsMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\ControlsMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\SoundMusicMenu.xnb

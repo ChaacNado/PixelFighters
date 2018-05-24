@@ -338,8 +338,14 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-
-            spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White * 0);
+            if (stageNumber == 1)
+            {
+                spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White * 0);
+            }
+            if (stageNumber == 2)
+            {
+                spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);
+            }
 
             foreach (Platform p in platforms)
             {

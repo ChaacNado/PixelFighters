@@ -72,7 +72,7 @@ namespace PixelFighters
                         game1.currentCharacterOne = 1;
                         game1.currentCharacterTwo = 1;
                         game1.currentChosenMap = 1;
-                        game1.currentChosenMinutes = 2;
+                        game1.currentChosenMinutes = 3;
                         /*currentChosenLives=1*/
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))

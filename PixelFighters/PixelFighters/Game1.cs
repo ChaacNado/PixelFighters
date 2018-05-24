@@ -18,7 +18,7 @@ namespace PixelFighters
         PausedMenu pausedMenu;
         ResultScreenMenu resultScreenMenu;
 
-        public int currentCharacterOne = 1, currentCharacterTwo = 1, currentChosenMap = 1, currentChosenMinutes = 2 /*currentChosenLives=1*/;
+        public int currentCharacterOne = 1, currentCharacterTwo = 1, currentChosenMap = 1, currentChosenMinutes = 5 /*currentChosenLives=1*/;
 
         public Game1()
         {
@@ -151,7 +151,7 @@ namespace PixelFighters
                         currentCharacterOne = 1;
                         currentCharacterTwo = 1;
                         currentChosenMap = 1;
-                        currentChosenMinutes = 2;
+                        currentChosenMinutes = 3;
                         /*currentChosenLives=1*/
                         LoadContent();
                         currentGameState = GameState.CharacterSelect;
@@ -165,7 +165,7 @@ namespace PixelFighters
                         currentCharacterOne = 1;
                         currentCharacterTwo = 1;
                         currentChosenMap = 1;
-                        currentChosenMinutes = 2;
+                        currentChosenMinutes = 3;
                         /*currentChosenLives=1*/
                         LoadContent();
                         currentGameState = GameState.MainMenu;

@@ -28,7 +28,7 @@ namespace PixelFighters
             player1ChosenCharacter = 1;
             player2ChosenCharacter = 1;
             mapChosen = 1;
-            minutesChosen = 2;
+            minutesChosen = 5;
 
             livesTextRectangle = new Rectangle(0, 0, 156, 40);
             minutesTextRectangle = new Rectangle(0, 0, 236, 40);
@@ -352,7 +352,7 @@ namespace PixelFighters
                 case MarkerState.MarkerState8:
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
-                        if (game1.currentChosenMinutes <= 4)
+                        if (game1.currentChosenMinutes <= 8)
                         {
                             game1.currentChosenMinutes += 1;
                             minutesChosen += 1;
@@ -762,7 +762,7 @@ namespace PixelFighters
             {
                 spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, mapBoxRectangle, spaceMapSrcRectangle, Color.White);
             }
-            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, minutesChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 77, minutesBoxRectangle.Y + 4), Color.Black);
+            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, minutesChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 74, minutesBoxRectangle.Y -6), Color.Black);
         }
 
         #endregion

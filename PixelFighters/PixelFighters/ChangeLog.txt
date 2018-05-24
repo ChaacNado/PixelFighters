@@ -1,4 +1,10 @@
-﻿**********2018-05-24 Version 0.7.8, auth: Kristian Toro**********
+﻿**********2018-05-24 Version 0.7.9, auth: Kristian Toro**********
+{
+Ökat max antal minuter som man kan ha på timern, ställt standardtimern till 5 minuter (förslag genom feedback från utställningen).
+Förstorat timerfonten samt rektangeln bakom (förslag genom feedback från utställningen).
+}
+
+**********2018-05-24 Version 0.7.8, auth: Kristian Toro**********
 {
 stage1 har nu bakgrundstextur. Alla platformar har transparenta texturer på stage1.
 Justeringar på hur långt kameran får röra sig har gjorts.

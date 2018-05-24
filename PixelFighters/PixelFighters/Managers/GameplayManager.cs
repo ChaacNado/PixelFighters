@@ -27,7 +27,7 @@ namespace PixelFighters
         public Color color;
 
         public bool timerStart = false, timerStock = false;
-        public float matchLength = 105, timer;
+        public float matchLength, timer;
 
         public bool playerOneWon, playerTwoWon;
 
@@ -417,16 +417,16 @@ namespace PixelFighters
 
             if (timer > 99.5)
             {
-                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 30, timerBoxRect.Y + 2), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 12, timerBoxRect.Y -6), Color.Black);
             }
             if (timer < 99.5)
             {
-                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 37, timerBoxRect.Y + 2), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 32, timerBoxRect.Y + -6), Color.Black);
             }
 
             if (timer <= 0)
             {
-                spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Sudden Death", new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.435f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.13f), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, "Sudden Death", new Vector2((int)camera.pos.X + ScreenManager.Instance.Dimensions.X * 0.435f, (int)camera.pos.Y + ScreenManager.Instance.Dimensions.Y * 0.13f), Color.Black);
             }
         }
         #endregion

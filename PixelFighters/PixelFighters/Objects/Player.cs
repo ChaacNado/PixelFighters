@@ -194,7 +194,7 @@ namespace PixelFighters
                 HandleInputs();
 
                 ///Vad som leder till att man förlorar en stock
-                if (pos.Y >= bY + 300 || pos.Y <= -bY / 3 || pos.X <= -300 || pos.X >= bX + 300 || currentHP <= 0)
+                if (pos.Y >= bY + 300 || pos.Y <= -900 || pos.X <= -900 || pos.X >= bX + 600 || currentHP <= 0)
                 {
                     currentHP = maxHP;
                     stocksRemaining--;

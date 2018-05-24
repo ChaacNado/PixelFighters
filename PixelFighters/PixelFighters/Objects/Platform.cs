@@ -15,7 +15,6 @@ namespace PixelFighters
         public Platform(Texture2D tex, Rectangle hitBox) : base(tex)
         {
             this.tex = tex;
-            color = Color.White;
 
             bottomHitBox = new Rectangle(hitBox.X, hitBox.Y + 1, hitBox.Width, hitBox.Height);
             topHitBox = new Rectangle(hitBox.X, hitBox.Y, hitBox.Width, 25);
@@ -23,6 +22,14 @@ namespace PixelFighters
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (GameplayManager.Instance.stageNumber == 1)
+            {
+                color = Color.White * 0f;
+            }
+            else if (GameplayManager.Instance.stageNumber == 2)
+            {
+                color = Color.White;
+            }
             spriteBatch.Draw(tex, bottomHitBox, color);
         }
     }

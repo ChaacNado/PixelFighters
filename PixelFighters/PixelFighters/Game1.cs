@@ -224,7 +224,7 @@ namespace PixelFighters
                 case GameState.Playtime:
                     GraphicsDevice.Clear(Color.LightSlateGray);
                     GameplayManager.Instance.Draw(spriteBatch, camera);
-                    spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press 8 to pause the game", new Vector2(240, 90), Color.White);
+                    ///spriteBatch.DrawString(AssetManager.Instance.spriteFont, "Press 8 to pause the game", new Vector2(240, 90), Color.White);
                     break;
                 case GameState.Paused:
                     GraphicsDevice.Clear(Color.LightSlateGray);

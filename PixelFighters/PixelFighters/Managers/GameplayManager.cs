@@ -154,7 +154,7 @@ namespace PixelFighters
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
 
-            System.Diagnostics.Debug.WriteLine(p1.isAttacking);
+            System.Diagnostics.Debug.WriteLine(camera.pos);
 
             srcRecOne.Width = p1.srcWidthModifier;
             srcRecOne.Height = p1.srcHeightModifier;
@@ -349,17 +349,20 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-
+            if(stageNumber == 1)
+            {
+                spriteBatch.Draw(AssetManager.Instance.skyscraperBackgroundTex, new Vector2(-1000, -800), Color.White);
+            }
             if (stageNumber == 2)
             {
                 //Bakgrunden täckte inte allting spelaren såg             
                 //spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);             
-                spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(-1000, -800), Color.White);
+                spriteBatch.Draw(AssetManager.Instance.spaceBackgroundTex, new Vector2(-1000, -800), Color.White);
             }
 
-            foreach (Platform p in platforms)
+            foreach (Platform platform in platforms)
             {
-                p.Draw(spriteBatch);
+                platform.Draw(spriteBatch);
             }
 
             foreach (Player player in players)

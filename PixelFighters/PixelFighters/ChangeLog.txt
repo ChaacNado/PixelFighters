@@ -1,4 +1,12 @@
-﻿**********2018-05-24 Version 0.7.7, auth: Erik Persson**********
+﻿**********2018-05-24 Version 0.7.8, auth: Kristian Toro**********
+{
+stage1 har nu bakgrundstextur. Alla platformar har transparenta texturer på stage1.
+Justeringar på hur långt kameran får röra sig har gjorts.
+Gränserna som leder till att man blir av med stocks har vidgas.
+Balanserat all damage osv.
+}
+
+**********2018-05-24 Version 0.7.7, auth: Erik Persson**********
 {
 man kan ändra minuter i characterselect. p1 och p2 ovanför spelarna. lite buggfixar i samband med pause.
 }

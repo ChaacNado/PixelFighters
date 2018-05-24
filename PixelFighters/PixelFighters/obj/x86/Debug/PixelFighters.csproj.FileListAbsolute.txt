@@ -828,3 +828,5 @@ C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Win
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\SoundMusicMenu.xnb
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\ControlsMenu.xnb
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\SoundMusicMenu.xnb
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\standardBackground.png
+C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\standardBackground.xnb

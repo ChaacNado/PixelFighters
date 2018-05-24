@@ -32,7 +32,7 @@ namespace PixelFighters
         public bool playerOneWon, playerTwoWon;
 
         Rectangle srcRecOne, srcRecTwo, projectileSrcRec;
-        Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect, p1Arrow, p2Arrow;
+        Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect;
         Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc, p1ArrowSrc, p2ArrowSrc;
 
         private static GameplayManager instance;
@@ -65,8 +65,8 @@ namespace PixelFighters
 
             stageNumber = 1;
 
-            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, projectileSrcRec, 1, game, true);
-            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, srcRecTwo, projectileSrcRec, 2, game, false);
+            p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, projectileSrcRec, p1ArrowSrc, 1, game, true);
+            p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, srcRecTwo, projectileSrcRec, p2ArrowSrc, 2, game, false);
             srcRecOne = new Rectangle(0, 0, 0, 0);
             srcRecTwo = new Rectangle(0, 0, 0, 0);
             projectileSrcRec = new Rectangle(0, 0, 0, 0);
@@ -140,9 +140,6 @@ namespace PixelFighters
             p2Heart2Rect = new Rectangle(0, 0, 56, 48);
             p2Heart3Rect = new Rectangle(0, 0, 56, 48);
 
-            p1Arrow = new Rectangle(0, 0, 22, 26);
-            p2Arrow = new Rectangle(0, 0, 22, 26);
-
             timerBoxSrc = new Rectangle(0, 54, 35, 18);
             hpBarSrc = new Rectangle(0, 15, 112, 19);
             currentHPbarSrc = new Rectangle(6, 38, 101, 11);
@@ -169,16 +166,16 @@ namespace PixelFighters
 
             ///Kollision mellan spelarna och platformar
             #region Platform Collision
-            foreach (Platform p in platforms)
+            foreach (Platform platform in platforms)
             {
-                if (p1.IsTopColliding(p))
+                if (p1.IsTopColliding(platform))
                 {
-                    p1.HandleTopCollision(p);
+                    p1.HandleTopCollision(platform);
                     break;
                 }
-                if (p1.IsBottomColliding(p))
+                if (p1.IsBottomColliding(platform))
                 {
-                    p1.HandleBottomCollision(p);
+                    p1.HandleBottomCollision(platform);
                     break;
                 }
                 else
@@ -186,16 +183,16 @@ namespace PixelFighters
                     p1.isOnGround = false;
                 }
             }
-            foreach (Platform p in platforms)
+            foreach (Platform platform in platforms)
             {
-                if (p2.IsTopColliding(p))
+                if (p2.IsTopColliding(platform))
                 {
-                    p2.HandleTopCollision(p);
+                    p2.HandleTopCollision(platform);
                     break;
                 }
-                if (p2.IsBottomColliding(p))
+                if (p2.IsBottomColliding(platform))
                 {
-                    p2.HandleBottomCollision(p);
+                    p2.HandleBottomCollision(platform);
                     break;
                 }
                 else
@@ -323,12 +320,6 @@ namespace PixelFighters
             p2Heart2Rect.Y = p2Heart1Rect.Y;
             p2Heart3Rect.X = p2Heart2Rect.X + p1Heart3Rect.Width + 5;
             p2Heart3Rect.Y = p2Heart1Rect.Y;
-
-            p1Arrow.X = (int)p1.damageableHitBox.X + 5;
-            p1Arrow.Y = (int)p1.damageableHitBox.Y - p1Arrow.Height - 10;
-
-            p2Arrow.X = (int)p2.damageableHitBox.X + 5;
-            p2Arrow.Y = (int)p2.damageableHitBox.Y - p2Arrow.Height - 10;
             #endregion
 
             foreach (Player player in players)
@@ -351,7 +342,7 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            if(stageNumber == 1)
+            if (stageNumber == 1)
             {
                 spriteBatch.Draw(AssetManager.Instance.skyscraperBackgroundTex, new Vector2(-1000, -800), Color.White);
             }
@@ -410,16 +401,13 @@ namespace PixelFighters
                 spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p2Heart3Rect, redHeartSrc, Color.White);
             }
 
-            spriteBatch.Draw(AssetManager.Instance.characterSpriteSheet, p1Arrow, p1ArrowSrc, Color.White);
-            spriteBatch.Draw(AssetManager.Instance.characterSpriteSheet, p2Arrow, p2ArrowSrc, Color.White);
-
             //spriteBatch.DrawString(AssetManager.Instance.spriteFont, timer.ToString("0"), new Vector2(timerBoxRect.X + timerBoxRect.Width / 2 - 10, timerBoxRect.Y + timerBoxRect.Height / 2 - 10), Color.Black);
 
             spriteBatch.Draw(AssetManager.Instance.fadeTex, new Rectangle((int)camera.pos.X - (int)ScreenManager.Instance.Dimensions.X / 2, (int)camera.pos.Y - (int)ScreenManager.Instance.Dimensions.Y / 2, (int)ScreenManager.Instance.Dimensions.X * 2, (int)ScreenManager.Instance.Dimensions.Y * 2), color);
 
             if (timer > 99.5)
             {
-                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 12, timerBoxRect.Y -6), Color.Black);
+                spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timer.ToString("0"), new Vector2(timerBoxRect.X + 12, timerBoxRect.Y - 6), Color.Black);
             }
             if (timer < 99.5 && timer > 9.5)
             {

@@ -1,4 +1,11 @@
-﻿**********2018-05-24 Version 0.8.0, auth: Kristian Toro**********
+﻿**********2018-05-24 Version 0.8.1, auth: Kristian Toro**********
+{
+Förlängt en plattforms höljd i stage1. Den matchade inte texturen.
+Ombalanserat karaktärer och förändrat en del karaktärsfunktioner och restriktioner.
+Ändrat var P1- och P2-ikonerna ritas, vilket gör att de slutar glitcha in i platfformar.
+}
+
+**********2018-05-24 Version 0.8.0, auth: Kristian Toro**********
 {
 Fått in flashiga effekter på timern när den räknar ner de 10 sista sekunderna på matchen.
 Snyggat till texten som skriver ut sudden death.

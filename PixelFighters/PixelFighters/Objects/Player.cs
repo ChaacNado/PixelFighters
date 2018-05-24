@@ -21,6 +21,7 @@ namespace PixelFighters
         SpriteEffects playerFx = SpriteEffects.None;
         Texture2D attackTex;
         public Rectangle projectileSrcRec;
+        Rectangle arrowSrcRec, playerArrowRec;
         Random rnd;
         public string characterName;
         public int bX, bY, jumpsAvailable, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier, cooldownModifier;
@@ -35,10 +36,11 @@ namespace PixelFighters
         #endregion
 
         #region Player Object
-        public Player(Texture2D tex, Texture2D attackTex, Vector2 pos, Rectangle srcRec, Rectangle projectileSrcRec, int playerIndex, Game1 game, bool facingRight) : base(tex, pos, srcRec)
+        public Player(Texture2D tex, Texture2D attackTex, Vector2 pos, Rectangle srcRec, Rectangle projectileSrcRec, Rectangle arrowSrcRec, int playerIndex, Game1 game, bool facingRight) : base(tex, pos, srcRec)
         {
             this.srcRec = srcRec;
             this.projectileSrcRec = projectileSrcRec;
+            this.arrowSrcRec = arrowSrcRec;
             this.attackTex = attackTex;
             this.playerIndex = playerIndex;
             this.facingRight = facingRight;
@@ -50,6 +52,7 @@ namespace PixelFighters
             damageableHitBox = new Rectangle((int)pos.X, (int)pos.Y, srcRec.Width, srcRec.Height);
             groundHitBox = new Rectangle((int)pos.X + 32, (int)pos.Y + 32, srcRec.Width, 1);
             attackHitBox = new Rectangle((int)pos.X, (int)pos.Y, projectileSrcRec.Width, projectileSrcRec.Height);
+            playerArrowRec = new Rectangle((int)pos.X, (int)pos.Y, 22, 26);
             rnd = new Random();
             jumpsAvailable = 2;
             highAttackAvailable = 1;
@@ -235,6 +238,9 @@ namespace PixelFighters
                     attackHitBox.X = (int)pos.X + rangeModifierX;
                     attackHitBox.Y = (int)pos.Y + rangeModifierY;
                 }
+
+                playerArrowRec.X = (int)pos.X - arrowSrcRec.Width * (int)1.4f;
+                playerArrowRec.Y = (int)pos.Y - arrowSrcRec.Height * 5;
             }
         }
 
@@ -247,12 +253,12 @@ namespace PixelFighters
                 {
                     spriteBatch.Draw(tex, attackHitBox, projectileSrcRec, Color.White, 0, Vector2.Zero, playerFx, 1);
                 }
-                //spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
+                spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
             }
 
             ///Ritar ut kollisions-hitboxes
-            //spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
-            //spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
+            spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
+            spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
 
             spriteBatch.Draw(tex, pos, srcRec, Color.White, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
             if (isInvincible)
@@ -290,6 +296,8 @@ namespace PixelFighters
                 }
             }
             spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
+
+            spriteBatch.Draw(tex, playerArrowRec, arrowSrcRec, Color.White);
         }
         #endregion
 
@@ -305,7 +313,7 @@ namespace PixelFighters
         ///Håller spelaren ovanpå platformar
         public override void HandleBottomCollision(Platform platform)
         {
-            if (!isOnGround)
+            if (!isOnGround && !isChanneling)
             {
                 speed.Y = +2;
             }
@@ -362,7 +370,7 @@ namespace PixelFighters
                 if (capabilities.HasDPadRightButton && this.capabilities.HasDPadLeftButton)
                 {
                     ///Gå höger
-                    if (gamePadState.DPad.Right == ButtonState.Pressed && !isInvincible && !inAnimation)
+                    if (gamePadState.DPad.Right == ButtonState.Pressed && !isInvincible && !inAnimation && !isHit)
                     {
                         facingRight = true;
                         speed.X = speedXModifier;
@@ -372,7 +380,7 @@ namespace PixelFighters
                         }
                     }
                     ///Gå vänster
-                    if (gamePadState.DPad.Left == ButtonState.Pressed && !isInvincible && !inAnimation)
+                    if (gamePadState.DPad.Left == ButtonState.Pressed && !isInvincible && !inAnimation && !isHit)
                     {
                         facingRight = false;
                         speed.X = -speedXModifier;
@@ -384,7 +392,7 @@ namespace PixelFighters
                 }
                 if (capabilities.GamePadType == GamePadType.GamePad)
                 {
-                    if (jumpsAvailable >= 1 && !isInvincible && highAttackAvailable >= 1 && !inAnimation)
+                    if (jumpsAvailable >= 1 && !isInvincible && highAttackAvailable >= 1 && !inAnimation && !isHit)
                     {
                         ///Hoppa
                         if (gamePadState.IsButtonDown(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.DPadUp) || gamePadState.IsButtonDown(Buttons.Y) && previousGamePadState.IsButtonUp(Buttons.Y))
@@ -405,7 +413,7 @@ namespace PixelFighters
                         }
                     }
                     ///Fastfall eller crouch
-                    if (gamePadState.IsButtonDown(Buttons.DPadDown) && previousGamePadState.IsButtonUp(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.Y) && !inAnimation)
+                    if (gamePadState.IsButtonDown(Buttons.DPadDown) && previousGamePadState.IsButtonUp(Buttons.DPadUp) && previousGamePadState.IsButtonUp(Buttons.Y) && !inAnimation && !isHit)
                     {
                         if (isOnGround)
                         {
@@ -423,12 +431,12 @@ namespace PixelFighters
                 if (actionFrameTimer <= -75)
                 {
                     ///Jab attack
-                    if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1)
+                    if (gamePadState.IsButtonDown(Buttons.A) && previousGamePadState.IsButtonUp(Buttons.A) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isHit)
                     {
                         CharacterManager.Instance.JabAttack(this);
                     }
                     ///Low attack
-                    if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1)
+                    if (gamePadState.IsButtonDown(Buttons.B) && previousGamePadState.IsButtonUp(Buttons.B) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isHit)
                     {
                         if (isOnGround)
                         {
@@ -441,7 +449,7 @@ namespace PixelFighters
                         }
                     }
                     ///High attack
-                    if (actionFrameTimer < -cooldownModifier && highAttackAvailable >= 1 && !inAnimation)
+                    if (actionFrameTimer < -cooldownModifier && highAttackAvailable >= 1 && !inAnimation && !isHit)
                     {
                         if (gamePadState.IsButtonDown(Buttons.RightShoulder) && previousGamePadState.IsButtonUp(Buttons.RightShoulder) || gamePadState.IsButtonDown(Buttons.LeftShoulder) && previousGamePadState.IsButtonUp(Buttons.LeftShoulder))
                         {
@@ -450,7 +458,7 @@ namespace PixelFighters
                         }
                     }
                     ///Dash attack
-                    if (gamePadState.IsButtonDown(Buttons.X) && previousGamePadState.IsButtonUp(Buttons.X) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1)
+                    if (gamePadState.IsButtonDown(Buttons.X) && previousGamePadState.IsButtonUp(Buttons.X) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isHit)
                     {
                         CharacterManager.Instance.DashAttack(this);
                     }
@@ -475,7 +483,7 @@ namespace PixelFighters
             ///Keyboard-inputs
             #region Keyboard
             ///Gå höger
-            if (keyState.IsKeyDown(rightInput) && !isInvincible && !inAnimation)
+            if (keyState.IsKeyDown(rightInput) && !isInvincible && !inAnimation && !isHit)
             {
                 facingRight = true;
                 speed.X = speedXModifier;
@@ -485,7 +493,7 @@ namespace PixelFighters
                 }
             }
             ///Gå vänster
-            else if (keyState.IsKeyDown(leftInput) && !isInvincible && !inAnimation)
+            else if (keyState.IsKeyDown(leftInput) && !isInvincible && !inAnimation && !isHit)
             {
                 facingRight = false;
                 speed.X = -speedXModifier;
@@ -495,7 +503,7 @@ namespace PixelFighters
                 }
             }
             ///Hoppa
-            if (keyState.IsKeyDown(jumpInput) && previousKeyState.IsKeyUp(jumpInput) && !isInvincible && jumpsAvailable >= 1 && highAttackAvailable >= 1 && !inAnimation)
+            if (keyState.IsKeyDown(jumpInput) && previousKeyState.IsKeyUp(jumpInput) && !isInvincible && jumpsAvailable >= 1 && highAttackAvailable >= 1 && !inAnimation && !isHit)
             {
                 speed.Y = -speedYModifier;
                 isOnGround = false;
@@ -503,7 +511,7 @@ namespace PixelFighters
                 moving = false;
             }
             ///Fastfall eller crouch
-            if (keyState.IsKeyDown(downInput) && previousKeyState.IsKeyUp(jumpInput) && !inAnimation)
+            if (keyState.IsKeyDown(downInput) && previousKeyState.IsKeyUp(jumpInput) && !inAnimation && !isHit)
             {
                 if (isOnGround)
                 {
@@ -521,12 +529,12 @@ namespace PixelFighters
             if (actionFrameTimer <= -75)
             {
                 ///Jab attack
-                if (keyState.IsKeyDown(jabInput) && previousKeyState.IsKeyUp(jabInput) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1)
+                if (keyState.IsKeyDown(jabInput) && previousKeyState.IsKeyUp(jabInput) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isHit)
                 {
                     CharacterManager.Instance.JabAttack(this);
                 }
                 ///Low attack
-                if (keyState.IsKeyDown(lowInput) && previousKeyState.IsKeyUp(lowInput) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1)
+                if (keyState.IsKeyDown(lowInput) && previousKeyState.IsKeyUp(lowInput) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isHit)
                 {
                     if (isOnGround)
                     {
@@ -539,13 +547,13 @@ namespace PixelFighters
                     }
                 }
                 ///High attack
-                if (keyState.IsKeyDown(highInput) && previousKeyState.IsKeyUp(highInput) && actionFrameTimer < -cooldownModifier && highAttackAvailable >= 1 && !inAnimation)
+                if (keyState.IsKeyDown(highInput) && previousKeyState.IsKeyUp(highInput) && actionFrameTimer < -cooldownModifier && highAttackAvailable >= 1 && !inAnimation && !isHit)
                 {
                     CharacterManager.Instance.HighAttack(this);
                     highAttackAvailable--;
                 }
                 ///Dash attack
-                if (keyState.IsKeyDown(dashInput) && previousKeyState.IsKeyUp(dashInput) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1)
+                if (keyState.IsKeyDown(dashInput) && previousKeyState.IsKeyUp(dashInput) && actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isHit)
                 {
                     CharacterManager.Instance.DashAttack(this);
                 }

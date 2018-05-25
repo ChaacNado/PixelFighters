@@ -1,4 +1,10 @@
-﻿**********2018-05-24 Version 0.8.1, auth: Kristian Toro**********
+﻿**********2018-05-25 Version 0.8.2, auth: Kristian Toro**********
+{
+Snyggat till stora delar av koden. Delat upp olika kodstycken in i metoder.
+Gett rymdbilden en source rectangle och en destination rectangle.
+}
+
+**********2018-05-24 Version 0.8.1, auth: Kristian Toro**********
 {
 Förlängt en plattforms höljd i stage1. Den matchade inte texturen.
 Ombalanserat karaktärer och förändrat en del karaktärsfunktioner och restriktioner.

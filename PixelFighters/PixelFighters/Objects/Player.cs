@@ -12,11 +12,14 @@ namespace PixelFighters
     public class Player : MovingObject
     {
         #region Variables
-        Game1 game;
+        Game1 game1;
         GameState currentGamestate;
-        public KeyboardState keyState, previousKeyState;
-        public GamePadState gamePadState, previousGamePadState;
+        KeyboardState keyState, previousKeyState;
+        GamePadState gamePadState, previousGamePadState;
         GamePadCapabilities capabilities;
+
+        Keys jabInput, lowInput, highInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
+        PlayerIndex controllerIndex;
 
         SpriteEffects playerFx = SpriteEffects.None;
         Texture2D attackTex;
@@ -26,17 +29,15 @@ namespace PixelFighters
         public string characterName;
         public int bX, bY, jumpsAvailable, stocksRemaining, currentCharacter, srcWidthModifier, srcHeightModifier, cooldownModifier;
         public int speedXModifier, speedYModifier, projectileSpeedX, projectileSpeedY, projectileStartX, projectileStartY;
-        private int highAttackAvailable, frame;
-        private float rotation = 0;
-        public double frameTimer, actionFrameTimer, frameInterval;
-        public bool attackIsProjectile, facingRight, inAnimation, moving, isRespawning, isCrouching, isChanneling;
-        public Keys jabInput, lowInput, highInput, dashInput, dodgeInput, jumpInput, leftInput, downInput, rightInput;
-        private PlayerIndex controllerIndex;
-
+        int highAttackAvailable, frame;
+        float rotation = 0;
+        public double actionFrameTimer; 
+        double frameTimer, frameInterval;
+        public bool attackIsProjectile, facingRight, inAnimation, isMoving, isRespawning, isCrouching, isChanneling;
         #endregion
 
         #region Player Object
-        public Player(Texture2D tex, Texture2D attackTex, Vector2 pos, Rectangle srcRec, Rectangle projectileSrcRec, Rectangle arrowSrcRec, int playerIndex, Game1 game, bool facingRight) : base(tex, pos, srcRec)
+        public Player(Texture2D tex, Texture2D attackTex, Vector2 pos, Rectangle srcRec, Rectangle projectileSrcRec, Rectangle arrowSrcRec, int playerIndex, Game1 game1, bool facingRight) : base(tex, pos, srcRec)
         {
             this.srcRec = srcRec;
             this.projectileSrcRec = projectileSrcRec;
@@ -44,7 +45,7 @@ namespace PixelFighters
             this.attackTex = attackTex;
             this.playerIndex = playerIndex;
             this.facingRight = facingRight;
-            this.game = game;
+            this.game1 = game1;
             frameInterval = 150;
             speed = new Vector2(0, 0);
             bY = (int)ScreenManager.Instance.Dimensions.Y;
@@ -60,7 +61,6 @@ namespace PixelFighters
             maxHP = 50;
             currentHP = maxHP;
 
-
             InitializeInputs();
         }
         #endregion
@@ -68,14 +68,12 @@ namespace PixelFighters
         #region Main Methods
         public override void Update(GameTime gameTime)
         {
-            currentGamestate = game.currentGameState;
+            currentGamestate = game1.currentGameState;
 
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
             CharacterManager.Instance.SelectedCharacter(this);
-
-
 
             if (currentGamestate == GameState.Playtime)
             {
@@ -87,7 +85,7 @@ namespace PixelFighters
                 isCrouching = false;
 
                 ///Animering
-                if (frameTimer <= 0 && moving && !isAttacking && isOnGround)
+                if (frameTimer <= 0 && isMoving && !isAttacking && isOnGround)
                 {
                     frameTimer = frameInterval;
                     frame++;
@@ -96,7 +94,7 @@ namespace PixelFighters
                     srcRec.Width = srcWidthModifier;
                     srcRec.Height = srcHeightModifier;
                 }
-                if (frameTimer <= -200 && moving && attackIsProjectile && isOnGround)
+                if (frameTimer <= -200 && isMoving && attackIsProjectile && isOnGround)
                 {
                     frameTimer = frameInterval;
                     frame++;
@@ -110,9 +108,8 @@ namespace PixelFighters
                 //    frameTimer = frameInterval;
                 //    attackFrame++;
                 //    srcRec.X = (attackFrame % 2) * 310;
-
                 //}
-                else if (!moving && !inAnimation && !isAttacking && isOnGround)
+                else if (!isMoving && !inAnimation && !isAttacking && isOnGround)
                 {
                     if (currentCharacter != 3)
                     {
@@ -158,10 +155,7 @@ namespace PixelFighters
                     jumpsAvailable = 2;
                     highAttackAvailable = 1;
 
-                    if (moving)
-                    {
-                        moving = false;
-                    }
+                    isMoving = false;
                 }
                 if (!isOnGround)
                 {
@@ -172,7 +166,7 @@ namespace PixelFighters
                         {
                             speed.Y += 0.2f;
                         }
-                    }                   
+                    }
                     if (speed.Y >= 20)
                     {
                         speed.Y = 20;
@@ -202,50 +196,17 @@ namespace PixelFighters
                     currentHP = maxHP;
                     stocksRemaining--;
                     speed = Vector2.Zero;
-                    if (playerIndex == 1)
-                    {
-                        pos = GameplayManager.Instance.startPosOne;
-                        facingRight = true;
-                    }
-                    if (playerIndex == 2)
-                    {
-                        pos = GameplayManager.Instance.startPosTwo;
-                        facingRight = false;
-                    }
-                    if (actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isOnGround)
-                    {
-                        cooldownModifier = 700;
-                        actionFrameTimer = cooldownModifier;
-                        isInvincible = true;
-                        isRespawning = true;
-                    }
+
+                    Respawn();
                 }
 
-                pos += speed;
-                damageableHitBox.X = (int)pos.X - srcWidthModifier / 2;
-                damageableHitBox.Y = (int)pos.Y - srcHeightModifier / 2;
-
-                groundHitBox.X = (int)pos.X - srcWidthModifier / 2;
-                groundHitBox.Y = (int)pos.Y + srcHeightModifier / 2;
-
-                if (attackIsProjectile)
-                {
-                    attackHitBox.X += projectileSpeedX;
-                    attackHitBox.Y += projectileSpeedY;          
-                }
-                else
-                {
-                    attackHitBox.X = (int)pos.X + rangeModifierX;
-                    attackHitBox.Y = (int)pos.Y + rangeModifierY;
-                }
-
-                playerArrowRec.X = (int)pos.X - arrowSrcRec.Width * (int)1.4f;
-                playerArrowRec.Y = (int)pos.Y - arrowSrcRec.Height * 5;
+                UpdatePosition();
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            #region Draw Hitboxes
             ///Ritar ut strids-hitbox
             if (actionFrameTimer > 0 && isAttacking)
             {
@@ -259,8 +220,13 @@ namespace PixelFighters
             ///Ritar ut kollisions-hitboxes
             spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
             spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
+            #endregion
 
+            ///Ritar ut spelar-objektet
             spriteBatch.Draw(tex, pos, srcRec, Color.White, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
+
+            ///Ritar ut olika färg-overlays beroende på olika statusar
+            #region Draw Color Overlays
             if (isInvincible)
             {
                 color = new Color(Color.Snow, 0.1f);
@@ -296,8 +262,58 @@ namespace PixelFighters
                 }
             }
             spriteBatch.Draw(tex, pos, srcRec, color, rotation, new Vector2(srcRec.Width / 2, srcRec.Height / 2), 1, playerFx, 1);
+            #endregion
 
             spriteBatch.Draw(tex, playerArrowRec, arrowSrcRec, Color.White);
+        }
+        #endregion
+
+        ///Uppdaterar positioner på spelaren och alla tillhörande hitboxes
+        #region Position Methods
+        private void UpdatePosition()
+        {
+            pos += speed;
+            damageableHitBox.X = (int)pos.X - srcWidthModifier / 2;
+            damageableHitBox.Y = (int)pos.Y - srcHeightModifier / 2;
+
+            groundHitBox.X = (int)pos.X - srcWidthModifier / 2;
+            groundHitBox.Y = (int)pos.Y + srcHeightModifier / 2;
+
+            if (attackIsProjectile)
+            {
+                attackHitBox.X += projectileSpeedX;
+                attackHitBox.Y += projectileSpeedY;
+            }
+            else
+            {
+                attackHitBox.X = (int)pos.X + rangeModifierX;
+                attackHitBox.Y = (int)pos.Y + rangeModifierY;
+            }
+
+            playerArrowRec.X = (int)pos.X - arrowSrcRec.Width * (int)1.4f;
+            playerArrowRec.Y = (int)pos.Y - arrowSrcRec.Height * 5;
+        }
+
+        public void Respawn()
+        {
+            ///Respawn
+            if (playerIndex == 1)
+            {
+                pos = GameplayManager.Instance.startPosOne;
+                facingRight = true;
+            }
+            if (playerIndex == 2)
+            {
+                pos = GameplayManager.Instance.startPosTwo;
+                facingRight = false;
+            }
+            if (actionFrameTimer < -cooldownModifier && !inAnimation && highAttackAvailable >= 1 && !isOnGround)
+            {
+                cooldownModifier = 700;
+                actionFrameTimer = cooldownModifier;
+                isInvincible = true;
+                isRespawning = true;
+            }
         }
         #endregion
 
@@ -356,7 +372,7 @@ namespace PixelFighters
             }
         }
 
-        public void HandleInputs()
+        private void HandleInputs()
         {
             ///Controller-inputs
             #region Controller
@@ -376,7 +392,7 @@ namespace PixelFighters
                         speed.X = speedXModifier;
                         if (isOnGround)
                         {
-                            moving = true;
+                            isMoving = true;
                         }
                     }
                     ///Gå vänster
@@ -386,7 +402,7 @@ namespace PixelFighters
                         speed.X = -speedXModifier;
                         if (isOnGround)
                         {
-                            moving = true;
+                            isMoving = true;
                         }
                     }
                 }
@@ -400,7 +416,7 @@ namespace PixelFighters
                             speed.Y = -speedYModifier;
                             isOnGround = false;
                             jumpsAvailable -= 1;
-                            moving = false;
+                            isMoving = false;
 
                             if (currentCharacter == 1)
                             {
@@ -489,7 +505,7 @@ namespace PixelFighters
                 speed.X = speedXModifier;
                 if (isOnGround)
                 {
-                    moving = true;
+                    isMoving = true;
                 }
             }
             ///Gå vänster
@@ -499,7 +515,7 @@ namespace PixelFighters
                 speed.X = -speedXModifier;
                 if (isOnGround)
                 {
-                    moving = true;
+                    isMoving = true;
                 }
             }
             ///Hoppa
@@ -507,8 +523,8 @@ namespace PixelFighters
             {
                 speed.Y = -speedYModifier;
                 isOnGround = false;
-                jumpsAvailable -= 1;
-                moving = false;
+                isMoving = false;
+                jumpsAvailable--;
             }
             ///Fastfall eller crouch
             if (keyState.IsKeyDown(downInput) && previousKeyState.IsKeyUp(jumpInput) && !inAnimation && !isHit)
@@ -520,8 +536,7 @@ namespace PixelFighters
                 }
                 else
                 {
-                    speed.Y = 10;
-                    speed.Y += 2;
+                    speed.Y = 12;
                 }
             }
 

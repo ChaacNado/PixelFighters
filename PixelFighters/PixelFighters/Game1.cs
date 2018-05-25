@@ -104,7 +104,6 @@ namespace PixelFighters
                     mainMenu.Update(gameTime, this);
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
-                    GameplayManager.Instance.timerStock = false;
                     break;
                 case GameState.CharacterSelect:
                     GameplayManager.Instance.Update(gameTime, camera);
@@ -140,7 +139,6 @@ namespace PixelFighters
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
-                    GameplayManager.Instance.timerStock = false;
                     resultScreenMenu.Update(gameTime, this);
 
                     if (resultScreenMenu.playAgain == true && (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A)))

@@ -13,27 +13,26 @@ namespace PixelFighters
     public class GameplayManager
     {
         #region Variables
-        Game1 game;
+        Game1 game1;
 
         public int stageNumber = 1;
         public Vector2 startPosOne, startPosTwo;
         public Player p1, p2;
-        public List<Player> players;
-        public List<Platform> platforms;
-        private List<string> strings;
+        List<Player> players;
+        List<Platform> platforms;
+        List<string> strings;
 
-        MouseState mouseState, previousMouseState;
-        public Color color;
+        Color color;
         Random rnd;
 
-        public bool timerStart = false, timerStock = false;
+        public bool timerStart = false;
         public float matchLength, timer;
 
         public bool playerOneWon, playerTwoWon;
 
-        Rectangle srcRecOne, srcRecTwo, projectileSrcRec;
+        Rectangle srcRecOne, srcRecTwo, projectileSrcRec, spaceSrcRec;
         Rectangle timerBoxRect, p1HPbarRect, p1currentHPbarRect, p1Heart1Rect, p1Heart2Rect, p1Heart3Rect, p2HPbarRect, p2currentHPbarRect, p2Heart1Rect, p2Heart2Rect, p2Heart3Rect;
-        Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc, p1ArrowSrc, p2ArrowSrc;
+        Rectangle timerBoxSrc, hpBarSrc, currentHPbarSrc, redHeartSrc, p1ArrowSrc, p2ArrowSrc, spaceRec;
 
         private static GameplayManager instance;
         #endregion
@@ -56,9 +55,31 @@ namespace PixelFighters
         #region Main Methods
         public void LoadContent(ContentManager Content, Game1 game)
         {
-            this.game = game;
+            this.game1 = game;
 
             timer = matchLength;
+
+            spaceRec = new Rectangle(-1000, -800, 3840, 2160);
+            spaceSrcRec = new Rectangle(0, 0, 3840, 2160);
+
+            timerBoxRect = new Rectangle(0, 0, 140, 72);
+            p1HPbarRect = new Rectangle(0, 0, 444, 72);
+            p2HPbarRect = p1HPbarRect;
+            p1currentHPbarRect = new Rectangle(0, 0, 400, 40);
+            p2currentHPbarRect = p1currentHPbarRect;
+            p1Heart1Rect = new Rectangle(0, 0, 56, 48);
+            p1Heart2Rect = p1Heart1Rect;
+            p1Heart3Rect = p1Heart1Rect;
+            p2Heart1Rect = p1Heart1Rect;
+            p2Heart2Rect = p1Heart1Rect;
+            p2Heart3Rect = p1Heart1Rect;
+
+            timerBoxSrc = new Rectangle(0, 54, 35, 18);
+            hpBarSrc = new Rectangle(0, 15, 112, 19);
+            currentHPbarSrc = new Rectangle(6, 38, 101, 11);
+            redHeartSrc = new Rectangle(1, 1, 15, 13);
+            p1ArrowSrc = new Rectangle(617, 0, 11, 13);
+            p2ArrowSrc = new Rectangle(633, 0, 12, 13);
 
             color = new Color(0, 0, 0, 1f);
             rnd = new Random();
@@ -126,43 +147,23 @@ namespace PixelFighters
                     }
                 }
             }
-
-            timerBoxRect = new Rectangle(0, 0, 140, 72);
-            p1HPbarRect = new Rectangle(0, 0, 444, 72);
-            p2HPbarRect = new Rectangle(0, 0, 444, 72);
-            p1currentHPbarRect = new Rectangle(0, 0, 400, 40);
-            p2currentHPbarRect = new Rectangle(0, 0, 400, 40);
-            p1Heart1Rect = new Rectangle(0, 0, 56, 48);
-            p1Heart2Rect = new Rectangle(0, 0, 56, 48);
-            p1Heart3Rect = new Rectangle(0, 0, 56, 48);
-
-            p2Heart1Rect = new Rectangle(0, 0, 56, 48);
-            p2Heart2Rect = new Rectangle(0, 0, 56, 48);
-            p2Heart3Rect = new Rectangle(0, 0, 56, 48);
-
-            timerBoxSrc = new Rectangle(0, 54, 35, 18);
-            hpBarSrc = new Rectangle(0, 15, 112, 19);
-            currentHPbarSrc = new Rectangle(6, 38, 101, 11);
-            redHeartSrc = new Rectangle(1, 1, 15, 13);
-            p1ArrowSrc = new Rectangle(617, 0, 11, 13);
-            p2ArrowSrc = new Rectangle(633, 0, 12, 13);
         }
 
         public void Update(GameTime gameTime, Camera camera)
         {
-            previousMouseState = mouseState;
-            mouseState = Mouse.GetState();
-
-            System.Diagnostics.Debug.WriteLine(camera.pos);
+            System.Diagnostics.Debug.WriteLine(p1.speed.Y);
 
             srcRecOne.Width = p1.srcWidthModifier;
             srcRecOne.Height = p1.srcHeightModifier;
             srcRecTwo.Width = p2.srcWidthModifier;
             srcRecTwo.Height = p2.srcHeightModifier;
 
-            ///Uppdaterar kamerafokus
-            camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);
-            camera.cameraFocus.Y = ((p1.pos.Y + p2.pos.Y) / 2);
+            if (game1.currentGameState == GameState.Playtime)
+            {
+                ///Uppdaterar kamerafokus
+                camera.cameraFocus.X = ((p1.pos.X + p2.pos.X) / 2);
+                camera.cameraFocus.Y = ((p1.pos.Y + p2.pos.Y) / 2);
+            }
 
             ///Kollision mellan spelarna och platformar
             #region Platform Collision
@@ -348,9 +349,7 @@ namespace PixelFighters
             }
             if (stageNumber == 2)
             {
-                //Bakgrunden täckte inte allting spelaren såg             
-                //spriteBatch.Draw(AssetManager.Instance.backgroundTex, new Vector2(AssetManager.Instance.backgroundTex.Width / -4, AssetManager.Instance.backgroundTex.Height / -3), Color.White);             
-                spriteBatch.Draw(AssetManager.Instance.spaceBackgroundTex, new Vector2(-1000, -800), Color.White);
+                spriteBatch.Draw(AssetManager.Instance.spaceBackgroundTex, spaceRec, spaceSrcRec, Color.White);
             }
 
             foreach (Platform platform in platforms)

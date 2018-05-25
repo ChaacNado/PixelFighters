@@ -1,5 +1,11 @@
 ﻿**********2018-05-25 Version 0.8.2, auth: Kristian Toro**********
 {
+Minskat på de horisontella gränsernas värden.
+Gett offset till rymdbilden.
+}
+
+**********2018-05-25 Version 0.8.2, auth: Kristian Toro**********
+{
 Snyggat till stora delar av koden. Delat upp olika kodstycken in i metoder.
 Gett rymdbilden en source rectangle och en destination rectangle.
 }

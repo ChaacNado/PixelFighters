@@ -60,7 +60,7 @@ namespace PixelFighters
             timer = matchLength;
 
             spaceRec = new Rectangle(-1000, -800, 3840, 2160);
-            spaceSrcRec = new Rectangle(0, 0, 3840, 2160);
+            spaceSrcRec = new Rectangle(940, -170, 3840, 2160);
 
             timerBoxRect = new Rectangle(0, 0, 140, 72);
             p1HPbarRect = new Rectangle(0, 0, 444, 72);

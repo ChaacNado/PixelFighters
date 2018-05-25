@@ -48,13 +48,13 @@ namespace PixelFighters
             }
             else
             {
-                if (pos.X < -700)
+                if (pos.X < -300)
                 {
-                    pos.X = -700;
+                    pos.X = -300;
                 }
-                if (pos.X > 700)
+                if (pos.X > 300)
                 {
-                    pos.X = 700;
+                    pos.X = 300;
                 }
 
                 if (pos.Y < -700)

@@ -17,11 +17,12 @@ namespace PixelFighters
         public float knockBackModifierX, knockBackModifierY;
 
         #region Properties
+        //Om en spelare kolliderar med toppen av en platform.
         public virtual bool IsTopColliding(Platform platform)
         {
             return new Rectangle(groundHitBox.X, groundHitBox.Y, groundHitBox.Width, groundHitBox.Height).Intersects(platform.topHitBox);
         }
-
+        //Om en spelare kolliderer med undersidan av en platform.
         public virtual bool IsBottomColliding(Platform platform)
         {
             return new Rectangle(damageableHitBox.X, damageableHitBox.Y, damageableHitBox.Width, damageableHitBox.Height).Intersects(platform.bottomHitBox);

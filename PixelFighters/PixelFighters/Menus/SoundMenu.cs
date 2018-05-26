@@ -52,6 +52,7 @@ namespace PixelFighters
             previousGamePadStateTwo = game1.previousGamePadStateTwo;
             gamePadStateTwo = game1.gamePadStateTwo;
 
+            //Om sound/music är on.
             if (soundOn == true)
             {
                 
@@ -60,7 +61,7 @@ namespace PixelFighters
             {
 
             }
-
+            //Om sound/music är off.
             if (soundOn == false)
             {
 

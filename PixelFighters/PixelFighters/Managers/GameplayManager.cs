@@ -86,6 +86,7 @@ namespace PixelFighters
 
             stageNumber = 1;
 
+            //Här skapas player 1 och 2 objekten.
             p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, projectileSrcRec, p1ArrowSrc, 1, game, true);
             p2 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosTwo, srcRecTwo, projectileSrcRec, p2ArrowSrc, 2, game, false);
             srcRecOne = new Rectangle(0, 0, 0, 0);
@@ -153,6 +154,7 @@ namespace PixelFighters
         {
             System.Diagnostics.Debug.WriteLine(p1.speed.Y);
 
+            //Ändrar source rektangeln beroende på vilken karaktär spelaren valt.
             srcRecOne.Width = p1.srcWidthModifier;
             srcRecOne.Height = p1.srcHeightModifier;
             srcRecTwo.Width = p2.srcWidthModifier;
@@ -343,6 +345,7 @@ namespace PixelFighters
 
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
+            //Ritar ut vilken stage som valts.
             if (stageNumber == 1)
             {
                 spriteBatch.Draw(AssetManager.Instance.skyscraperBackgroundTex, new Vector2(-1000, -800), Color.White);
@@ -352,16 +355,19 @@ namespace PixelFighters
                 spriteBatch.Draw(AssetManager.Instance.spaceBackgroundTex, spaceRec, spaceSrcRec, Color.White);
             }
 
+            //Ritar ut platformarna ifrån en lista.
             foreach (Platform platform in platforms)
             {
                 platform.Draw(spriteBatch);
             }
 
+            //Ritar ut spelarna ifrån en lista.
             foreach (Player player in players)
             {
                 player.Draw(spriteBatch);
             }
 
+            //Utritning av HUD.
             spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, timerBoxRect, timerBoxSrc, Color.White);
 
             spriteBatch.Draw(AssetManager.Instance.playTimeHUDSpritesheet, p1HPbarRect, hpBarSrc, Color.White);

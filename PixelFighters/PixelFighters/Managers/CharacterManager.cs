@@ -10,9 +10,7 @@ namespace PixelFighters
 {
     public class CharacterManager
     {
-
         ///Med denna kan vi byta ut texturer, attacklogik osv på spelarens karaktär
-        ///Denna bör nog enbart modifera och nås av Player eller möjligtvis MovingObject
 
         #region Variables
 

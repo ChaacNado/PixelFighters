@@ -113,6 +113,7 @@ namespace PixelFighters
                 case GameState.CharacterSelect:
                     GameplayManager.Instance.Update(gameTime, camera);
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
+                    MusicManager.Instance.Play(AssetManager.Instance.menuSong);
                     if (characterSelectMenu.player1Ready == true && characterSelectMenu.player2Ready == true) 
                     {
                         MusicManager.Instance.Stop();
@@ -122,7 +123,6 @@ namespace PixelFighters
                         characterSelectMenu.player2Ready = false;                        
                     }
                     characterSelectMenu.Update(gameTime, this);
-                    MusicManager.Instance.Play(AssetManager.Instance.menuSong);
                     break;
                 case GameState.Playtime:
                     camera.inMenu = false;

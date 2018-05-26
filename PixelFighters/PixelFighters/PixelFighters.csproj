@@ -48,6 +48,7 @@
     <Compile Include="Menus\StoryMenu.cs" />
     <Compile Include="Menus\TitlescreenMenu.cs" />
     <Compile Include="Menus\ResultScreenMenu.cs" />
+    <Compile Include="Managers\MusicManager.cs" />
     <Compile Include="Screen\Camera.cs" />
     <Compile Include="Menus\BaseMenu.cs" />
     <Compile Include="Menus\CharacterSelectMenu.cs" />
@@ -100,6 +101,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\MainMenu.png" />
+    <Content Include="Content\menuost.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\OptionsMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -111,6 +115,12 @@
     <Content Include="Content\ResultsMenu.png" />
     <Content Include="Content\shineTitlescreen.png" />
     <Content Include="Content\SoundMusicMenu.png" />
+    <Content Include="Content\stage1ost.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\stage2ost.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\standardBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

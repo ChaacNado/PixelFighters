@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -34,6 +35,8 @@ namespace PixelFighters
         public double actionFrameTimer;
         double frameTimer, frameInterval;
         public bool attackIsProjectile, facingRight, inAnimation, isMoving, isRespawning, isCrouching, isChanneling;
+
+        SoundEffect KOScream;
         #endregion
 
         #region Player Object
@@ -60,6 +63,8 @@ namespace PixelFighters
             stocksRemaining = 3;
             maxHP = 50;
             currentHP = maxHP;
+
+            KOScream = AssetManager.Instance.KOScream;
 
             InitializeInputs();
         }
@@ -300,6 +305,7 @@ namespace PixelFighters
         public void Respawn()
         {
             ///Respawn
+            KOScream.Play();
             if (playerIndex == 1)
             {
                 pos = GameplayManager.Instance.startPosOne;

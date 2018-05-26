@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +14,9 @@ namespace PixelFighters
     public class AssetManager
     {
         #region Variables
-
+        public Song menuSong, stage1Song, stage2Song;
+        public SoundEffect KOScream;
+        
         public StreamReader streamReader;
         public SpriteFont spriteFont, timerPixelFont, storyPixelFont;
         public Texture2D rectTex, fadeTex, boxManTex;
@@ -43,9 +47,16 @@ namespace PixelFighters
         {
             streamReader = new StreamReader("stage" + GameplayManager.Instance.stageNumber + ".txt");
 
+            menuSong = Content.Load<Song>("menuost");
+            stage1Song = Content.Load<Song>("stage1ost");
+            stage2Song = Content.Load<Song>("stage2ost");
+
+            KOScream = Content.Load<SoundEffect>("wScream");
+
             spriteFont = Content.Load<SpriteFont>("font1");
             timerPixelFont = Content.Load<SpriteFont>("mainPixelFont");
             storyPixelFont = Content.Load<SpriteFont>("smallPixelFont");
+
             rectTex = Content.Load<Texture2D>("tile");
             fadeTex = Content.Load<Texture2D>("fade");
             boxManTex = Content.Load<Texture2D>("boxMan");

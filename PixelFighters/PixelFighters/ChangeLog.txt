@@ -1,4 +1,11 @@
-﻿**********2018-05-26 Version 0.8.3, auth: Kristian Toro**********
+﻿**********2018-05-26 Version 0.8.4, auth: Kristian Toro**********
+{
+Lagt in tre låtar, en låt för menyer, en för stage1 och en för stage 2.
+Skapat MusicManager, med metoderna Play() och Stop().
+Lagt till en ljudeffekt som spelas vid K.O.
+}
+
+**********2018-05-26 Version 0.8.3, auth: Kristian Toro**********
 {
 Mindre balansering och justeringar av attacker. Fixat några offsets på source rectangles.
 }

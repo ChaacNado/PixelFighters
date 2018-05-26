@@ -71,7 +71,7 @@ namespace PixelFighters
 
             switch (currentMarkerState)
             {
-                //Markerstate1 = menus buttons
+                ///Markerstate1 = menus buttons
                 case MarkerState.MarkerState1:
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
@@ -82,7 +82,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState2;
                     }
                     break;
-                //Markerstate2 = gameplay buttons
+                ///Markerstate2 = gameplay buttons
                 case MarkerState.MarkerState2:
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
                     {

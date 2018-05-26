@@ -66,7 +66,7 @@ namespace PixelFighters
 
             switch (currentMarkerState)
             {
-                //Markerstate1 = playknappen
+                ///Markerstate1 = playknappen
                 case MarkerState.MarkerState1:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -81,7 +81,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState4;
                     }
                     break;
-                //Markerstate2 = optionsknappen
+                ///Markerstate2 = optionsknappen
                 case MarkerState.MarkerState2:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -96,7 +96,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState1;
                     }
                     break;
-                //MarkerState3 = storyknappen
+                ///MarkerState3 = storyknappen
                 case MarkerState.MarkerState3:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
@@ -111,7 +111,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState2;
                     }
                     break;
-                //Markerstate4 = Creditsknappen
+                ///Markerstate4 = Creditsknappen
                 case MarkerState.MarkerState4:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -126,13 +126,13 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState3;
                     }
                     break;
-                //Markerstate5 = Quitknappen
+                ///Markerstate5 = Quitknappen
                 case MarkerState.MarkerState5:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         game1.currentGameState = GameState.Quit;
                     }
-                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down)|| gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
+                    if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
                     {
                         currentMarkerState = MarkerState.MarkerState1;
                     }
@@ -172,8 +172,6 @@ namespace PixelFighters
             }
         }
     }
-        
-
-        #endregion
-}   
+    #endregion
+}
 

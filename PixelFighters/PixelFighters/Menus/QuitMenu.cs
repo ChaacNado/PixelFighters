@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class QuitMenu:BaseMenu
+    class QuitMenu : BaseMenu
     {
         #region Variables
 
@@ -53,7 +53,7 @@ namespace PixelFighters
 
             switch (currentMarkerState)
             {
-                //Markerstate1 = ja-knappen
+                ///Markerstate1 = ja-knappen
                 case MarkerState.MarkerState1:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -64,7 +64,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState2;
                     }
                     break;
-                //Markerstate2 = nej-knappen
+                ///Markerstate2 = nej-knappen
                 case MarkerState.MarkerState2:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -92,7 +92,6 @@ namespace PixelFighters
                     break;
             }
         }
-
         #endregion
     }
 }

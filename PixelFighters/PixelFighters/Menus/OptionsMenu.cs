@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class OptionsMenu:BaseMenu
+    class OptionsMenu : BaseMenu
     {
         #region Variables
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PixelFighters
 {
-    class GraphicsMenu:BaseMenu
+    class GraphicsMenu : BaseMenu
     {
         #region Variables
 
@@ -71,7 +71,7 @@ namespace PixelFighters
 
             switch (currentMarkerState)
             {
-                //Markerstate1 = yes-knapp till windowed mode
+                ///Markerstate1 = yes-knapp till windowed mode
                 case MarkerState.MarkerState1:
                     windowedMode = true;
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
@@ -83,7 +83,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState3;
                     }
                     break;
-                //Markerstate2 = no-knapp till windowed mode
+                ///Markerstate2 = no-knapp till windowed mode
                 case MarkerState.MarkerState2:
                     windowedMode = false;
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
@@ -95,7 +95,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState3;
                     }
                     break;
-                //Markerstate3 = markerar vald upplösning 
+                ///Markerstate3 = markerar vald upplösning 
                 case MarkerState.MarkerState3:
                     if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
                     {
@@ -122,7 +122,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState5;
                     }
                     break;
-                //Markerstate4 = vänster pil till upplösning
+                ///Markerstate4 = vänster pil till upplösning
                 case MarkerState.MarkerState4:
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
@@ -134,19 +134,19 @@ namespace PixelFighters
                         resolution = 1;
                     }
                     break;
-                //Markerstate5 = höger pil till upplösning
+                ///Markerstate5 = höger pil till upplösning
                 case MarkerState.MarkerState5:
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
                     {
                         currentMarkerState = MarkerState.MarkerState3;
                     }
-                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) 
+                    if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right)
                         || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
                         resolution = 2;
                     }
                     break;
-                //Markerstate6 = Applyknappen
+                ///Markerstate6 = Applyknappen
                 case MarkerState.MarkerState6:
 
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
@@ -229,7 +229,6 @@ namespace PixelFighters
                 spriteBatch.Draw(AssetManager.Instance.graphicsMenuSpritesheet, resolutionRectangle, resolution1920x1080SrcRectangle, Color.White);
             }
         }
-
         #endregion
     }
 }

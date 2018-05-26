@@ -52,7 +52,7 @@ namespace PixelFighters
             previousGamePadStateTwo = game1.previousGamePadStateTwo;
             gamePadStateTwo = game1.gamePadStateTwo;
 
-            //Om sound/music är on.
+            ///Om sound/music är on.
             if (soundOn == true)
             {
                 
@@ -61,7 +61,7 @@ namespace PixelFighters
             {
 
             }
-            //Om sound/music är off.
+            ///Om sound/music är off.
             if (soundOn == false)
             {
 
@@ -78,7 +78,7 @@ namespace PixelFighters
 
             switch (currentMarkerState)
             {
-                //stänger av/på ljud
+                ///stänger av/på ljud
                 case MarkerState.MarkerState1:
                     if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
                     {
@@ -93,7 +93,7 @@ namespace PixelFighters
                         soundOn = false;
                     }
                     break;
-                //stänger av/på musik
+                ///stänger av/på musik
                 case MarkerState.MarkerState2:
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
                     {

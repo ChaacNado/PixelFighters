@@ -137,7 +137,7 @@ namespace PixelFighters
 
             switch (currentMarkerState)
             {
-                //Markerstate1 = Boxare
+                ///Markerstate1 = Boxare
                 case MarkerState.MarkerState1:
                     lastMarkedCharacter = 1;
                     player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
@@ -145,7 +145,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
-                        //P1 väljer karaktär
+                        ///P1 väljer karaktär
                         game1.currentCharacterOne = 1;
                         player1ChosenCharacter = 1;
                     }
@@ -162,7 +162,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
-                //Markerstate2 = Amerikansk fotbollsspelare
+                ///Markerstate2 = Amerikansk fotbollsspelare
                 case MarkerState.MarkerState2:
                     lastMarkedCharacter = 2;
                     player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 214;
@@ -170,7 +170,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
-                        //P1 väljer karaktär
+                        ///P1 väljer karaktär
                         game1.currentCharacterOne = 2;
                         player1ChosenCharacter = 2;
                     }
@@ -191,7 +191,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
-                //MarkerState3 = Curlare
+                ///MarkerState3 = Curlare
                 case MarkerState.MarkerState3:
                     lastMarkedCharacter = 3;
                     player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 2;
@@ -199,7 +199,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
-                        //P1 väljer karaktär
+                        ///P1 väljer karaktär
                         game1.currentCharacterOne = 3;
                         player1ChosenCharacter = 3;
                     }
@@ -220,7 +220,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
-                //Markerstate4 = Baseballspelare
+                ///Markerstate4 = Baseballspelare
                 case MarkerState.MarkerState4:
                     lastMarkedCharacter = 4;
                     player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 210;
@@ -228,7 +228,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
-                        //P1 väljer karaktär
+                        ///P1 väljer karaktär
                         game1.currentCharacterOne = 4;
                         player1ChosenCharacter = 4;
                     }
@@ -245,7 +245,7 @@ namespace PixelFighters
                         currentMarkerState = MarkerState.MarkerState7;
                     }
                     break;
-                    //Markerstate5 = Lives vänster knapp
+                ///Markerstate5 = Lives vänster knapp
                 case MarkerState.MarkerState5:
                     //if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     //{
@@ -275,7 +275,7 @@ namespace PixelFighters
                         }
                     }
                     break;
-                //Markerstate6 = Lives höger knapp
+                ///Markerstate6 = Lives höger knapp
                 case MarkerState.MarkerState6:
                     //if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     //{
@@ -309,7 +309,7 @@ namespace PixelFighters
                         }
                     }
                     break;
-                //Markerstate7 = Minutes vänster knapp
+                ///Markerstate7 = Minutes vänster knapp
                 case MarkerState.MarkerState7:
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
@@ -348,7 +348,7 @@ namespace PixelFighters
                         }
                     }
                     break;
-                //Markerstate8 = Minutes höger knapp
+                ///Markerstate8 = Minutes höger knapp
                 case MarkerState.MarkerState8:
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
@@ -387,7 +387,7 @@ namespace PixelFighters
                         }
                     }
                     break;
-                //Markerstate9 = Map vänster knapp
+                ///Markerstate9 = Map vänster knapp
                 case MarkerState.MarkerState9:
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -425,7 +425,7 @@ namespace PixelFighters
                         }
                     }
                     break;
-                //Markerstate10 = Map höger knapp
+                ///Markerstate10 = Map höger knapp
                 case MarkerState.MarkerState10:
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -459,11 +459,10 @@ namespace PixelFighters
                         }
                     }
                     break;
-                //Markerstate11 = Player 1 ready button
+                ///Markerstate11 = Player 1 ready button
                 case MarkerState.MarkerState11:
                     if (keyState.IsKeyDown(Keys.Space) && previousKeyState.IsKeyUp(Keys.Space) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A))
                     {
-                        // PLAYER 1 IS READY game1.currentGameState = GameState.Quit;
                         player1Ready = true;
                     }
                     if (keyState.IsKeyDown(Keys.W) && previousKeyState.IsKeyUp(Keys.W) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp))
@@ -490,7 +489,7 @@ namespace PixelFighters
 
             switch (currentSecondaryMarkerState)
             {
-                //Markerstate1 = Boxare
+                ///Markerstate1 = Boxare
                 case SecondaryMarkerState.SecondaryMarkerState1:
                     secondaryLastMarkedCharacter = 1;
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
@@ -498,7 +497,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
-                        //P2 väljer karaktär
+                        ///P2 väljer karaktär
                         game1.currentCharacterTwo = 1;
                         player2ChosenCharacter = 1;
                     }
@@ -515,7 +514,7 @@ namespace PixelFighters
                         currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState5;
                     }
                     break;
-                //Markerstate2 = Amerikansk fotbollsspelare
+                ///Markerstate2 = Amerikansk fotbollsspelare
                 case SecondaryMarkerState.SecondaryMarkerState2:
                     secondaryLastMarkedCharacter = 2;
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 214;
@@ -523,7 +522,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
-                        //P2 väljer karaktär
+                        ///P2 väljer karaktär
                         game1.currentCharacterTwo = 2;
                         player2ChosenCharacter = 2;
                     }
@@ -544,7 +543,7 @@ namespace PixelFighters
                         currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState5;
                     }
                     break;
-                //MarkerState3 = Curlare
+                ///MarkerState3 = Curlare
                 case SecondaryMarkerState.SecondaryMarkerState3:
                     secondaryLastMarkedCharacter = 3;
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 2;
@@ -552,7 +551,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
-                        //P2 väljer karaktär
+                        ///P2 väljer karaktär
                         game1.currentCharacterTwo = 3;
                         player2ChosenCharacter = 3;
                     }
@@ -573,7 +572,7 @@ namespace PixelFighters
                         currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState5;
                     }
                     break;
-                //Markerstate4 = Baseballspelare
+                ///Markerstate4 = Baseballspelare
                 case SecondaryMarkerState.SecondaryMarkerState4:
                     secondaryLastMarkedCharacter = 4;
                     player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 + 210;
@@ -581,7 +580,7 @@ namespace PixelFighters
 
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
-                        //P2 väljer karaktär
+                        ///P2 väljer karaktär
                         game1.currentCharacterTwo = 4;
                         player2ChosenCharacter = 4;
                     }
@@ -598,11 +597,11 @@ namespace PixelFighters
                         currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState5;
                     }
                     break;
-                //Markerstate5 = Player 2 ready button
+                ///Markerstate5 = Player 2 ready button
                 case SecondaryMarkerState.SecondaryMarkerState5:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
-                        // P2 är redo
+                        ///P2 är redo
                         player2Ready = true;
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
@@ -762,7 +761,7 @@ namespace PixelFighters
             {
                 spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, mapBoxRectangle, spaceMapSrcRectangle, Color.White);
             }
-            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, minutesChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 74, minutesBoxRectangle.Y -6), Color.Black);
+            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, minutesChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 74, minutesBoxRectangle.Y - 6), Color.Black);
         }
 
         #endregion

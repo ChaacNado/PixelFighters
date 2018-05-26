@@ -66,7 +66,7 @@ namespace PixelFighters
             buttonsRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - buttonsRectangle.Width / 2;
             buttonsRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 + 170;
 
-            //Om spelare 1 vunnit.
+            ///Om spelare 1 vunnit.
             if (GameplayManager.Instance.playerOneWon == true)
             {
                 p1Rectangle.X = winnerCharacterRectangle.X + 5;
@@ -74,7 +74,7 @@ namespace PixelFighters
                 p2Rectangle.X = loserCharacterRectangle.X + 5;
                 p2Rectangle.Y = loserCharacterRectangle.Y + loserCharacterRectangle.Height - p2Rectangle.Height - 5;
             }
-            //Om spelare 2 vunnit.
+            ///Om spelare 2 vunnit.
             else if (GameplayManager.Instance.playerTwoWon == true)
             {
                 p2Rectangle.X = winnerCharacterRectangle.X + 5;
@@ -83,7 +83,7 @@ namespace PixelFighters
                 p1Rectangle.Y = loserCharacterRectangle.Y + loserCharacterRectangle.Height - p2Rectangle.Height - 5;
             }
 
-            //Väljer så att resultat skärmen visar samma karaktär som spelare 1 valde.
+            ///Väljer så att resultat skärmen visar samma karaktär som spelare 1 valde.
             if (game1.currentCharacterOne == 1)
             {
                 player1ChosenCharacterSrc = p1BoxerSrcRectangle;
@@ -100,7 +100,7 @@ namespace PixelFighters
             {
                 player1ChosenCharacterSrc = p1BaseballerSrcRectangle;
             }
-            //Väljer så att resultat skärmen visar samma karaktär som spelare 2 valde.
+            ///Väljer så att resultat skärmen visar samma karaktär som spelare 2 valde.
             if (game1.currentCharacterTwo == 1)
             {
                 player2ChosenCharacterSrc = p2BoxerSrcRectangle;
@@ -126,7 +126,7 @@ namespace PixelFighters
             previousGamePadStateTwo = game1.previousGamePadStateTwo;
             gamePadStateTwo = game1.gamePadStateTwo;
 
-            //Menu knapparna för om man vill spela igen eller avsluta.
+            ///Menu knapparna för om man vill spela igen eller avsluta.
             if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
             {
                 playAgain = false;

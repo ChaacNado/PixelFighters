@@ -1,4 +1,9 @@
-﻿**********2018-05-26 Version 0.8.6, auth: Jonas Ekblad**********
+﻿**********2018-05-26 Version 0.8.7, auth: Kristian Toro**********
+{
+Mini clean-up av några onödiga mellanrum, och gjort så att våra kommentarer som används för att förklara saker ser likadana ut.
+}
+
+**********2018-05-26 Version 0.8.6, auth: Jonas Ekblad**********
 {
 Lagt in kommentarer och fått bort lite hårdkodning som var onödig.
 }

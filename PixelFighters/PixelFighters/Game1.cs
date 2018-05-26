@@ -121,6 +121,7 @@ namespace PixelFighters
                         characterSelectMenu.player2Ready = false;                        
                     }
                     characterSelectMenu.Update(gameTime, this);
+                    MusicManager.Instance.Play(AssetManager.Instance.menuSong);
                     break;
                 case GameState.Playtime:
                     camera.inMenu = false;

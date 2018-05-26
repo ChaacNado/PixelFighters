@@ -1,4 +1,9 @@
-﻿**********2018-05-26 Version 0.8.4, auth: Kristian Toro**********
+﻿**********2018-05-26 Version 0.8.5, auth: Kristian Toro**********
+{
+Musik-fix. Menymusiken startar i character select efter att en match avslutats.
+}
+
+**********2018-05-26 Version 0.8.4, auth: Kristian Toro**********
 {
 Lagt in tre låtar, en låt för menyer, en för stage1 och en för stage 2.
 Skapat MusicManager, med metoderna Play() och Stop().

@@ -131,7 +131,7 @@ namespace PixelFighters
                     player.characterName = "Aiden Fortin";
                     player.srcWidthModifier = 49;
                     player.srcHeightModifier = 61;
-                
+
                     if (player.facingRight)
                     {
                         player.projectileStartX = 12;
@@ -179,7 +179,7 @@ namespace PixelFighters
                         }
                         player.srcRec.X = 675;
                         player.srcRec.Width = player.srcWidthModifier;
-                        player.srcRec.Height = player.srcHeightModifier + 4;
+                        player.srcRec.Height = player.srcHeightModifier + 6;
                     }
                 }
                 #endregion
@@ -188,7 +188,7 @@ namespace PixelFighters
                 {
                     player.characterName = "Rin Suzume";
                     player.srcWidthModifier = 40;
-                    player.srcHeightModifier = 62;
+                    player.srcHeightModifier = 63;
 
                     player.projectileStartX = 0;
                     player.projectileStartY = -16;
@@ -198,7 +198,7 @@ namespace PixelFighters
                     }
                     else
                     {
-                        player.speedXModifier = 5;
+                        player.speedXModifier = 4;
                     }
                     if (player.jumpsAvailable >= 2)
                     {
@@ -206,7 +206,7 @@ namespace PixelFighters
                     }
                     else
                     {
-                        player.speedYModifier = 6;
+                        player.speedYModifier = 5;
                     }
 
                     if (player.playerIndex == 1)
@@ -366,13 +366,22 @@ namespace PixelFighters
                 player.knockBackModifierX = 21;
                 player.knockBackModifierY = 7;
                 player.attackHitBox.Width = 32;
-                player.attackHitBox.Height = 32;
-                player.rangeModifierY = -24;
+                player.attackHitBox.Height = 16;
+                player.rangeModifierY = -16;
                 player.damageDealt = 4;
 
                 if (player.isOnGround)
                 {
                     player.srcRec.X = 205;
+                    if (player.playerIndex == 1)
+                    {
+                        player.srcRec.Y = 532;
+                    }
+                    if (player.playerIndex == 2)
+                    {
+                        player.srcRec.Y = 632;
+                    }
+                    player.srcRec.Height = 64;
                     player.srcRec.Width = 67;
                 }
                 else if (!player.isOnGround)
@@ -394,7 +403,7 @@ namespace PixelFighters
             #endregion
         }
 
-        public void LowAttack(Player player)
+        public void SpecialAttack(Player player)
         {
             #region Boxer
             if (player.currentCharacter == 1)
@@ -540,7 +549,7 @@ namespace PixelFighters
             #endregion
         }
 
-        public void HighAttack(Player player)
+        public void RecoveryMove(Player player)
         {
             #region Boxer
             if (player.currentCharacter == 1)
@@ -564,7 +573,7 @@ namespace PixelFighters
                 player.speed.Y = -9;
             }
             #endregion
-            
+
             #region American Footballer
             else if (player.currentCharacter == 2)
             {
@@ -644,7 +653,6 @@ namespace PixelFighters
                 player.srcRec.Width = 40;
                 player.srcRec.Height = 91;
                 player.isAttacking = true;
-                
                 player.isChanneling = true;
                 player.knockBackModifierX = 0;
                 player.knockBackModifierY = 0;
@@ -653,7 +661,6 @@ namespace PixelFighters
                 player.rangeModifierX = -12;
                 player.rangeModifierY = -40;
                 player.damageDealt = 0;
-                player.speed.X = -1;
                 player.speed.Y = -5;
             }
             #endregion
@@ -672,7 +679,7 @@ namespace PixelFighters
                 player.srcRec.Width = 37;
                 player.isAttacking = true;
                 player.knockBackModifierX = 1;
-                player.knockBackModifierY = -13;
+                player.knockBackModifierY = -12;
                 player.attackHitBox.Width = 24;
                 player.attackHitBox.Height = 32;
                 player.rangeModifierY = 12;
@@ -701,7 +708,7 @@ namespace PixelFighters
                 player.inAnimation = true;
                 player.isAttacking = true;
                 player.knockBackModifierX = 7;
-                player.knockBackModifierY = -10;
+                player.knockBackModifierY = -8;
                 player.attackHitBox.Width = 32;
                 player.attackHitBox.Height = 32;
                 player.rangeModifierY = 12;
@@ -725,7 +732,7 @@ namespace PixelFighters
                 player.rangeModifierY = player.projectileStartY;
 
                 player.actionFrameTimer = 500;
-                player.cooldownModifier = 5;              
+                player.cooldownModifier = 5;
                 player.srcRec.X = 760;
                 player.srcRec.Width = 32;
                 player.isDunking = true;
@@ -742,14 +749,14 @@ namespace PixelFighters
 
 
                 player.projectileSrcRec.X = 824;
-                if(player.playerIndex == 1)
+                if (player.playerIndex == 1)
                 {
                     player.projectileSrcRec.Y = 390;
                 }
                 else
                 {
                     player.projectileSrcRec.Y = 490;
-                }               
+                }
                 player.projectileSrcRec.Width = 10;
                 player.projectileSrcRec.Height = 8;
 
@@ -762,33 +769,38 @@ namespace PixelFighters
             #region Baseballer
             else if (player.currentCharacter == 4)
             {
-                player.actionFrameTimer = 160;
+                player.actionFrameTimer = 200;
+                player.cooldownModifier = 150;
                 player.isDunking = true;
-                if (player.actionFrameTimer >= 160)
+                //player.inAnimation = true;
+                player.srcRec.X = 725;
+                if (player.playerIndex == 1)
                 {
-                    player.actionFrameTimer = 300;
-                    player.cooldownModifier = 150;
-                    player.isDunking = true;
-                    //player.inAnimation = true;
-                    player.srcRec.X = 725;
-                    player.srcRec.Width = 43;
-                    player.isAttacking = true;
-                    player.knockBackModifierX = 2;
-                    player.knockBackModifierY = -15;
-                    player.attackHitBox.Width = 24;
-                    player.attackHitBox.Height = 24;
-                    player.rangeModifierY = 12;
-                    player.damageDealt = 2;
-
-                    if (player.facingRight)
-                    {
-                        player.rangeModifierX = -4;
-                    }
-                    else if (!player.facingRight)
-                    {
-                        player.rangeModifierX = -20;
-                    }
+                    player.srcRec.Y = 525;
                 }
+                else
+                {
+                    player.srcRec.Y = 625;
+                }
+                player.srcRec.Width = 43;
+                player.srcRec.Height = 69;
+                player.isAttacking = true;
+                player.knockBackModifierX = 2;
+                player.knockBackModifierY = -8;
+                player.attackHitBox.Width = 24;
+                player.attackHitBox.Height = 20;
+                player.rangeModifierY = 12;
+                player.damageDealt = 2;
+
+                if (player.facingRight)
+                {
+                    player.rangeModifierX = -4;
+                }
+                else if (!player.facingRight)
+                {
+                    player.rangeModifierX = -20;
+                }
+
             }
             #endregion
         }
@@ -864,6 +876,7 @@ namespace PixelFighters
                 }
                 else
                 {
+                    player.srcRec.Height = 69;
                     player.isChanneling = false;
                     player.actionFrameTimer = 300;
                     player.cooldownModifier = 100;

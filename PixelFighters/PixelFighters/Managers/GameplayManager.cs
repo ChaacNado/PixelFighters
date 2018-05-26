@@ -223,7 +223,7 @@ namespace PixelFighters
 
             if (p1.isDunking && p2.isOnGround)
             {
-                p1.knockBackModifierY = 0;
+                p1.knockBackModifierY = -p1.knockBackModifierY / 4;
             }
 
             if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking == true && !p1.isInvincible)
@@ -244,7 +244,7 @@ namespace PixelFighters
 
             if (p2.isDunking && p1.isOnGround)
             {
-                p2.knockBackModifierY = 0;
+                p2.knockBackModifierY = -p2.knockBackModifierY / 4;
             }
             #endregion
 

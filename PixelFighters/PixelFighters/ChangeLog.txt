@@ -1,4 +1,9 @@
-﻿**********2018-05-25 Version 0.8.2, auth: Kristian Toro**********
+﻿**********2018-05-26 Version 0.8.3, auth: Kristian Toro**********
+{
+Mindre balansering och justeringar av attacker. Fixat några offsets på source rectangles.
+}
+
+**********2018-05-25 Version 0.8.2, auth: Kristian Toro**********
 {
 Minskat på de horisontella gränsernas värden.
 Gett offset till rymdbilden.

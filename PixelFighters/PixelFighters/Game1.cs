@@ -86,6 +86,11 @@ namespace PixelFighters
             GameplayManager.Instance.stageNumber = currentChosenMap;
             GameplayManager.Instance.matchLength = currentChosenMinutes * 60;
 
+            if(currentGameState != GameState.Playtime)
+            {
+                camera.inMenu = true;
+            }
+            
             ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
             {

@@ -24,8 +24,8 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime)
         {
-            pos = new Vector2(cameraFocus.X - 683, cameraFocus.Y - 384);
-
+            System.Diagnostics.Debug.WriteLine(pos.X);
+            pos = new Vector2(cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2);
             ///Ger fast position på kameran inuti menyer
             if (inMenu)
             {
@@ -33,9 +33,9 @@ namespace PixelFighters
                 {
                     pos.X = 0;
                 }
-                if (pos.X > 384)
+                if (pos.X > ScreenManager.Instance.Dimensions.X)
                 {
-                    pos.X = 384;
+                    pos.X = ScreenManager.Instance.Dimensions.X;
                 }
 
                 if (pos.Y < 0)
@@ -50,22 +50,45 @@ namespace PixelFighters
             ///Begränsar området kameran kan röra sig när spelet spelas
             else
             {
-                if (pos.X < -300)
+                if(ScreenManager.Instance.Dimensions.X > 800)
                 {
-                    pos.X = -300;
-                }
-                if (pos.X > 300)
-                {
-                    pos.X = 300;
-                }
+                    if (pos.X < -580)
+                    {
+                        pos.X = -580;
+                    }
+                    if (pos.X > -40)
+                    {
+                        pos.X = -40;
+                    }
 
-                if (pos.Y < -620)
-                {
-                    pos.Y = -620;
+                    if (pos.Y < -620)
+                    {
+                        pos.Y = -620;
+                    }
+                    if (pos.Y > -120)
+                    {
+                        pos.Y = -120;
+                    }
                 }
-                if (pos.Y > 80)
+                else
                 {
-                    pos.Y = 80;
+                    if (pos.X < -384)
+                    {
+                        pos.X = -384;
+                    }
+                    if (pos.X > 384)
+                    {
+                        pos.X = 384;
+                    }
+
+                    if (pos.Y < -620)
+                    {
+                        pos.Y = -620;
+                    }
+                    if (pos.Y > 80)
+                    {
+                        pos.Y = 80;
+                    }
                 }
             }
 

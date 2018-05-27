@@ -89,6 +89,7 @@ namespace PixelFighters
         #region Main Methods
         public void ResetMarkers()
         {
+            mapChosen = 1;
             //player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
             //player1MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;             
             //player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;

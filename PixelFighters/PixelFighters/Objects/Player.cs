@@ -220,8 +220,8 @@ namespace PixelFighters
             {
                 if (attackIsProjectile)
                 {
-                    ///Om hitboxen är till enprojektil
-                    //spriteBatch.Draw(tex, attackHitBox, projectileSrcRec, Color.White, 0, Vector2.Zero, playerFx, 1);
+                    ///Om hitboxen är till en projektil
+                    spriteBatch.Draw(tex, attackHitBox, projectileSrcRec, Color.White, 0, Vector2.Zero, playerFx, 1);
                 }
                 ///Om hitboxen är till en vanlig attack
                 //spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);

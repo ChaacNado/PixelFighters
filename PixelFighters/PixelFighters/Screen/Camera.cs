@@ -24,7 +24,6 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime)
         {
-            System.Diagnostics.Debug.WriteLine(pos.X);
             pos = new Vector2(cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2);
             ///Ger fast position på kameran inuti menyer
             if (inMenu)

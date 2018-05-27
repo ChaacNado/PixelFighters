@@ -204,8 +204,6 @@ namespace PixelFighters
                 }
 
                 UpdatePosition();
-
-                jumpsAvailable = 2000;
             }
         }
 

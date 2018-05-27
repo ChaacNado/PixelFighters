@@ -87,9 +87,29 @@ namespace PixelFighters
             spaceMapSrcRectangle = new Rectangle(99, 377, 101, 18);
         }
         #region Main Methods
+        public void ResetMarkers()
+        {
+            //player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
+            //player1MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;             
+            //player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
+            //player2MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;
+            //game1.currentCharacterOne = 1;
+            //game1.currentCharacterTwo = 1;
+            //lastMarkedCharacter = 1;
+            //secondaryLastMarkedCharacter = 1;
+            //player1ChosenCharacter = 1;
+            //player2ChosenCharacter = 1;
+            player1Ready = false;
+            player2Ready = false;
+            currentMarkerState = MarkerState.MarkerState1;
+            currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
+        }
 
         public override void Update(GameTime gameTime, Game1 game1)
         {
+            player1ChosenCharacter = GameplayManager.Instance.p1.currentCharacter;
+            player2ChosenCharacter = GameplayManager.Instance.p2.currentCharacter;
+
             livesTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 500;
             livesTextRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 370;
             minutesTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 500/*118*/;
@@ -132,6 +152,20 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
             {
+                //player1MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
+                //player1MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;             
+                //player2MarkerRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 426;
+                //player2MarkerRectangle.Y = (int)ScreenManager.Instance.Dimensions.Y / 2 - 198;
+                //game1.currentCharacterOne = 1;
+                //game1.currentCharacterTwo = 1;
+                //lastMarkedCharacter = 1;
+                //secondaryLastMarkedCharacter = 1;
+                //player1ChosenCharacter = 1;
+                //player2ChosenCharacter = 1;
+                player1Ready = false;
+                player2Ready = false;
+                currentMarkerState = MarkerState.MarkerState1;
+                currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
                 game1.currentGameState = GameState.MainMenu;
             }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,6 @@ namespace PixelFighters
         Rectangle textRectangle, soundOnOffRectangle, musicOnOffRectangle;
 
         Rectangle textSrcRectangle, onButtonSrcRectangle, offButtonSrcRectangle, markedButtonOnSrcRectangle, markedButtonOffSrcRectangle;
-
-        bool soundOn = true, musicOn = true;
-
         #endregion
 
         public SoundMenu()
@@ -31,6 +29,9 @@ namespace PixelFighters
             markedButtonOffSrcRectangle = new Rectangle(50, 23, 65, 18);
             markedButtonOnSrcRectangle = new Rectangle(50, 0, 65, 18);
             textSrcRectangle = new Rectangle(0, 0, 50, 41);
+
+            isSoundOn = true;
+            isMusicOn = true;
         }
 
         #region Main Methods
@@ -43,7 +44,6 @@ namespace PixelFighters
             musicOnOffRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2;
             musicOnOffRectangle.Y = soundOnOffRectangle.Y + soundOnOffRectangle.Height + 20;
 
-
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
 
@@ -52,27 +52,15 @@ namespace PixelFighters
             previousGamePadStateTwo = game1.previousGamePadStateTwo;
             gamePadStateTwo = game1.gamePadStateTwo;
 
-            ///Om sound/music är on.
-            if (soundOn == true)
+            if (!IsMusicOn)
             {
-                
-            }
-            if (musicOn == true)
-            {
-
-            }
-            ///Om sound/music är off.
-            if (soundOn == false)
-            {
-
-            }
-            if (musicOn == false)
-            {
-
+                SoundManager.Instance.Stop();
             }
 
             if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
             {
+                currentMarkerState = MarkerState.MarkerState1;
+                currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
                 game1.currentGameState = GameState.Options;
             }
 
@@ -86,11 +74,11 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
                     {
-                        soundOn = true;
+                        isSoundOn = true;
                     }
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
-                        soundOn = false;
+                        isSoundOn = false;
                     }
                     break;
                 ///stänger av/på musik
@@ -101,11 +89,11 @@ namespace PixelFighters
                     }
                     if (keyState.IsKeyDown(Keys.Left) && previousKeyState.IsKeyUp(Keys.Left) || gamePadStateOne.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateOne.IsButtonUp(Buttons.DPadLeft) || gamePadStateTwo.IsButtonDown(Buttons.DPadLeft) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadLeft))
                     {
-                        musicOn = true;
+                        isMusicOn = true;
                     }
                     if (keyState.IsKeyDown(Keys.Right) && previousKeyState.IsKeyUp(Keys.Right) || gamePadStateOne.IsButtonDown(Buttons.DPadRight) && previousGamePadStateOne.IsButtonUp(Buttons.DPadRight) || gamePadStateTwo.IsButtonDown(Buttons.DPadRight) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadRight))
                     {
-                        musicOn = false;
+                        isMusicOn = false;
                     }
                     break;
             }
@@ -115,20 +103,20 @@ namespace PixelFighters
         {
             spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, textRectangle, textSrcRectangle, Color.White);
 
-            if (soundOn == true)
+            if (isSoundOn == true)
             {
                 spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, soundOnOffRectangle, onButtonSrcRectangle, Color.White);
             }
-            if (musicOn == true)
+            if (isMusicOn == true)
             {
                 spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, musicOnOffRectangle, onButtonSrcRectangle, Color.White);
             }
 
-            if (soundOn == false)
+            if (isSoundOn == false)
             {
                 spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, soundOnOffRectangle, offButtonSrcRectangle, Color.White);
             }
-            if (musicOn == false)
+            if (isMusicOn == false)
             {
                 spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, musicOnOffRectangle, offButtonSrcRectangle, Color.White);
             }
@@ -136,21 +124,21 @@ namespace PixelFighters
             switch (currentMarkerState)
             {
                 case MarkerState.MarkerState1:
-                    if (soundOn == true)
+                    if (isSoundOn == true)
                     {
                         spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, soundOnOffRectangle, markedButtonOnSrcRectangle, Color.White);
                     }
-                    if (soundOn == false)
+                    if (isSoundOn == false)
                     {
                         spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, soundOnOffRectangle, markedButtonOffSrcRectangle, Color.White);
                     }
                     break;
                 case MarkerState.MarkerState2:
-                    if (musicOn == true)
+                    if (isMusicOn == true)
                     {
                         spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, musicOnOffRectangle, markedButtonOnSrcRectangle, Color.White);
                     }
-                    if (musicOn == false)
+                    if (isMusicOn == false)
                     {
                         spriteBatch.Draw(AssetManager.Instance.soundMusicMenuSpriteSheet, musicOnOffRectangle, markedButtonOffSrcRectangle, Color.White);
                     }

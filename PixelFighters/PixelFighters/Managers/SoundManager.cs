@@ -55,7 +55,7 @@ namespace PixelFighters
         public void Play(Song song)
         {
             this.song = song;
-            if (playCounter >= 1)
+            if (playCounter >= 1 && GameplayManager.Instance.soundMenu.IsMusicOn)
             {
                 MediaPlayer.Play(song);
                 MediaPlayer.IsRepeating = true;

@@ -14,7 +14,8 @@ namespace PixelFighters
         public GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
         Camera camera;
         Color menuColor;
-        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, soundMenu, controlsMenu;
+        BaseMenu titlescreenMenu, mainMenu, optionsMenu, storyMenu, creditsMenu, quitMenu, graphicsMenu, controlsMenu;
+        public BaseMenu soundMenu;
         CharacterSelectMenu characterSelectMenu;
         PausedMenu pausedMenu;
         ResultScreenMenu resultScreenMenu;
@@ -47,9 +48,8 @@ namespace PixelFighters
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             ///Detta används när man hämtar data från GameplayManager och AssetManager.
-            AssetManager.Instance.LoadContent(Content);
-
             GameplayManager.Instance.LoadContent(Content, this);
+            AssetManager.Instance.LoadContent(Content);
 
             menuColor = new Color(203, 219, 252);
             titlescreenMenu = new TitlescreenMenu();
@@ -72,7 +72,6 @@ namespace PixelFighters
                 Exit();
             
             camera.Update(gameTime);
-
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
 
@@ -94,7 +93,10 @@ namespace PixelFighters
                 case GameState.TitleScreen:
                     camera.zoom = 1;
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
-                    SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    if (soundMenu.IsMusicOn)
+                    {
+                        SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    }
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
                         || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -106,19 +108,26 @@ namespace PixelFighters
                     camera.zoom = 1;
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     mainMenu.Update(gameTime, this);
+                    characterSelectMenu.ResetMarkers();
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
-                    SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    if (soundMenu.IsMusicOn)
+                    {
+                        SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    }                  
                     break;
                 case GameState.CharacterSelect:
                     GameplayManager.Instance.Update(gameTime, camera);
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
-                    SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    if (soundMenu.IsMusicOn)
+                    {
+                        SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    }
                     if (characterSelectMenu.player1Ready == true && characterSelectMenu.player2Ready == true) 
                     {
                         SoundManager.Instance.Stop();
                         currentGameState = GameState.Playtime;
-                        LoadContent();
+                        GameplayManager.Instance.ReadFile();
                         characterSelectMenu.player1Ready = false;
                         characterSelectMenu.player2Ready = false;                        
                     }
@@ -130,11 +139,17 @@ namespace PixelFighters
                     GameplayManager.Instance.timerStart = true;
                     if (GameplayManager.Instance.stageNumber == 1)
                     {
-                        SoundManager.Instance.Play(AssetManager.Instance.stage1Song);
+                        if (soundMenu.IsMusicOn)
+                        {
+                            SoundManager.Instance.Play(AssetManager.Instance.stage1Song);
+                        }
                     }
                     if (GameplayManager.Instance.stageNumber == 2)
                     {
-                        SoundManager.Instance.Play(AssetManager.Instance.stage2Song);
+                        if (soundMenu.IsMusicOn)
+                        {
+                            SoundManager.Instance.Play(AssetManager.Instance.stage2Song);
+                        }
                     }
                     if (GameplayManager.Instance.playerOneWon == true || GameplayManager.Instance.playerTwoWon == true)
                     {
@@ -166,7 +181,7 @@ namespace PixelFighters
                         currentChosenMap = 1;
                         currentChosenMinutes = 3;
                         /*currentChosenLives=1*/
-                        LoadContent();
+                        GameplayManager.Instance.ReadFile();
                         currentGameState = GameState.CharacterSelect;
                     }
 
@@ -179,7 +194,7 @@ namespace PixelFighters
                         currentChosenMap = 1;
                         currentChosenMinutes = 3;
                         /*currentChosenLives=1*/
-                        LoadContent();
+                        GameplayManager.Instance.ReadFile();
                         currentGameState = GameState.MainMenu;
                     }
                     break;
@@ -199,6 +214,10 @@ namespace PixelFighters
                     graphicsMenu.Update(gameTime, this);
                     break;
                 case GameState.SoundMusic:
+                    if (soundMenu.IsMusicOn)
+                    {
+                        SoundManager.Instance.Play(AssetManager.Instance.menuSong);
+                    }
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     soundMenu.Update(gameTime, this);
                     break;

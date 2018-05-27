@@ -215,19 +215,21 @@ namespace PixelFighters
         public override void Draw(SpriteBatch spriteBatch)
         {
             #region Draw Hitboxes
-            ///Ritar ut strids-hitbox
+            ///Ritar ut strids-hitbox, används för testning
             if (actionFrameTimer > 0 && isAttacking)
             {
                 if (attackIsProjectile)
                 {
-                    spriteBatch.Draw(tex, attackHitBox, projectileSrcRec, Color.White, 0, Vector2.Zero, playerFx, 1);
+                    ///Om hitboxen är till enprojektil
+                    //spriteBatch.Draw(tex, attackHitBox, projectileSrcRec, Color.White, 0, Vector2.Zero, playerFx, 1);
                 }
-                spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
+                ///Om hitboxen är till en vanlig attack
+                //spriteBatch.Draw(attackTex, attackHitBox, attackHitBox, Color.Red * 0.7f);
             }
 
-            ///Ritar ut kollisions-hitboxes
-            spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
-            spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
+            ///Ritar ut kollisions-hitboxes, används för testning
+            //spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
+            //spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
             #endregion
 
             ///Ritar ut spelar-objektet
@@ -305,7 +307,10 @@ namespace PixelFighters
         public void Respawn()
         {
             ///Respawn
-            KOScream.Play();
+            if (GameplayManager.Instance.soundMenu.IsSoundOn)
+            {
+                KOScream.Play();
+            }
             if (playerIndex == 1)
             {
                 pos = GameplayManager.Instance.startPosOne;
@@ -334,6 +339,10 @@ namespace PixelFighters
             {
                 speed.Y = 0;
             }
+            if (isHit)
+            {
+                speed.Y = -speedYModifier / 2;
+            }
             isOnGround = true;
             base.HandleTopCollision(platform);
         }
@@ -344,6 +353,10 @@ namespace PixelFighters
             if (!isOnGround && !isChanneling)
             {
                 speed.Y = +2;
+            }
+            if (isHit)
+            {
+                speed.Y = speedYModifier / 2;
             }
             pos.X -= speed.X * 1.05f;
 

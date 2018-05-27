@@ -115,7 +115,6 @@ namespace PixelFighters
             textSrcRectangle = new Rectangle(0, 203, 209, 96);
         }
         #region Main Methods
-
         public override void Update(GameTime gameTime, Game1 game1)
         {
             characterTextRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 416;
@@ -145,6 +144,9 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
             {
+                characterPage = 1;
+                currentMarkerState = MarkerState.MarkerState1;
+                currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
                 game1.currentGameState = GameState.MainMenu;
             }
             //Bläddrar mellan olika karaktärer

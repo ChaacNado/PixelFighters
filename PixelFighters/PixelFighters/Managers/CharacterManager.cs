@@ -232,6 +232,10 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing2.Play();
+                }
                 player.actionFrameTimer = 125;
                 player.cooldownModifier = 150;
                 player.isAttacking = true;
@@ -269,6 +273,10 @@ namespace PixelFighters
             #region American Footballer
             else if (player.currentCharacter == 2)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing.Play();
+                }
                 player.actionFrameTimer = 175;
                 player.cooldownModifier = 400;
                 player.isAttacking = true;
@@ -306,6 +314,10 @@ namespace PixelFighters
             #region Curler
             else if (player.currentCharacter == 3)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing3.Play();
+                }
                 if (player.isOnGround)
                 {
                     player.actionFrameTimer = 110;
@@ -357,7 +369,10 @@ namespace PixelFighters
             #region Baseballer
             else if (player.currentCharacter == 4)
             {
-                SoundManager.Instance.swing.Play();
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.swing.Play();
+                }
                 player.actionFrameTimer = 75;
                 player.cooldownModifier = 475;
                 player.isAttacking = true;
@@ -407,6 +422,10 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing.Play();
+                }
                 player.actionFrameTimer = 100;
                 player.cooldownModifier = 300;
                 player.srcRec.X = 188;
@@ -434,6 +453,10 @@ namespace PixelFighters
             #region American Footballer
             else if (player.currentCharacter == 2)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.blaster.Play();
+                }
                 player.rangeModifierY = player.projectileStartY;
 
                 player.actionFrameTimer = 770;
@@ -465,14 +488,16 @@ namespace PixelFighters
                     player.rangeModifierX = player.projectileStartX;
                     player.projectileSpeedX = 11;
                 }
-                SoundManager.Instance.blaster.Play();
             }
             #endregion
 
             #region Curler
-            //Behöver bättre animering.
             else if (player.currentCharacter == 3)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.crack.Play();
+                }
                 player.actionFrameTimer = 250;
                 player.cooldownModifier = 450;
                 player.srcRec.X = 410;
@@ -511,6 +536,10 @@ namespace PixelFighters
             #region Baseballer    
             else if (player.currentCharacter == 4)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.blip.Play();
+                }
                 player.rangeModifierY = player.projectileStartY;
 
                 player.actionFrameTimer = 500;
@@ -543,7 +572,6 @@ namespace PixelFighters
                     player.rangeModifierX = player.projectileStartX;
                     player.projectileSpeedX = -17;
                 }
-                SoundManager.Instance.blip.Play();
             }
             #endregion
         }
@@ -553,6 +581,10 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing.Play();
+                }
                 player.actionFrameTimer = 120;
                 player.cooldownModifier = 250;
                 player.srcRec.X = 367;
@@ -576,6 +608,10 @@ namespace PixelFighters
             #region American Footballer
             else if (player.currentCharacter == 2)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing.Play();
+                }
                 player.actionFrameTimer = 210;
                 player.cooldownModifier = 290;
                 player.srcRec.X = 518;
@@ -598,7 +634,7 @@ namespace PixelFighters
                 player.attackHitBox.Height = 72;
                 player.rangeModifierX = -20;
                 player.rangeModifierY = -40;
-                player.damageDealt = 2;
+                player.damageDealt = 3;
                 player.speed.X = 0;
                 player.speed.Y = -6;
             }
@@ -607,6 +643,10 @@ namespace PixelFighters
             #region Curler
             else if (player.currentCharacter == 3)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing.Play();
+                }
                 player.actionFrameTimer = 100;
                 player.cooldownModifier = 250;
                 player.srcRec.X = 725;
@@ -638,6 +678,10 @@ namespace PixelFighters
             #region Baseballer 
             else if (player.currentCharacter == 4)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.woosh.Play();
+                }
                 player.actionFrameTimer = 950;
                 player.cooldownModifier = 475;
                 player.srcRec.X = 685;
@@ -654,9 +698,9 @@ namespace PixelFighters
                 player.isAttacking = true;
                 player.isChanneling = true;
                 player.knockBackModifierX = 0;
-                player.knockBackModifierY = 0;
-                player.attackHitBox.Width = 0;
-                player.attackHitBox.Height = 0;
+                player.knockBackModifierY = -2;
+                player.attackHitBox.Width = 4;
+                player.attackHitBox.Height = 4;
                 player.rangeModifierX = -12;
                 player.rangeModifierY = -40;
                 player.damageDealt = 0;
@@ -670,6 +714,10 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing3.Play();
+                }
                 player.actionFrameTimer = 160;
                 player.cooldownModifier = 250;
                 player.isDunking = true;
@@ -699,6 +747,10 @@ namespace PixelFighters
             #region American Footballer
             else if (player.currentCharacter == 2)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing.Play();
+                }
                 player.actionFrameTimer = 175;
                 player.cooldownModifier = 600;
                 player.srcRec.X = 540;
@@ -727,6 +779,10 @@ namespace PixelFighters
             #region Curler
             else if (player.currentCharacter == 3)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.blaster.Play();
+                }
                 player.rangeModifierX = player.projectileStartX;
                 player.rangeModifierY = player.projectileStartY;
 
@@ -768,6 +824,10 @@ namespace PixelFighters
             #region Baseballer
             else if (player.currentCharacter == 4)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.swing.Play();
+                }
                 player.actionFrameTimer = 200;
                 player.cooldownModifier = 150;
                 player.isDunking = true;
@@ -809,6 +869,10 @@ namespace PixelFighters
             #region Boxer
             if (player.currentCharacter == 1)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing2.Play();
+                }
                 player.actionFrameTimer = 320;
                 player.cooldownModifier = 400;
                 player.isAttacking = true;
@@ -838,6 +902,10 @@ namespace PixelFighters
             #region American Footballer
             else if (player.currentCharacter == 2)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.woosh.Play();
+                }
                 player.actionFrameTimer = 175;
                 player.cooldownModifier = 375;
                 player.isAttacking = true;
@@ -867,6 +935,10 @@ namespace PixelFighters
             #region Curler
             else if (player.currentCharacter == 3)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.woosh.Play();
+                }
                 if (player.isOnGround)
                 {
                     player.isChanneling = true;
@@ -907,6 +979,10 @@ namespace PixelFighters
             #region Baseballer
             else if (player.currentCharacter == 4)
             {
+                if (GameplayManager.Instance.soundMenu.IsSoundOn)
+                {
+                    SoundManager.Instance.smallswing3.Play();
+                }
                 player.actionFrameTimer = 150;
                 player.cooldownModifier = 150;
                 player.isAttacking = true;

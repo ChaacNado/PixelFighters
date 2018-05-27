@@ -44,7 +44,6 @@ namespace PixelFighters
             resolution1920x1080SrcRectangle = new Rectangle(0, 187, 77, 10);
         }
         #region Main Methods
-
         public override void Update(GameTime gameTime, Game1 game1)
         {
             windowedButtonRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - windowedButtonRectangle.Width / 2;
@@ -66,6 +65,8 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
             {
+                currentMarkerState = MarkerState.MarkerState1;
+                currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
                 game1.currentGameState = GameState.Options;
             }
 

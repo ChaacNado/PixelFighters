@@ -2,8 +2,10 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ namespace PixelFighters
     {
         #region Variables
         Game1 game1;
+        public BaseMenu soundMenu;
 
         int randomNumber;
         public int stageNumber = 1;
@@ -22,6 +25,7 @@ namespace PixelFighters
         List<Player> players;
         List<Platform> platforms;
         List<string> strings;
+        StreamReader streamReader;
 
         Color color;
         Random rnd;
@@ -57,6 +61,8 @@ namespace PixelFighters
         public void LoadContent(ContentManager Content, Game1 game1)
         {
             this.game1 = game1;
+            soundMenu = new SoundMenu();
+            MediaPlayer.Volume = 0.7f;
 
             timer = matchLength;
 
@@ -85,7 +91,20 @@ namespace PixelFighters
             color = new Color(0, 0, 0, 1f);
             rnd = new Random();
 
-            stageNumber = 1;
+            ReadFile();
+        }
+
+        public void ReadFile()
+        {
+            strings = new List<string>();
+
+            ///Läser strängar från fil
+            streamReader = new StreamReader("stage" + stageNumber + ".txt");
+            while (!streamReader.EndOfStream)
+            {
+                strings.Add(streamReader.ReadLine());
+            }
+            streamReader.Close();
 
             ///Här skapas player 1 och 2 objekten.
             p1 = new Player(AssetManager.Instance.characterSpriteSheet, AssetManager.Instance.rectTex, startPosOne, srcRecOne, projectileSrcRec, p1ArrowSrc, 1, game1, true);
@@ -100,14 +119,6 @@ namespace PixelFighters
             };
 
             platforms = new List<Platform>();
-            strings = new List<string>();
-
-            ///Läser strängar från fil
-            while (!AssetManager.Instance.streamReader.EndOfStream)
-            {
-                strings.Add(AssetManager.Instance.streamReader.ReadLine());
-            }
-            AssetManager.Instance.streamReader.Close();
 
             ///Delar upp olika delar av strängarna, både genom radindex och med hjälp av tecken
             for (int j = 0; j < strings.Count; j++)
@@ -214,39 +225,42 @@ namespace PixelFighters
                 p2.isHit = true;
                 if (p2.hasTakenDamage == false)
                 {
-                    if (p1.damageDealt == 1)
+                    if (soundMenu.IsSoundOn)
                     {
-                        SoundManager.Instance.poke.Play();
-                    }
-                    if (p1.damageDealt == 2)
-                    {
-                        SoundManager.Instance.softhit.Play();
-                    }
-                    if (p1.damageDealt == 3)
-                    {
-                        SoundManager.Instance.mediumhit.Play();
-                    }
-                    if (p1.damageDealt == 4)
-                    {
-                        if (randomNumber >= 5)
+                        if (p1.damageDealt == 1)
                         {
-                            SoundManager.Instance.slap.Play();
+                            SoundManager.Instance.poke.Play();
                         }
-                        else
+                        if (p1.damageDealt == 2)
                         {
-                            SoundManager.Instance.slap2.Play();
+                            SoundManager.Instance.softhit.Play();
                         }
-                    }
-                    if (p1.damageDealt >= 5)
-                    {
-                        if (randomNumber >= 5)
+                        if (p1.damageDealt == 3)
                         {
-                            SoundManager.Instance.hardhit2.Play();
+                            SoundManager.Instance.mediumhit.Play();
                         }
-                        else
+                        if (p1.damageDealt == 4)
                         {
-                            SoundManager.Instance.hardhit2.Play();
-                        }     
+                            if (randomNumber >= 5)
+                            {
+                                SoundManager.Instance.slap.Play();
+                            }
+                            else
+                            {
+                                SoundManager.Instance.slap2.Play();
+                            }
+                        }
+                        if (p1.damageDealt >= 5)
+                        {
+                            if (randomNumber >= 5)
+                            {
+                                SoundManager.Instance.hardhit2.Play();
+                            }
+                            else
+                            {
+                                SoundManager.Instance.hardhit2.Play();
+                            }
+                        }
                     }
                     p2.currentHP -= p1.damageDealt;
                 }
@@ -269,38 +283,41 @@ namespace PixelFighters
                 p1.isHit = true;
                 if (p1.hasTakenDamage == false)
                 {
-                    if (p2.damageDealt == 1)
+                    if (soundMenu.IsSoundOn)
                     {
-                        SoundManager.Instance.poke.Play();
-                    }
-                    if (p2.damageDealt == 2)
-                    {
-                        SoundManager.Instance.softhit.Play();
-                    }
-                    if (p2.damageDealt == 3)
-                    {
-                        SoundManager.Instance.mediumhit.Play();
-                    }
-                    if (p2.damageDealt == 4)
-                    {
-                        if (randomNumber >= 5)
+                        if (p2.damageDealt == 1)
                         {
-                            SoundManager.Instance.slap.Play();
+                            SoundManager.Instance.poke.Play();
                         }
-                        else
+                        if (p2.damageDealt == 2)
                         {
-                            SoundManager.Instance.slap2.Play();
+                            SoundManager.Instance.softhit.Play();
                         }
-                    }
-                    if (p2.damageDealt >= 5)
-                    {
-                        if (randomNumber >= 5)
+                        if (p2.damageDealt == 3)
                         {
-                            SoundManager.Instance.hardhit2.Play();
+                            SoundManager.Instance.mediumhit.Play();
                         }
-                        else
+                        if (p2.damageDealt == 4)
                         {
-                            SoundManager.Instance.hardhit2.Play();
+                            if (randomNumber >= 5)
+                            {
+                                SoundManager.Instance.slap.Play();
+                            }
+                            else
+                            {
+                                SoundManager.Instance.slap2.Play();
+                            }
+                        }
+                        if (p2.damageDealt >= 5)
+                        {
+                            if (randomNumber >= 5)
+                            {
+                                SoundManager.Instance.hardhit2.Play();
+                            }
+                            else
+                            {
+                                SoundManager.Instance.hardhit2.Play();
+                            }
                         }
                     }
                     p1.currentHP -= Instance.p2.damageDealt;

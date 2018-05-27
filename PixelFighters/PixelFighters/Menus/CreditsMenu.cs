@@ -27,7 +27,6 @@ namespace PixelFighters
         }
 
         #region Main Methods
-
         public override void Update(GameTime gameTime, Game1 game1)
         {
             creditsRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - 268;
@@ -43,6 +42,8 @@ namespace PixelFighters
 
             if (keyState.IsKeyDown(Keys.Back) && previousKeyState.IsKeyUp(Keys.Back) || gamePadStateOne.IsButtonDown(Buttons.B) && previousGamePadStateOne.IsButtonUp(Buttons.B) || gamePadStateTwo.IsButtonDown(Buttons.B) && previousGamePadStateTwo.IsButtonUp(Buttons.B))
             {
+                currentMarkerState = MarkerState.MarkerState1;
+                currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
                 game1.currentGameState = GameState.MainMenu;
             }
         }

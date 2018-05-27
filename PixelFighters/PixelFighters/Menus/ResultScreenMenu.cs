@@ -51,7 +51,6 @@ namespace PixelFighters
         }
 
         #region Main Methods
-
         public override void Update(GameTime gameTime, Game1 game1)
         {
             winnerCharacterRectangle.X = (int)ScreenManager.Instance.Dimensions.X / 2 - winnerCharacterRectangle.Width;
@@ -130,6 +129,11 @@ namespace PixelFighters
             if (keyState.IsKeyDown(Keys.Down) && previousKeyState.IsKeyUp(Keys.Down) || gamePadStateOne.IsButtonDown(Buttons.DPadDown) && previousGamePadStateOne.IsButtonUp(Buttons.DPadDown) || gamePadStateTwo.IsButtonDown(Buttons.DPadDown) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadDown))
             {
                 playAgain = false;
+                if(keyState.IsKeyDown(Keys.Enter) && keyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
+                {
+                    currentMarkerState = MarkerState.MarkerState1;
+                    currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
+                }
             }
             if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
             {

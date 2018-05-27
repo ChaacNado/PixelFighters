@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +16,6 @@ namespace PixelFighters
         public Song menuSong, stage1Song, stage2Song;
         public SoundEffect KOScream, blip, blaster, crack, hardhit, hardhit2, mediumhit, poke, slap, slap2, smallswing, smallswing2, smallswing3, softhit, swing, woosh;
 
-        public StreamReader streamReader;
         public SpriteFont spriteFont, timerPixelFont, storyPixelFont;
         public Texture2D rectTex, fadeTex, boxManTex;
         public Texture2D shineTitlescreenTexture, centerTitlescreenTexture, textTitlescreenTexture, mainMenuSpritesheet, optionsMenuSpritesheet, storyMenuSpritesheet, creditsMenuSpritesheet, graphicsMenuSpritesheet, quitMenuSpritesheet,
@@ -45,8 +43,6 @@ namespace PixelFighters
         #region Main Methods
         public void LoadContent(ContentManager Content)
         {
-            streamReader = new StreamReader("stage" + GameplayManager.Instance.stageNumber + ".txt");
-
             menuSong = Content.Load<Song>("menuost");
             stage1Song = Content.Load<Song>("stage1ost");
             stage2Song = Content.Load<Song>("stage2ost");

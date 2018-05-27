@@ -13,9 +13,9 @@ namespace PixelFighters
     class PausedMenu
     {
         #region Variables
-        protected KeyboardState keyState, previousKeyState;
-        protected MarkerState currentMarkerState;
-        protected GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
+        KeyboardState keyState, previousKeyState;
+        MarkerState currentMarkerState;
+        GamePadState gamePadStateOne, previousGamePadStateOne, gamePadStateTwo, previousGamePadStateTwo;
 
         Rectangle greyRectangle, pausedRectangle, resumeQuitRectangle;
         Rectangle greySrcRectangle, pausedSrcRectangle, resumeSrcRectangle, quitSrcRectangle;
@@ -35,7 +35,6 @@ namespace PixelFighters
         }
 
         #region Main Methods
-
         public void Update(GameTime gameTime, Game1 game1, Camera camera)
         {
             pausedRectangle.X = (int)camera.pos.X + (int)ScreenManager.Instance.Dimensions.X / 2 - 208;
@@ -69,12 +68,14 @@ namespace PixelFighters
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
                         SoundManager.Instance.Stop();
+                        currentMarkerState = MarkerState.MarkerState1;
                         game1.currentGameState = GameState.MainMenu;
                         game1.currentCharacterOne = 1;
                         game1.currentCharacterTwo = 1;
                         game1.currentChosenMap = 1;
                         game1.currentChosenMinutes = 3;
                         /*currentChosenLives=1*/
+                        currentMarkerState = MarkerState.MarkerState1;
                     }
                     if (keyState.IsKeyDown(Keys.Up) && previousKeyState.IsKeyUp(Keys.Up) || gamePadStateOne.IsButtonDown(Buttons.DPadUp) && previousGamePadStateOne.IsButtonUp(Buttons.DPadUp) || gamePadStateTwo.IsButtonDown(Buttons.DPadUp) && previousGamePadStateTwo.IsButtonUp(Buttons.DPadUp))
                     {

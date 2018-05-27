@@ -1,5 +1,12 @@
 ﻿**********2018-05-27 Version 0.8.8, auth: Kristian Toro**********
 {
+Nu kan man slå på och av både musik och ljud genom sound menu.
+Flyttat alla menyer till Initialize i game, och ändrat lite på meny-markerkod så att markern resetas när man lämnar en meny.
+Lagt till ljudeffekter till alla kvarvarande attacker. Ändrat på fysiken när man blir träffad av attacker som slår en mot plattformar.
+}
+
+**********2018-05-27 Version 0.8.8, auth: Kristian Toro**********
+{
 Bytt namn på MusicManager till SoundManager. Lagt till ljud till vissa attacker.
 Lagt till ljud som spelas när man blir skadad, ljudet beror mest på hur stark motståndarens attack var.
 }

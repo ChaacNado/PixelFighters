@@ -98,6 +98,8 @@ namespace PixelFighters
 
         public void ReadFile()
         {
+            timer = matchLength;
+
             strings = new List<string>();
 
             ///Läser strängar från fil

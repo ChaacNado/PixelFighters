@@ -49,7 +49,7 @@ namespace PixelFighters
             ///Begränsar området kameran kan röra sig när spelet spelas
             else
             {
-                if(ScreenManager.Instance.Dimensions.X > 800)
+                if(ScreenManager.Instance.Dimensions.Y >= 1080)
                 {
                     if (pos.X < -580)
                     {
@@ -59,7 +59,6 @@ namespace PixelFighters
                     {
                         pos.X = -40;
                     }
-
                     if (pos.Y < -620)
                     {
                         pos.Y = -620;

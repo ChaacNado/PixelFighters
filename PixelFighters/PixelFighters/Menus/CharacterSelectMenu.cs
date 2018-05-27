@@ -14,7 +14,7 @@ namespace PixelFighters
     {
         #region Variables
 
-        public int lastMarkedCharacter, secondaryLastMarkedCharacter, player1ChosenCharacter, player2ChosenCharacter, mapChosen, minutesChosen;
+        public int lastMarkedCharacter, secondaryLastMarkedCharacter, player1ChosenCharacter, player2ChosenCharacter, mapChosen, timeChosen;
         public bool player1Ready, player2Ready;
         Rectangle livesTextRectangle, minutesTextRectangle, mapTextRectangle, livesBoxRectangle, minutesBoxRectangle, mapBoxRectangle, charactersRectangle, ready1Rectangle, ready2Rectangle, player1Rectangle, player2Rectangle, player1MarkerRectangle, player2MarkerRectangle, player1TextRectangle, player2TextRectangle;
         Rectangle livesTextSrcRectangle, minutesTextSrcRectangle, mapTextSrcRectangle, livesBoxSrcRectangle, minutesBoxSrcRectangle, mapBoxSrcRectangle, smallBoxleftSrcRectangle, smallBoxRightSrcRectangle, bigBoxLeftSrcRectangle, bigBoxRightSrcRectangle, charactersSrcRectangle, readySrcRectangle, notReadySrcRectangle, markedReadySrcRectangle, markedNotReadySrcRectangle, playerSrcRectangle, player1MarkerSrcRectangle, player2MarkerSrcRectangle, standardMapSrcRectangle, spaceMapSrcRectangle, player1TextSrcRectangle, player2TextSrcRectangle;
@@ -28,7 +28,7 @@ namespace PixelFighters
             player1ChosenCharacter = 1;
             player2ChosenCharacter = 1;
             mapChosen = 1;
-            minutesChosen = 5;
+            timeChosen = 5;
 
             livesTextRectangle = new Rectangle(0, 0, 156, 40);
             minutesTextRectangle = new Rectangle(0, 0, 236, 40);
@@ -143,6 +143,16 @@ namespace PixelFighters
 
             previousKeyState = game1.previousKeyState;
             keyState = game1.keyState;
+
+            if (timeChosen <= 1)
+            {
+                timeChosen = 1;
+            }
+
+            if (timeChosen >= 9)
+            {
+                timeChosen = 9;
+            }
 
             previousGamePadStateOne = game1.previousGamePadStateOne;
             gamePadStateOne = game1.gamePadStateOne;
@@ -351,7 +361,7 @@ namespace PixelFighters
                         if (game1.currentChosenMinutes > 1)
                         {
                             game1.currentChosenMinutes -= 1;
-                            minutesChosen -= 1;
+                            timeChosen -= 1;
                         }
 
                     }
@@ -390,7 +400,7 @@ namespace PixelFighters
                         if (game1.currentChosenMinutes <= 8)
                         {
                             game1.currentChosenMinutes += 1;
-                            minutesChosen += 1;
+                            timeChosen += 1;
                         }
 
                     }
@@ -796,7 +806,7 @@ namespace PixelFighters
             {
                 spriteBatch.Draw(AssetManager.Instance.characterSelectSpritesheet, mapBoxRectangle, spaceMapSrcRectangle, Color.White);
             }
-            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, minutesChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 74, minutesBoxRectangle.Y - 6), Color.Black);
+            spriteBatch.DrawString(AssetManager.Instance.timerPixelFont, timeChosen.ToString("0"), new Vector2(minutesBoxRectangle.X + 74, minutesBoxRectangle.Y - 6), Color.Black);
         }
 
         #endregion

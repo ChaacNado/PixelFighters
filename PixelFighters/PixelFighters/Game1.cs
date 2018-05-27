@@ -71,7 +71,9 @@ namespace PixelFighters
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+
+            System.Diagnostics.Debug.WriteLine(currentChosenMinutes);
+
             camera.Update(gameTime);
             previousKeyState = keyState;
             keyState = Keyboard.GetState();
@@ -121,6 +123,7 @@ namespace PixelFighters
                     }                  
                     break;
                 case GameState.CharacterSelect:
+                    currentChosenMinutes = characterSelectMenu.timeChosen;
                     GameplayManager.Instance.Update(gameTime, camera);
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
                     if (soundMenu.IsMusicOn)
@@ -183,7 +186,7 @@ namespace PixelFighters
                         currentCharacterOne = 1;
                         currentCharacterTwo = 1;
                         currentChosenMap = 1;
-                        currentChosenMinutes = 3;
+                        currentChosenMinutes = characterSelectMenu.timeChosen;
                         GameplayManager.Instance.ReadFile();
                         currentGameState = GameState.CharacterSelect;
                     }
@@ -195,7 +198,7 @@ namespace PixelFighters
                         currentCharacterOne = 1;
                         currentCharacterTwo = 1;
                         currentChosenMap = 1;
-                        currentChosenMinutes = 3;
+                        currentChosenMinutes = characterSelectMenu.timeChosen;
                         GameplayManager.Instance.ReadFile();
                         currentGameState = GameState.MainMenu;
                     }

@@ -227,7 +227,7 @@ namespace PixelFighters
 
             ///Ritar ut kollisions-hitboxes
             spriteBatch.Draw(attackTex, damageableHitBox, damageableHitBox, Color.Yellow * 0.7f);
-            //spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
+            spriteBatch.Draw(attackTex, groundHitBox, groundHitBox, Color.Blue * 0.7f);
             #endregion
 
             ///Ritar ut spelar-objektet

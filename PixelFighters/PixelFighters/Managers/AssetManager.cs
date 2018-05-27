@@ -15,8 +15,8 @@ namespace PixelFighters
     {
         #region Variables
         public Song menuSong, stage1Song, stage2Song;
-        public SoundEffect KOScream;
-        
+        public SoundEffect KOScream, blip, blaster, crack, hardhit, hardhit2, mediumhit, poke, slap, slap2, smallswing, smallswing2, smallswing3, softhit, swing, woosh;
+
         public StreamReader streamReader;
         public SpriteFont spriteFont, timerPixelFont, storyPixelFont;
         public Texture2D rectTex, fadeTex, boxManTex;
@@ -52,6 +52,21 @@ namespace PixelFighters
             stage2Song = Content.Load<Song>("stage2ost");
 
             KOScream = Content.Load<SoundEffect>("wScream");
+            blip = Content.Load<SoundEffect>("blip");
+            blaster = Content.Load<SoundEffect>("Blaster");
+            crack = Content.Load<SoundEffect>("crack");
+            hardhit = Content.Load<SoundEffect>("hardhit");
+            hardhit2 = Content.Load<SoundEffect>("hardhit2");
+            mediumhit = Content.Load<SoundEffect>("mediumhit");
+            poke = Content.Load<SoundEffect>("poke");
+            slap = Content.Load<SoundEffect>("slap");
+            slap2 = Content.Load<SoundEffect>("slap2");
+            smallswing = Content.Load<SoundEffect>("smallswing");
+            smallswing2 = Content.Load<SoundEffect>("smallswing2");
+            smallswing3 = Content.Load<SoundEffect>("smallswing3");
+            softhit = Content.Load<SoundEffect>("softhit");
+            swing = Content.Load<SoundEffect>("swing");
+            woosh = Content.Load<SoundEffect>("woosh");
 
             spriteFont = Content.Load<SpriteFont>("font1");
             timerPixelFont = Content.Load<SpriteFont>("mainPixelFont");

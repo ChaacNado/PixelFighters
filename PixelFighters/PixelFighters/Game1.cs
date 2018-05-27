@@ -94,7 +94,7 @@ namespace PixelFighters
                 case GameState.TitleScreen:
                     camera.zoom = 1;
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
-                    MusicManager.Instance.Play(AssetManager.Instance.menuSong);
+                    SoundManager.Instance.Play(AssetManager.Instance.menuSong);
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter)
                         || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
@@ -108,15 +108,15 @@ namespace PixelFighters
                     mainMenu.Update(gameTime, this);
                     GameplayManager.Instance.timer = GameplayManager.Instance.matchLength;
                     GameplayManager.Instance.timerStart = false;
-                    MusicManager.Instance.Play(AssetManager.Instance.menuSong);
+                    SoundManager.Instance.Play(AssetManager.Instance.menuSong);
                     break;
                 case GameState.CharacterSelect:
                     GameplayManager.Instance.Update(gameTime, camera);
                     camera.cameraFocus = new Vector2(ScreenManager.Instance.Dimensions.X / 2, ScreenManager.Instance.Dimensions.Y / 2);
-                    MusicManager.Instance.Play(AssetManager.Instance.menuSong);
+                    SoundManager.Instance.Play(AssetManager.Instance.menuSong);
                     if (characterSelectMenu.player1Ready == true && characterSelectMenu.player2Ready == true) 
                     {
-                        MusicManager.Instance.Stop();
+                        SoundManager.Instance.Stop();
                         currentGameState = GameState.Playtime;
                         LoadContent();
                         characterSelectMenu.player1Ready = false;
@@ -130,15 +130,15 @@ namespace PixelFighters
                     GameplayManager.Instance.timerStart = true;
                     if (GameplayManager.Instance.stageNumber == 1)
                     {
-                        MusicManager.Instance.Play(AssetManager.Instance.stage1Song);
+                        SoundManager.Instance.Play(AssetManager.Instance.stage1Song);
                     }
                     if (GameplayManager.Instance.stageNumber == 2)
                     {
-                        MusicManager.Instance.Play(AssetManager.Instance.stage2Song);
+                        SoundManager.Instance.Play(AssetManager.Instance.stage2Song);
                     }
                     if (GameplayManager.Instance.playerOneWon == true || GameplayManager.Instance.playerTwoWon == true)
                     {
-                        MusicManager.Instance.Stop();
+                        SoundManager.Instance.Stop();
                         currentGameState = GameState.Results;
                     }
 

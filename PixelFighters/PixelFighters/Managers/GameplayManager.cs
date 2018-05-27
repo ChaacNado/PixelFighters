@@ -15,6 +15,7 @@ namespace PixelFighters
         #region Variables
         Game1 game1;
 
+        int randomNumber;
         public int stageNumber = 1;
         public Vector2 startPosOne, startPosTwo;
         public Player p1, p2;
@@ -25,7 +26,7 @@ namespace PixelFighters
         Color color;
         Random rnd;
 
-        public bool timerStart = false;
+        public bool timerStart;
         public float matchLength, timer;
 
         public bool playerOneWon, playerTwoWon;
@@ -152,7 +153,7 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime, Camera camera)
         {
-            System.Diagnostics.Debug.WriteLine(p1.speed.Y);
+            randomNumber = rnd.Next(0, 9);
 
             ///Ändrar source rektangeln beroende på vilken karaktär spelaren valt.
             srcRecOne.Width = p1.srcWidthModifier;
@@ -213,6 +214,40 @@ namespace PixelFighters
                 p2.isHit = true;
                 if (p2.hasTakenDamage == false)
                 {
+                    if (p1.damageDealt == 1)
+                    {
+                        SoundManager.Instance.poke.Play();
+                    }
+                    if (p1.damageDealt == 2)
+                    {
+                        SoundManager.Instance.softhit.Play();
+                    }
+                    if (p1.damageDealt == 3)
+                    {
+                        SoundManager.Instance.mediumhit.Play();
+                    }
+                    if (p1.damageDealt == 4)
+                    {
+                        if (randomNumber >= 5)
+                        {
+                            SoundManager.Instance.slap.Play();
+                        }
+                        else
+                        {
+                            SoundManager.Instance.slap2.Play();
+                        }
+                    }
+                    if (p1.damageDealt >= 5)
+                    {
+                        if (randomNumber >= 5)
+                        {
+                            SoundManager.Instance.hardhit2.Play();
+                        }
+                        else
+                        {
+                            SoundManager.Instance.hardhit2.Play();
+                        }     
+                    }
                     p2.currentHP -= p1.damageDealt;
                 }
                 p2.hasTakenDamage = true;
@@ -234,6 +269,40 @@ namespace PixelFighters
                 p1.isHit = true;
                 if (p1.hasTakenDamage == false)
                 {
+                    if (p2.damageDealt == 1)
+                    {
+                        SoundManager.Instance.poke.Play();
+                    }
+                    if (p2.damageDealt == 2)
+                    {
+                        SoundManager.Instance.softhit.Play();
+                    }
+                    if (p2.damageDealt == 3)
+                    {
+                        SoundManager.Instance.mediumhit.Play();
+                    }
+                    if (p2.damageDealt == 4)
+                    {
+                        if (randomNumber >= 5)
+                        {
+                            SoundManager.Instance.slap.Play();
+                        }
+                        else
+                        {
+                            SoundManager.Instance.slap2.Play();
+                        }
+                    }
+                    if (p2.damageDealt >= 5)
+                    {
+                        if (randomNumber >= 5)
+                        {
+                            SoundManager.Instance.hardhit2.Play();
+                        }
+                        else
+                        {
+                            SoundManager.Instance.hardhit2.Play();
+                        }
+                    }
                     p1.currentHP -= Instance.p2.damageDealt;
                 }
                 p1.hasTakenDamage = true;

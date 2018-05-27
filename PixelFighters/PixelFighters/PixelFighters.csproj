@@ -48,7 +48,7 @@
     <Compile Include="Menus\StoryMenu.cs" />
     <Compile Include="Menus\TitlescreenMenu.cs" />
     <Compile Include="Menus\ResultScreenMenu.cs" />
-    <Compile Include="Managers\MusicManager.cs" />
+    <Compile Include="Managers\SoundManager.cs" />
     <Compile Include="Screen\Camera.cs" />
     <Compile Include="Menus\BaseMenu.cs" />
     <Compile Include="Menus\CharacterSelectMenu.cs" />
@@ -80,6 +80,12 @@
     <Content Include="Content\background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Blaster.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\blip.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\boxMan.png" />
     <Content Include="Content\center.png" />
     <Content Include="Content\characterBoxer.png">
@@ -91,6 +97,9 @@
     <Content Include="Content\characters.png" />
     <Content Include="Content\CharacterSelectMenu.png" />
     <Content Include="Content\ControlsMenu.png" />
+    <Content Include="Content\crack.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\CreditsMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -100,7 +109,16 @@
     <Content Include="Content\GraphicsMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\hardhit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\hardhit2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\MainMenu.png" />
+    <Content Include="Content\mediumhit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\menuost.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -109,11 +127,32 @@
     </Content>
     <Content Include="Content\PausedMenu.png" />
     <Content Include="Content\PlaytimeHUDSpritesheet.png" />
+    <Content Include="Content\poke.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\QuitMenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ResultsMenu.png" />
     <Content Include="Content\shineTitlescreen.png" />
+    <Content Include="Content\slap.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\slap2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\smallswing.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\smallswing2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\smallswing3.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\softhit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SoundMusicMenu.png" />
     <Content Include="Content\stage1ost.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -125,11 +164,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\StoryMenu.png" />
+    <Content Include="Content\swing.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\textTitlescreen.png" />
     <Content Include="Content\tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\warningtape platforms.png" />
+    <Content Include="Content\woosh.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
     <Content Include="ChangeLog.txt" />
     <Content Include="stage2.txt">

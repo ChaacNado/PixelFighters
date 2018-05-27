@@ -68,7 +68,7 @@ namespace PixelFighters
                 case MarkerState.MarkerState2:
                     if (keyState.IsKeyDown(Keys.Enter) && previousKeyState.IsKeyUp(Keys.Enter) || gamePadStateOne.IsButtonDown(Buttons.A) && previousGamePadStateOne.IsButtonUp(Buttons.A) || gamePadStateTwo.IsButtonDown(Buttons.A) && previousGamePadStateTwo.IsButtonUp(Buttons.A))
                     {
-                        MusicManager.Instance.Stop();
+                        SoundManager.Instance.Stop();
                         game1.currentGameState = GameState.MainMenu;
                         game1.currentCharacterOne = 1;
                         game1.currentCharacterTwo = 1;

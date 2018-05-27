@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace PixelFighters
         ///Med denna kan vi byta ut texturer, attacklogik osv på spelarens karaktär
 
         #region Variables
-
         private static CharacterManager instance;
         #endregion
 
@@ -357,6 +357,7 @@ namespace PixelFighters
             #region Baseballer
             else if (player.currentCharacter == 4)
             {
+                SoundManager.Instance.swing.Play();
                 player.actionFrameTimer = 75;
                 player.cooldownModifier = 475;
                 player.isAttacking = true;
@@ -464,6 +465,7 @@ namespace PixelFighters
                     player.rangeModifierX = player.projectileStartX;
                     player.projectileSpeedX = 11;
                 }
+                SoundManager.Instance.blaster.Play();
             }
             #endregion
 
@@ -535,14 +537,13 @@ namespace PixelFighters
                 {
                     player.rangeModifierX = player.projectileStartX;
                     player.projectileSpeedX = 17;
-                    player.inAnimation = false;
                 }
                 else if (!player.facingRight)
                 {
                     player.rangeModifierX = player.projectileStartX;
                     player.projectileSpeedX = -17;
-                    player.inAnimation = false;
                 }
+                SoundManager.Instance.blip.Play();
             }
             #endregion
         }

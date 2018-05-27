@@ -67,7 +67,7 @@ namespace PixelFighters
             {
                 currentMarkerState = MarkerState.MarkerState1;
                 currentSecondaryMarkerState = SecondaryMarkerState.SecondaryMarkerState1;
-                game1.currentGameState = GameState.MainMenu;
+                game1.currentGameState = GameState.Options;
             }
 
             switch (currentMarkerState)

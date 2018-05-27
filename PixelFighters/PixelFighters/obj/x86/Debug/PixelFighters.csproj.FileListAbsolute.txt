@@ -663,10 +663,6 @@ C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\powerup.xnb
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.xnb
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\warningtape platforms.xnb
-C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.xnb
-C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.xnb
-C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.png
-C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.png
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csprojAssemblyReference.cache
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csprojAssemblyReference.cache
 C:\Users\mikael\Downloads\school\Pixelfighet kod\PixelFighters-master v 0.5\PixelFighters-master\PixelFighters\PixelFighters\obj\x86\Debug\PixelFighters.csproj.CoreCompileInputs.cache
@@ -894,3 +890,46 @@ C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Win
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\softhit.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\swing.xnb
 C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\woosh.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\background.png
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\Blaster.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\blip.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\crack.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\hardhit.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\hardhit2.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\mediumhit.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\menuost.mp3
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\poke.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\slap.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\slap2.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\smallswing.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\smallswing2.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\smallswing3.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\softhit.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\stage1ost.mp3
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\stage2ost.mp3
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\swing.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\woosh.wav
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\Blaster.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\blip.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\crack.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\hardhit.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\hardhit2.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\mediumhit.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\menuost.wma
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\menuost.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\poke.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\slap.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\slap2.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\smallswing.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\smallswing2.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\smallswing3.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\softhit.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\stage1ost.wma
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\stage1ost.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\stage2ost.wma
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\stage2ost.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\swing.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\woosh.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\wScream.xnb
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\mainPixelFont.spritefont
+C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\Time.spritefont

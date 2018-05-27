@@ -1,4 +1,9 @@
-﻿**********2018-05-27 Version 1.0.1 auth: Kristian Toro**********
+﻿**********2018-05-27 Version 1.0.2 auth: Erik Persson**********
+{
+Fixade bugg med controlsmenu.
+}
+
+**********2018-05-27 Version 1.0.1 auth: Kristian Toro**********
 {
 Fix på kamerabuggar på den högre upplösningen, och en bugg på main menu.
 }

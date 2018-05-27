@@ -26,6 +26,7 @@ namespace PixelFighters
         {
             pos = new Vector2(cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2);
 
+            ///Ger fast position på kameran inuti menyer
             if (inMenu)
             {
                 if (pos.X < 0)
@@ -46,6 +47,7 @@ namespace PixelFighters
                     pos.Y = 0;
                 }
             }
+            ///Begränsar området kameran kan röra sig när spelet spelas
             else
             {
                 if (pos.X < -300)

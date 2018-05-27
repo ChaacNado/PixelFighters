@@ -55,6 +55,7 @@ namespace PixelFighters
         ///Metod för stridskollisioner
         public virtual void HandlePlayerCollision(Player p1, Player p2)
         {
+            ///Kollar ifall spelare 1 attackerar spelare 2
             if (p1.attackHitBox.Intersects(p2.damageableHitBox) && p1.isAttacking)
             {
                 if (p1.facingRight)
@@ -83,6 +84,7 @@ namespace PixelFighters
                 }
             }
 
+            ///Kollar ifall spelare 2 attackerar spelare 1
             if (p2.attackHitBox.Intersects(p1.damageableHitBox) && p2.isAttacking)
             {
                 if (p2.facingRight)

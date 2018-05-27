@@ -1,44 +1,50 @@
-﻿**********2018-05-27 Version 0.8.8, auth: Kristian Toro**********
+﻿**********2018-05-27 Version 1.0.0 auth: Kristian Toro**********
+{
+Fixat en ny bugg som kom med i förra versionen som gör att man faller igenom plattformar.
+Ändrat startpos på stage2. Rensat lite småsaker i alla klasser.
+}
+
+**********2018-05-27 Version 0.9.0, auth: Kristian Toro**********
 {
 Nu kan man slå på och av både musik och ljud genom sound menu.
 Flyttat alla menyer till Initialize i game, och ändrat lite på meny-markerkod så att markern resetas när man lämnar en meny.
 Lagt till ljudeffekter till alla kvarvarande attacker. Ändrat på fysiken när man blir träffad av attacker som slår en mot plattformar.
 }
 
-**********2018-05-27 Version 0.8.8, auth: Kristian Toro**********
+**********2018-05-27 Version 0.8.9, auth: Kristian Toro**********
 {
 Bytt namn på MusicManager till SoundManager. Lagt till ljud till vissa attacker.
 Lagt till ljud som spelas när man blir skadad, ljudet beror mest på hur stark motståndarens attack var.
 }
 
-**********2018-05-26 Version 0.8.7, auth: Kristian Toro**********
+**********2018-05-26 Version 0.8.8, auth: Kristian Toro**********
 {
 Mini clean-up av några onödiga mellanrum, och gjort så att våra kommentarer som används för att förklara saker ser likadana ut.
 }
 
-**********2018-05-26 Version 0.8.6, auth: Jonas Ekblad**********
+**********2018-05-26 Version 0.8.7, auth: Jonas Ekblad**********
 {
 Lagt in kommentarer och fått bort lite hårdkodning som var onödig.
 }
 
-**********2018-05-26 Version 0.8.5, auth: Kristian Toro**********
+**********2018-05-26 Version 0.8.6, auth: Kristian Toro**********
 {
 Musik-fix. Menymusiken startar i character select efter att en match avslutats.
 }
 
-**********2018-05-26 Version 0.8.4, auth: Kristian Toro**********
+**********2018-05-26 Version 0.8.5, auth: Kristian Toro**********
 {
 Lagt in tre låtar, en låt för menyer, en för stage1 och en för stage 2.
 Skapat MusicManager, med metoderna Play() och Stop().
 Lagt till en ljudeffekt som spelas vid K.O.
 }
 
-**********2018-05-26 Version 0.8.3, auth: Kristian Toro**********
+**********2018-05-26 Version 0.8.4, auth: Kristian Toro**********
 {
 Mindre balansering och justeringar av attacker. Fixat några offsets på source rectangles.
 }
 
-**********2018-05-25 Version 0.8.2, auth: Kristian Toro**********
+**********2018-05-25 Version 0.8.3, auth: Kristian Toro**********
 {
 Minskat på de horisontella gränsernas värden.
 Gett offset till rymdbilden.

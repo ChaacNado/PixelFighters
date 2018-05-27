@@ -52,6 +52,7 @@ namespace PixelFighters
         }
         #endregion
 
+        ///Startar utvald låt en gång, och loopar låten
         public void Play(Song song)
         {
             this.song = song;
@@ -64,6 +65,7 @@ namespace PixelFighters
             }
         }
 
+        ///Stoppar låten
         public void Stop()
         {
             if (stopCounter >= 1)

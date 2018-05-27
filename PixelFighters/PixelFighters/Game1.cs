@@ -20,7 +20,7 @@ namespace PixelFighters
         PausedMenu pausedMenu;
         ResultScreenMenu resultScreenMenu;
 
-        public int currentCharacterOne = 1, currentCharacterTwo = 1, currentChosenMap = 1, currentChosenMinutes = 5 /*currentChosenLives=1*/;
+        public int currentCharacterOne = 1, currentCharacterTwo = 1, currentChosenMap = 1, currentChosenMinutes = 5;
 
         public Game1()
         {
@@ -34,7 +34,8 @@ namespace PixelFighters
             GameplayManager.Instance.stageNumber = 1;
 
             camera = new Camera(GraphicsDevice.Viewport);
-            ///Här kan vi justera skärmstorleken
+
+            ///Skärmens dimenssioner vid start
             ScreenManager.Instance.Dimensions = new Vector2(1366, 768);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
@@ -84,8 +85,6 @@ namespace PixelFighters
             GameplayManager.Instance.p2.currentCharacter = currentCharacterTwo;
             GameplayManager.Instance.stageNumber = currentChosenMap;
             GameplayManager.Instance.matchLength = currentChosenMinutes * 60;
-            //GameplayManager.Instance.p1. = currentChosenLives;
-            //GameplayManager.Instance.p2. = currentChosenLives;
 
             ///Kraven för att trigga övergångarna mellan olika GameStates
             switch (currentGameState)
@@ -180,7 +179,6 @@ namespace PixelFighters
                         currentCharacterTwo = 1;
                         currentChosenMap = 1;
                         currentChosenMinutes = 3;
-                        /*currentChosenLives=1*/
                         GameplayManager.Instance.ReadFile();
                         currentGameState = GameState.CharacterSelect;
                     }
@@ -193,7 +191,6 @@ namespace PixelFighters
                         currentCharacterTwo = 1;
                         currentChosenMap = 1;
                         currentChosenMinutes = 3;
-                        /*currentChosenLives=1*/
                         GameplayManager.Instance.ReadFile();
                         currentGameState = GameState.MainMenu;
                     }

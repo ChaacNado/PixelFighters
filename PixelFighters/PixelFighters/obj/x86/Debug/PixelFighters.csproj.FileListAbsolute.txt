@@ -663,10 +663,6 @@ C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\powerup.xnb
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\QuitMenu.xnb
 C:\Users\Jonas.E\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\warningtape platforms.xnb
-C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.xnb
-C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.xnb
-C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.png
-C:\Users\Toro\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.png
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.xnb
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterFootball.xnb
 C:\Users\Hemocroid\Documents\GitHub\PixelFighters\PixelFighters\PixelFighters\bin\Windows\x86\Debug\Content\characterBoxer.png

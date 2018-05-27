@@ -108,12 +108,6 @@ namespace PixelFighters
                     srcRec.Width = srcWidthModifier;
                     srcRec.Height = srcHeightModifier;
                 }
-                //else if (frameTimer <= 0 && isAttacking)
-                //{
-                //    frameTimer = frameInterval;
-                //    attackFrame++;
-                //    srcRec.X = (attackFrame % 2) * 310;
-                //}
                 else if (!isMoving && !inAnimation && !isAttacking && isOnGround)
                 {
                     if (currentCharacter != 3)
@@ -146,6 +140,7 @@ namespace PixelFighters
                     attackIsProjectile = false;
                 }
 
+                ///Karaktärens riktning på sin sprite
                 if (facingRight)
                 {
                     playerFx = SpriteEffects.None;

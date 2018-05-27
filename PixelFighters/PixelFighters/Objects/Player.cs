@@ -194,7 +194,7 @@ namespace PixelFighters
                 HandleInputs();
 
                 ///Vad som leder till att man förlorar en stock
-                if (pos.Y >= bY + 300 || pos.Y <= -900 || pos.X <= -400 || pos.X >= bX + 400 || currentHP <= 0)
+                if (pos.Y >= 1068 || pos.Y <= -900 || pos.X <= -400 || pos.X >= 1766 || currentHP <= 0)
                 {
                     currentHP = maxHP;
                     stocksRemaining--;
@@ -204,6 +204,8 @@ namespace PixelFighters
                 }
 
                 UpdatePosition();
+
+                jumpsAvailable = 2000;
             }
         }
 

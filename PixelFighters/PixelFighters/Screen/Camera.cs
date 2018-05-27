@@ -24,7 +24,7 @@ namespace PixelFighters
 
         public void Update(GameTime gameTime)
         {
-            pos = new Vector2(cameraFocus.X - ScreenManager.Instance.Dimensions.X / 2, cameraFocus.Y - ScreenManager.Instance.Dimensions.Y / 2);
+            pos = new Vector2(cameraFocus.X - 683, cameraFocus.Y - 384);
 
             ///Ger fast position på kameran inuti menyer
             if (inMenu)
@@ -33,9 +33,9 @@ namespace PixelFighters
                 {
                     pos.X = 0;
                 }
-                if (pos.X > ScreenManager.Instance.Dimensions.X)
+                if (pos.X > 384)
                 {
-                    pos.X = ScreenManager.Instance.Dimensions.X;
+                    pos.X = 384;
                 }
 
                 if (pos.Y < 0)
@@ -59,9 +59,9 @@ namespace PixelFighters
                     pos.X = 300;
                 }
 
-                if (pos.Y < -700)
+                if (pos.Y < -620)
                 {
-                    pos.Y = -700;
+                    pos.Y = -620;
                 }
                 if (pos.Y > 80)
                 {

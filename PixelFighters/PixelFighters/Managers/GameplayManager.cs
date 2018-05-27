@@ -168,6 +168,15 @@ namespace PixelFighters
         {
             randomNumber = rnd.Next(0, 9);
 
+            if (stageNumber >= 2)
+            {
+                stageNumber = 2;
+            }
+            if (stageNumber <= 1)
+            {
+                stageNumber = 1;
+            }
+
             ///Ändrar source rektangeln beroende på vilken karaktär spelaren valt.
             srcRecOne.Width = p1.srcWidthModifier;
             srcRecOne.Height = p1.srcHeightModifier;

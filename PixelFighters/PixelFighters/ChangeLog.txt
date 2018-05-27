@@ -1,4 +1,9 @@
-﻿**********2018-05-27 Version 1.0.0 auth: Kristian Toro**********
+﻿**********2018-05-27 Version 1.0.1 auth: Kristian Toro**********
+{
+Fix på kamerabuggar på den högre upplösningen, och en bugg på main menu.
+}
+
+**********2018-05-27 Version 1.0.0 auth: Kristian Toro**********
 {
 Fixat en ny bugg som kom med i förra versionen som gör att man faller igenom plattformar.
 Ändrat startpos på stage2. Rensat lite småsaker i alla klasser.
